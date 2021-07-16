@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePasswordResetsTable extends Migration
+class AddJoinRankingToUserDatasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreatePasswordResetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('password_resets', function (Blueprint $table) {
-            $table->string('email', 191)->index();
-            $table->string('token');
-            $table->timestamp('created_at')->nullable();
+        Schema::table('user_datas', function (Blueprint $table) {
+            $table->integer('join_ranking')->after('point')->unsigned()->default(2)->comment('1:参加/2:不参加');
         });
     }
 
@@ -27,6 +25,8 @@ class CreatePasswordResetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('password_resets');
+        Schema::table('user_datas', function (Blueprint $table) {
+            $table->dropColumn('join_ranking');
+        });
     }
 }
