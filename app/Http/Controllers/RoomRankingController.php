@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Room;
-use App\RoomRanking;
-use App\User;
+use App\Models\Room;
+use App\Models\RoomRanking;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

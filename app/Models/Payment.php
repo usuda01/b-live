@@ -13,7 +13,7 @@ class Payment extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -21,6 +21,6 @@ class Payment extends Model
      */
     public function message()
     {
-        return $this->belongsTo('App\Message');
+        return $this->belongsTo(Message::class);
     }
 }

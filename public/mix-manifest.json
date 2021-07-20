@@ -1,6 +1,9 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/common.js": "/js/common.js",
+    "/js/room.js": "/js/room.js",
+    "/js/profile.js": "/js/profile.js",
+    "/js/stream.js": "/js/stream.js",
     "/css/app.css": "/css/app.css",
     "/css/fonts.css": "/css/fonts.css",
     "/js/all.js": "/js/all.js",

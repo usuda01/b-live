@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\Auth\TwitterController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\RoomRankingController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +32,7 @@ Route::get('room/{room_id}', 'RoomController@stream');
 Route::post('room/count-views', 'RoomController@countViews');
 
 // ログイン画面
-Route::get('/login', 'LoginController@login')->name('login');
+Route::get('/login', [LoginController::class, 'login'])->name('login');
 
 // Appleログイン
 Route::get('auth/apple-signin', 'Auth\AppleSigninController@login');
@@ -40,9 +45,9 @@ Route::get('auth/facebook', 'Auth\FacebookController@redirectToProvider');
 Route::get('auth/facebook/callback', 'Auth\FacebookController@handleProviderCallback');
 
 // Twitterログイン
-Route::get('auth/twitter', 'Auth\TwitterController@redirectToProvider');
+Route::get('auth/twitter', [TwitterController::class, 'redirectToProvider']);
 // TwitterコールバックURL
-Route::get('auth/twitter/callback', 'Auth\TwitterController@handleProviderCallback');
+Route::get('auth/twitter/callback', [TwitterController::class, 'handleProviderCallback']);
 
 // ログアウトURL
 Route::get('auth/logout', 'Auth\LoginController@logout');
@@ -51,11 +56,11 @@ Route::get('auth/logout', 'Auth\LoginController@logout');
 Route::get('group/detail/{group_id}', 'GroupController@detail');
 
 // ルームランキング
-Route::get('room-ranking/{target_month}/{target_rank}', 'RoomRankingController@index');
-Route::get('api/room-ranking/{target_month}/{target_rank}', 'RoomRankingController@getRooms');
+Route::get('room-ranking/{target_month}/{target_rank}', [RoomRankingController::class, 'index']);
+Route::get('api/room-ranking/{target_month}/{target_rank}', [RoomRankingController::class, 'getRooms']);
 
 // 検索
-Route::get('search', 'RoomController@search');
+Route::get('search', [RoomController::class, 'search']);
 
 // ユーザーページ
 Route::get('user/{user_id}', 'UserController@detail');
@@ -78,23 +83,23 @@ Route::middleware('auth')->group(function () {
     // 設定
     Route::prefix('setting')->group(function () {
         // プレミアム会員ページ
-        Route::get('/payment', 'SettingController@payment');
-        Route::post('/payment-confirm', 'SettingController@paymentConfirm');
-        Route::post('/payment-exec', 'SettingController@paymentExec');
-        Route::get('/payment-complete', 'SettingController@paymentComplete');
+        Route::get('/payment', [SettingController::class, 'payment']);
+        Route::post('/payment-confirm', [SettingController::class, 'paymentConfirm']);
+        Route::post('/payment-exec', [SettingController::class, 'paymentExec']);
+        Route::get('/payment-complete', [SettingController::class, 'paymentComplete']);
 
         Route::get('/coin', 'SettingController@coin');
         Route::get('/coin-request', 'SettingController@coinRequest');
         Route::post('/coin-request', 'SettingController@coinRequestPost');
 
         // LINE連携
-        Route::get('/line', 'SettingController@line')->name('line');
+        Route::get('/line', [SettingController::class, 'line'])->name('line');
 
-        Route::get('/profile', 'SettingController@profile');
-        Route::post('/profile', 'SettingController@profilePost');
-        Route::get('/stream/{room_id?}', 'SettingController@stream');
-        Route::post('/stream', 'SettingController@streamPost');
-        Route::get('/archive', 'SettingController@archive');
+        Route::get('/profile', [SettingController::class, 'profile']);
+        Route::post('/profile', [SettingController::class, 'profilePost']);
+        Route::get('/stream/{room_id?}', [SettingController::class, 'stream']);
+        Route::post('/stream', [SettingController::class, 'streamPost']);
+        Route::get('/archive', [SettingController::class, 'archive']);
 
         // クラン
         Route::get('/group-list', 'SettingController@groupList');

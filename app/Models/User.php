@@ -29,7 +29,7 @@ class User extends Authenticatable
      */
     public function blockUsers()
     {
-        return $this->hasMany('App\Block', 'blocker_id', 'id');
+        return $this->hasMany(Block::class, 'blocker_id', 'id');
     }
 
     /**
@@ -37,7 +37,7 @@ class User extends Authenticatable
      */
     public function followers()
     {
-        return $this->hasMany('App\Follower', 'follow_id', 'id');
+        return $this->hasMany(Follower::class, 'follow_id', 'id');
     }
 
     /**
@@ -45,7 +45,7 @@ class User extends Authenticatable
      */
     public function follows()
     {
-        return $this->hasMany('App\Follower', 'follower_id', 'id');
+        return $this->hasMany(Follower::class, 'follower_id', 'id');
     }
 
     /**
@@ -53,7 +53,7 @@ class User extends Authenticatable
      */
     public function messages()
     {
-        return $this->hasMany('App\Message');
+        return $this->hasMany(Message::class);
     }
 
     /**
@@ -61,7 +61,7 @@ class User extends Authenticatable
      */
     public function point_requests()
     {
-        return $this->hasMany('App\PointRequest');
+        return $this->hasMany(PointRequest::class);
     }
 
     /**
@@ -69,7 +69,7 @@ class User extends Authenticatable
      */
     public function user_data()
     {
-        return $this->hasOne('App\UserData');
+        return $this->hasOne(UserData::class);
     }
 
     // プロフィール画像のパスを取得

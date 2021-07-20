@@ -22,7 +22,7 @@ class Room extends Model
      */
     public function messages()
     {
-        return $this->hasMany('App\Message');
+        return $this->hasMany(Message::class);
     }
 
     /**
@@ -30,7 +30,7 @@ class Room extends Model
      */
     public function roomRankings()
     {
-        return $this->hasMany('App\RoomRanking');
+        return $this->hasMany(RoomRanking::class);
     }
 
     /**
@@ -38,7 +38,7 @@ class Room extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -46,7 +46,7 @@ class Room extends Model
      */
     public function wowza()
     {
-        return $this->belongsTo('App\Wowza');
+        return $this->belongsTo(Wowza::class);
     }
 
     // 配信中ルーム画像のパスを取得

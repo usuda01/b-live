@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Group;
-use App\PointRequest;
-use App\Room;
-use App\User;
-use App\UserData;
-use App\Wowza;
+use App\Models\Group;
+use App\Models\PointRequest;
+use App\Models\Room;
+use App\Models\User;
+use App\Models\UserData;
+use App\Models\Wowza;
 use Helper;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;

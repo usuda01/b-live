@@ -18,7 +18,7 @@ class Message extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -26,7 +26,7 @@ class Message extends Model
      */
     public function room()
     {
-        return $this->belongsTo('App\Room');
+        return $this->belongsTo(Room::class);
     }
 
     /**
@@ -34,6 +34,6 @@ class Message extends Model
      */
     public function payment()
     {
-        return $this->hasOne('App\Payment');
+        return $this->hasOne(Payment::class);
     }
 }

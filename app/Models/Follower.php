@@ -13,7 +13,7 @@ class Follower extends Model
      */
     public function followUser()
     {
-        return $this->belongsTo('App\User', 'follow_id', 'id');
+        return $this->belongsTo(User::class, 'follow_id', 'id');
     }
 
     /**
@@ -21,7 +21,7 @@ class Follower extends Model
      */
     public function followerUser()
     {
-        return $this->belongsTo('App\User', 'follower_id', 'id');
+        return $this->belongsTo(User::class, 'follower_id', 'id');
     }
 
 }

@@ -13,7 +13,7 @@ class Block extends Model
      */
     public function blockUser()
     {
-        return $this->belongsTo('App\User', 'blocker_id');
+        return $this->belongsTo(User::class, 'blocker_id');
     }
 
     /**
@@ -21,7 +21,7 @@ class Block extends Model
      */
     public function blockedUser()
     {
-        return $this->belongsTo('App\User', 'blocked_id');
+        return $this->belongsTo(User::class, 'blocked_id');
     }
 
 

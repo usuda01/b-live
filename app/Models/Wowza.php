@@ -17,7 +17,7 @@ class Wowza extends Model
      */
     public function rooms()
     {
-        return $this->hasMany('App\Room');
+        return $this->hasMany(Room::class);
     }
 
     /**
@@ -25,7 +25,7 @@ class Wowza extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
     /*

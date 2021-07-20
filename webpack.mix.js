@@ -11,14 +11,19 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+mix.js('resources/js/app.js', 'public/js').vue()
     .postCss('resources/css/app.css', 'public/css', [
         //
     ])
+/*
    .autoload({
         jquery: ['$', 'window.jQuery']
     })
+*/
     .js('resources/js/common.js', 'public/js')
+    .js('resources/js/room.js', 'public/js')
+    .js('resources/js/profile.js', 'public/js')
+    .js('resources/js/stream.js', 'public/js')
     .scripts([
         'resources/js/hls.js',
         'resources/js/video.js',

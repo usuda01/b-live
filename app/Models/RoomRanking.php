@@ -15,7 +15,7 @@ class RoomRanking extends Model
      */
     public function room()
     {
-        return $this->belongsTo('App\Room');
+        return $this->belongsTo(Room::class);
     }
 
     /**
@@ -23,6 +23,6 @@ class RoomRanking extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(Room::class);
     }
 }

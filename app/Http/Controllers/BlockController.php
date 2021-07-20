@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Block;
 //use App\Http\Controllers\Controller;
 use App\Mail\ContentReported;
 use App\Mail\UserReported;
-use App\Room;
-use App\User;
+use App\Models\Block;
+use App\Models\Room;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

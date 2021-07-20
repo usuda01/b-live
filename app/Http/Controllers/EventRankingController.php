@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\EventRanking;
+use App\Models\EventRanking;
 
 class EventRankingController extends Controller
 {

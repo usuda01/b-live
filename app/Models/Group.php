@@ -15,7 +15,7 @@ class Group extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
     // クラン画像のパスを取得

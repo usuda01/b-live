@@ -15,6 +15,6 @@ class Log extends Model
      */
     public function room()
     {
-        return $this->belongsTo('App\Room');
+        return $this->belongsTo(Room::class);
     }
 }

@@ -1,8 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Log;
-use App\Room;
+use App\Models\Log;
+use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
