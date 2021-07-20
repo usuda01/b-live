@@ -1,0 +1,2840 @@
+@media only screen and (min-width: 960px) {
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -o-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    html {
+        font-size: 62.5%;
+        &.html-room-message-viewer {
+            background: transparent;
+        }
+    }
+    body {
+        font-size: 1.4rem;
+        font-family: 'Noto Sans JP';
+        font-weight: normal;
+    }
+    .html-room-message-viewer {
+        body {
+            background: transparent;
+        }
+    }
+    input[type=text],
+    input[type=email] {
+        border-radius: 2px;
+        border: 2px solid #666666;
+        padding: 5px 11px;
+    }
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+
+    .tb_only {
+        display: none;
+    }
+
+    .btn-default {
+        border-radius: 4px;
+        color: #fff;
+        background: $base-color;
+        padding: 5px 24px;
+        font-size: 1.6rem;
+        border: none;
+    }
+
+    .btn-danger {
+        border-radius: 4px;
+        color: #fff;
+        background: #ff0000;
+        padding: 5px 24px;
+        font-size: 1.6rem;
+        border: none;
+    }
+
+    .modal {
+        display: none;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 2;
+        &.open {
+            display: block;
+        }
+        &.modal01 {
+            .modal__content {
+                width: 520px;
+            }
+        }
+    }
+
+    .modal__bg {
+        background: rgba(0,0,0,0.8);
+        height: 100vh;
+        position: absolute;
+        width: 100%;
+    }
+
+    .modal__content {
+        background: #fff;
+        left: 50%;
+        padding: 40px;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        width: 60%;
+        .js-modal-close {
+            display: block;
+            position: absolute;
+            right: 30px;
+            top: 30px;
+        }
+        /* 利用規約 */
+        .terms {
+            h2 {
+                text-align: center;
+                font-weight: bold;
+                font-size: 1.6rem;
+                margin-bottom: 16px;
+            }
+            .terms-content {
+                height: 50vh;
+                overflow-y: scroll;
+                border: 1px solid #ccc;
+                padding: 10px;
+                .section {
+                    margin-bottom: 30px;
+                    h3 {
+                        font-weight: 600;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+            .btn-default {
+                display: block;
+                width: 12em;
+                margin: 0 auto;
+            }
+        }
+    }
+
+    .drawer-bg {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        z-index: 2;
+        background-color: rgba(51, 51, 51, 0.5);
+        display: none;
+    }
+    .drawer-bg {
+        &.open {
+            display: block;
+        }
+    }
+    .drawer-menu {
+        position: fixed;
+        background: #f3f5f7;
+        overflow: scroll;
+        width: 240px;
+        height: 100%;
+        left: 0;
+        z-index: 3;
+        top: 0;
+        -webkit-transition: all .2s;
+        -moz-transition: all .2s;
+        -o-transition: all .2s;
+        transition: all .2s;
+        -webkit-transform: translate3d(-100%, 0, 0);
+        -moz-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+        &.open {
+            -webkit-transform: translate3d(0%, 0, 0);
+            -moz-transform: translate3d(0%, 0, 0);
+            transform: translate3d(0%, 0, 0);
+        }
+        .drawer-menu_close {
+            margin: 20px 20px 20px 0;
+            text-align: right;
+        }
+        .drawer-menu__list {
+            a {
+                display: block;
+                padding: 0 20px;
+                line-height: 50px;
+            }
+            img {
+                width: 20px;
+                margin-right: 11px;
+                vertical-align: middle;
+            }
+            span {
+                vertical-align: middle;
+            }
+        }
+    }
+
+    .notice-bg {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        z-index: 2;
+        background-color: rgba(51, 51, 51, 0.5);
+        display: none;
+        &.open {
+            display: block;
+        }
+    }
+    .notice-menu {
+        position: fixed;
+        background: #f3f5f7;
+        overflow: scroll;
+        width: 240px;
+        height: 100%;
+        right: 0;
+        z-index: 3;
+        top: 0;
+        -webkit-transition: all .2s;
+        -moz-transition: all .2s;
+        -o-transition: all .2s;
+        transition: all .2s;
+        -webkit-transform: translate3d(100%, 0, 0);
+        -moz-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+        &.open {
+            -webkit-transform: translate3d(0%, 0, 0);
+            -moz-transform: translate3d(0%, 0, 0);
+            transform: translate3d(0%, 0, 0);
+        }
+        .notice-menu_close {
+            margin: 20px 20px 20px 0;
+            text-align: right;
+        }
+        .notice-menu__list {
+            a {
+                display: block;
+                padding: 0 20px;
+                line-height: 50px;
+            }
+            img {
+                width: 20px;
+                margin-right: 11px;
+                vertical-align: middle;
+            }
+            span {
+                vertical-align: middle;
+            }
+        }
+    }
+
+    .search-bg {
+        display: none;
+    }
+    .search-content {
+        display: none;
+    }
+
+    .site-header {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        padding: 8px 0 0;
+        border-bottom: 1px solid #cccccc;
+        height: 50px;
+        z-index: 1;
+        background: #fff;
+    }
+    .site-header__inner {
+        display: flex;
+        align-items: center;
+        margin: 0 20px;
+    }
+    .site-header__toggle-sidebar {
+        margin-right: 20px;
+        img {
+        }
+    }
+    .site-header__logo {
+        margin-right: 17.24%;
+        a {
+            display: block;
+            img {
+                width: 150px;
+            }
+        }
+    }
+    .site-header__search {
+        form {
+            display: flex;
+            border-radius: 2px;
+            border: 1px solid $base-color;
+        }
+        input[type="text"] {
+            padding: 2px 6px;
+            border: none;
+            width: 308px;
+            background: #f3f5f7;
+        }
+        input[type="submit"] {
+            border: none;
+            width: 32px;
+            height: 32px;
+            background: $base-color url(/images/btn-search.png) center no-repeat;
+        }
+    }
+    .site-header__search-sp {
+        display: none;
+    }
+    .site-header__notice {
+        margin-left: auto;
+        a {
+            i {
+                color: #f6b800;
+                font-size: 22px;
+            }
+        }
+    }
+    .site-header__account {
+        margin-left: 20px;
+    }
+    .site-header__login {
+        margin-right: 19px;
+        line-height: 34px;
+    }
+    .site-header__register {
+        color: $base-color;
+        padding: 0 12px;
+        border: solid 2px $base-color;
+        border-radius: 4px;
+        line-height: 34px;
+    }
+    .site-header__account-loggedin {
+        margin-left: 20px;
+        a {
+            display: block;
+            .icon {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background-position: center;
+                display: inline-block;
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+        }
+    }
+
+    .footer-menu {
+        display: none;
+    }
+
+    /*
+     * アプリインストール
+     */
+    .app-install {
+        display: none;
+        position: sticky;
+        top: 50px;
+        z-index: 1;
+        background: $base-color;
+        margin-top: 50px;
+        margin-bottom: -50px;
+        padding: 20px 20px;
+        color: #fff;
+        .headline {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            .app-logo {
+                width: 50px;
+                margin-right: 22px;
+                img {
+                    width: 100%;
+                }
+            }
+            .app-text {
+                font-weight: 600;
+            }
+        }
+        .btn-install {
+            color: #fff;
+            font-weight: 600;
+            display: block;
+            border: solid 2px #fff;
+            border-radius: 30px;
+            padding: 6px 0px;
+            text-align: center;
+            width: 14em;
+        }
+    }
+
+    /*
+     * LINE連携
+     */
+    .line-connect {
+        position: sticky;
+        top: 50px;
+        z-index: 1;
+        background: $base-color;
+        margin-top: 50px;
+        margin-bottom: -50px;
+        padding: 20px 20px;
+        color: #fff;
+        .headline {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            .line-logo {
+                width: 50px;
+                margin-right: 22px;
+                img {
+                    width: 100%;
+                }
+            }
+            .line-text {
+                font-weight: 600;
+            }
+        }
+        .btn-connect {
+            color: #fff;
+            font-weight: 600;
+            display: block;
+            border: solid 2px #fff;
+            border-radius: 30px;
+            padding: 6px 0px;
+            text-align: center;
+            width: 14em;
+        }
+    }
+
+    /*
+     * アカウントメニュー
+     */
+    .account-menu-bg {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        z-index: 2;
+        background: transparent;
+        display: none;
+    }
+    .account-menu-bg {
+        &.active {
+            display: block;
+        }
+    }
+    .account-menu {
+        position: fixed;
+        display: none;
+        right: 20px;
+        top: 45px;
+        z-index: 3;
+        background: #fff;
+        box-shadow: 0 0 6px #999;
+        padding: 15px;
+        &.active {
+            display: block;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #999999;
+            padding-bottom: 14px;
+            .icon {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-position: center;
+                display: inline-block;
+                background-size: cover;
+                background-repeat: no-repeat;
+                margin-right: 8px;
+            }
+            .name {
+                width: 108px;
+                font-size: 1.2rem;
+            }
+        }
+        .menu-list {
+            img {
+                margin-right: 10px;
+                vertical-align: middle;
+            }
+            li {
+                margin-bottom: 16px;
+            }
+        }
+    }
+
+
+    .site-content {
+        margin-top: 50px;
+        /* for Xcode */
+        &.webview {
+            &.RoomController-message {
+                margin-top: 0;
+            }
+        }
+    }
+    .html-room-message-viewer {
+        .site-content {
+            margin-top: 0;
+        }
+    }
+
+    .common-sidebar {
+        background: #f3f5f7;
+        width: 240px;
+        margin-right: 20px;
+        padding: 40px 0px;
+        .menu-list {
+            li {
+                a {
+                    display: block;
+                    padding: 0 20px;
+                    line-height: 60px;
+                    &:before {
+                        display: inline-block;
+                        margin-right: 11px;
+                        vertical-align: middle;
+                    }
+                    span {
+                        vertical-align: middle;
+                    }
+                }
+                &.menu01 {
+                    a {
+                        &:before {
+                            content: url(/images/icon-menu05.png);
+                            width: 20px;
+                            height: 18px;
+                        }
+                    }
+                }
+                &.menu02 {
+                    a {
+                        &:before {
+                            content: url(/images/icon-menu06.png);
+                            width: 20px;
+                            height: 17px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /*
+     * ログイン
+     */
+    .login-index {
+        background: #fff1ff;
+        height: 100%;
+        padding-top: 68px;
+        .content {
+            width: 520px;
+            margin: 0 auto;
+            padding: 42px 92px 60px 92px;
+            background: #fff;
+            .logo {
+                text-align: center;
+                margin-bottom: 84px;
+            }
+            .sns-login {
+                .login-title {
+                    font-size: 2.4rem;
+                    font-weight: 600;
+                    margin-bottom: 34px;
+                }
+                ul {
+                    li {
+                        margin-bottom: 22px;
+                    }
+                }
+                .desc {
+                    color: #6d6d6d;
+                    font-size: 1.6rem;
+                    margin-bottom: 46px;
+                }
+                .agree {
+                    color: #6d6d6d;
+                    font-size: 1.6rem;
+                    a {
+                        color: #6d6d6d;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+
+
+    /*
+     * トップ
+     */
+    .home-index {
+        display: flex;
+        justify-content: space-between;
+        height: 100%;
+        .main-area {
+            width: 100%;
+            margin-right: 20px;
+            .slider {
+                video {
+                    width: calc(100% + 40px);
+                    margin-left: -20px;
+                }
+            }
+            .event {
+                text-align: center;
+            }
+            .main-title {
+                font-size: 2rem;
+                margin: 46px 0 18px 0;
+            }
+            .no-content {
+                margin: 60px auto;
+                font-size: 2.0rem;
+                text-align: center;
+            }
+            .user-content {
+                margin-bottom: 20px;
+                .user-box {
+                    display: flex;
+                    overflow-x: scroll;
+                }
+                .user-info {
+                    width: 60px;
+                    flex: 0 0 auto;
+                    width: calc(100% / 10);
+                    .user-profile {
+                        margin-bottom: 4px;
+                        a {
+                            margin: 0 auto;
+                            max-width: 60px;
+                            height: 60px;
+                            border-radius: 50%;
+                            border: solid 2px #000;
+                            display: block;
+                            background-position: center;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                        }
+                    }
+                    &.rank1 .user-profile a {
+                        border: solid 2px #e9ba31;
+                    }
+                    &.rank2 .user-profile a {
+                        border: solid 2px #9fa0a0;
+                    }
+                    &.rank3 .user-profile a {
+                        border: solid 2px #ba6e40;
+                    }
+                    .user-name {
+                        font-size: 1.2rem;
+                        color: #999999;
+                        text-align: center;
+                        word-break: break-all;
+                        height: 1.7rem;
+                        overflow: hidden;
+                    }
+                    .follower-count {
+                        text-align: center;
+                        color: #999;
+                    }
+                }
+                &.frequent {
+                    .main-title {
+                        margin-bottom: 3px;
+                    }
+                    .user-info {
+                        .user-profile {
+                            a {
+                                position: relative;
+                                margin-top: 15px;
+                            }
+                        }
+                        &.rank1 .user-profile a::before {
+                            font-family: "Font Awesome 5 Free";
+                            content: '\f521';
+                            font-weight: 900;
+                            position: absolute;
+                            top: -16px;
+                            color: #e9ba31;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            -webkit-transform: translateX(-50%);
+                            -ms-transform: translateX(-50%);
+                        }
+                        &.rank2 .user-profile a::before {
+                            font-family: "Font Awesome 5 Free";
+                            content: '\f521';
+                            font-weight: 900;
+                            position: absolute;
+                            top: -16px;
+                            color: #9fa0a0;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            -webkit-transform: translateX(-50%);
+                            -ms-transform: translateX(-50%);
+                        }
+                        &.rank3 .user-profile a::before {
+                            font-family: "Font Awesome 5 Free";
+                            content: '\f521';
+                            font-weight: 900;
+                            position: absolute;
+                            top: -16px;
+                            color: #ba6e40;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            -webkit-transform: translateX(-50%);
+                            -ms-transform: translateX(-50%);
+                        }
+                    }
+                }
+            }
+            .sns-content {
+                .sns-items {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    .twitter-content {
+                        width: 31%;
+                    }
+                    .instagram-content {
+                        width: 31%;
+                        iframe {
+                            min-width: 31% !important;
+                        }
+                    }
+                    .youtube-content {
+                        position: relative;
+                        width: 31%;
+                        &::before {
+                            content: "";
+                            display: block;
+                            padding-top: 66%;
+                        }
+                        iframe {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+            .room-content {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                .room-box {
+                    flex-basis: 24.1%;
+                    margin: 0 1.2% 20px 0;
+                    &:nth-child(4n) {
+                        margin-right: 0;
+                    }
+                    .room-image {
+                        position: relative;
+                        width: 100%;
+                        margin-bottom: 12px;
+                        &:before {
+                            content: "";
+                            display: block;
+                            padding-top: 56.8%;
+                        }
+                        a {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            bottom: 0;
+                            right: 0;
+                            background-position: center;
+                            display: block;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                        }
+                        .live {
+                            position: absolute;
+                            top: 4px;
+                            left: 4px;
+                            background: #ff0000;
+                            color: #fff;
+                            padding: 0 4px;
+                            font-size: 1.2rem;
+                        }
+                    }
+                    .room-name {
+                        display: block;
+                        margin-bottom: 4px;
+                    }
+                    .user-name {
+                        a {
+                            font-size: 1.2rem;
+                            color: #999999;
+                        }
+                    }
+                }
+            }
+            .group-content {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                .group-box {
+                    flex-basis: 24.1%;
+                    margin: 0 1.2% 20px 0;
+                    &:nth-child(4n) {
+                        margin-right: 0;
+                    }
+                    .game-title {
+                        margin-bottom: 4px;
+                        color: #f66951;
+                    }
+                    .group-image {
+                        position: relative;
+                        width: 100%;
+                        margin-bottom: 12px;
+                        &:before {
+                            content: "";
+                            display: block;
+                            padding-top: 56.8%;
+                        }
+                        a {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            bottom: 0;
+                            right: 0;
+                            background-position: center;
+                            display: block;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                        }
+                    }
+                    .group-name {
+                        display: block;
+                        margin-bottom: 4px;
+                    }
+                    .user-name {
+                        font-size: 1.2rem;
+                        color: #999999;
+                    }
+                }
+            }
+        }
+    }
+
+
+    /*
+     * ルーム個別
+     */
+    .room-stream {
+        display: flex;
+        overflow: hidden auto;
+        margin-right: 340px;
+        max-height: calc(100vh - 50px);
+        flex-wrap: wrap;
+        .main-area {
+            width: 100%;
+            margin: 0 10px;
+            .bar {
+                display: flex;
+                margin: 10px 0 6px 0;
+                .user-profile {
+                    width: 26px;
+                    height: 26px;
+                    border-radius: 50%;
+                    background-position: center;
+                    display: inline-block;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    margin: 0 10px;
+                }
+                .user-name {
+                    font-weight: 300;
+                    margin-right: 10px;
+                }
+                .user-rank {
+                    display: flex;
+                    align-items: center;
+                    &:before {
+                        content: '';
+                        display: block;
+                        margin-right: 8px;
+                        background-size: cover;
+                        width: 16px;
+                        height: 16px;
+                    }
+                    &.rank2 {
+                        color: #f66951;
+                        &:before {
+                            background-image: url(/images/icon-user-rank2.png);
+                        }
+                    }
+                    &.rank5 {
+                        color: $base-color;
+                        &:before {
+                            background-image: url(/images/icon-user-rank5.png);
+                        }
+                    }
+                }
+                .tag {
+                    margin-left: auto;
+                    color: #fff;
+                    background: #ff0000;
+                    padding: 0 14px;
+                    line-height: 26px;
+                }
+            }
+            .expired {
+                img {
+                    width: 100%;
+                }
+            }
+            .main-video {
+                width: 100%;
+            }
+            .video-footer {
+                background: #eeeeee;
+                color: #666666;
+                padding: 6px 10px;
+                margin-bottom: 14px;
+                display: flex;
+                justify-content: space-between;
+                .icon-views {
+                    display: inline-block;
+                    margin-right: 6px;
+                    vertical-align: middle;
+                }
+                .left-content {
+                    display: flex;
+                    align-items: center;
+                    .view-content {
+                        margin-right: 10px;
+                    }
+                    .view-count-wrapper {
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+                    .video-time {
+                    }
+                }
+                .right-content {
+                    display: flex;
+                    .share-content {
+                        margin-right: 30px;
+                        a {
+                            img {
+                                width: 100px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .tabs {
+            display: none;
+        }
+        .video-info {
+            width: 100%;
+            margin: 0 10px;
+            .headline {
+                display: flex;
+                justify-content: space-between;
+                -webkit-box-align: start;
+                -ms-flex-align: start;
+                align-items: flex-start;
+                margin-bottom: 30px;
+            }
+            .from-now {
+                color: #666;
+                margin-bottom: 14px;
+                .icon {
+                    margin-right: 10px;
+                    vertical-align: middle;
+                    img {
+                        width: 18px;
+                    }
+                }
+                .date {
+                    vertical-align: middle;
+                }
+            }
+            .room-name {
+                margin-right: 10px;
+                font-size: 1.8rem;
+            }
+            .follow {
+                white-space: nowrap;
+                border-radius: 4px;
+                border: solid 2px $base-color;
+                color: $base-color;
+                padding: 4px 8px;
+                &.on {
+                    color: #fff;
+                    background: $base-color;
+                }
+            }
+            .expired {
+                font-size: 1.6rem;
+                margin-bottom: 30px;
+            }
+            .description {
+                white-space: pre-line;
+                padding: 0 0 40px 0;
+                a {
+                    color: $base-color;
+                }
+            }
+        }
+        .message-wrapper {
+            position: fixed;
+            right: 0;
+            top: 50px;
+            height: calc(100vh - 50px);
+            border: solid 1px #ccc;
+            border-top: none;
+            border-right: 0;
+            .message-area {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                width: 340px;
+                background: #f9f9f9;
+                .title-area {
+                    display: flex;
+                    justify-content: space-between;
+                    line-height: 42px;
+                    height: 42px;
+                    background: #fff;
+                    border-bottom: 1px solid #ccc;
+                    .title {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin-left: 20px;
+                        .mic {
+                            vertical-align: middle;
+                            margin-right: 12px;
+                            img {
+                            }
+                        }
+                        span {
+                        }
+                    }
+                    .message-menu {
+                        background-color: transparent;
+                        border: none;
+                        cursor: pointer;
+                        outline: none;
+                        padding: 0;
+                        appearance: none;
+                        width: 40px;
+                    }
+                }
+                .menu-list {
+                    position: absolute;
+                    top: 42px;
+                    right: 10px;
+                    background: #fff;
+                    padding: 10px 20px 10px 10px;
+                    box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.6);
+                    ul {
+                        li {
+                            a {
+                                display: block;
+                                i {
+                                    margin-right: 12px;
+                                }
+                            }
+                        }
+                    }
+                }
+                .chat-area {
+                    display: flex;
+                    flex-direction: column;
+                    height: calc(100% - 42px);
+                    .user-detail {
+                        position: absolute;
+                        width: 76%;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        -webkit-transform: translate(-50%, -50%);
+                        -ms-transform: translate(-50%, -50%);
+                        background: #fff;
+                        padding-top: 19px;
+                        padding-bottom: 19px;
+                        border-radius: 4px;
+                        &:before {
+                            content: "";
+                            display: block;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 50px;
+                            background: #ffd2ff;
+                            border-radius: 4px 4px 0 0;
+                        }
+                        .close {
+                            position: absolute;
+                            top: -10px;
+                            right: -10px;
+                        }
+                        .user-profile {
+                            position: relative;
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                            background-position: center;
+                            display: block;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                            margin: 0 auto 8px auto;
+                        }
+                        .user-name {
+                            display: block;
+                            text-align: center;
+                            font-size: 1.2rem;
+                            margin-bottom: 14px;
+                        }
+                        .control {
+                            display: flex;
+                            justify-content: center;
+                            .block {
+                                margin-right: 20px;
+                            }
+                            .flag {
+                            }
+                        }
+                    }
+                    .chat-list {
+                        height: 100%;
+                        overflow-y: scroll;
+                        overflow-x: hidden;
+                        display: flex;
+                        flex-flow: column;
+                        padding-top: 8px;
+                        .user-message {
+                            margin: 0 10px 10px 10px;
+                            &.admin {
+                                padding: 10px;
+                                border-radius: 4px;
+                                background: #be00e7;
+                                color: #fff;
+                                .user-name {
+                                    color: #fff;
+                                }
+                            }
+                            &.payment {
+                                padding: 10px;
+                                border-radius: 4px;
+                                .user-name {
+                                    color: #000;
+                                    margin-right: 14px;
+                                }
+                                .amount {
+                                    font-weight: 600;
+                                }
+                                .message {
+                                    display: block;
+                                    margin-top: 10px;
+                                }
+                                &.purchase1 {
+                                    background: $purchase1-color;
+                                }
+                                &.purchase2 {
+                                    background: $purchase2-color;
+                                }
+                                &.purchase3 {
+                                    background: $purchase3-color;
+                                }
+                                &.purchase4 {
+                                    background: $purchase4-color;
+                                }
+                                &.purchase5 {
+                                    background: $purchase5-color;
+                                }
+                                &.purchase6 {
+                                    background: $purchase6-color;
+                                }
+                            }
+                            .user-profile {
+                                width: 20px;
+                                height: 20px;
+                                border-radius: 50%;
+                                background-position: center;
+                                display: inline-block;
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                                vertical-align: top;
+                                margin-right: 10px;
+                            }
+                            .user-name {
+                                color: #666666;
+                                vertical-align: top;
+                            }
+                            .message {
+                                vertical-align: top;
+                            }
+                        }
+                    }
+                    .send-chat {
+                        background: #fff;
+                        padding: 10px 10px 8px 10px;
+                        .user-info {
+                            display: flex;
+                            margin-bottom: 8px;
+                            .user-profile {
+                                width: 20px;
+                                height: 20px;
+                                border-radius: 50%;
+                                background-position: center;
+                                display: inline-block;
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                                margin-right: 10px;
+                            }
+                            .user-name {
+                                color: #666;
+                            }
+                        }
+                        .send-footer {
+                            display: flex;
+                            align-items: center;
+                            .send-box {
+                                display: flex;
+                                align-items: center;
+                                    width: calc(100% - 54px);
+                                .send-message {
+                                    display: block;
+                                    width: 100%;
+                                    border: none;
+                                    border-bottom: 2px solid $base-color;
+                                    border-radius: 0;
+                                }
+                                .send-btn {
+                                    display: flex;
+                                    margin-left: auto;
+                                }
+                            }
+                            .btn-gift {
+                                margin-left: auto;
+                                img {
+                                    width: 24px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .supporter {
+            display: none;
+        }
+        /* ギフトメッセージ */
+        .modal05 {
+            .modal__content {
+                width: 520px;
+            }
+            .title {
+                font-size: 2.4rem;
+                font-weight: 600;
+                margin-bottom: 20px;
+            }
+            .gift-error {
+                margin-bottom: 20px;
+                color: #ff0000;
+            }
+            .my-coin {
+                display: flex;
+                align-items: center;
+                margin-bottom: 46px;
+                justify-content: space-between;
+                font-size: 1.6rem;
+                .coin-info {
+                    display: flex;
+                    align-items: center;
+                    img {
+                        display: block;
+                        margin-right: 20px;
+                    }
+                }
+                .charge a {
+                    text-decoration: underline;
+                }
+            }
+            .gift-list {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                padding: 0 24px;
+                margin-bottom: 20px;
+                li {
+                    width: 30%;
+                    margin-bottom: 18px;
+                    a {
+                        display: block;
+                        line-height: 30px;
+                        padding-left: 1em;
+                        border-radius: 4px;
+                        border: solid 2px #cccccc;
+                        color: #666;
+                    }
+                    &.active {
+                        a {
+                            color: #000;
+                        }
+                        &.gift1 {
+                            a {
+                                border-color: $purchase1-color;
+                                background: $purchase1-color;
+                            }
+                        }
+                        &.gift2 {
+                            a {
+                                border-color: $purchase2-color;
+                                background: $purchase2-color;
+                            }
+                        }
+                        &.gift3 {
+                            a {
+                                border-color: $purchase3-color;
+                                background: $purchase3-color;
+                            }
+                        }
+                        &.gift4 {
+                            a {
+                                border-color: $purchase4-color;
+                                background: $purchase4-color;
+                            }
+                        }
+                        &.gift5 {
+                            a {
+                                border-color: $purchase5-color;
+                                background: $purchase5-color;
+                            }
+                        }
+                        &.gift6 {
+                            a {
+                                border-color: $purchase6-color;
+                                background: $purchase6-color;
+                            }
+                        }
+                    }
+                }
+            }
+            .user-info {
+                display: flex;
+                margin-bottom: 14px;
+                .user-profile {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    background-position: center;
+                    display: inline-block;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    margin-right: 10px;
+                }
+                .user-name {
+                    color: #666;
+                }
+            }
+            .send-footer {
+                .send-box {
+                    .send-message {
+                        width: 100%;
+                        display: block;
+                        border: none;
+                        border-bottom: 2px solid #9e1b9e;
+                        margin-bottom: 14px;
+                        border-radius: 0;
+                    }
+                }
+            }
+        }
+        /* コインチャージ */
+        .modal06 {
+            .modal__content {
+                width: 520px;
+            }
+            .title {
+                font-size: 2.4rem;
+                font-weight: 600;
+                margin-bottom: 20px;
+            }
+            .my-coin {
+                display: flex;
+                align-items: center;
+                margin-bottom: 46px;
+                justify-content: space-between;
+                font-size: 1.6rem;
+                .coin-info {
+                    display: flex;
+                    align-items: center;
+                    img {
+                        display: block;
+                        margin-right: 20px;
+                    }
+                }
+            }
+            .charge-list {
+                padding: 0 20px;
+                li {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                    .coin {
+                        font-size: 1.6rem;
+                    }
+                    .btn-purchase {
+                        border-radius: 16px;
+                        color: #fff;
+                        background: $base-color;
+                        padding: 6px 0;
+                        width: 7em;
+                        font-size: 1.4rem;
+                        border: none;
+                    }
+                }
+            }
+        }
+        /* カード情報入力 */
+        .modal07 {
+            .modal__content {
+                width: 520px;
+            }
+            .title {
+                font-size: 2.4rem;
+                font-weight: 600;
+                margin-bottom: 20px;
+            }
+            .email {
+                margin-bottom: 20px;
+            }
+            .card-submit {
+                margin-top: 20px;
+            }
+        }
+        &.webview {
+            /*margin-top: -50px;*/
+            .message-wrapper {
+                top: 0;
+                height: 100vh;
+                .chat-area {
+                    .send-chat {
+                        .send-footer {
+                            display: flex;
+                            align-items: center;
+                            .send-box {
+                                display: flex;
+                                align-items: center;
+                                width: calc(100% - 54px);
+                                .send-message {
+                                    margin-bottom: 0;
+                                }
+                            }
+                            .btn-gift {
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // for コメントビューワー
+    .html-room-message-viewer {
+        .room-stream {
+            max-height: initial;
+            display: initial;
+            margin-right: 0;
+            .message-wrapper {
+                position: relative;
+                .message-area {
+                    width: initial;
+                    .chat-area {
+                        height: 100vh;
+                    }
+                }
+            }
+        }
+    }
+
+    /*
+     * ユーザー個別
+     */
+    .user-detail {
+        position: relative;
+        &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 160px;
+            background: #f3f5f7;
+        }
+        .main-content {
+            position: relative;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 120px 40px 0 40px;
+            .user-info {
+                position: relative;
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+                .user-rank {
+                    position: absolute;
+                    left: 154px;
+                    top: 10px;
+                    display: flex;
+                    align-items: center;
+                    &:before {
+                        content: '';
+                        display: block;
+                        margin-right: 8px;
+                        background-size: cover;
+                        width: 16px;
+                        height: 16px;
+                    }
+                    &.rank2 {
+                        color: #f66951;
+                        &:before {
+                            background-image: url(/images/icon-user-rank2.png);
+                        }
+                    }
+                    &.rank5 {
+                        color: $base-color;
+                        &:before {
+                            background-image: url(/images/icon-user-rank5.png);
+                        }
+                    }
+                }
+                .user-profile {
+                    width: 120px;
+                    height: 120px;
+                    border-radius: 50%;
+                    border: 3px solid $base-color;
+                    background-position: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    margin-right: 34px;
+                }
+            }
+            .follow {
+                display: inline-block;
+                white-space: nowrap;
+                border-radius: 4px;
+                border: solid 2px $base-color;
+                color: $base-color;
+                padding: 4px 8px;
+                margin-bottom: 84px;
+                &.on {
+                    color: #fff;
+                    background: $base-color;
+                }
+            }
+            .tabs {
+                display: flex;
+                border-bottom: 1px solid #ccc;
+                margin-bottom: 30px;
+                li {
+                    flex-basis: 120px;
+                    text-align: center;
+                    padding-bottom: 6px;
+                }
+                .active {
+                    border-bottom: 2px solid $base-color;
+                }
+            }
+            .profile {
+                white-space: pre-wrap;
+                a {
+                    color: $base-color;
+                }
+            }
+            .room-wrapper {
+                .main-title {
+                    font-size: 2rem;
+                    margin: 0 0 18px 0;
+                }
+                .room-content {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    .room-box {
+                        flex-basis: 24.1%;
+                        margin: 0 1.2% 20px 0;
+                        &:nth-child(4n) {
+                            margin-right: 0;
+                        }
+                        .room-image {
+                            position: relative;
+                            width: 100%;
+                            margin-bottom: 12px;
+                            &:before {
+                                content: "";
+                                display: block;
+                                padding-top: 56.8%;
+                            }
+                            a {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                bottom: 0;
+                                right: 0;
+                                background-position: center;
+                                display: block;
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                            }
+                        }
+                        .room-name {
+                            display: block;
+                            margin-bottom: 4px;
+                        }
+                        .user-name {
+                            font-size: 1.2rem;
+                            color: #999999;
+                        }
+                    }
+                }
+            }
+            .supporter {
+                .supporter-box {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 20px;
+                    .user-profile {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        background-position: center;
+                        display: inline-block;
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        margin: 0 30px 0 0;
+                        border: solid 1px #000;
+                    }
+                    .user-right {
+                        display: flex;
+                        align-items: center;
+                        width: calc(100% - 70px);
+                        line-height: 40px;
+                        border-bottom: 1px solid #ccc;
+                    }
+                    .user-name {
+                    }
+                    .coin {
+                        display: flex;
+                        align-items: center;
+                        margin-left: auto;
+                        img {
+                            width: 26px;
+                            margin-right: 10px;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    /*
+     * ランキング
+     */
+    .room-ranking-index {
+        display: flex;
+        justify-content: space-between;
+        height: 100%;
+        .main-area {
+            width: 100%;
+            .room-ranking {
+                width: 460px;
+            }
+            .select-month {
+                display: flex;
+                justify-content: space-between;
+                padding: 40px 0;
+                h2 {
+                    font-size: 2rem;
+                    font-weight: 600;
+                }
+            }
+            .rank-list {
+                display: flex;
+                justify-content: center;
+                padding-bottom: 12px;
+                border-bottom: 2px solid #cccccc;
+                margin-bottom: 18px;
+                li {
+                    margin-right: 20px;
+                    a {
+                        display: block;
+                        border-radius: 50%;
+                        width: 36px;
+                        height: 36px;
+                        line-height: 36px;
+                        text-align: center;
+                        font-size: 2rem;
+                        color: #fff;
+                    }
+                    &.rank4 {
+                        a {
+                            background-color: #fedccb;
+                        }
+                        &.active {
+                            a {
+                                background-color: #df0101;
+                            }
+                        }
+                    }
+                    &.rank3 {
+                        a {
+                            background-color: #d6d7ea;
+                        }
+                        &.active {
+                            a {
+                                background-color: #000a73;
+                            }
+                        }
+                    }
+                    &.rank2 {
+                        a {
+                            background-color: #d8eada;
+                        }
+                        &.active {
+                            a {
+                                background-color: #008f23;
+                            }
+                        }
+                    }
+                    &.rank1 {
+                        margin-right: 0;
+                        a {
+                            background-color: #d5ecf1;
+                        }
+                        &.active {
+                            a {
+                                background-color: #0095d1;
+                            }
+                        }
+                    }
+                }
+            }
+            .room-content {
+                .room-box {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    margin-bottom: 26px;
+                    .room-rank {
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 8px;
+                        .rank-icon {
+                            margin-right: 16px;
+                        }
+                        .rank-count {
+                            font-size: 2.0rem;
+                        }
+                    }
+                    .room-image {
+                        position: relative;
+                        width: 220px;
+                        &:before {
+                            content: "";
+                            display: block;
+                            padding-top: 56.8%;
+                        }
+                        a {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            bottom: 0;
+                            right: 0;
+                            background-position: center;
+                            display: block;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                        }
+                        .live {
+                            position: absolute;
+                            top: 4px;
+                            left: 4px;
+                            background: #ff0000;
+                            color: #fff;
+                            padding: 0 4px;
+                            font-size: 1.2rem;
+                        }
+                    }
+                    .room-info {
+                        position: relative;
+                        width: 210px;
+                        .room-name {
+                            margin-top: 8px;
+                            margin-bottom: 4px;
+                        }
+                        .user-info {
+                            display: flex;
+                            .user-profile {
+                                width: 20px;
+                                height: 20px;
+                                border-radius: 50%;
+                                background-position: center;
+                                display: inline-block;
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                                margin: 0 8px 0 0;
+                            }
+                            .user-name {
+                                font-size: 1.2rem;
+                                color: #999999;
+                            }
+                        }
+                        .max-view {
+                            position: absolute;
+                            left: 0;
+                            bottom: 0;
+                            .number {
+                                font-size: 2.4rem;
+                                color: $base-color;
+                                margin-right: 20px;
+                            }
+                            .text {
+                                font-size: 1.6rem;
+                                color: #999;
+                            }
+                        }
+                    }
+                }
+            }
+            .no-data {
+                padding: 20px 0 40px 0;
+                font-size: 2rem;
+                text-align: center;
+            }
+        }
+    }
+
+    /*
+     * フォロー一覧
+     */
+    .follower-follows {
+        display: flex;
+        justify-content: space-between;
+        height: 100%;
+        .main-area {
+            width: 100%;
+            h2 {
+                font-size: 2rem;
+                font-weight: 600;
+                padding: 40px 0;
+            }
+            .followers {
+                margin-right: 20px;
+                .follower-box {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 20px;
+                    .user-profile {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        background-position: center;
+                        display: inline-block;
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        margin: 0 30px 0 0;
+                        border: solid 1px #000;
+                    }
+                    .user-right {
+                        display: flex;
+                        align-items: center;
+                        width: calc(100% - 70px);
+                        line-height: 40px;
+                        border-bottom: 1px solid #ccc;
+                        .follow {
+                            margin-left: auto;
+                            border-radius: 24px;
+                            border: solid 2px #9e1b9e;
+                            color: #9e1b9e;
+                            padding: 2px 10px;
+                            line-height: 20px;
+                            &.on {
+                                color: #fff;
+                                background: $base-color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /*
+     * クラン個別
+     */
+    .group-detail {
+        position: relative;
+        &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 160px;
+            background: #f3f5f7;
+        }
+        .main-content {
+            position: relative;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 120px 40px 0 40px;
+            .group-info {
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+                .group-profile {
+                    width: 120px;
+                    height: 120px;
+                    border-radius: 50%;
+                    border: 3px solid $base-color;
+                    background-position: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    margin-right: 34px;
+                }
+            }
+            .game-title {
+                color: #f66951;
+                margin-bottom: 10px;
+            }
+            .user-name {
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    /*
+     * アカウント設定
+     */
+    .setting-profile,
+    .setting-coin,
+    .setting-coin-request,
+    .setting-group-list,
+    .setting-group,
+    .setting-line {
+        display: flex;
+        justify-content: space-between;
+        height: 100%;
+        .account-sidebar {
+            background: #f3f5f7;
+            width: 240px;
+            padding: 40px 0;
+            .menu-list {
+                li {
+                    a {
+                        display: block;
+                        padding: 0 20px;
+                        line-height: 60px;
+                        span {
+                            vertical-align: middle;
+                        }
+                    }
+                    &.active {
+                        background: $base-color;
+                        a {
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+        .main-content {
+            width: 100%;
+            margin: 0 40px;
+            h2 {
+                font-weight: 600;
+                font-size: 2.4rem;
+                padding: 40px 0;
+            }
+        }
+    }
+
+    .setting-profile {
+        .main-content {
+            .profile-form {
+                box-shadow: 0 0 15px #ccc;
+                padding: 34px 40px;
+                background: #fff;
+                border-radius: 4px;
+                .flash_message {
+                    margin-bottom: 42px;
+                    color: #ff0000;
+                }
+                li {
+                    margin-bottom: 42px;
+                    .label {
+                        font-size: 1.6rem;
+                        display: block;
+                        margin-bottom: 18px;
+                    }
+                    .icon-wrapper {
+                        display: flex;
+                        align-items: center;
+                        .icon {
+                            width: 120px;
+                            height: 120px;
+                            border-radius: 50%;
+                            background-position: center;
+                            display: inline-block;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                            margin: 0 34px 0 0;
+                        }
+                        .file-01 {
+                            display: none;
+                        }
+                        .file-mask {
+                            font-size: 1.6rem;
+                            .btn {
+                                display: inline-block;
+                                padding: 2px 10px;
+                                border: solid 2px #666666;
+                                border-radius: 4px;
+                            }
+                        }
+                    }
+                    input[type=text] {
+                        width: 500px;
+                    }
+                    textarea {
+                        padding: 5px 11px;
+                        width: 500px;
+                        height: 200px;
+                    }
+                    .connected-box {
+                        display: flex;
+                        align-items: center;
+                        .connected {
+                            color: $base-color;
+                            border: solid 1px $base-color;
+                            padding: 4px 30px;
+                            text-align: center;
+                            margin-right: 30px;
+                        }
+                    }
+                    .no-connected-box {
+                        .no-connected {
+                        }
+                    }
+                }
+                .submit {
+                    font-size: 1.8rem;
+                    color: #fff;
+                    background: $base-color;
+                    border-radius: 4px;
+                    padding: 5px 24px;
+                    border: none;
+                }
+            }
+        }
+    }
+
+    .setting-coin {
+        .main-content {
+            .coin-form {
+                box-shadow: 0 0 15px #ccc;
+                padding: 34px 40px;
+                background: #fff;
+                border-radius: 4px;
+                li {
+                    .coin {
+                        display: flex;
+                        align-items: center;
+                        img {
+                            display: block;
+                            margin-right: 20px;
+                        }
+                        .point {
+                            font-size: 1.6rem;
+                        }
+                    }
+                }
+                .note {
+                    margin-top: 20px;
+                    color: #666666;
+                }
+                .btn-request {
+                    margin-top: 36px;
+                    display: inline-block;
+                }
+                .request-list {
+                    margin-top: 40px;
+                    h3 {
+                        border-bottom: 2px solid #000;
+                        font-size: 1.6rem;
+                        padding-bottom: 4px;
+                        margin-bottom: 10px;
+                    }
+                    li {
+                        margin-bottom: 6px;
+                        span {
+                            margin-right: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .setting-coin-request {
+        .main-content {
+            .coin-form {
+                box-shadow: 0 0 15px #ccc;
+                padding: 34px 40px;
+                background: #fff;
+                border-radius: 4px;
+                li {
+                    margin-bottom: 20px;
+                    input[type=text] {
+                        width: 500px;
+                    }
+                    .label {
+                        font-size: 1.6rem;
+                        display: block;
+                        margin-bottom: 12px;
+                    }
+                    .coin {
+                        display: flex;
+                        align-items: center;
+                        img {
+                            display: block;
+                            margin-right: 20px;
+                        }
+                        .point {
+                            font-size: 1.6rem;
+                        }
+                    }
+                }
+                .bank-info {
+                    margin-top: 40px;
+                    .account-type {
+                        .account-type-label {
+                            margin-right: 20px;
+                        }
+                    }
+                }
+                .note {
+                    margin-top: 36px;
+                    color: #666666;
+                }
+                .btn-request {
+                    margin-top: 36px;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+
+    /*
+     * クラン一覧
+     */
+    .setting-group-list {
+        .main-content {
+            .group-list-content {
+                box-shadow: 0 0 15px #ccc;
+                padding: 24px 40px;
+                border-radius: 4px;
+                .flash_message {
+                    margin-bottom: 42px;
+                    color: #ff0000;
+                }
+                .error {
+                    margin-bottom: 42px;
+                    color: #ff0000;
+                    li {
+                        margin: 0;
+                        a {
+                            color: #ff0000;
+                        }
+                    }
+                }
+                .group-header {
+                    display: flex;
+                    padding-bottom: 18px;
+                    border-bottom: 1px solid #cccccc;
+                    .column {
+                        flex-basis: 40%;
+                        padding: 0 10px;
+                        &:nth-child(3) {
+                            flex-basis: 20%;
+                        }
+                    }
+                }
+                .group-row {
+                    display: flex;
+                    border-bottom: 1px solid #cccccc;
+                    padding: 10px 0;
+                    a {
+                        color: $base-color;
+                    }
+                    .name {
+                        flex-basis: 40%;
+                    }
+                    .game-title {
+                        flex-basis: 40%;
+                    }
+                    .member-number {
+                        flex-basis: 20%;
+                    }
+                }
+                .add-group {
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+
+    /*
+     * クラン作成
+     */
+    .setting-group {
+        .main-content {
+            .group-form {
+                box-shadow: 0 0 15px #ccc;
+                padding: 34px 40px;
+                background: #fff;
+                border-radius: 4px;
+                .flash_message {
+                    margin-bottom: 42px;
+                    color: #ff0000;
+                }
+                .error {
+                    margin-bottom: 42px;
+                    color: #ff0000;
+                    li {
+                        margin: 0;
+                        a {
+                            color: #ff0000;
+                        }
+                    }
+                }
+                li {
+                    margin-bottom: 30px;
+                    .label {
+                        font-size: 1.6rem;
+                        display: block;
+                        margin-bottom: 14px;
+                    }
+                    .icon-wrapper {
+                        display: flex;
+                        align-items: center;
+                        .icon {
+                            width: 160px;
+                            height: 90px;
+                            background-position: center;
+                            display: inline-block;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                            margin: 0 34px 0 0;
+                        }
+                        .file-01 {
+                            display: none;
+                        }
+                        .file-mask {
+                            font-size: 1.6rem;
+                            .btn {
+                                display: inline-block;
+                                padding: 2px 10px;
+                                border: solid 2px #666666;
+                                border-radius: 4px;
+                            }
+                        }
+                    }
+                    input[type=text] {
+                        width: 500px;
+                    }
+                    textarea {
+                        padding: 5px 11px;
+                        width: 500px;
+                        height: 200px;
+                    }
+                }
+                .btn-danger {
+                    margin-left: 20px;
+                }
+            }
+        }
+    }
+
+    .setting-stream,
+    .setting-archive {
+        display: flex;
+        justify-content: space-between;
+        height: 100%;
+        .sidebar {
+            background: #f3f5f7;
+            width: 240px;
+            padding: 40px 0;
+            .menu-list {
+                li {
+                    a {
+                        display: block;
+                        padding: 0 20px;
+                        line-height: 60px;
+                        &:before {
+                            display: inline-block;
+                            margin-right: 11px;
+                            vertical-align: middle;
+                        }
+                        span {
+                            vertical-align: middle;
+                        }
+                    }
+                    &.active {
+                        background: $base-color;
+                        a {
+                            color: #fff;
+                        }
+                    }
+                    &.menu01 {
+                        a {
+                            &:before {
+                                content: url(/images/icon-setting-menu01.png);
+                                width: 20px;
+                                height: 10px;
+                            }
+                        }
+                        &.active {
+                            a {
+                                &:before {
+                                    content: url(/images/icon-setting-menu01_on.png);
+                                }
+                            }
+                        }
+                    }
+                    &.menu02 {
+                        a {
+                            &:before {
+                                content: url(/images/icon-setting-menu02.png);
+                                width: 20px;
+                                height: 18px;
+                            }
+                        }
+                        &.active {
+                            a {
+                                &:before {
+                                    content: url(/images/icon-setting-menu02_on.png);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .main-content {
+            width: 100%;
+            margin: 0 40px 0 40px;
+            h2 {
+                font-weight: 600;
+                font-size: 2.4rem;
+                padding: 40px 0;
+            }
+        }
+    }
+
+    /*
+     * 動画配信設定
+     */
+    .setting-stream {
+        .main-content {
+            .stream-form {
+                box-shadow: 0 0 15px #ccc;
+                padding: 34px 40px;
+                background: #fff;
+                border-radius: 4px;
+                .flash_message {
+                    margin-bottom: 42px;
+                    color: #ff0000;
+                }
+                .error {
+                    margin-bottom: 42px;
+                    color: #ff0000;
+                    li {
+                        margin: 0;
+                        a {
+                            color: #ff0000;
+                        }
+                    }
+                }
+                form {
+                    position: relative;
+                }
+                li {
+                    margin-bottom: 20px;
+                    .label {
+                        font-size: 1.6rem;
+                        display: block;
+                        margin-bottom: 18px;
+                        .btn-copy {
+                            cursor: pointer;
+                            display: inline-block;
+                            width: 18px;
+                            margin-left: 20px;
+                            vertical-align: middle;
+                            img {
+                                width: 100%;
+                            }
+                        }
+                    }
+                    input[type=text] {
+                        width: 80%;
+                    }
+                    textarea {
+                        padding: 5px 11px;
+                        width: 80%;
+                        height: 200px;
+                    }
+                    .icon-wrapper {
+                        display: flex;
+                        align-items: center;
+                        .icon {
+                            width: 300px;
+                            height: 200px;
+                            background-position: center;
+                            display: inline-block;
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                            margin: 0 34px 0 0;
+                        }
+                        .file-01 {
+                            display: none;
+                        }
+                        .file-mask {
+                            font-size: 1.6rem;
+                            .btn {
+                                display: inline-block;
+                                padding: 4px 10px;
+                                border: solid 2px #666666;
+                                border-radius: 4px;
+                            }
+                        }
+                    }
+                }
+                .btn-danger {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                }
+            }
+        }
+    }
+
+    /*
+     * 動画配信設定
+     */
+    .setting-archive {
+        .main-content {
+             .archive-download {
+                 margin-bottom: 20px;
+                 img {
+                     vertical-align: middle;
+                     margin-right: 10px;
+                 }
+             }
+            .archive-content {
+                box-shadow: 0 0 15px #ccc;
+                padding: 24px 40px;
+                border-radius: 4px;
+                .archive-header {
+                    display: flex;
+                    padding-bottom: 18px;
+                    border-bottom: 1px solid #cccccc;
+                    .column {
+                        flex-basis: 15%;
+                        padding: 0 10px;
+                        &:nth-child(2) {
+                            flex-basis: 40%;
+                        }
+                    }
+                }
+                .archive-row {
+                    display: flex;
+                    border-bottom: 1px solid #cccccc;
+                    padding: 10px 0;
+                    .image {
+                        flex-basis: 15%;
+                        padding: 0 10px;
+                        img {
+                            width: 100%;
+                        }
+                    }
+                    .title {
+                        flex-basis: 40%;
+                        padding: 0 10px;
+                    }
+                    .date {
+                        flex-basis: 15%;
+                        padding: 0 10px;
+                    }
+                    .time {
+                        flex-basis: 15%;
+                        padding: 0 10px;
+                    }
+                    .status {
+                        flex-basis: 15%;
+                        padding: 0 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    /*
+     * LINE連携
+     */
+    .setting-line {
+        .line-content {
+            box-shadow: 0 0 15px #ccc;
+            padding: 34px 40px;
+            background: #fff;
+            border-radius: 4px;
+            .line-header {
+                margin-bottom: 34px;
+                .header-inner {
+                    .icon {
+                        display: inline-block;
+                        vertical-align: middle;
+                        margin-right: 16px;
+                        img {
+                            width: 60px;
+                        }
+                    }
+                    .txt {
+                        display: inline-block;
+                        vertical-align: middle;
+                        .main-text {
+                            color: #00b900;
+                            font-size: 2.4rem;
+                        }
+                        .sub-text {
+                            font-size: 1.5rem;
+                        }
+                    }
+                }
+            }
+            .line-flow {
+                .midashi {
+                    margin-bottom: 18px;
+                    font-size: 1.8rem;
+                }
+                .flow-content {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                    .flow {
+                        width: 230px;
+                        margin-bottom: 30px;
+                        .step {
+                            font-size: 1.5rem;
+                            color: $base-color;
+                            border: solid 1px $base-color;
+                            padding: 4px 0;
+                            text-align: center;
+                            line-height: 2.0rem;
+                            margin-bottom: 15px;
+                        }
+                        .txt {
+                            font-size: 1.5rem;
+                            height: 100px;
+                            line-height: 1.75;
+                        }
+                        .friend {
+                            text-align: center;
+                        }
+                        .line-qr {
+                            width: 190px;
+                            display: block;
+                            margin: 0 auto;
+                        }
+                        .image {
+                            text-align: center;
+                            img {
+                                width: 135px;
+                                vertical-align: top;
+                            }
+                        }
+                        .sub-txt {
+                            font-size: 1.3rem;
+                            margin-top: 12px;
+                        }
+                    }
+                    .arrow {
+                        position: relative;
+                        width: 17px;
+                        margin-top: 247px;
+                        &::before {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            margin: auto;
+                            content: "";
+                            vertical-align: middle;
+                            width: 10px;
+                            height: 10px;
+                            border-top: 3px solid $base-color;
+                            border-right: 3px solid $base-color;
+                            -webkit-transform: rotate(45deg);
+                            transform: rotate(45deg);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /*
+     * 支払い画面
+     */
+    .setting-payment {
+        position: relative;
+        &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 286px;
+            background: #f3f5f7;
+        }
+        .main-content {
+            width: 1120px;
+            margin: 0 auto;
+            position: relative;
+            h2 {
+                font-weight: 600;
+                font-size: 2.4rem;
+                padding: 40px 0;
+            }
+            .payment-form {
+                box-shadow: 0 0 15px #ccc;
+                padding: 34px 40px;
+                background: #fff;
+                border-radius: 4px;
+                li {
+                    margin-bottom: 42px;
+                    .label {
+                        font-size: 1.6rem;
+                        display: block;
+                        margin-bottom: 18px;
+                    }
+                    input[type=email] {
+                        width: 500px;
+                    }
+                }
+                .card-element {
+                    width: 500px;
+                }
+                .stripe-input {
+                    padding: 8px;
+                    margin-bottom: 5px;
+                    background-image: linear-gradient(0deg,#009688 2px,rgba(0,150,136,0) 0),linear-gradient(0deg,rgba(0,0,0,.26) 1px,transparent 0);
+                    background-size: 0 100%,100% 100%;
+                }
+                .stripe-err {
+                    color: red;
+                }
+                .back {
+                    font-size: 1.8rem;
+                    border-radius: 4px;
+                    padding: 5px 24px;
+                    border: none;
+                    margin-right: 40px;
+                }
+                .submit {
+                    font-size: 1.8rem;
+                    color: #fff;
+                    background: $base-color;
+                    border-radius: 4px;
+                    padding: 5px 24px;
+                    border: none;
+                }
+            }
+        }
+    }
+
+    /*
+     * 静的ページ共通設定
+     */
+    .page-content {
+        display: flex;
+        justify-content: space-between;
+        .sidebar {
+            background: #f3f5f7;
+            width: 240px;
+            padding: 40px 0;
+            .menu-list {
+                li {
+                    a {
+                        display: block;
+                        padding: 0 20px;
+                        line-height: 50px;
+                    }
+                    &.active {
+                        background: $base-color;
+                        a {
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+        .main-content {
+            width: 100%;
+            margin: 0 40px 0 40px;
+            .section {
+                margin-bottom: 50px;
+            }
+            h2 {
+                font-weight: 600;
+                font-size: 2.4rem;
+                padding: 40px 0;
+            }
+            .box {
+                box-shadow: 0 0 15px #ccc;
+                padding: 34px 40px;
+                background: #fff;
+                border-radius: 4px;
+                font-size: 1.6rem;
+                h3 {
+                    font-size: 2rem;
+                    font-weight: 600;
+                    margin-bottom: 30px;
+                }
+                .color {
+                    color: $base-color;
+                }
+            }
+        }
+    }
+
+
+    .page-content {
+        .main-content {
+
+            /*
+             * お知らせ
+             */
+            .notice {
+                .row {
+                    padding: 16px 0px;
+                    border-bottom: 2px solid #cccccc;
+                    .date {
+                        font-size: 1.2rem;
+                        color: #999999;
+                        margin-bottom: 8px;
+                    }
+                    .description {
+                    }
+                }
+            }
+
+            /*
+             * お知らせ詳細
+             */
+            .notice-detail {
+                h3 {
+                    border-bottom: 2px solid #cccccc;
+                    padding-bottom: 14px;
+                    margin-bottom: 20px;
+                }
+                a {
+                    color: $base-color;
+                }
+                .date {
+                    font-size: 1.2rem;
+                    color: #999999;
+                    margin-bottom: 20px;
+                }
+            }
+
+            /*
+             * 運営会社
+             */
+            .company {
+                padding-top: 60px;
+                .list {
+                    margin-bottom: 120px;
+                    li {
+                        display: flex;
+                        padding: 18px 0;
+                        border-bottom: 2px solid #eeeeee;
+                        .key {
+                            width: 154px;
+                        }
+                    }
+                }
+                .map {
+                    iframe {
+                        width: 100%;
+                    }
+                }
+            }
+
+            /*
+             * 配信方法
+             */
+            .howto {
+                h4 {
+                    margin-bottom: 20px;
+                }
+                .title {
+                    margin-bottom: 30px;
+                }
+                p {
+                    margin-bottom: 10px;
+                }
+                .capture {
+                    margin-bottom: 30px;
+                    max-width: 100%;
+                }
+            }
+
+            /*
+             * お問い合わせ
+             */
+            .contact {
+                li {
+                    margin-bottom: 20px;
+                    .label {
+                        font-size: 1.6rem;
+                        display: block;
+                        margin-bottom: 18px;
+                    }
+                }
+            }
+        }
+    }
+
+}

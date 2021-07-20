@@ -1,0 +1,16 @@
+$base-color: #9e1b9e;
+$purchase1-color: #ccc;
+$purchase2-color: #ffff00;
+$purchase3-color: #daa520;
+$purchase4-color: #008000;
+$purchase5-color: #4169e1;
+$purchase6-color: #ff0000;
+@use "event";
+
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/regular.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+
+@import "pc.scss";
+@import "tablet.scss";

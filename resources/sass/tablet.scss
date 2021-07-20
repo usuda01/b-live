@@ -1,0 +1,2758 @@
+@media only screen and (max-width: 959px) {
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -o-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    html {
+        font-size: 62.5%;
+        &.html-room-message-viewer {
+            background: transparent;
+        }
+    }
+    body {
+        font-size: 1.4rem;
+        font-family: 'Noto Sans JP';
+        font-weight: normal;
+    }
+    .html-room-message-viewer {
+        body {
+            background: transparent;
+        }
+    }
+    input[type=text],
+    input[type=email] {
+        -webkit-appearance: none;
+        border-radius: 2px;
+        border: 1px solid #666666;
+        padding: 4px 8px;
+        font-size: 1.6rem;
+    }
+    textarea {
+        font-size: 1.6rem;
+    }
+    /* iOSでのデフォルトスタイルをリセット */
+    input[type="submit"],
+    input[type="button"] {
+        -webkit-appearance: none;
+        border: none;
+        border-radius: 0;
+    }
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+
+    .pc_only {
+        display: none;
+    }
+
+    .btn-default {
+        border-radius: 4px;
+        color: #fff;
+        background: $base-color;
+        padding: 4px 24px;
+        font-size: 1.4rem;
+        border: none;
+    }
+
+    .btn-danger {
+        border-radius: 4px;
+        color: #fff;
+        background: #ff0000;
+        padding: 4px 24px;
+        font-size: 1.4rem;
+        border: none;
+    }
+
+    .modal {
+        display: none;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 2;
+        &.open {
+            display: block;
+        }
+        &.modal01 {
+            .modal__content {
+            }
+        }
+    }
+
+    .modal__bg {
+        background: rgba(0,0,0,0.8);
+        height: 100vh;
+        position: absolute;
+        width: 100%;
+    }
+
+    .modal__content {
+        background: #fff;
+        left: 50%;
+        padding: 20px;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        width: 90%;
+        .js-modal-close {
+            display: block;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            width: 24px;
+            height: 24px;
+            img {
+                width: 100%;
+            }
+        }
+        /* 利用規約 */
+        .terms {
+            h2 {
+                text-align: center;
+                font-weight: bold;
+                font-size: 1.6rem;
+                margin-bottom: 16px;
+            }
+            .terms-content {
+                height: 50vh;
+                overflow-y: scroll;
+                border: 1px solid #ccc;
+                padding: 10px;
+                .section {
+                    margin-bottom: 30px;
+                    h3 {
+                        font-weight: 600;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+            .btn-default {
+                display: block;
+                width: 12em;
+                margin: 0 auto;
+                padding: 4px 0;
+                text-align: center;
+            }
+        }
+    }
+
+    .drawer-bg {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        z-index: 2;
+        background-color: rgba(51, 51, 51, 0.5);
+        display: none;
+    }
+    .drawer-bg {
+        &.open {
+            display: block;
+        }
+    }
+    .drawer-menu {
+        position: fixed;
+        background: #f3f5f7;
+        overflow: scroll;
+        width: 80%;
+        height: 100%;
+        left: 0;
+        z-index: 3;
+        top: 0;
+        -webkit-transition: all .2s;
+        -moz-transition: all .2s;
+        -o-transition: all .2s;
+        transition: all .2s;
+        -webkit-transform: translate3d(-100%, 0, 0);
+        -moz-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+        &.open {
+            -webkit-transform: translate3d(0%, 0, 0);
+            -moz-transform: translate3d(0%, 0, 0);
+            transform: translate3d(0%, 0, 0);
+        }
+        .drawer-menu_close {
+            margin: 20px 20px 20px 0;
+            text-align: right;
+        }
+        .drawer-menu__list {
+            a {
+                display: block;
+                padding: 0 20px;
+                line-height: 50px;
+            }
+            img {
+                width: 20px;
+                margin-right: 11px;
+                vertical-align: middle;
+            }
+            span {
+                vertical-align: middle;
+            }
+        }
+    }
+
+    .notice-bg {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        z-index: 2;
+        background-color: rgba(51, 51, 51, 0.5);
+        display: none;
+        &.open {
+            display: block;
+        }
+    }
+    .notice-menu {
+        position: fixed;
+        background: #f3f5f7;
+        overflow: scroll;
+        width: 80%;
+        height: 100%;
+        right: 0;
+        z-index: 3;
+        top: 0;
+        -webkit-transition: all .2s;
+        -moz-transition: all .2s;
+        -o-transition: all .2s;
+        transition: all .2s;
+        -webkit-transform: translate3d(100%, 0, 0);
+        -moz-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+        &.open {
+            -webkit-transform: translate3d(0%, 0, 0);
+            -moz-transform: translate3d(0%, 0, 0);
+            transform: translate3d(0%, 0, 0);
+        }
+        .notice-menu_close {
+            margin: 20px 20px 20px 0;
+            text-align: right;
+        }
+        .notice-menu__list {
+            a {
+                display: block;
+                padding: 0 20px;
+                line-height: 50px;
+            }
+            img {
+                width: 20px;
+                margin-right: 11px;
+                vertical-align: middle;
+            }
+            span {
+                vertical-align: middle;
+            }
+        }
+    }
+
+    .search-bg {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        z-index: 2;
+        background-color: rgba(51, 51, 51, 0.5);
+        display: none;
+        &.open {
+            display: block;
+        }
+    }
+    .search-content {
+        position: fixed;
+        background: #f3f5f7;
+        padding: 0 0 20px 0;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        -webkit-transition: all .2s;
+        -moz-transition: all .2s;
+        -o-transition: all .2s;
+        transition: all .2s;
+        -webkit-transform: translate3d(100%, 0, 0);
+        -moz-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+        &.open {
+            -webkit-transform: translate3d(0%, 0, 0);
+            -moz-transform: translate3d(0%, 0, 0);
+            transform: translate3d(0%, 0, 0);
+        }
+        .search-content_close {
+            margin: 20px 20px 20px 0;
+            text-align: right;
+        }
+        .search-content__box {
+            form {
+                display: flex;
+                border-radius: 2px;
+                width: 80%;
+                margin: 0 auto;
+                input[type=text] {
+                    border: 1px solid #9e1b9e;
+                    padding: 2px 8px;
+                    width: calc(100% - 30px);
+                    background: #f3f5f7;
+                    font-size: 1.6rem;
+                    border-radius: 2px 0 0 2px;
+                }
+                input[type=submit] {
+                    border: none;
+                    width: 32px;
+                    height: 32px;
+                    background: #9e1b9e url(/images/btn-search.png) center no-repeat;
+                }
+            }
+        }
+    }
+
+    .site-header {
+        padding: 8px 0 0;
+        border-bottom: 1px solid #cccccc;
+        height: 50px;
+        z-index: 1;
+        background: #fff;
+        /* for Xcode */
+        &.webview {
+            &.UserController-detail {
+                display: none;
+            }
+        }
+    }
+    .site-header__inner {
+        display: flex;
+        align-items: center;
+        margin: 0 10px;
+    }
+    .site-header__toggle-sidebar {
+        margin-right: 20px;
+        img {
+        }
+    }
+    .site-header__logo {
+        a {
+            display: block;
+            img {
+                width: 100px;
+            }
+        }
+    }
+    .site-header__search {
+        display: none;
+    }
+    .site-header__search-sp {
+        margin-left: auto;
+        a {
+            img {
+                width: 20px;
+            }
+        }
+    }
+    .site-header__notice {
+        margin-left: 20px;
+        a {
+            i {
+                color: #f6b800;
+                font-size: 22px;
+            }
+        }
+    }
+    .site-header__account {
+        margin-left: 20px;
+    }
+    .site-header__login {
+        color: $base-color;
+        padding: 0 10px;
+        border: solid 1px $base-color;
+        border-radius: 4px;
+        line-height: 34px;
+    }
+    .site-header__register {
+        display: none;
+    }
+    .site-header__account-loggedin {
+        margin-left: 20px;
+        a {
+            display: block;
+            .icon {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background-position: center;
+                display: inline-block;
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+        }
+    }
+
+    .footer-menu {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: #fff;
+        border-top: 1px solid #eee;
+        ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            li {
+                margin-right: 20px;
+                a {
+                    display: block;
+                    text-align: center;
+                    padding: 8px 12px;
+                    span {
+                        display: block;
+                        font-size: 1.2rem;
+                    }
+                    &.active {
+                        span {
+                            color: $base-color;
+                        }
+                    }
+                }
+                img {
+                    display: inline-block;
+                    height: 20px;
+                    margin-bottom: 2px;
+                }
+                &:nth-child(2) {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+
+    /*
+     * アプリインストール
+     */
+    .app-install {
+        display: none;
+        position: sticky;
+        top: 0px;
+        z-index: 1;
+        background: $base-color;
+        padding: 12px 10px 17px 10px;
+        color: #fff;
+        .headline {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            .app-logo {
+                width: 37px;
+                margin-right: 22px;
+                img {
+                    width: 100%;
+                }
+            }
+            .app-text {
+                font-weight: 600;
+            }
+        }
+        .btn-install {
+            color: #fff;
+            font-weight: 600;
+            display: block;
+            border: solid 2px #fff;
+            border-radius: 30px;
+            padding: 6px 0px;
+            text-align: center;
+            margin: 0 auto;
+            width: 14em;
+        }
+    }
+
+    /*
+     * LINE連携
+     */
+    .line-connect {
+        position: sticky;
+        top: 0px;
+        z-index: 1;
+        background: $base-color;
+        padding: 12px 10px 17px 10px;
+        color: #fff;
+        .headline {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            .line-logo {
+                width: 37px;
+                margin-right: 22px;
+                img {
+                    width: 100%;
+                }
+            }
+            .line-text {
+                font-weight: 600;
+            }
+        }
+        .btn-connect {
+            color: #fff;
+            font-weight: 600;
+            display: block;
+            border: solid 2px #fff;
+            border-radius: 30px;
+            padding: 6px 0px;
+            text-align: center;
+            margin: 0 auto;
+            width: 14em;
+        }
+    }
+
+    /*
+     * アカウントメニュー
+     */
+    .account-menu-bg {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        z-index: 2;
+        background: transparent;
+        display: none;
+    }
+    .account-menu-bg {
+        &.active {
+            display: block;
+        }
+    }
+    .account-menu {
+        position: fixed;
+        display: none;
+        right: 10px;
+        top: 45px;
+        z-index: 3;
+        background: #fff;
+        box-shadow: 0 0 6px #999;
+        padding: 15px;
+        &.active {
+            display: block;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #999999;
+            padding-bottom: 14px;
+            .icon {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-position: center;
+                display: inline-block;
+                background-size: cover;
+                background-repeat: no-repeat;
+                margin-right: 8px;
+            }
+            .name {
+                width: 108px;
+                font-size: 1.2rem;
+            }
+        }
+        .menu-list {
+            img {
+                margin-right: 10px;
+                vertical-align: middle;
+            }
+            li {
+                margin-bottom: 16px;
+            }
+        }
+    }
+
+    .common-sidebar {
+        display: none;
+    }
+
+    /*
+     * ログイン
+     */
+    .login-index {
+        background: #fff1ff;
+        height: 100%;
+        padding-top: 68px;
+        .content {
+            margin: 0 30px;
+            background: #fff;
+            padding: 40px 30px 60px 30px;
+            .logo {
+                text-align: center;
+                margin-bottom: 60px;
+            }
+            .sns-login {
+                max-width: 320px;
+                margin: 0 auto;
+                .login-title {
+                    font-size: 2.4rem;
+                    font-weight: 600;
+                    margin-bottom: 34px;
+                }
+                ul {
+                    li {
+                        margin-bottom: 22px;
+                        img {
+                            width: 100%;
+                        }
+                    }
+                }
+                .desc {
+                    color: #6d6d6d;
+                    margin-bottom: 30px;
+                }
+                .agree {
+                    color: #6d6d6d;
+                    a {
+                        color: #6d6d6d;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+
+
+    /*
+     * トップ
+     */
+    .home-index {
+        .main-area {
+            padding-bottom: 100px;
+            .slider {
+                video {
+                    width: 100%;
+                }
+            }
+            .event {
+                text-align: center;
+                img {
+                    width: 100%;
+                }
+            }
+            .main-title {
+                font-size: 2rem;
+                margin: 26px 0 18px 10px;
+            }
+            .no-content {
+                margin: 30px auto 40px auto;
+                font-size: 1.6rem;
+                text-align: center;
+            }
+            .user-content {
+                margin-bottom: 20px;
+                .user-box {
+                    display: flex;
+                    overflow-x: scroll;
+                    margin: 0 12px;
+                }
+                .user-info {
+                    width: 60px;
+                    margin-left: 12px;
+                    .user-profile {
+                        margin-bottom: 4px;
+                        a {
+                            margin: 0 auto;
+                            width: 60px;
+                            height: 60px;
+                            border-radius: 50%;
+                            border: solid 2px #000;
+                            display: block;
+                            background-position: center;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                        }
+                    }
+                    &.rank1 .user-profile a {
+                        border: solid 2px #e9ba31;
+                    }
+                    &.rank2 .user-profile a {
+                        border: solid 2px #9fa0a0;
+                    }
+                    &.rank3 .user-profile a {
+                        border: solid 2px #ba6e40;
+                    }
+                    .user-name {
+                        font-size: 1.2rem;
+                        color: #999999;
+                        text-align: center;
+                        word-break: break-all;
+                        height: 1.5em;
+                        overflow: hidden;
+                    }
+                    .follower-count {
+                        text-align: center;
+                        color: #999;
+                    }
+                    &:first-child {
+                        margin-left: 0;
+                    }
+                }
+                &.frequent {
+                    .main-title {
+                        margin-bottom: 3px;
+                    }
+                    .user-info {
+                        .user-profile {
+                            a {
+                                position: relative;
+                                margin-top: 15px;
+                            }
+                        }
+                        &.rank1 .user-profile a::before {
+                            font-family: "Font Awesome 5 Free";
+                            content: '\f521';
+                            font-weight: 900;
+                            position: absolute;
+                            top: -16px;
+                            color: #e9ba31;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            -webkit-transform: translateX(-50%);
+                            -ms-transform: translateX(-50%);
+                        }
+                        &.rank2 .user-profile a::before {
+                            font-family: "Font Awesome 5 Free";
+                            content: '\f521';
+                            font-weight: 900;
+                            position: absolute;
+                            top: -16px;
+                            color: #9fa0a0;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            -webkit-transform: translateX(-50%);
+                            -ms-transform: translateX(-50%);
+                        }
+                        &.rank3 .user-profile a::before {
+                            font-family: "Font Awesome 5 Free";
+                            content: '\f521';
+                            font-weight: 900;
+                            position: absolute;
+                            top: -16px;
+                            color: #ba6e40;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            -webkit-transform: translateX(-50%);
+                            -ms-transform: translateX(-50%);
+                        }
+                    }
+                }
+            }
+            .sns-content {
+                .sns-items {
+                    .twitter-content {
+                        width: 100%;
+                        margin-bottom: 18px;
+                    }
+                    .instagram-content {
+                        margin-bottom: 18px;
+                    }
+                    .youtube-content {
+                        position: relative;
+                        &::before {
+                            content: "";
+                            display: block;
+                            padding-top: 66%;
+                        }
+                        iframe {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+            .room-content {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                .room-box {
+                    flex-basis: 49%;
+                    margin: 0 2% 18px 0;
+                    &:nth-child(2n) {
+                        margin-right: 0;
+                    }
+                    .room-image {
+                        position: relative;
+                        width: 100%;
+                        margin-bottom: 8px;
+                        &:before {
+                            content: "";
+                            display: block;
+                            padding-top: 56.8%;
+                        }
+                        a {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            bottom: 0;
+                            right: 0;
+                            background-position: center;
+                            display: block;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                        }
+                        .live {
+                            position: absolute;
+                            top: 4px;
+                            left: 4px;
+                            background: #ff0000;
+                            color: #fff;
+                            padding: 0 4px;
+                        }
+                    }
+                    .room-info {
+                        margin: 0 10px;
+                        .room-name {
+                            display: block;
+                            margin-bottom: 4px;
+                        }
+                        .user-name {
+                            a {
+                                font-size: 1.2rem;
+                                color: #999999;
+                            }
+                        }
+                    }
+                }
+            }
+            .group-content {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                .group-box {
+                    flex-basis: 49%;
+                    margin: 0 2% 18px 0;
+                    &:nth-child(2n) {
+                        margin-right: 0;
+                    }
+                    .game-title {
+                        margin-bottom: 4px;
+                        color: #f66951;
+                    }
+                    .group-image {
+                        position: relative;
+                        width: 100%;
+                        margin-bottom: 8px;
+                        &:before {
+                            content: "";
+                            display: block;
+                            padding-top: 56.8%;
+                        }
+                        a {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            bottom: 0;
+                            right: 0;
+                            background-position: center;
+                            display: block;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                        }
+                    }
+                    .group-info {
+                        margin: 0 10px;
+                        .group-name {
+                            display: block;
+                            margin-bottom: 4px;
+                        }
+                        .user-name {
+                            font-size: 1.2rem;
+                            color: #999999;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    /*
+     * ルーム個別
+     */
+    .room-stream {
+        .main-area {
+            .bar {
+                display: flex;
+                margin: 10px 10px 6px 10px;
+                .user-profile {
+                    width: 26px;
+                    height: 26px;
+                    border-radius: 50%;
+                    background-position: center;
+                    display: inline-block;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    margin: 0 10px 0 0;
+                }
+                .user-name {
+                    margin-right: 8px;
+                }
+                .user-rank {
+                    display: flex;
+                    align-items: center;
+                    &:before {
+                        content: '';
+                        display: block;
+                        margin-right: 4px;
+                        background-size: cover;
+                        width: 16px;
+                        height: 16px;
+                    }
+                    &.rank2 {
+                        color: #f66951;
+                        &:before {
+                            background-image: url(/images/icon-user-rank2.png);
+                        }
+                    }
+                    &.rank5 {
+                        color: $base-color;
+                        &:before {
+                            background-image: url(/images/icon-user-rank5.png);
+                        }
+                    }
+                }
+                .tag {
+                    margin-left: auto;
+                    color: #fff;
+                    background: #ff0000;
+                    padding: 0 14px;
+                    line-height: 26px;
+                }
+            }
+            .expired {
+                img {
+                    width: 100%;
+                }
+            }
+            .main-video {
+                width: 100%;
+            }
+            .video-footer {
+                font-size: 1.2rem;
+                background: #eeeeee;
+                color: #666666;
+                padding: 6px 20px 6px 10px;
+                display: flex;
+                justify-content: space-between;
+                .icon-views {
+                    display: inline-block;
+                    margin-right: 6px;
+                    vertical-align: middle;
+                }
+                .left-content {
+                    display: flex;
+                    align-items: center;
+                    .view-content {
+                        margin-right: 10px;
+                    }
+                    .view-count-wrapper {
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+                    .video-time {
+                    }
+                }
+                .right-content {
+                    display: flex;
+                    .share-content {
+                        margin-right: 20px;
+                        a {
+                            img {
+                                height: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .tabs {
+            display: flex;
+            line-height: 42px;
+            height: 42px;
+            border-bottom: 1px solid #ccc;
+            li {
+                flex: 1;
+                text-align: center;
+            }
+            .active {
+                border-bottom: 2px solid $base-color;
+            }
+        }
+        .video-info {
+            display: none;
+            &.active {
+                display: block;
+            }
+            margin: 20px 10px 0 10px;
+            .headline {
+                display: flex;
+                justify-content: space-between;
+                -webkit-box-align: start;
+                -ms-flex-align: start;
+                align-items: flex-start;
+                margin-bottom: 20px;
+            }
+            .from-now {
+                color: #666;
+                margin-bottom: 10px;
+                .icon {
+                    margin-right: 10px;
+                    vertical-align: middle;
+                    img {
+                        width: 16px;
+                    }
+                }
+                .date {
+                    vertical-align: middle;
+                }
+            }
+            .room-name {
+                font-size: 1.6rem;
+                margin-right: 10px;
+            }
+            .follow {
+                white-space: nowrap;
+                border-radius: 4px;
+                border: solid 1px $base-color;
+                color: $base-color;
+                padding: 4px 8px;
+                &.on {
+                    color: #fff;
+                    background: $base-color;
+                }
+            }
+            .expired {
+                margin-bottom: 20px;
+            }
+            .description {
+                white-space: pre-line;
+                padding: 0 0 30px 0;
+                a {
+                    color: $base-color;
+                }
+            }
+        }
+        .message-wrapper {
+            display: none;
+            &.active {
+                display: block;
+            }
+            position: relative;
+            .message-area {
+                background: #f9f9f9;
+                .title-area {
+                    display: none;
+                }
+                .chat-area {
+                    height: 200px;
+                    .user-detail {
+                        position: absolute;
+                        width: 76%;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        -webkit-transform: translate(-50%, -50%);
+                        -ms-transform: translate(-50%, -50%);
+                        background: #fff;
+                        padding-top: 19px;
+                        padding-bottom: 19px;
+                        border-radius: 4px;
+                        z-index: 1;
+                        &:before {
+                            content: "";
+                            display: block;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 50px;
+                            background: #ffd2ff;
+                            border-radius: 4px 4px 0 0;
+                        }
+                        .close {
+                            position: absolute;
+                            top: -10px;
+                            right: -10px;
+                        }
+                        .user-profile {
+                            position: relative;
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                            background-position: center;
+                            display: block;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                            margin: 0 auto 8px auto;
+                        }
+                        .user-name {
+                            display: block;
+                            text-align: center;
+                            font-size: 1.2rem;
+                            margin-bottom: 14px;
+                        }
+                        .control {
+                            display: flex;
+                            justify-content: center;
+                            .block {
+                                display: block;
+                                margin-right: 20px;
+                                width: 16px;
+                            }
+                            .flag {
+                            }
+                        }
+                    }
+                    .chat-list {
+                        height: 100%;
+                        overflow-y: scroll;
+                        overflow-x: hidden;
+                        display: flex;
+                        flex-flow: column;
+                        padding-top: 8px;
+                        .user-message {
+                            margin: 0 10px 8px 10px;
+                            &.admin {
+                                padding: 10px;
+                                border-radius: 4px;
+                                background: #be00e7;
+                                color: #fff;
+                                .user-name {
+                                    color: #fff;
+                                }
+                            }
+                            &.payment {
+                                padding: 10px;
+                                border-radius: 4px;
+                                .user-name {
+                                    color: #000;
+                                    margin-right: 14px;
+                                }
+                                .amount {
+                                    font-weight: 600;
+                                }
+                                .message {
+                                    display: block;
+                                    margin-top: 10px;
+                                }
+                                &.purchase1 {
+                                    background: $purchase1-color;
+                                }
+                                &.purchase2 {
+                                    background: $purchase2-color;
+                                }
+                                &.purchase3 {
+                                    background: $purchase3-color;
+                                }
+                                &.purchase4 {
+                                    background: $purchase4-color;
+                                }
+                                &.purchase5 {
+                                    background: $purchase5-color;
+                                }
+                                &.purchase6 {
+                                    background: $purchase6-color;
+                                }
+                            }
+                            .user-profile {
+                                width: 20px;
+                                height: 20px;
+                                border-radius: 50%;
+                                background-position: center;
+                                display: inline-block;
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                                vertical-align: top;
+                                margin-right: 10px;
+                            }
+                            .user-name {
+                                color: #666666;
+                            }
+                        }
+                    }
+                    .send-chat {
+                        background: #fff;
+                        padding: 10px 10px 8px 10px;
+                        .user-info {
+                            display: flex;
+                            .user-profile {
+                                width: 20px;
+                                height: 20px;
+                                border-radius: 50%;
+                                background-position: center;
+                                display: inline-block;
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                                vertical-align: top;
+                                margin-right: 10px;
+                            }
+                        }
+                        .send-footer {
+                            display: flex;
+                            align-items: center;
+                            .send-box {
+                                display: flex;
+                                align-items: center;
+                                width: calc(100% - 54px);
+                                .send-message {
+                                    font-size: 1.6rem;
+                                    border: none;
+                                    border-bottom: 2px solid $base-color;
+                                    border-radius: 0;
+                                    width: 100%;
+                                }
+                                .send-btn {
+                                    width: 20px;
+                                    height: 20px;
+                                }
+                            }
+                        }
+                        .btn-gift {
+                            margin-left: auto;
+                            img {
+                                width: 24px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .supporter {
+            display: none;
+            padding: 20px 0;
+            &.active {
+                display: block;
+            }
+            .user-message {
+                margin: 0 10px 8px 10px;
+                &.payment {
+                    padding: 10px;
+                    border-radius: 4px;
+                    .user-name {
+                        color: #000;
+                        margin-right: 14px;
+                    }
+                    .amount {
+                        font-weight: 600;
+                    }
+                    .message {
+                        display: block;
+                        margin-top: 10px;
+                    }
+                    &.purchase1 {
+                        background: $purchase1-color;
+                    }
+                    &.purchase2 {
+                        background: $purchase2-color;
+                    }
+                    &.purchase3 {
+                        background: $purchase3-color;
+                    }
+                    &.purchase4 {
+                        background: $purchase4-color;
+                    }
+                    &.purchase5 {
+                        background: $purchase5-color;
+                    }
+                    &.purchase6 {
+                        background: $purchase6-color;
+                    }
+                }
+                .user-profile {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    background-position: center;
+                    display: inline-block;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    vertical-align: top;
+                    margin-right: 10px;
+                }
+                .user-name {
+                    color: #666666;
+                }
+            }
+        }
+        /* ギフトメッセージ */
+        .modal05 {
+            .modal__content {
+                height: 90%;
+                overflow: scroll;
+            }
+            .title {
+                font-size: 1.8rem;
+                font-weight: 600;
+                margin-bottom: 20px;
+            }
+            .gift-error {
+                margin-bottom: 20px;
+                color: #ff0000;
+            }
+            .my-coin {
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+                justify-content: space-between;
+                font-size: 1.6rem;
+                .coin-info {
+                    display: flex;
+                    align-items: center;
+                    img {
+                        display: block;
+                        margin-right: 16px;
+                        width: 20px;
+                    }
+                }
+                .charge a {
+                    text-decoration: underline;
+                }
+            }
+            .gift-list {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                padding: 0 24px;
+                margin-bottom: 20px;
+                li {
+                    width: 45%;
+                    margin-bottom: 18px;
+                    a {
+                        display: block;
+                        line-height: 30px;
+                        padding-left: 1em;
+                        border-radius: 4px;
+                        border: solid 2px #cccccc;
+                        color: #666;
+                    }
+                    &.active {
+                        a {
+                            color: #000;
+                        }
+                        &.gift1 {
+                            a {
+                                border-color: $purchase1-color;
+                                background: $purchase1-color;
+                            }
+                        }
+                        &.gift2 {
+                            a {
+                                border-color: $purchase2-color;
+                                background: $purchase2-color;
+                            }
+                        }
+                        &.gift3 {
+                            a {
+                                border-color: $purchase3-color;
+                                background: $purchase3-color;
+                            }
+                        }
+                        &.gift4 {
+                            a {
+                                border-color: $purchase4-color;
+                                background: $purchase4-color;
+                            }
+                        }
+                        &.gift5 {
+                            a {
+                                border-color: $purchase5-color;
+                                background: $purchase5-color;
+                            }
+                        }
+                        &.gift6 {
+                            a {
+                                border-color: $purchase6-color;
+                                background: $purchase6-color;
+                            }
+                        }
+                    }
+                }
+            }
+            .user-info {
+                display: flex;
+                margin-bottom: 14px;
+                .user-profile {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    background-position: center;
+                    display: inline-block;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    margin-right: 10px;
+                }
+                .user-name {
+                    color: #666;
+                }
+            }
+            .send-footer {
+                .send-box {
+                    .send-message {
+                        width: 100%;
+                        display: block;
+                        border: none;
+                        border-bottom: 2px solid #9e1b9e;
+                        margin-bottom: 14px;
+                        border-radius: 0;
+                    }
+                }
+            }
+        }
+        /* コインチャージ */
+        .modal06 {
+            .modal__content {
+                height: 90%;
+                overflow: scroll;
+            }
+            .title {
+                font-size: 1.8rem;
+                font-weight: 600;
+                margin-bottom: 20px;
+            }
+            .my-coin {
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+                justify-content: space-between;
+                font-size: 1.6rem;
+                .coin-info {
+                    display: flex;
+                    align-items: center;
+                    img {
+                        display: block;
+                        margin-right: 16px;
+                        width: 20px;
+                    }
+                }
+            }
+            .charge-list {
+                padding: 0 20px;
+                li {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                    .coin {
+                        font-size: 1.6rem;
+                    }
+                    .btn-purchase {
+                        border-radius: 16px;
+                        color: #fff;
+                        background: $base-color;
+                        padding: 6px 0;
+                        width: 7em;
+                        font-size: 1.4rem;
+                        border: none;
+                    }
+                }
+            }
+        }
+        /* カード情報入力 */
+        .modal07 {
+            .modal__content {
+                height: 90%;
+                overflow: scroll;
+            }
+            .title {
+                font-size: 1.8rem;
+                font-weight: 600;
+                margin-bottom: 20px;
+            }
+            .email {
+                margin-bottom: 20px;
+            }
+            .card-submit {
+                margin-top: 20px;
+            }
+        }
+        /* for Xcode */
+        &.webview {
+            .message-wrapper {
+                .chat-area {
+                    height: calc(100vh - 116px);
+                    display: flex;
+                    flex-direction: column;
+                    .send-chat {
+                        .send-footer {
+                            display: flex;
+                            align-items: center;
+                            .send-box {
+                                width: calc(100% - 54px);
+                            }
+                        }
+                        .btn-gift {
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // for コメントビューワー
+    .html-room-message-viewer {
+        .room-stream {
+            .message-wrapper {
+                .message-area {
+                    background: transparent;
+                    .chat-area {
+                        height: 100vh;
+                    }
+                }
+            }
+        }
+    }
+
+    /*
+     * ユーザー個別
+     */
+    .user-detail {
+        position: relative;
+        &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: #f3f5f7;
+        }
+        .main-content {
+            position: relative;
+            padding: 54px 10px 0 10px;
+            .user-info {
+                position: relative;
+                display: flex;
+                align-items: center;
+                margin-bottom: 30px;
+                .user-rank {
+                    position: absolute;
+                    left: 92px;
+                    top: 0px;
+                    display: flex;
+                    align-items: center;
+                    &:before {
+                        content: '';
+                        display: block;
+                        margin-right: 8px;
+                        background-size: cover;
+                        width: 16px;
+                        height: 16px;
+                    }
+                    &.rank2 {
+                        color: #f66951;
+                        &:before {
+                            background-image: url(/images/icon-user-rank2.png);
+                        }
+                    }
+                    &.rank5 {
+                        color: $base-color;
+                        &:before {
+                            background-image: url(/images/icon-user-rank5.png);
+                        }
+                    }
+                }
+                .user-profile {
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    border: 2px solid $base-color;
+                    background-position: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    margin-right: 12px;
+                }
+            }
+            .follow {
+                display: inline-block;
+                white-space: nowrap;
+                border-radius: 4px;
+                border: solid 1px $base-color;
+                color: $base-color;
+                padding: 4px 8px;
+                margin-bottom: 30px;
+                &.on {
+                    color: #fff;
+                    background: $base-color;
+                }
+            }
+            .tabs {
+                display: flex;
+                border-bottom: 1px solid #ccc;
+                margin-bottom: 20px;
+                li {
+                    flex: 1;
+                    text-align: center;
+                    padding-bottom: 4px;
+                }
+                .active {
+                    border-bottom: 2px solid $base-color;
+                }
+            }
+            .profile {
+                white-space: pre-wrap;
+                a {
+                    color: $base-color;
+                }
+            }
+            .room-wrapper {
+                .main-title {
+                    font-size: 2rem;
+                    margin: 0 0 18px 0px;
+                }
+                .room-content {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    .room-box {
+                        flex-basis: 49%;
+                        margin: 0 2% 18px 0;
+                        &:nth-child(2n) {
+                            margin-right: 0;
+                        }
+                        .room-image {
+                            position: relative;
+                            width: 100%;
+                            margin-bottom: 8px;
+                            &:before {
+                                content: "";
+                                display: block;
+                                padding-top: 56.8%;
+                            }
+                            a {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                bottom: 0;
+                                right: 0;
+                                background-position: center;
+                                display: block;
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                            }
+                        }
+                    }
+                }
+            }
+            .supporter {
+                .supporter-box {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 20px;
+                    .user-profile {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        background-position: center;
+                        display: inline-block;
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        margin: 0 14px 0 0;
+                        border: solid 1px #000;
+                    }
+                    .user-right {
+                        display: flex;
+                        align-items: center;
+                        width: calc(100% - 54px);
+                        line-height: 40px;
+                        border-bottom: 1px solid #ccc;
+                    }
+                    .user-name {
+                    }
+                    .coin {
+                        display: flex;
+                        align-items: center;
+                        margin-left: auto;
+                        img {
+                            width: 24px;
+                            margin-right: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /*
+     * ランキング
+     */
+    .room-ranking-index {
+        .main-area {
+            .room-ranking {
+                padding-bottom: 100px;
+            }
+            .select-month {
+                display: flex;
+                justify-content: space-between;
+                margin: 26px 10px 18px 10px;
+                font-size: 1.6rem;
+                h2 {
+                    font-size: 2rem;
+                    font-weight: 600;
+                }
+            }
+            .rank-list {
+                display: flex;
+                justify-content: center;
+                padding-bottom: 12px;
+                border-bottom: 2px solid #cccccc;
+                margin-bottom: 18px;
+                li {
+                    margin-right: 20px;
+                    a {
+                        display: block;
+                        border-radius: 50%;
+                        width: 36px;
+                        height: 36px;
+                        line-height: 36px;
+                        text-align: center;
+                        font-size: 2rem;
+                        color: #fff;
+                    }
+                    &.rank4 {
+                        a {
+                            background-color: #fedccb;
+                        }
+                        &.active {
+                            a {
+                                background-color: #df0101;
+                            }
+                        }
+                    }
+                    &.rank3 {
+                        a {
+                            background-color: #d6d7ea;
+                        }
+                        &.active {
+                            a {
+                                background-color: #000a73;
+                            }
+                        }
+                    }
+                    &.rank2 {
+                        a {
+                            background-color: #d8eada;
+                        }
+                        &.active {
+                            a {
+                                background-color: #008f23;
+                            }
+                        }
+                    }
+                    &.rank1 {
+                        margin-right: 0;
+                        a {
+                            background-color: #d5ecf1;
+                        }
+                        &.active {
+                            a {
+                                background-color: #0095d1;
+                            }
+                        }
+                    }
+                }
+            }
+            .room-content {
+                .room-box {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    margin: 0 10px 26px 10px;
+                    .room-rank {
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 6px;
+                        .rank-icon {
+                            margin-right: 10px;
+                            img {
+                                width: 20px;
+                            }
+                        }
+                        .rank-count {
+                            font-size: 1.8rem;
+                        }
+                    }
+                    .room-image {
+                        position: relative;
+                        width: 30%;
+                        &:before {
+                            content: "";
+                            display: block;
+                            padding-top: 56.8%;
+                        }
+                        a {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            bottom: 0;
+                            right: 0;
+                            background-position: center;
+                            display: block;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                        }
+                        .live {
+                            position: absolute;
+                            top: 4px;
+                            left: 4px;
+                            background: #ff0000;
+                            color: #fff;
+                            padding: 0 4px;
+                        }
+                    }
+                    .room-info {
+                        position: relative;
+                        width: 66%;
+                        .room-name {
+                            margin-bottom: 6px;
+                            overflow: hidden;
+                            height: 1.4em;
+                        }
+                        .user-info {
+                            display: flex;
+                            .user-profile {
+                                width: 20px;
+                                height: 20px;
+                                border-radius: 50%;
+                                background-position: center;
+                                display: inline-block;
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                                margin: 0 8px 0 0;
+                            }
+                            .user-name {
+                                font-size: 1.2rem;
+                                color: #999999;
+                            }
+                        }
+                        .max-view {
+                            position: absolute;
+                            right: 0;
+                            bottom: 0;
+                            .number {
+                                font-size: 2rem;
+                                color: $base-color;
+                                margin-right: 20px;
+                            }
+                            .text {
+                                color: #999;
+                            }
+                        }
+                    }
+                }
+            }
+            .no-data {
+                padding: 20px 0 40px 0;
+                font-size: 2rem;
+                text-align: center;
+            }
+        }
+    }
+
+    /*
+     * フォロー一覧
+     */
+    .follower-follows {
+        .main-area {
+            padding-bottom: 100px;
+            h2 {
+                margin: 26px 10px 26px 10px;
+                font-size: 2rem;
+                font-weight: 600;
+            }
+            .followers {
+                margin: 0 20px;
+                .follower-box {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 20px;
+                    .user-profile {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        background-position: center;
+                        display: inline-block;
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        margin: 0 14px 0 0;
+                        border: solid 1px #000;
+                    }
+                    .user-right {
+                        display: flex;
+                        align-items: center;
+                        width: calc(100% - 54px);
+                        line-height: 40px;
+                        border-bottom: 1px solid #ccc;
+                        .follow {
+                            margin-left: auto;
+                            border-radius: 24px;
+                            border: solid 2px #9e1b9e;
+                            color: #9e1b9e;
+                            padding: 2px 10px;
+                            line-height: 20px;
+                            &.on {
+                                color: #fff;
+                                background: $base-color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /*
+     * クラン個別
+     */
+    .group-detail {
+        position: relative;
+        &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: #f3f5f7;
+        }
+        .main-content {
+            position: relative;
+            padding: 54px 10px 0 10px;
+            .group-info {
+                display: flex;
+                align-items: center;
+                margin-bottom: 30px;
+                .group-profile {
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    border: 2px solid $base-color;
+                    background-position: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    margin-right: 12px;
+                }
+            }
+            .game-title {
+                color: #f66951;
+                margin-bottom: 10px;
+            }
+            .user-name {
+                margin-bottom: 10px;
+            }
+            .description {
+            }
+        }
+    }
+
+    /*
+     * アカウント設定
+     */
+    .setting-profile,
+    .setting-coin,
+    .setting-coin-request,
+    .setting-group-list,
+    .setting-group,
+    .setting-line {
+        .account-sidebar {
+            padding: 40px 0 0 0;
+            .menu-list {
+                display: flex;
+                li {
+                    a {
+                        display: block;
+                        padding: 0 10px;
+                        line-height: 40px;
+                        span {
+                            vertical-align: middle;
+                        }
+                    }
+                    &.active {
+                        background: $base-color;
+                        a {
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+        .main-content {
+            margin: 0 10px;
+            position: relative;
+            h2 {
+                font-size: 2rem;
+                padding: 26px 0 18px 0;
+            }
+        }
+    }
+
+    .setting-profile {
+        .main-content {
+            .profile-form {
+                box-shadow: 0 0 15px #ccc;
+                padding: 30px 20px 30px 20px;
+                background: #fff;
+                border-radius: 4px;
+                .flash_message {
+                    margin-bottom: 30px;
+                    color: #ff0000;
+                }
+                li {
+                    margin-bottom: 30px;
+                    .label {
+                        display: block;
+                        margin-bottom: 18px;
+                    }
+                    .icon-wrapper {
+                        display: flex;
+                        align-items: center;
+                        .icon {
+                            width: 120px;
+                            height: 120px;
+                            border-radius: 50%;
+                            background-position: center;
+                            display: inline-block;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                            margin: 0 34px 0 0;
+                        }
+                        .file-01 {
+                            display: none;
+                        }
+                        .file-mask {
+                            .btn {
+                                display: inline-block;
+                                padding: 4px 10px;
+                                border: solid 2px #666666;
+                                border-radius: 4px;
+                            }
+                        }
+                    }
+                    input[type=text] {
+                        width: 100%;
+                    }
+                    textarea {
+                        padding: 4px 8px;
+                        width: 100%;
+                        height: 100px;
+                    }
+                    .connected-box {
+                        display: flex;
+                        align-items: center;
+                        .connected {
+                            color: $base-color;
+                            border: solid 1px $base-color;
+                            padding: 4px 30px;
+                            text-align: center;
+                            margin-right: 30px;
+                        }
+                    }
+                    .no-connected-box {
+                        .no-connected {
+                        }
+                    }
+                }
+                .submit {
+                    font-size: 1.4rem;
+                    color: #fff;
+                    background: $base-color;
+                    border-radius: 4px;
+                    padding: 4px 24px;
+                    border: none;
+                }
+            }
+        }
+    }
+
+    .setting-coin {
+        .main-content {
+            .coin-form {
+                box-shadow: 0 0 15px #ccc;
+                padding: 30px 20px 30px 20px;
+                background: #fff;
+                border-radius: 4px;
+                li {
+                    .coin {
+                        display: flex;
+                        align-items: center;
+                        img {
+                            display: block;
+                            width: 20px;
+                            margin-right: 20px;
+                        }
+                        .point {
+                        }
+                    }
+                }
+                .note {
+                    margin-top: 20px;
+                    color: #666666;
+                }
+                .btn-request {
+                    margin-top: 36px;
+                    display: inline-block;
+                }
+                .request-list {
+                    margin-top: 40px;
+                    h3 {
+                        border-bottom: 2px solid #000;
+                        font-size: 1.6rem;
+                        padding-bottom: 4px;
+                        margin-bottom: 10px;
+                    }
+                    li {
+                        margin-bottom: 6px;
+                        span {
+                            margin-right: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .setting-coin-request {
+        .main-content {
+            .coin-form {
+                box-shadow: 0 0 15px #ccc;
+                padding: 30px 20px 30px 20px;
+                background: #fff;
+                border-radius: 4px;
+                li {
+                    margin-bottom: 20px;
+                    input[type=text] {
+                        width: 100%;
+                    }
+                    .label {
+                        display: block;
+                        margin-bottom: 12px;
+                    }
+                    .coin {
+                        display: flex;
+                        align-items: center;
+                        img {
+                            display: block;
+                            width: 20px;
+                            margin-right: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /*
+     * クラン一覧
+     */
+    .setting-group-list {
+        .main-content {
+            .group-list-content {
+                box-shadow: 0 0 15px #ccc;
+                padding: 30px 20px 30px 20px;
+                background: #fff;
+                border-radius: 4px;
+                .group-header {
+                    display: flex;
+                    padding-bottom: 18px;
+                    border-bottom: 1px solid #cccccc;
+                    .column {
+                        flex-basis: 35%;
+                        padding: 0 4px;
+                        &:nth-child(3) {
+                            flex-basis: 30%;
+                        }
+                    }
+                }
+                .group-row {
+                    display: flex;
+                    border-bottom: 1px solid #cccccc;
+                    padding: 4px 0;
+                    a {
+                        color: $base-color;
+                    }
+                    .name {
+                        flex-basis: 35%;
+                    }
+                    .game-title {
+                        flex-basis: 35%;
+                    }
+                    .member-number {
+                        flex-basis: 30%;
+                    }
+                }
+                .add-group {
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+
+    .setting-stream,
+    .setting-archive {
+        .sidebar {
+            padding: 40px 0 0 0;
+            .menu-list {
+                display: flex;
+                li {
+                    a {
+                        display: block;
+                        padding: 0 10px;
+                        line-height: 40px;
+                        &:before {
+                            display: inline-block;
+                            margin-right: 11px;
+                            vertical-align: middle;
+                        }
+                        span {
+                            vertical-align: middle;
+                        }
+                    }
+                    &.active {
+                        background: $base-color;
+                        a {
+                            color: #fff;
+                        }
+                    }
+                    &.menu01 {
+                        a {
+                            &:before {
+                                content: url(/images/icon-setting-menu01.png);
+                                width: 20px;
+                                height: 10px;
+                            }
+                        }
+                        &.active {
+                            a {
+                                &:before {
+                                    content: url(/images/icon-setting-menu01_on.png);
+                                }
+                            }
+                        }
+                    }
+                    &.menu02 {
+                        a {
+                            &:before {
+                                content: url(/images/icon-setting-menu02.png);
+                                width: 20px;
+                                height: 18px;
+                            }
+                        }
+                        &.active {
+                            a {
+                                &:before {
+                                    content: url(/images/icon-setting-menu02_on.png);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .main-content {
+            margin: 0 10px;
+            h2 {
+                font-size: 2rem;
+                padding: 26px 0 18px 0;
+            }
+        }
+    }
+
+
+    /*
+     * 動画配信設定
+     */
+    .setting-stream {
+        .main-content {
+            .stream-form {
+                box-shadow: 0 0 15px #ccc;
+                padding: 30px 20px 30px 20px;
+                background: #fff;
+                border-radius: 4px;
+                .flash_message {
+                    margin-bottom: 42px;
+                    color: #ff0000;
+                }
+                .error {
+                    margin-bottom: 42px;
+                    color: #ff0000;
+                    li {
+                        margin: 0;
+                        a {
+                            color: #ff0000;
+                        }
+                    }
+                }
+                form {
+                    position: relative;
+                }
+                li {
+                    margin-bottom: 30px;
+                    .label {
+                        display: block;
+                        margin-bottom: 10px;
+                        .btn-copy {
+                            cursor: pointer;
+                            display: inline-block;
+                            width: 18px;
+                            margin-left: 20px;
+                            vertical-align: middle;
+                            img {
+                                width: 100%;
+                            }
+                        }
+                    }
+                    input[type=text] {
+                        width: 100%;
+                    }
+                    textarea {
+                        padding: 4px 8px;
+                        width: 100%;
+                        height: 100px;
+                    }
+                    .icon-wrapper {
+                        display: flex;
+                        align-items: center;
+                        .icon {
+                            width: 150px;
+                            height: 100px;
+                            background-position: center;
+                            display: inline-block;
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                            margin: 0 34px 0 0;
+                        }
+                        .file-01 {
+                            display: none;
+                        }
+                        .file-mask {
+                            .btn {
+                                display: inline-block;
+                                padding: 4px 10px;
+                                border: solid 2px #666666;
+                                border-radius: 4px;
+                            }
+                        }
+                    }
+                }
+                .btn-danger {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                }
+            }
+        }
+    }
+
+    /*
+     * 動画配信設定
+     */
+    .setting-archive {
+        .main-content {
+             .archive-download {
+                display: none;
+             }
+            .archive-content {
+                .archive-header {
+                    display: flex;
+                    overflow-x: scroll;
+                    padding-bottom: 18px;
+                    border-bottom: 1px solid #cccccc;
+                    .column {
+                        flex: 0 0 160px;
+                        padding: 0 10px;
+                        &:nth-child(2) {
+                            flex: 0 0 200px;
+                        }
+                    }
+                }
+                .archive-row {
+                    display: flex;
+                    overflow-x: scroll;
+                    border-bottom: 1px solid #cccccc;
+                    padding: 10px 0;
+                    .image {
+                        flex: 0 0 160px;
+                        padding: 0 10px;
+                        img {
+                            width: 100%;
+                        }
+                    }
+                    .title {
+                        flex: 0 0 200px;
+                        padding: 0 10px;
+                    }
+                    .date {
+                        flex: 0 0 160px;
+                        padding: 0 10px;
+                    }
+                    .time {
+                        flex: 0 0 160px;
+                        padding: 0 10px;
+                    }
+                    .status {
+                        flex: 0 0 160px;
+                        padding: 0 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    /*
+     * LINE連携
+     */
+    .setting-line {
+        .line-content {
+            box-shadow: 0 0 15px #ccc;
+            padding: 30px 20px 30px 20px;
+            background: #fff;
+            border-radius: 4px;
+            .line-header {
+                margin-bottom: 34px;
+                .header-inner {
+                    margin-bottom: 12px;
+                    .icon {
+                        display: inline-block;
+                        width: 15.7%;
+                        vertical-align: middle;
+                        margin-right: 30px;
+                        img {
+                            width: 100%;
+                        }
+                    }
+                    .txt {
+                        display: inline-block;
+                        vertical-align: middle;
+                        .main-text {
+                            color: #00b900;
+                            font-size: 2.1rem;
+                            line-height: 1.4;
+                        }
+                        .sub-text {
+                            font-size: 1.5rem;
+                        }
+                    }
+                }
+                .sub-text {
+                    line-height: 1.75;
+                }
+            }
+            .line-flow {
+                .midashi {
+                    margin-bottom: 16px;
+                    font-size: 1.6rem;
+                }
+                .flow-content {
+                    margin-bottom: 20px;
+                    .flow {
+                        width: 100%;
+                        margin-bottom: 50px;
+                        .step {
+                            font-size: 1.5rem;
+                            color: $base-color;
+                            border: solid 1px $base-color;
+                            padding: 4px 0;
+                            text-align: center;
+                            line-height: 2.0rem;
+                            margin-bottom: 10px;
+                        }
+                        .txt {
+                            font-size: 1.4rem;
+                            line-height: 1.75;
+                            margin-bottom: 17px;
+                        }
+                        .line-submit {
+                            display: block;
+                            position: relative;
+                            background: $base-color;
+                            color: #fff;
+                            width: 76%;
+                            margin: 0 auto;
+                            text-align: center;
+                            padding: 8px 0;
+                            margin-top: 17px;
+                            &::before {
+                                position: absolute;
+                                top: 0;
+                                right: 10px;
+                                bottom: 0;
+                                margin: auto;
+                                content: "";
+                                vertical-align: middle;
+                                width: 6px;
+                                height: 6px;
+                                border-top: 2px solid #fff;
+                                border-right: 2px solid #fff;
+                                -webkit-transform: rotate(45deg);
+                                transform: rotate(45deg);
+                            }
+                        }
+                        .image {
+                            text-align: center;
+                            img {
+                                width: 53%;
+                                vertical-align: top;
+                            }
+                        }
+                        .sub-txt {
+                            font-size: 1.2rem;
+                            margin-top: 10px;
+                        }
+                    }
+                    .arrow {
+                        position: relative;
+                        width: 17px;
+                        margin-top: 247px;
+                        &::before {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            margin: auto;
+                            content: "";
+                            vertical-align: middle;
+                            width: 10px;
+                            height: 10px;
+                            border-top: 3px solid $base-color;
+                            border-right: 3px solid $base-color;
+                            -webkit-transform: rotate(45deg);
+                            transform: rotate(45deg);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /*
+     * 支払い画面
+     */
+    .setting-payment {
+        position: relative;
+        &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 286px;
+            background: #f3f5f7;
+        }
+        .main-content {
+            margin: 0 10px;
+            position: relative;
+            h2 {
+                font-size: 2rem;
+                padding: 26px 0 18px 0;
+            }
+            .payment-form {
+                box-shadow: 0 0 15px #ccc;
+                padding: 30px 20px 30px 20px;
+                background: #fff;
+                border-radius: 4px;
+                li {
+                    margin-bottom: 42px;
+                    .label {
+                        display: block;
+                        margin-bottom: 18px;
+                    }
+                    input[type=email] {
+                        width: 100%;
+                    }
+                }
+                .card-element {
+                    width: 100%;
+                }
+                .stripe-input {
+                    padding: 8px;
+                    margin-bottom: 5px;
+                    background-image: linear-gradient(0deg,#009688 2px,rgba(0,150,136,0) 0),linear-gradient(0deg,rgba(0,0,0,.26) 1px,transparent 0);
+                    background-size: 0 100%,100% 100%;
+                }
+                .stripe-err {
+                    color: red;
+                }
+                .back {
+                    border-radius: 4px;
+                    padding: 4px 24px;
+                    border: none;
+                    margin-right: 20px;
+                }
+                .submit {
+                    color: #fff;
+                    background: $base-color;
+                    border-radius: 4px;
+                    padding: 4px 24px;
+                    border: none;
+                }
+            }
+        }
+    }
+
+    /*
+     * 静的ページ共通設定
+     */
+    .page-content {
+        .sidebar {
+            padding: 40px 0 0 0;
+            .menu-list {
+                display: flex;
+                flex-wrap: wrap;
+                border-bottom: 1px solid #ccc;
+                li {
+                    a {
+                        display: block;
+                        padding: 0 10px;
+                        line-height: 40px;
+                        &:before {
+                            display: inline-block;
+                            margin-right: 11px;
+                            vertical-align: middle;
+                        }
+                        span {
+                            vertical-align: middle;
+                        }
+                    }
+                    &.active {
+                        background: $base-color;
+                        a {
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+        .main-content {
+            margin: 0 10px;
+            word-break: break-all;
+            .section {
+                margin-bottom: 50px;
+            }
+            h2 {
+                font-size: 2rem;
+                padding: 26px 0 18px 0;
+            }
+            .box {
+                box-shadow: 0 0 15px #ccc;
+                padding: 30px 20px 30px 20px;
+                background: #fff;
+                border-radius: 4px;
+                h3 {
+                    font-size: 1.6rem;
+                    font-weight: 600;
+                    margin-bottom: 20px;
+                }
+                .color {
+                    color: $base-color;
+                }
+            }
+        }
+    }
+
+
+    .page-content {
+        .main-content {
+            /*
+             * お知らせ
+             */
+            .notice {
+                .row {
+                    padding: 16px 0px;
+                    border-bottom: 2px solid #cccccc;
+                    .date {
+                        font-size: 1.2rem;
+                        color: #999999;
+                        margin-bottom: 8px;
+                    }
+                    .description {
+                    }
+                }
+            }
+
+            /*
+             * お知らせ詳細
+             */
+            .notice-detail {
+                h3 {
+                    border-bottom: 2px solid #cccccc;
+                    padding-bottom: 14px;
+                }
+                a {
+                    color: $base-color;
+                }
+                .date {
+                    font-size: 1.2rem;
+                    color: #999999;
+                    margin-bottom: 20px;
+                }
+            }
+
+            /*
+             * 運営会社
+             */
+            .company {
+                padding-top: 40px;
+                .list {
+                    margin-bottom: 60px;
+                    li {
+                        display: flex;
+                        padding: 18px 0;
+                        border-bottom: 2px solid #eeeeee;
+                        .key {
+                            width: 7em;
+                        }
+                    }
+                }
+                .map {
+                    iframe {
+                        width: 100%;
+                    }
+                }
+            }
+
+            /*
+             * 配信方法
+             */
+            .howto {
+                h4 {
+                    margin-bottom: 20px;
+                }
+                .title {
+                    margin-bottom: 30px;
+                }
+                p {
+                    margin-bottom: 10px;
+                }
+                .capture {
+                    margin-bottom: 30px;
+                    width: 100%;
+                }
+            }
+
+            /*
+             * お問い合わせ
+             */
+            .contact {
+                padding: 30px 20px 30px 20px;
+                li {
+                    margin-bottom: 30px;
+                    .label {
+                        display: block;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+}
