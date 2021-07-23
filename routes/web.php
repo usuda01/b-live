@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\TwitterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomRankingController;
 use App\Http\Controllers\SettingController;
@@ -28,8 +29,8 @@ Route::post('contact', 'ContactController@send');
 Route::get('contact/complete', 'ContactController@complete');
 
 // 動画配信個別
-Route::get('room/{room_id}', 'RoomController@stream');
-Route::post('room/count-views', 'RoomController@countViews');
+Route::get('room/{room_id}', [RoomController::class, 'stream']);
+Route::post('room/count-views', [RoomController::class, 'countViews']);
 
 // ログイン画面
 Route::get('/login', [LoginController::class, 'login'])->name('login');
@@ -50,7 +51,7 @@ Route::get('auth/twitter', [TwitterController::class, 'redirectToProvider']);
 Route::get('auth/twitter/callback', [TwitterController::class, 'handleProviderCallback']);
 
 // ログアウトURL
-Route::get('auth/logout', 'Auth\LoginController@logout');
+Route::get('auth/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 
 // クラン個別
 Route::get('group/detail/{group_id}', 'GroupController@detail');
@@ -115,21 +116,21 @@ Route::prefix('setting')->group(function () {
 });
 
 // 静的ページ
-Route::get('page/benefits', 'PageController@benefits');
-Route::get('page/company', 'PageController@company');
-Route::get('page/liver', 'PageController@liver');
-Route::get('page/notice', 'PageController@notice');
-Route::get('page/notice/{id}', 'PageController@noticeDetail');
-Route::get('page/howto', 'PageController@howto');
-Route::get('page/ranking', 'PageController@ranking');
-Route::get('page/terms', 'PageController@terms');
-Route::get('page/privacy', 'PageController@privacy');
-Route::get('page/lp01', 'PageController@lp01');
+Route::get('page/benefits', [PageController::class, 'benefits']);
+Route::get('page/company', [PageController::class, 'company']);
+Route::get('page/liver', [PageController::class, 'liver']);
+Route::get('page/notice', [PageController::class, 'notice']);
+Route::get('page/notice/{id}', [PageController::class, 'noticeDetail']);
+Route::get('page/howto', [PageController::class, 'howto']);
+Route::get('page/ranking', [PageController::class, 'ranking']);
+Route::get('page/terms', [PageController::class, 'terms']);
+Route::get('page/privacy', [PageController::class, 'privacy']);
+Route::get('page/lp01', [PageController::class, 'lp01']);
 
 // for Xcode
-Route::get('room-message/{room_id}', 'RoomController@message');
-Route::get('room-info/{room_id}', 'RoomController@getInfo');
+Route::get('room-message/{room_id}', [RoomController::class, 'message']);
+Route::get('room-info/{room_id}', [RoomController::class, 'getInfo']);
 
 // for 動画用コメントビューワー
-Route::get('room-message-viewer/{room_id}', 'RoomController@messageViewer')->name('room_message_viewer');
+Route::get('room-message-viewer/{room_id}', [RoomController::class, 'messageViewer'])->name('room_message_viewer');
 

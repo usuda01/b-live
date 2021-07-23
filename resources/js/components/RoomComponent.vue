@@ -233,10 +233,7 @@
 
 
 <script>
-    import videojs from 'video.js';
     import moment from 'moment';
-    import 'videojs-contrib-quality-levels';
-    import 'videojs-hls-quality-selector';
     import Hls from 'hls.js';
 
     export default {
