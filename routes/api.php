@@ -34,7 +34,7 @@ Route::group(['middleware' => ['api']], function () {
         Route::post('block/flag-user', [BlockController::class, 'flagUser']);
         Route::get('block/get-block-users', [BlockController::class, 'getBlockUsers']);
         Route::post('block/block', [BlockController::class, 'block']);
-        Route::post('block/un-block', 'BlockController@unBlock');
+        Route::post('block/un-block', [BlockController::class, 'unBlock']);
         Route::post('followers/follow', [FollowerController::class, 'follow']);
         Route::post('followers/follow-cancel', [FollowerController::class, 'followCancel']);
         Route::post('payment', 'PaymentController@store');

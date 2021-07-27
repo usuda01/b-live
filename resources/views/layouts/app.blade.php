@@ -10,15 +10,15 @@
     <meta name="google-site-verification" content="P5MZYRt5GLFguKhLczvQkpUCRLTIkm1LyOF93FHd4bM" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="keywords" content="B-LIVE,ライブ配信,配信,ゲーム,ゲーム実況,ゲーム配信">
-    <meta name="description" content="B-LIVE（ビーライブ）は、ゲームのライブ配信プラットフォームです！お気に入りの配信者を見つけて、一緒に盛り上がろう！">
-    <meta property="og:title" content="B-LIVE｜ライブ配信" />
-    <meta property="og:description" content="B-LIVE（ビーライブ）は、ゲームのライブ配信プラットフォームです！お気に入りの配信者を見つけて、ラジオ感覚で楽しもう！" />
+    <meta name="keywords" content="C-LIVE,ライブ配信,配信,ゲーム,ゲーム実況,ゲーム配信">
+    <meta name="description" content="C-LIVE（シーライブ）は、配信者女性限定 ゲームのライブ配信プラットフォームです！お気に入りの配信者を見つけて、一緒に盛り上がろう！">
+    <meta property="og:title" content="C-LIVE｜ライブ配信" />
+    <meta property="og:description" content="C-LIVE（シーライブ）は、配信者女性限定 ゲームの配信プラットフォームです！お気に入りの配信者を見つけて、一緒に盛り上がろう！" />
     <meta property="og:url" content="{{ Request::url() }}" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="【ライブ配信サービス】視聴者を増やして楽しく配信しよう！！" />
-    <meta name="twitter:description" content="ゲーム配信プラットフォーム、、新サービス「B-LIVE」が誕生！！" />
+    <meta name="twitter:description" content="ゲーム配信プラットフォーム、「C-LIVE」！！" />
     @if (Request::is('room/*'))
         @stack('meta')
     @else
@@ -29,7 +29,9 @@
     <link href="{{ mix('css/fonts.css') }}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}?param=41" rel="stylesheet">
     <link href="{{ mix('css/all.css') }}?param=41" rel="stylesheet">
-    <title>@yield('title')B-LIVE ライブ配信</title>
+    <title>@yield('title')C-LIVE ライブ配信</title>
+    {{-- socket io --}}
+    <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->

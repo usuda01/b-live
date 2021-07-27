@@ -38,7 +38,7 @@
         </ul>
 
         <div class="video-info" v-bind:class="{'active': activeTab === 1}">
-            <div class="from-now"><span class="icon"><img src="/images/icon-time.png"></span><span class="date">{{ room.created_at | moment }}</span></div>
+            <div class="from-now"><span class="icon"><img src="/images/icon-time.png"></span><span class="date">{{ moment(room.created_at) }}</span></div>
             <div class="headline">
                 <div class="room-name">{{ room.name }}</div>
                 <a v-if="isFollow" v-on:click.prevent="followCancel" class="follow on" href="#"><span>フォロー　</span><span>{{ followerCount }}</span></a>
@@ -283,11 +283,6 @@
                 videoTime: '',
             }
         },
-        filters: {
-            moment: function (date) {
-                return moment(date).format('MM/DD HH:mm');
-            }
-        },
         mounted () {
             let self = this;
             if (this.room.status === 1) {
@@ -309,6 +304,9 @@
                     this.receiveMessage();
                     this.receiveSupporters();
                 })
+            },
+            moment(date) {
+                return moment(date).format('MM/DD HH:mm')
             },
             msToTime(s) {
 
