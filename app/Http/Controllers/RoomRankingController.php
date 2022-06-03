@@ -67,8 +67,8 @@ class RoomRankingController extends Controller
                 ->orWhere('rooms.status', 2);
             })
             ->where(function($query) {
-                $query->where('published_at', '>=', date('Y-m-1 00:00:00'))
-                    ->where('published_at', '<', date('Y-m-1 00:00:00', strtotime('+1 months')));
+                $query->where('published_at', '>=', date('Y-m-01 00:00:00'))
+                    ->where('published_at', '<', date('Y-m-01 00:00:00', strtotime('+1 months')));
             });
 
         if ($targetRank == 4) {

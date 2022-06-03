@@ -68,7 +68,7 @@
                 profile: '',
                 rooms: [],
                 hasRoomData: true,
-                activeTab: 2,
+                activeTab: 1,
                 isLoggedIn: Object.keys(this.user).length > 0,
                 isFollow: false,
                 followerCount: 0

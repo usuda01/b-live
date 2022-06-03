@@ -13,7 +13,9 @@
     <link href="{{ mix('css/fonts.css') }}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('css/all.css') }}" rel="stylesheet">
-    <title>B-live ライブ配信</title>
+    <title>B-LIVE ライブ配信</title>
+    {{-- socket io --}}
+    <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->

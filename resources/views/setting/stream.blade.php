@@ -63,6 +63,12 @@
                                 </div>
                             </li>
                             <li>
+                                <label class="label">ゲームタイトル（任意）</label>
+                                <game-select-component
+                                    :game-id="{{ ($room->game_id) ? $room->game_id : 0 }}"
+                                ></game-select-component>
+                            </li>
+                            <li>
                                 <label class="label">動画タイトル</label>
                                 <input type="text" name="name" value="{{ old('name', $room->name) }}" placeholder="動画タイトルを入力してください">
                             </li>
@@ -70,6 +76,13 @@
                                 <label class="label">概要欄（任意）</label>
                                 <textarea  name="description" placeholder="動画の概要">{{ old('description', $room->description) }}</textarea>
                             </li>
+                            @if (!$room->id)
+                                <li>
+                                    <label class="label">配信通知</label>
+                                    <label><input type="radio" name="stream_alert" value="1" {{ old('stream_alert', 1) == 1 ? 'checked' : '' }}> 通知する</label>
+                                    <label><input type="radio" name="stream_alert" value="2" {{ old('stream_alert') == 2 ? 'checked' : '' }}> 通知しない</label>
+                                </li>
+                            @endif
                             <li style="color:#ff0000;"><label class="label">ビットレート：〜3500 Kbpsまでにご協力ください</label> </li>
                             <li>
                                 @if (!$room->id)
@@ -123,8 +136,8 @@
 
 
 @push('scripts')
-    <script src="{{ mix('js/stream.js') }}"></script>
-    <script>
+<script src="{{ mix('js/stream.js') }}"></script>
+<script>
 
     @if (!$room->id)
         // TODO どこかでエラーメッセージを出さないようにする

@@ -25,7 +25,7 @@ class UserController extends Controller
         }
 
         // サポーター
-        $payments = Payment::where('payments.created_at', '>=', date('Y-m-d H:i:s', strtotime('-1 month')));
+        $payments = Payment::where('payments.created_at', '>=', date('Y-m-01 00:00:00'));
         $payments = $payments
             ->join('messages', function($join) {
                 $join->on('payments.message_id', '=', 'messages.id');
@@ -35,6 +35,7 @@ class UserController extends Controller
             })
             ->where('rooms.user_id', $userId)
             ->groupBy('payments.user_id', 'rooms.user_id')
+            ->orderBy('total_price', 'desc')
             ->select(
                 'payments.user_id as payment_user_id',
                 DB::raw('SUM(payments.price) as total_price')

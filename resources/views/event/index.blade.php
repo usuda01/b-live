@@ -39,6 +39,7 @@
             <div class="fv">
                 <img src="/images/event/fv.png">
             </div>
+
             @if (Config::get('services.event.end_date') < date('Y-m-d H:i:s'))
                 <div class="event-end">
                     ※このイベントは終了しました

@@ -88,7 +88,7 @@
                             <div v-if="isLoggedIn" class="user-name">{{ this.user.name }}</div>
                             <div v-else class="user-name">ゲスト</div>
                         </div>
-                        <div class="send-footer">
+                        <div class="send-footer" v-bind:class="{'no-gift': canSendGift === false}">
                             <div class="send-box">
                                 <input type="text" placeholder="メッセージを入力" class="send-message" v-model="messageData.content">
                                 <input type="image" src="/images/btn-message-send.png" class="send-btn">
@@ -233,6 +233,7 @@
                 },
                 showingUserInfo: false,
                 showingUserFlagModal: false,
+                canSendGift: true, // ギフトメッセージを送れるか
                 isGiftError: false,
                 giftErrorMessage: '',
                 selectedGift: 0,
@@ -260,6 +261,11 @@
             this.receiveSupporters();
             this.getFollowers();
             this.getBlockUsers();
+            if (this.room.game) {
+                if (this.room.game.sales_agency == '任天堂') {
+                    this.canSendGift = false;
+                }
+            }
         },
         methods: {
             connectChannel() {

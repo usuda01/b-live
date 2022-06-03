@@ -126,6 +126,165 @@
   font-weight: bold;
 }
 
+.event-event2 {
+  max-width: 720px;
+  margin: 0 auto;
+  padding-bottom: 100px;
+  background: #ffeaff;
+}
+.event-event2 .fv {
+  margin-bottom: 35px;
+}
+.event-event2 .fv img {
+  width: 100%;
+}
+.event-event2 .event-end {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+  color: #ff0000;
+}
+.event-event2 .ranking {
+  margin-bottom: 35px;
+}
+.event-event2 .ranking .title {
+  font-size: 1.6rem;
+  margin-bottom: 25px;
+  text-align: center;
+  font-weight: bold;
+}
+.event-event2 .ranking .movie-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 6px 10px 10px 10px;
+}
+.event-event2 .ranking .movie-box.first {
+  background: #f2c94d;
+}
+.event-event2 .ranking .movie-box .game-title {
+  width: 100%;
+  height: 2rem;
+  overflow: hidden;
+}
+.event-event2 .ranking .movie-box .game-title a {
+  font-size: 1.2rem;
+  color: #f66951;
+}
+.event-event2 .ranking .movie-box .movie-image {
+  position: relative;
+  width: 33%;
+}
+.event-event2 .ranking .movie-box .movie-image:before {
+  content: "";
+  display: block;
+  padding-top: 56.8%;
+}
+.event-event2 .ranking .movie-box .movie-image a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-position: center;
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.event-event2 .ranking .movie-box .movie-info {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 63%;
+}
+.event-event2 .ranking .movie-box .movie-info .movie-name {
+  margin-bottom: 6px;
+  overflow: hidden;
+  height: 1.4em;
+}
+.event-event2 .ranking .movie-box .movie-info .user-info {
+  display: flex;
+}
+.event-event2 .ranking .movie-box .movie-info .user-info .user-profile {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-position: center;
+  display: inline-block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0 8px 0 0;
+}
+.event-event2 .ranking .movie-box .movie-info .user-info .user-name {
+  font-size: 1.2rem;
+  color: #999999;
+}
+.event-event2 .ranking .movie-box .movie-info .count {
+  margin-top: auto;
+}
+.event-event2 .ranking .movie-box .movie-info .count .number {
+  font-size: 1.8rem;
+  color: #9e1b9e;
+  margin-right: 20px;
+}
+.event-event2 .event-detail {
+  margin-bottom: 35px;
+}
+.event-event2 .event-detail .title {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  text-align: center;
+  font-weight: bold;
+}
+.event-event2 .event-detail .detail {
+  margin: 0 15px;
+  background: #fff;
+  padding: 20px;
+  font-weight: bold;
+  border-radius: 6px;
+}
+.event-event2 .event-detail .detail .twitter {
+  color: #00acee;
+}
+.event-event2 .event-detail .detail div {
+  margin-bottom: 10px;
+}
+.event-event2 .event-detail .detail div:last-child {
+  margin-bottom: 0;
+}
+.event-event2 .event-caution {
+  margin-bottom: 35px;
+}
+.event-event2 .event-caution .title {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  text-align: center;
+  font-weight: bold;
+}
+.event-event2 .event-caution .note {
+  margin: 0 15px;
+  background: #fff;
+  padding: 20px;
+  font-size: 1.2rem;
+  border-radius: 6px;
+}
+.event-event2 .event-caution .note .twitter {
+  color: #00acee;
+}
+.event-event2 .to-top {
+  text-align: center;
+}
+.event-event2 .to-top a {
+  display: inline-block;
+  color: #fff;
+  background: #9e1b9e;
+  border-radius: 4px;
+  padding: 4px 24px;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
 /*!
  * Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
@@ -6653,6 +6812,9 @@ input[type=email] {
     text-align: center;
     width: 14em;
   }
+  .line-connect.RoomController-stream {
+    width: calc(100% - 340px);
+  }
 
   /*
    * アカウントメニュー
@@ -6823,6 +6985,39 @@ input[type=email] {
     font-size: 2rem;
     text-align: center;
   }
+  .home-index .main-area .category-content .game-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .home-index .main-area .category-content .game-content .game-box {
+    flex-basis: 16%;
+    margin: 0 0.8% 0 0;
+  }
+  .home-index .main-area .category-content .game-content .game-box:nth-child(6n) {
+    margin-right: 0;
+  }
+  .home-index .main-area .category-content .game-content .game-box .game-image {
+    position: relative;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+  .home-index .main-area .category-content .game-content .game-box .game-image:before {
+    content: "";
+    display: block;
+    padding-top: 133.3%;
+  }
+  .home-index .main-area .category-content .game-content .game-box .game-image a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-position: center;
+    display: block;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
   .home-index .main-area .user-content {
     margin-bottom: 20px;
   }
@@ -6955,6 +7150,14 @@ input[type=email] {
   .home-index .main-area .room-content .room-box:nth-child(4n) {
     margin-right: 0;
   }
+  .home-index .main-area .room-content .room-box .game-title {
+    height: 2rem;
+    overflow: hidden;
+    margin-bottom: 4px;
+  }
+  .home-index .main-area .room-content .room-box .game-title a {
+    color: #f66951;
+  }
   .home-index .main-area .room-content .room-box .room-image {
     position: relative;
     width: 100%;
@@ -7006,6 +7209,8 @@ input[type=email] {
     margin-right: 0;
   }
   .home-index .main-area .group-content .group-box .game-title {
+    height: 2rem;
+    overflow: hidden;
     margin-bottom: 4px;
     color: #f66951;
   }
@@ -7319,7 +7524,7 @@ input[type=email] {
     overflow-y: scroll;
     overflow-x: hidden;
     display: flex;
-    flex-flow: column;
+    flex-flow: column-reverse;
     padding-top: 8px;
   }
   .room-stream .message-wrapper .message-area .chat-area .chat-list .user-message {
@@ -7431,6 +7636,12 @@ input[type=email] {
   }
   .room-stream .message-wrapper .message-area .chat-area .send-chat .send-footer .btn-gift img {
     width: 24px;
+  }
+  .room-stream .message-wrapper .message-area .chat-area .send-chat .send-footer.no-gift .send-box {
+    width: 100%;
+  }
+  .room-stream .message-wrapper .message-area .chat-area .send-chat .send-footer.no-gift .btn-gift {
+    display: none;
   }
   .room-stream .supporter {
     display: none;
@@ -7626,6 +7837,104 @@ input[type=email] {
   }
   .html-room-message-viewer .room-stream .message-wrapper .message-area .chat-area {
     height: 100vh;
+  }
+
+  /*
+   * 動画検索
+   */
+  .movie-search .main-area {
+    margin: 0 20px;
+  }
+  .movie-search .main-area .main-title {
+    font-size: 2rem;
+    padding: 46px 0 18px 0;
+    color: #9e1b9e;
+  }
+  .movie-search .main-area .movie-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .movie-search .main-area .movie-content .movie-box {
+    flex-basis: 24.1%;
+    margin: 0 1.2% 20px 0;
+  }
+  .movie-search .main-area .movie-content .movie-box:nth-child(4n) {
+    margin-right: 0;
+  }
+  .movie-search .main-area .movie-content .movie-box .movie-image {
+    position: relative;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+  .movie-search .main-area .movie-content .movie-box .movie-image:before {
+    content: "";
+    display: block;
+    padding-top: 56.8%;
+  }
+  .movie-search .main-area .movie-content .movie-box .movie-image a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-position: center;
+    display: block;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .movie-search .main-area .movie-content .movie-box .movie-info .movie-name {
+    display: block;
+    margin-bottom: 4px;
+  }
+  .movie-search .main-area .movie-content .movie-box .movie-info .user-name a {
+    font-size: 1.2rem;
+    color: #999999;
+  }
+
+  /*
+   * 動画個別
+   */
+  .movie-detail {
+    display: flex;
+  }
+  .movie-detail .main-area {
+    margin: 0 10px;
+    width: calc(100vw - 360px);
+  }
+  .movie-detail .main-area video {
+    width: 100%;
+  }
+  .movie-detail .main-area .video-footer {
+    background: #eeeeee;
+    padding: 6px 10px;
+    margin-bottom: 14px;
+  }
+  .movie-detail .main-area .video-footer .share-content a img {
+    width: 100px;
+  }
+  .movie-detail .main-area .video-info {
+    padding: 20px 0;
+  }
+  .movie-detail .main-area .video-info .movie-title {
+    font-size: 1.8rem;
+    margin-bottom: 14px;
+  }
+  .movie-detail .main-area .video-info .headline {
+    display: flex;
+    align-items: center;
+  }
+  .movie-detail .main-area .video-info .headline .good {
+    margin-right: 10px;
+  }
+  .movie-detail .main-area .video-info .headline .good i {
+    font-size: 20px;
+  }
+  .movie-detail .main-area .video-info .headline .good-count {
+    font-size: 1.6rem;
+  }
+  .movie-detail .right-area {
+    width: 340px;
   }
 
   /*
@@ -8342,12 +8651,15 @@ input[type=email] {
   }
   .setting-group-list .main-content .group-list-content .group-row .name {
     flex-basis: 40%;
+    padding: 0 10px;
   }
   .setting-group-list .main-content .group-list-content .group-row .game-title {
     flex-basis: 40%;
+    padding: 0 10px;
   }
   .setting-group-list .main-content .group-list-content .group-row .member-number {
     flex-basis: 20%;
+    padding: 0 10px;
   }
   .setting-group-list .main-content .group-list-content .add-group {
     margin-top: 20px;
@@ -8422,68 +8734,103 @@ input[type=email] {
   }
 
   .setting-stream,
-.setting-archive {
+.setting-archive,
+.setting-movie,
+.setting-movie-list {
     display: flex;
     justify-content: space-between;
     height: 100%;
   }
   .setting-stream .sidebar,
-.setting-archive .sidebar {
+.setting-archive .sidebar,
+.setting-movie .sidebar,
+.setting-movie-list .sidebar {
     background: #f3f5f7;
     width: 240px;
     padding: 40px 0;
   }
   .setting-stream .sidebar .menu-list li a,
-.setting-archive .sidebar .menu-list li a {
+.setting-archive .sidebar .menu-list li a,
+.setting-movie .sidebar .menu-list li a,
+.setting-movie-list .sidebar .menu-list li a {
     display: block;
     padding: 0 20px;
     line-height: 60px;
   }
   .setting-stream .sidebar .menu-list li a:before,
-.setting-archive .sidebar .menu-list li a:before {
+.setting-archive .sidebar .menu-list li a:before,
+.setting-movie .sidebar .menu-list li a:before,
+.setting-movie-list .sidebar .menu-list li a:before {
     display: inline-block;
     margin-right: 11px;
     vertical-align: middle;
   }
   .setting-stream .sidebar .menu-list li a span,
-.setting-archive .sidebar .menu-list li a span {
+.setting-archive .sidebar .menu-list li a span,
+.setting-movie .sidebar .menu-list li a span,
+.setting-movie-list .sidebar .menu-list li a span {
     vertical-align: middle;
   }
   .setting-stream .sidebar .menu-list li.active,
-.setting-archive .sidebar .menu-list li.active {
+.setting-archive .sidebar .menu-list li.active,
+.setting-movie .sidebar .menu-list li.active,
+.setting-movie-list .sidebar .menu-list li.active {
     background: #9e1b9e;
   }
   .setting-stream .sidebar .menu-list li.active a,
-.setting-archive .sidebar .menu-list li.active a {
+.setting-archive .sidebar .menu-list li.active a,
+.setting-movie .sidebar .menu-list li.active a,
+.setting-movie-list .sidebar .menu-list li.active a {
     color: #fff;
   }
   .setting-stream .sidebar .menu-list li.menu01 a:before,
-.setting-archive .sidebar .menu-list li.menu01 a:before {
+.setting-archive .sidebar .menu-list li.menu01 a:before,
+.setting-movie .sidebar .menu-list li.menu01 a:before,
+.setting-movie-list .sidebar .menu-list li.menu01 a:before {
     content: url(/images/icon-setting-menu01.png);
     width: 20px;
     height: 10px;
   }
   .setting-stream .sidebar .menu-list li.menu01.active a:before,
-.setting-archive .sidebar .menu-list li.menu01.active a:before {
+.setting-archive .sidebar .menu-list li.menu01.active a:before,
+.setting-movie .sidebar .menu-list li.menu01.active a:before,
+.setting-movie-list .sidebar .menu-list li.menu01.active a:before {
     content: url(/images/icon-setting-menu01_on.png);
   }
   .setting-stream .sidebar .menu-list li.menu02 a:before,
-.setting-archive .sidebar .menu-list li.menu02 a:before {
+.setting-archive .sidebar .menu-list li.menu02 a:before,
+.setting-movie .sidebar .menu-list li.menu02 a:before,
+.setting-movie-list .sidebar .menu-list li.menu02 a:before {
     content: url(/images/icon-setting-menu02.png);
     width: 20px;
     height: 18px;
   }
   .setting-stream .sidebar .menu-list li.menu02.active a:before,
-.setting-archive .sidebar .menu-list li.menu02.active a:before {
+.setting-archive .sidebar .menu-list li.menu02.active a:before,
+.setting-movie .sidebar .menu-list li.menu02.active a:before,
+.setting-movie-list .sidebar .menu-list li.menu02.active a:before {
     content: url(/images/icon-setting-menu02_on.png);
   }
+  .setting-stream .sidebar .menu-list li.menu03 a:before,
+.setting-archive .sidebar .menu-list li.menu03 a:before,
+.setting-movie .sidebar .menu-list li.menu03 a:before,
+.setting-movie-list .sidebar .menu-list li.menu03 a:before {
+    font-family: "Font Awesome 5 Free";
+    content: "";
+    font-weight: 900;
+    font-size: 20px;
+  }
   .setting-stream .main-content,
-.setting-archive .main-content {
+.setting-archive .main-content,
+.setting-movie .main-content,
+.setting-movie-list .main-content {
     width: 100%;
     margin: 0 40px 0 40px;
   }
   .setting-stream .main-content h2,
-.setting-archive .main-content h2 {
+.setting-archive .main-content h2,
+.setting-movie .main-content h2,
+.setting-movie-list .main-content h2 {
     font-weight: 600;
     font-size: 2.4rem;
     padding: 40px 0;
@@ -8566,6 +8913,15 @@ input[type=email] {
     border: solid 2px #666666;
     border-radius: 4px;
   }
+  .setting-stream .main-content .stream-form li .game-select img {
+    height: auto;
+    width: 5rem;
+    margin-right: 1rem;
+  }
+  .setting-stream .main-content .stream-form li .game-select .d-center {
+    display: flex;
+    align-items: center;
+  }
   .setting-stream .main-content .stream-form .btn-danger {
     position: absolute;
     top: 0;
@@ -8626,6 +8982,160 @@ input[type=email] {
   .setting-archive .main-content .archive-content .archive-row .status {
     flex-basis: 15%;
     padding: 0 10px;
+  }
+
+  /*
+   * 動画一覧
+   */
+  .setting-movie-list .notice {
+    background: #f3f5f7;
+    padding: 1em;
+    margin-bottom: 16px;
+  }
+  .setting-movie-list .main-content h2 {
+    padding-bottom: 20px;
+  }
+  .setting-movie-list .main-content .movie-list-content {
+    box-shadow: 0 0 15px #ccc;
+    padding: 24px 40px;
+    border-radius: 4px;
+  }
+  .setting-movie-list .main-content .movie-list-content .flash_message {
+    margin-bottom: 42px;
+    color: #ff0000;
+  }
+  .setting-movie-list .main-content .movie-list-content .error {
+    margin-bottom: 42px;
+    color: #ff0000;
+  }
+  .setting-movie-list .main-content .movie-list-content .error li {
+    margin: 0;
+  }
+  .setting-movie-list .main-content .movie-list-content .error li a {
+    color: #ff0000;
+  }
+  .setting-movie-list .main-content .movie-list-content .movie-header {
+    display: flex;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #cccccc;
+  }
+  .setting-movie-list .main-content .movie-list-content .movie-header .column {
+    flex-basis: 40%;
+    padding: 0 10px;
+  }
+  .setting-movie-list .main-content .movie-list-content .movie-header .column:nth-child(1) {
+    flex-basis: 15%;
+  }
+  .setting-movie-list .main-content .movie-list-content .movie-header .column:nth-child(2) {
+    flex-basis: 30%;
+  }
+  .setting-movie-list .main-content .movie-list-content .movie-header .column:nth-child(4) {
+    flex-basis: 15%;
+  }
+  .setting-movie-list .main-content .movie-list-content .movie-row {
+    display: flex;
+    border-bottom: 1px solid #cccccc;
+    padding: 10px 0;
+  }
+  .setting-movie-list .main-content .movie-list-content .movie-row a {
+    color: #9e1b9e;
+  }
+  .setting-movie-list .main-content .movie-list-content .movie-row .image {
+    flex-basis: 15%;
+    padding: 0 10px;
+  }
+  .setting-movie-list .main-content .movie-list-content .movie-row .image img {
+    width: 100%;
+  }
+  .setting-movie-list .main-content .movie-list-content .movie-row .game-title {
+    flex-basis: 30%;
+    padding: 0 10px;
+  }
+  .setting-movie-list .main-content .movie-list-content .movie-row .name {
+    flex-basis: 40%;
+    padding: 0 10px;
+  }
+  .setting-movie-list .main-content .movie-list-content .movie-row .status {
+    flex-basis: 15%;
+    padding: 0 10px;
+  }
+  .setting-movie-list .main-content .movie-list-content .add-movie {
+    margin-top: 20px;
+  }
+
+  /*
+   * 動画投稿
+   */
+  .setting-movie .main-content .movie-form {
+    box-shadow: 0 0 15px #ccc;
+    padding: 34px 40px;
+    background: #fff;
+    border-radius: 4px;
+  }
+  .setting-movie .main-content .movie-form .flash_message {
+    margin-bottom: 42px;
+    color: #ff0000;
+  }
+  .setting-movie .main-content .movie-form .error {
+    margin-bottom: 42px;
+    color: #ff0000;
+  }
+  .setting-movie .main-content .movie-form .error li {
+    margin: 0;
+  }
+  .setting-movie .main-content .movie-form .error li a {
+    color: #ff0000;
+  }
+  .setting-movie .main-content .movie-form li {
+    margin-bottom: 30px;
+  }
+  .setting-movie .main-content .movie-form li .label {
+    font-size: 1.6rem;
+    display: block;
+    margin-bottom: 14px;
+  }
+  .setting-movie .main-content .movie-form li .icon-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  .setting-movie .main-content .movie-form li .icon-wrapper .icon {
+    width: 160px;
+    height: 90px;
+    background-position: center;
+    display: inline-block;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0 34px 0 0;
+  }
+  .setting-movie .main-content .movie-form li .icon-wrapper .file-01 {
+    display: none;
+  }
+  .setting-movie .main-content .movie-form li .icon-wrapper .file-mask {
+    font-size: 1.6rem;
+  }
+  .setting-movie .main-content .movie-form li .icon-wrapper .file-mask .btn {
+    display: inline-block;
+    padding: 2px 10px;
+    border: solid 2px #666666;
+    border-radius: 4px;
+  }
+  .setting-movie .main-content .movie-form li input[type=text] {
+    width: 500px;
+  }
+  .setting-movie .main-content .movie-form li video {
+    width: 500px;
+  }
+  .setting-movie .main-content .movie-form .game-select img {
+    height: auto;
+    width: 5rem;
+    margin-right: 1rem;
+  }
+  .setting-movie .main-content .movie-form .game-select .d-center {
+    display: flex;
+    align-items: center;
+  }
+  .setting-movie .main-content .movie-form .btn-danger {
+    margin-left: 20px;
   }
 
   /*
@@ -8861,6 +9371,9 @@ input[type=email] {
      * 配信方法
      */
     /*
+     * 利用規約
+     */
+    /*
      * お問い合わせ
      */
   }
@@ -8915,6 +9428,9 @@ input[type=email] {
   .page-content .main-content .howto .capture {
     margin-bottom: 30px;
     max-width: 100%;
+  }
+  .page-content .main-content .terms a {
+    color: #9e1b9e;
   }
   .page-content .main-content .contact li {
     margin-bottom: 20px;
@@ -9531,6 +10047,33 @@ input[type=button] {
     font-size: 1.6rem;
     text-align: center;
   }
+  .home-index .main-area .category-content .game-content {
+    display: flex;
+    overflow-x: scroll;
+    margin: 0 10px;
+  }
+  .home-index .main-area .category-content .game-content .game-box {
+    margin-left: 8px;
+  }
+  .home-index .main-area .category-content .game-content .game-box:first-child {
+    margin-left: 0;
+  }
+  .home-index .main-area .category-content .game-content .game-box:nth-child(6n) {
+    margin-right: 0;
+  }
+  .home-index .main-area .category-content .game-content .game-box .game-image {
+    position: relative;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .home-index .main-area .category-content .game-content .game-box .game-image a {
+    width: 90px;
+    height: 120px;
+    background-position: center;
+    display: block;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
   .home-index .main-area .user-content {
     margin-bottom: 20px;
   }
@@ -9658,6 +10201,14 @@ input[type=button] {
   .home-index .main-area .room-content .room-box:nth-child(2n) {
     margin-right: 0;
   }
+  .home-index .main-area .room-content .room-box .game-title {
+    height: 2rem;
+    overflow: hidden;
+    margin-bottom: 4px;
+  }
+  .home-index .main-area .room-content .room-box .game-title a {
+    color: #f66951;
+  }
   .home-index .main-area .room-content .room-box .room-image {
     position: relative;
     width: 100%;
@@ -9711,6 +10262,8 @@ input[type=button] {
     margin-right: 0;
   }
   .home-index .main-area .group-content .group-box .game-title {
+    height: 2rem;
+    overflow: hidden;
     margin-bottom: 4px;
     color: #f66951;
   }
@@ -9985,7 +10538,7 @@ input[type=button] {
     overflow-y: scroll;
     overflow-x: hidden;
     display: flex;
-    flex-flow: column;
+    flex-flow: column-reverse;
     padding-top: 8px;
   }
   .room-stream .message-wrapper .message-area .chat-area .chat-list .user-message {
@@ -10084,6 +10637,12 @@ input[type=button] {
   .room-stream .message-wrapper .message-area .chat-area .send-chat .send-footer .send-box .send-btn {
     width: 20px;
     height: 20px;
+  }
+  .room-stream .message-wrapper .message-area .chat-area .send-chat .send-footer.no-gift .send-box {
+    width: 100%;
+  }
+  .room-stream .message-wrapper .message-area .chat-area .send-chat .send-footer.no-gift .btn-gift {
+    display: none;
   }
   .room-stream .message-wrapper .message-area .chat-area .send-chat .btn-gift {
     margin-left: auto;
@@ -10331,6 +10890,92 @@ input[type=button] {
     height: 100vh;
   }
 
+  /*
+   * 動画検索
+   */
+  .movie-search .main-area {
+    padding-bottom: 100px;
+  }
+  .movie-search .main-area .main-title {
+    font-size: 2rem;
+    margin: 26px 0 18px 10px;
+    color: #9e1b9e;
+  }
+  .movie-search .main-area .movie-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .movie-search .main-area .movie-content .movie-box {
+    flex-basis: 49%;
+    margin: 0 2% 18px 0;
+  }
+  .movie-search .main-area .movie-content .movie-box:nth-child(2n) {
+    margin-right: 0;
+  }
+  .movie-search .main-area .movie-content .movie-box .movie-image {
+    position: relative;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .movie-search .main-area .movie-content .movie-box .movie-image:before {
+    content: "";
+    display: block;
+    padding-top: 56.8%;
+  }
+  .movie-search .main-area .movie-content .movie-box .movie-image a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-position: center;
+    display: block;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .movie-search .main-area .movie-content .movie-box .movie-info .movie-name {
+    display: block;
+    margin-bottom: 4px;
+  }
+  .movie-search .main-area .movie-content .movie-box .movie-info .user-name a {
+    font-size: 1.2rem;
+    color: #999999;
+  }
+
+  /*
+   * 動画個別
+   */
+  .movie-detail .main-area video {
+    width: 100%;
+  }
+  .movie-detail .main-area .video-footer {
+    background: #eeeeee;
+    padding: 6px 20px 6px 10px;
+  }
+  .movie-detail .main-area .video-footer .share-content a img {
+    height: 20px;
+  }
+  .movie-detail .main-area .video-info {
+    margin: 20px 10px 0 10px;
+  }
+  .movie-detail .main-area .video-info .movie-title {
+    font-size: 1.6rem;
+    margin-bottom: 14px;
+  }
+  .movie-detail .main-area .video-info .headline {
+    display: flex;
+    align-items: center;
+  }
+  .movie-detail .main-area .video-info .headline .good {
+    margin-right: 10px;
+  }
+  .movie-detail .main-area .video-info .headline .good i {
+    font-size: 20px;
+  }
+  .movie-detail .main-area .video-info .headline .good-count {
+    font-size: 1.6rem;
+  }
   /*
    * ユーザー個別
    */
@@ -10992,64 +11637,150 @@ input[type=button] {
     margin-top: 20px;
   }
 
+  /*
+   * クラン作成
+   */
+  .setting-group .main-content .group-form {
+    box-shadow: 0 0 15px #ccc;
+    padding: 30px 20px 30px 20px;
+    background: #fff;
+    border-radius: 4px;
+  }
+  .setting-group .main-content .group-form .flash_message {
+    margin-bottom: 30px;
+    color: #ff0000;
+  }
+  .setting-group .main-content .group-form li {
+    margin-bottom: 30px;
+  }
+  .setting-group .main-content .group-form li .label {
+    display: block;
+    margin-bottom: 18px;
+  }
+  .setting-group .main-content .group-form li input[type=text] {
+    width: 100%;
+  }
+  .setting-group .main-content .group-form li textarea {
+    padding: 4px 8px;
+    width: 100%;
+    height: 100px;
+  }
+  .setting-group .main-content .group-form li .icon-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  .setting-group .main-content .group-form li .icon-wrapper .icon {
+    width: 150px;
+    height: 100px;
+    background-position: center;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 0 34px 0 0;
+  }
+  .setting-group .main-content .group-form li .icon-wrapper .file-01 {
+    display: none;
+  }
+  .setting-group .main-content .group-form li .icon-wrapper .file-mask .btn {
+    display: inline-block;
+    padding: 4px 10px;
+    border: solid 2px #666666;
+    border-radius: 4px;
+  }
+
   .setting-stream .sidebar,
-.setting-archive .sidebar {
+.setting-archive .sidebar,
+.setting-movie .sidebar,
+.setting-movie-list .sidebar {
     padding: 40px 0 0 0;
   }
   .setting-stream .sidebar .menu-list,
-.setting-archive .sidebar .menu-list {
+.setting-archive .sidebar .menu-list,
+.setting-movie .sidebar .menu-list,
+.setting-movie-list .sidebar .menu-list {
     display: flex;
   }
   .setting-stream .sidebar .menu-list li a,
-.setting-archive .sidebar .menu-list li a {
+.setting-archive .sidebar .menu-list li a,
+.setting-movie .sidebar .menu-list li a,
+.setting-movie-list .sidebar .menu-list li a {
     display: block;
     padding: 0 10px;
     line-height: 40px;
   }
   .setting-stream .sidebar .menu-list li a:before,
-.setting-archive .sidebar .menu-list li a:before {
+.setting-archive .sidebar .menu-list li a:before,
+.setting-movie .sidebar .menu-list li a:before,
+.setting-movie-list .sidebar .menu-list li a:before {
     display: inline-block;
     margin-right: 11px;
     vertical-align: middle;
   }
   .setting-stream .sidebar .menu-list li a span,
-.setting-archive .sidebar .menu-list li a span {
+.setting-archive .sidebar .menu-list li a span,
+.setting-movie .sidebar .menu-list li a span,
+.setting-movie-list .sidebar .menu-list li a span {
     vertical-align: middle;
   }
   .setting-stream .sidebar .menu-list li.active,
-.setting-archive .sidebar .menu-list li.active {
+.setting-archive .sidebar .menu-list li.active,
+.setting-movie .sidebar .menu-list li.active,
+.setting-movie-list .sidebar .menu-list li.active {
     background: #9e1b9e;
   }
   .setting-stream .sidebar .menu-list li.active a,
-.setting-archive .sidebar .menu-list li.active a {
+.setting-archive .sidebar .menu-list li.active a,
+.setting-movie .sidebar .menu-list li.active a,
+.setting-movie-list .sidebar .menu-list li.active a {
     color: #fff;
   }
   .setting-stream .sidebar .menu-list li.menu01 a:before,
-.setting-archive .sidebar .menu-list li.menu01 a:before {
+.setting-archive .sidebar .menu-list li.menu01 a:before,
+.setting-movie .sidebar .menu-list li.menu01 a:before,
+.setting-movie-list .sidebar .menu-list li.menu01 a:before {
     content: url(/images/icon-setting-menu01.png);
     width: 20px;
     height: 10px;
   }
   .setting-stream .sidebar .menu-list li.menu01.active a:before,
-.setting-archive .sidebar .menu-list li.menu01.active a:before {
+.setting-archive .sidebar .menu-list li.menu01.active a:before,
+.setting-movie .sidebar .menu-list li.menu01.active a:before,
+.setting-movie-list .sidebar .menu-list li.menu01.active a:before {
     content: url(/images/icon-setting-menu01_on.png);
   }
   .setting-stream .sidebar .menu-list li.menu02 a:before,
-.setting-archive .sidebar .menu-list li.menu02 a:before {
+.setting-archive .sidebar .menu-list li.menu02 a:before,
+.setting-movie .sidebar .menu-list li.menu02 a:before,
+.setting-movie-list .sidebar .menu-list li.menu02 a:before {
     content: url(/images/icon-setting-menu02.png);
     width: 20px;
     height: 18px;
   }
   .setting-stream .sidebar .menu-list li.menu02.active a:before,
-.setting-archive .sidebar .menu-list li.menu02.active a:before {
+.setting-archive .sidebar .menu-list li.menu02.active a:before,
+.setting-movie .sidebar .menu-list li.menu02.active a:before,
+.setting-movie-list .sidebar .menu-list li.menu02.active a:before {
     content: url(/images/icon-setting-menu02_on.png);
   }
+  .setting-stream .sidebar .menu-list li.menu03 a:before,
+.setting-archive .sidebar .menu-list li.menu03 a:before,
+.setting-movie .sidebar .menu-list li.menu03 a:before,
+.setting-movie-list .sidebar .menu-list li.menu03 a:before {
+    font-family: "Font Awesome 5 Free";
+    content: "";
+    font-weight: 900;
+    font-size: 20px;
+  }
   .setting-stream .main-content,
-.setting-archive .main-content {
+.setting-archive .main-content,
+.setting-movie .main-content,
+.setting-movie-list .main-content {
     margin: 0 10px;
   }
   .setting-stream .main-content h2,
-.setting-archive .main-content h2 {
+.setting-archive .main-content h2,
+.setting-movie .main-content h2,
+.setting-movie-list .main-content h2 {
     font-size: 2rem;
     padding: 26px 0 18px 0;
   }
@@ -11127,6 +11858,15 @@ input[type=button] {
     border: solid 2px #666666;
     border-radius: 4px;
   }
+  .setting-stream .main-content .stream-form li .game-select img {
+    height: auto;
+    width: 5rem;
+    margin-right: 1rem;
+  }
+  .setting-stream .main-content .stream-form li .game-select .d-center {
+    display: flex;
+    align-items: center;
+  }
   .setting-stream .main-content .stream-form .btn-danger {
     position: absolute;
     top: 0;
@@ -11180,6 +11920,82 @@ input[type=button] {
   .setting-archive .main-content .archive-content .archive-row .status {
     flex: 0 0 160px;
     padding: 0 10px;
+  }
+
+  /*
+   * 動画一覧
+   */
+  .setting-movie-list .notice {
+    background: #f3f5f7;
+    padding: 16px;
+    margin-bottom: 26px;
+  }
+  .setting-movie-list .main-content .movie-list-content .movie-header {
+    display: flex;
+    overflow-x: scroll;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #cccccc;
+  }
+  .setting-movie-list .main-content .movie-list-content .movie-header .column {
+    flex: 0 0 160px;
+    padding: 0 10px;
+  }
+  .setting-movie-list .main-content .movie-list-content .movie-header .column:nth-child(2) {
+    flex: 0 0 200px;
+  }
+  .setting-movie-list .main-content .movie-list-content .movie-header .column:nth-child(3) {
+    flex: 0 0 200px;
+  }
+  .setting-movie-list .main-content .movie-list-content .movie-row {
+    display: flex;
+    overflow-x: scroll;
+    border-bottom: 1px solid #cccccc;
+    padding: 10px 0;
+  }
+  .setting-movie-list .main-content .movie-list-content .movie-row .image {
+    flex: 0 0 160px;
+    padding: 0 10px;
+  }
+  .setting-movie-list .main-content .movie-list-content .movie-row .image img {
+    width: 100%;
+  }
+  .setting-movie-list .main-content .movie-list-content .movie-row .game-title {
+    flex: 0 0 200px;
+    padding: 0 10px;
+  }
+  .setting-movie-list .main-content .movie-list-content .movie-row .name {
+    flex: 0 0 200px;
+    padding: 0 10px;
+  }
+  .setting-movie-list .main-content .movie-list-content .movie-row .status {
+    flex: 0 0 160px;
+    padding: 0 10px;
+  }
+  .setting-movie-list .main-content .movie-list-content .add-movie {
+    margin-top: 30px;
+  }
+
+  /*
+   * 動画投稿
+   */
+  .setting-movie .main-content .movie-form li {
+    margin-bottom: 30px;
+  }
+  .setting-movie .main-content .movie-form li .label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  .setting-movie .main-content .movie-form li video {
+    width: 100%;
+  }
+  .setting-movie .main-content .movie-form li .game-select img {
+    height: auto;
+    width: 5rem;
+    margin-right: 1rem;
+  }
+  .setting-movie .main-content .movie-form li .game-select .d-center {
+    display: flex;
+    align-items: center;
   }
 
   /*
@@ -11437,6 +12253,9 @@ input[type=button] {
      * 配信方法
      */
     /*
+     * 利用規約
+     */
+    /*
      * お問い合わせ
      */
   }
@@ -11490,6 +12309,9 @@ input[type=button] {
   .page-content .main-content .howto .capture {
     margin-bottom: 30px;
     width: 100%;
+  }
+  .page-content .main-content .terms a {
+    color: #9e1b9e;
   }
   .page-content .main-content .contact {
     padding: 30px 20px 30px 20px;

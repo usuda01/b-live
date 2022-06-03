@@ -83,6 +83,7 @@ class RoomController extends Controller
         $room->user->image_path = $room->user->getImagePath();
         // これを呼んでおかないとVue側でリレーションしてくれない
         $room->user->user_data;
+        $room->game;
         $user = Auth::user();
         if ($user) {
             $user->image_path = $user->getImagePath();
@@ -165,6 +166,7 @@ class RoomController extends Controller
         $room->user->image_path = $room->user->getImagePath();
         // これを呼んでおかないとVue側でリレーションしてくれない
         $room->user->user_data;
+        $room->game;
         $user = Auth::user();
         if ($user) {
             $user->image_path = $user->getImagePath();
@@ -194,6 +196,7 @@ class RoomController extends Controller
         }
 
         $rooms = Room::leftJoin('users as joinUsers', 'joinUsers.id', '=', 'rooms.user_id')
+            ->leftJoin('games as joinGames', 'joinGames.id', '=', 'rooms.game_id')
             ->select('rooms.*')
             ->where(function($query) use($keyword) {
                 $query->orWhere('rooms.status', '=', '1')
@@ -201,6 +204,7 @@ class RoomController extends Controller
                 })
             ->where(function($query) use($keyword) {
                 $query->orWhere('rooms.name', 'like', '%' . $keyword . '%')
+                    ->orWhere('joinGames.name', 'like', '%' . $keyword . '%')
                     ->orWhere('joinUsers.name', 'like', '%' . $keyword . '%');
             })
             ->orderBy('rooms.published_at', 'desc')->get();

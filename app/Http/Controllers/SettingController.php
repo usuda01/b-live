@@ -3,18 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use App\Models\Movie;
 use App\Models\PointRequest;
 use App\Models\Room;
 use App\Models\User;
 use App\Models\UserData;
 use App\Models\Wowza;
+use FFMpeg;
 use Helper;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Ncmb\NCMB;
 use Ncmb\Push;
 
@@ -174,6 +177,146 @@ class SettingController extends Controller
         ]);
     }
 
+    // 動画
+    public function movie($movieId = null) {
+        /*
+         * 新規作成、更新の場合がある
+         */
+        $user = Auth::user();
+
+        if ($movieId) {
+            $movie = Movie::where('id', $movieId)->first();
+        } else {
+            $movie = new Movie();
+        }
+        return view('setting.movie', [
+            'movie' => $movie
+        ]);
+    }
+
+    public function moviePost(Request $request) {
+        /*
+         * 新規作成、更新、削除の場合がある
+         * 動画は更新できないようにする
+         * アップできる動画数はMAX_MOVIE_UPLOADまで
+         */
+        $user = Auth::user();
+        $mode = $request->input('mode');
+        $movieId = $request->input('movie_id');
+        $gameId = $request->input('game_id');
+        $name = $request->input('name');
+        $isPublish = $request->input('is_publish');
+
+        if ($mode == 'create') {
+            // 新規作成
+            $movieCount = Movie::where('user_id', $user->id)->count();
+            if ($movieCount >= config('services.max_movie_upload')) {
+                $request->session()->flash('flash_message', 'アップロードできる動画は'.config('services.max_movie_upload').'つまでです');
+                return redirect('setting/movie');
+            }
+
+            $originMovie = $request->file('movie');
+            if (!$originMovie) {
+                abort(404);
+            }
+            $pathInfo = pathinfo($originMovie->getClientOriginalName());
+            $fileName = date('Y-m-d-H-i-s').'.'.$pathInfo['extension'];
+            if ($originMovie->isValid()) {
+                if (!in_array($pathInfo['extension'], ['mp4', 'MP4'])) {
+                    abort(404);
+                }
+            } else {
+                //echo $originMovie->getErrorMessage();
+                abort(404);
+            }
+
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|max:64',
+                'is_publish' => 'required|integer',
+                'movie' => [
+                    function ($attribute, $value, $fail) use ($fileName) {
+                        $originMovie = $value;
+                        $pathInfo = pathinfo($originMovie->getClientOriginalName());
+                        $originMovie->storeAs('public/movies', $fileName);
+                        $media = FFMpeg::fromDisk('public')->open('movies/'.$fileName);
+                        $durationInSeconds = $media->getDurationInSeconds();
+                        if ($durationInSeconds > config('services.max_movie_upload_seconds')) {
+                            Storage::disk('public')->delete('movies/'.$fileName);
+                            $fail(config('services.max_movie_upload_seconds').'秒以内の動画を投稿してください');
+                        } else if (!in_array($pathInfo['extension'], ['mp4', 'MP4'])) {
+                            Storage::disk('public')->delete('movies/'.$fileName);
+                            $fail('mp4形式の動画を投稿してください');
+                        }
+                    }
+                ],
+            ]);
+            $movie = new Movie();
+            $movie->path = $fileName;
+        } else if ($mode == 'edit') {
+            // 編集
+            $movie = Movie::where('id', $movieId)->first();
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|max:64',
+                'is_publish' => 'required|integer',
+            ]);
+        } else if ($mode == 'delete') {
+            // 削除
+            $movie = Movie::where('id', $movieId)->first();
+            Storage::disk('public')->delete('movies/'.$movie->path);
+            if ($movie->image) {
+                Storage::disk('public')->delete('movies/'.$movie->image);
+            }
+            $movie->movie_goods()->each(function ($movieGoods) {
+                $movieGoods->delete();
+            });
+            $movie->delete();
+            $request->session()->flash('flash_message', '動画を削除しました');
+            return redirect('setting/movie-list');
+        }
+
+        if ($validator->fails()) {
+            return redirect('setting/movie/' . $movieId)
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        if ($mode == 'create') {
+            $request->session()->flash('flash_message', '動画を投稿しました');
+        } else if ($mode == 'edit') {
+            $request->session()->flash('flash_message', '動画情報を更新しました');
+        }
+
+        $originImg = $request->file('image');
+        if ($originImg) {
+            if ($originImg->isValid()) {
+                Helper::resizeImage($originImg->getPathname(), 1280);
+                $filePath = $originImg->store('public/movies');
+                $movie->image = str_replace('public/movies/', '', $filePath);
+            } else {
+                // TODO エラーメッセージを表示する
+                //echo $originImg->getErrorMessage();
+                //exit();
+            }
+        }
+
+        $movie->user_id = $user->id;
+        $movie->game_id = $gameId;
+        $movie->name = $name;
+        $movie->is_publish = $isPublish;
+        $movie->save();
+
+        return redirect('setting/movie-list');
+    }
+
+    // 動画一覧
+    public function movieList() {
+        $user = Auth::user();
+        $movies = Movie::where('user_id', $user->id)->orderBy('id', 'desc')->get();
+        return view('setting.movie_list', [
+            'movies' => $movies
+        ]);
+    }
+
     public function profile() {
         $user = Auth::user();
         return view('setting.profile', [
@@ -283,9 +426,9 @@ class SettingController extends Controller
             $streamKey = Str::random(8);
             $wowza = Wowza::create([
                 'user_id' => $user->id,
-                'server_url' => 'rtmps://609931a2773da.streamlock.net/blive',
+                'server_url' => 'rtmps://5f1ee0e19125e.streamlock.net/blive',
                 'stream_key' => $streamKey,
-                'hls_url' => 'https://609931a2773da.streamlock.net/blive/' . $streamKey . '/playlist.m3u8',
+                'hls_url' => 'https://5f1ee0e19125e.streamlock.net/blive/' . $streamKey . '/playlist.m3u8',
                 'started_at' => date('Y-m-d H:i:s'),
                 'status' => 1,
             ]);
@@ -321,12 +464,15 @@ class SettingController extends Controller
 
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:32',
+            'description' => 'max:1000',
         ]);
 
         $mode = $request->input('mode');
         $roomId = $request->input('room_id');
+        $gameId = $request->input('game_id');
         $name = $request->input('name');
         $description = $request->input('description');
+        $streamAlert = $request->input('stream_alert');
         $status = $request->input('status');
         $wowzaId = $request->input('wowza_id');
 
@@ -380,6 +526,7 @@ class SettingController extends Controller
                 //exit();
             }
         }
+        $room->game_id = $gameId;
         $room->name = $name;
         $room->description = $description;
         if ($mode == 'end') {
@@ -392,28 +539,33 @@ class SettingController extends Controller
              * このユーザーをフォローしているユーザーに
              * Push通知
              */
-            foreach ($room->user->followers as $follower) {
-                if ($follower->followerUser->device_token) {
-                    NCMB::initialize(config('services.ncmb.applicationkey'), config('services.ncmb.clientkey'));
-                    Push::Send(array(
-                        'immediateDeliveryFlag' => true,
-                        'target' => ['ios'],
-                        'title' => $room->user->name . 'さんが配信を開始しました!',
-                        'message' => $room->name,
-                        'badgeIncrementFlag' => false,
-                        'sound' => 'default',
-                        'searchCondition' => ['deviceToken' => $follower->followerUser->device_token]
-                    ));
-                }
+            if ($streamAlert == '1') {
+                foreach ($room->user->followers as $follower) {
+                    if ($follower->followerUser->device_token) {
+                        // ncmbmania/php-ncmbがguzzlehttp/guzzleの7系に対応していないためインストールできない
+/*
+                        NCMB::initialize(config('services.ncmb.applicationkey'), config('services.ncmb.clientkey'));
+                        Push::Send(array(
+                            'immediateDeliveryFlag' => true,
+                            'target' => ['ios'],
+                            'title' => $room->user->name . 'さんが配信を開始しました!',
+                            'message' => $room->name,
+                            'badgeIncrementFlag' => false,
+                            'sound' => 'default',
+                            'searchCondition' => ['deviceToken' => $follower->followerUser->device_token]
+                        ));
+*/
+                    }
 
-                // LINE通知
-                if ($follower->followerUser->line_id) {
-                    // 通知設定
-                    if ($follower->followerUser->user_data->line_notice == 1) {
-                        $lineMessage = $room->user->name . "さんが配信を開始しました！\n"
-                            . $room->name . "\n"
-                            . config('app.url').'/room/'.$room->id;
-                        Helper::pushLineMessage($follower->followerUser->line_id, $lineMessage);
+                    // LINE通知
+                    if ($follower->followerUser->line_id) {
+                        // 通知設定
+                        if ($follower->followerUser->user_data->line_notice == 1) {
+                            $lineMessage = $room->user->name . "さんが配信を開始しました！\n"
+                                . $room->name . "\n"
+                                . config('app.url').'/room/'.$room->id;
+                            Helper::pushLineMessage($follower->followerUser->line_id, $lineMessage);
+                        }
                     }
                 }
             }

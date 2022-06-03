@@ -23,7 +23,7 @@
                     <div v-else-if="room.status === 2" class="video-time">{{ videoTime }}</div>
                 </div>
                 <div class="right-content">
-                    <div class="share-content"><a v-bind:href="'http://twitter.com/intent/tweet?url=' + locationUrl + '&text=' + room.name + ' @BLIVE77191685&hashtags=BLIVE配信,ゲーム実況'" target="_blank"><img src="/images/btn-share-twitter.png"></a></div>
+                    <div class="share-content"><a v-bind:href="'http://twitter.com/intent/tweet?text=' + encodeURIComponent(room.name + '\n' + locationUrl + '\n' + snsTags + '\n@BLIVE77191685 にて')" target="_blank"><img src="/images/btn-share-twitter.png"></a></div>
                     <div class="flag-content">
                         <a href="#" class="js-modal-open" data-target="modal03"><img src="/images/btn-flag.png"></a>
                     </div>
@@ -38,7 +38,7 @@
         </ul>
 
         <div class="video-info" v-bind:class="{'active': activeTab === 1}">
-            <div class="from-now"><span class="icon"><img src="/images/icon-time.png"></span><span class="date">{{ moment(room.created_at) }}</span></div>
+            <div class="from-now"><span class="icon"><img src="/images/icon-time.png"></span><span class="date">{{ room.created_at | moment }}</span></div>
             <div class="headline">
                 <div class="room-name">{{ room.name }}</div>
                 <a v-if="isFollow" v-on:click.prevent="followCancel" class="follow on" href="#"><span>フォロー　</span><span>{{ followerCount }}</span></a>
@@ -101,7 +101,7 @@
                             <div v-if="isLoggedIn" class="user-name">{{ this.user.name }}</div>
                             <div v-else class="user-name">ゲスト</div>
                         </div>
-                        <div class="send-footer">
+                        <div class="send-footer" v-bind:class="{'no-gift': canSendGift === false}">
                             <div class="send-box">
                                 <input type="text" placeholder="メッセージを入力" class="send-message" v-model="messageData.content">
                                 <input type="image" src="/images/btn-message-send.png" class="send-btn">
@@ -242,6 +242,20 @@
             room: Object,
             user: Object
         },
+        computed: {
+            snsTags: function () {
+                let result = '#BLIVE配信 #ゲーム実況 #ゲーム配信';
+                if (this.room.game) {
+                    let tagsArray = this.room.game.sns_tags.split(',');
+                    let tagsJoin = '';
+                    for (let i = 0; i < tagsArray.length; i ++) {
+                        tagsJoin += ' #' + tagsArray[i];
+                    }
+                    result += tagsJoin;
+                }
+                return result;
+            },
+        },
         data () {
             return {
                 activeTab: 2,
@@ -271,6 +285,7 @@
                 showingUserInfo: false,
                 showingUserFlagModal: false,
                 showMenu: false, // チャットメニュー表示
+                canSendGift: true, // ギフトメッセージを送れるか
                 isGiftError: false,
                 giftErrorMessage: '',
                 selectedGift: 0,
@@ -281,6 +296,11 @@
                 },
                 chargeAmount: 0,
                 videoTime: '',
+            }
+        },
+        filters: {
+            moment: function (date) {
+                return moment(date).format('MM/DD HH:mm');
             }
         },
         mounted () {
@@ -297,6 +317,11 @@
             this.receiveSupporters();
             this.getFollowers();
             this.getBlockUsers();
+            if (this.room.game) {
+                if (this.room.game.sales_agency == '任天堂') {
+                    this.canSendGift = false;
+                }
+            }
         },
         methods: {
             connectChannel() {
@@ -304,9 +329,6 @@
                     this.receiveMessage();
                     this.receiveSupporters();
                 })
-            },
-            moment(date) {
-                return moment(date).format('MM/DD HH:mm')
             },
             msToTime(s) {
 

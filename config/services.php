@@ -24,6 +24,12 @@ return [
         'end_date' => env('EVENT_END_DATE'),
     ],
 
+    'event2' => [
+        'is_active' => env('IS_EVENT2_ACTIVE'),
+        'start_date' => env('EVENT2_START_DATE'),
+        'end_date' => env('EVENT2_END_DATE'),
+    ],
+
     'facebook' => [
         'client_id' => env('FACEBOOK_APP_ID'),
         'client_secret' => env('FACEBOOK_APP_SECRET'),
@@ -43,6 +49,12 @@ return [
     ],
 
     'max_liver' => env('MAX_LIVER'),
+
+    'max_movie_upload' => env('MAX_MOVIE_UPLOAD'),
+
+    'max_movie_upload_seconds' => env('MAX_MOVIE_UPLOAD_SECONDS'),
+
+    'max_movie_upload_size' => env('MAX_MOVIE_UPLOAD_SIZE'),
 
     'ncmb' => [
         'applicationkey' => env('NCMB_APPLICATIONKEY'),

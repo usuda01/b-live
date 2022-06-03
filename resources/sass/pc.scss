@@ -411,6 +411,9 @@
             text-align: center;
             width: 14em;
         }
+        &.RoomController-stream {
+            width: calc(100% - 340px);
+        }
     }
 
     /*
@@ -605,6 +608,43 @@
                 font-size: 2.0rem;
                 text-align: center;
             }
+            .category-content {
+                .game-content {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    .game-box {
+                        flex-basis: 16%;
+                        margin: 0 0.8% 0 0;
+                        &:nth-child(6n) {
+                            margin-right: 0;
+                        }
+                        .game-image {
+                            position: relative;
+                            width: 100%;
+                            margin-bottom: 12px;
+                            &:before {
+                                content: "";
+                                display: block;
+                                padding-top: 133.3%;
+                            }
+                            a {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                bottom: 0;
+                                right: 0;
+                                background-position: center;
+                                display: block;
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                            }
+                        }
+                        .game-info {
+                        }
+                    }
+                }
+            }
             .user-content {
                 margin-bottom: 20px;
                 .user-box {
@@ -743,6 +783,14 @@
                     &:nth-child(4n) {
                         margin-right: 0;
                     }
+                    .game-title {
+                        height: 2rem;
+                        overflow: hidden;
+                        margin-bottom: 4px;
+                        a {
+                            color: #f66951;
+                        }
+                    }
                     .room-image {
                         position: relative;
                         width: 100%;
@@ -796,6 +844,8 @@
                         margin-right: 0;
                     }
                     .game-title {
+                        height: 2rem;
+                        overflow: hidden;
                         margin-bottom: 4px;
                         color: #f66951;
                     }
@@ -832,7 +882,6 @@
             }
         }
     }
-
 
     /*
      * ルーム個別
@@ -1123,7 +1172,7 @@
                         overflow-y: scroll;
                         overflow-x: hidden;
                         display: flex;
-                        flex-flow: column;
+                        flex-flow: column-reverse;
                         padding-top: 8px;
                         .user-message {
                             margin: 0 10px 10px 10px;
@@ -1215,7 +1264,7 @@
                             .send-box {
                                 display: flex;
                                 align-items: center;
-                                    width: calc(100% - 54px);
+                                width: calc(100% - 54px);
                                 .send-message {
                                     display: block;
                                     width: 100%;
@@ -1232,6 +1281,14 @@
                                 margin-left: auto;
                                 img {
                                     width: 24px;
+                                }
+                            }
+                            &.no-gift {
+                                .send-box {
+                                    width: 100%;
+                                }
+                                .btn-gift {
+                                    display: none;
                                 }
                             }
                         }
@@ -1474,6 +1531,114 @@
     }
 
     /*
+     * 動画検索
+     */
+    .movie-search {
+        .main-area {
+            margin: 0 20px;
+            .main-title {
+                font-size: 2rem;
+                padding: 46px 0 18px 0;
+                color: $base-color;
+            }
+            .movie-content {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                .movie-box {
+                    flex-basis: 24.1%;
+                    margin: 0 1.2% 20px 0;
+                    &:nth-child(4n) {
+                        margin-right: 0;
+                    }
+                    .movie-image {
+                        position: relative;
+                        width: 100%;
+                        margin-bottom: 12px;
+                        &:before {
+                            content: "";
+                            display: block;
+                            padding-top: 56.8%;
+                        }
+                        a {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            bottom: 0;
+                            right: 0;
+                            background-position: center;
+                            display: block;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                        }
+                    }
+                    .movie-info {
+                        .movie-name {
+                            display: block;
+                            margin-bottom: 4px;
+                        }
+                        .user-name {
+                            a {
+                                font-size: 1.2rem;
+                                color: #999999;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /*
+     * 動画個別
+     */
+    .movie-detail {
+        display: flex;
+        .main-area {
+            margin: 0 10px;
+            width: calc(100vw - 360px);
+            video {
+                width: 100%;
+            }
+            .video-footer {
+                background: #eeeeee;
+                padding: 6px 10px;
+                margin-bottom: 14px;
+                .share-content {
+                    a {
+                        img {
+                            width: 100px;
+                        }
+                    }
+                }
+            }
+            .video-info {
+                padding: 20px 0;
+                .movie-title {
+                    font-size: 1.8rem;
+                    margin-bottom: 14px;
+                }
+                .headline {
+                    display: flex;
+                    align-items: center;
+                    .good {
+                        margin-right: 10px;
+                        i {
+                            font-size: 20px;
+                        }
+                    }
+                    .good-count {
+                        font-size: 1.6rem;
+                    }
+                }
+            }
+        }
+        .right-area {
+            width: 340px;
+        }
+    }
+
+    /*
      * ユーザー個別
      */
     .user-detail {
@@ -1651,7 +1816,6 @@
                     }
                 }
             }
-
         }
     }
 
@@ -2199,12 +2363,15 @@
                     }
                     .name {
                         flex-basis: 40%;
+                        padding: 0 10px;
                     }
                     .game-title {
                         flex-basis: 40%;
+                        padding: 0 10px;
                     }
                     .member-number {
                         flex-basis: 20%;
+                        padding: 0 10px;
                     }
                 }
                 .add-group {
@@ -2287,7 +2454,9 @@
     }
 
     .setting-stream,
-    .setting-archive {
+    .setting-archive,
+    .setting-movie,
+    .setting-movie-list {
         display: flex;
         justify-content: space-between;
         height: 100%;
@@ -2345,6 +2514,16 @@
                                 &:before {
                                     content: url(/images/icon-setting-menu02_on.png);
                                 }
+                            }
+                        }
+                    }
+                    &.menu03 {
+                        a {
+                            &:before {
+                                font-family: "Font Awesome 5 Free";
+                                content: '\f008';
+                                font-weight: 900;
+                                font-size: 20px;
                             }
                         }
                     }
@@ -2439,6 +2618,17 @@
                             }
                         }
                     }
+                    .game-select {
+                        img {
+                            height: auto;
+                            width: 5rem;
+                            margin-right: 1rem;
+                        }
+                        .d-center {
+                            display: flex;
+                            align-items: center;
+                        }
+                    }
                 }
                 .btn-danger {
                     position: absolute;
@@ -2504,6 +2694,170 @@
                         flex-basis: 15%;
                         padding: 0 10px;
                     }
+                }
+            }
+        }
+    }
+
+    /*
+     * 動画一覧
+     */
+    .setting-movie-list {
+        .notice {
+            background: #f3f5f7;
+            padding: 1em;
+            margin-bottom: 16px;
+        }
+        .main-content {
+            h2 {
+                padding-bottom: 20px;
+            }
+            .movie-list-content {
+                box-shadow: 0 0 15px #ccc;
+                padding: 24px 40px;
+                border-radius: 4px;
+                .flash_message {
+                    margin-bottom: 42px;
+                    color: #ff0000;
+                }
+                .error {
+                    margin-bottom: 42px;
+                    color: #ff0000;
+                    li {
+                        margin: 0;
+                        a {
+                            color: #ff0000;
+                        }
+                    }
+                }
+                .movie-header {
+                    display: flex;
+                    padding-bottom: 18px;
+                    border-bottom: 1px solid #cccccc;
+                    .column {
+                        flex-basis: 40%;
+                        padding: 0 10px;
+                        &:nth-child(1) {
+                            flex-basis: 15%;
+                        }
+                        &:nth-child(2) {
+                            flex-basis: 30%;
+                        }
+                        &:nth-child(4) {
+                            flex-basis: 15%;
+                        }
+                    }
+                }
+                .movie-row {
+                    display: flex;
+                    border-bottom: 1px solid #cccccc;
+                    padding: 10px 0;
+                    a {
+                        color: $base-color;
+                    }
+                    .image {
+                        flex-basis: 15%;
+                        padding: 0 10px;
+                        img {
+                            width: 100%;
+                        }
+                    }
+                    .game-title {
+                        flex-basis: 30%;
+                        padding: 0 10px;
+                    }
+                    .name {
+                        flex-basis: 40%;
+                        padding: 0 10px;
+                    }
+                    .status {
+                        flex-basis: 15%;
+                        padding: 0 10px;
+                    }
+                }
+                .add-movie {
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+
+    /*
+     * 動画投稿
+     */
+    .setting-movie {
+        .main-content {
+            .movie-form {
+                box-shadow: 0 0 15px #ccc;
+                padding: 34px 40px;
+                background: #fff;
+                border-radius: 4px;
+                .flash_message {
+                    margin-bottom: 42px;
+                    color: #ff0000;
+                }
+                .error {
+                    margin-bottom: 42px;
+                    color: #ff0000;
+                    li {
+                        margin: 0;
+                        a {
+                            color: #ff0000;
+                        }
+                    }
+                }
+                li {
+                    margin-bottom: 30px;
+                    .label {
+                        font-size: 1.6rem;
+                        display: block;
+                        margin-bottom: 14px;
+                    }
+                    .icon-wrapper {
+                        display: flex;
+                        align-items: center;
+                        .icon {
+                            width: 160px;
+                            height: 90px;
+                            background-position: center;
+                            display: inline-block;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                            margin: 0 34px 0 0;
+                        }
+                        .file-01 {
+                            display: none;
+                        }
+                        .file-mask {
+                            font-size: 1.6rem;
+                            .btn {
+                                display: inline-block;
+                                padding: 2px 10px;
+                                border: solid 2px #666666;
+                                border-radius: 4px;
+                            }
+                        }
+                    }
+                    input[type=text] {
+                        width: 500px;
+                    }
+                    video {
+                        width: 500px;
+                    }
+                }
+                .game-select {
+                    img {
+                        height: auto;
+                        width: 5rem;
+                        margin-right: 1rem;
+                    }
+                    .d-center {
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+                .btn-danger {
+                    margin-left: 20px;
                 }
             }
         }
@@ -2818,6 +3172,15 @@
                 .capture {
                     margin-bottom: 30px;
                     max-width: 100%;
+                }
+            }
+
+            /*
+             * 利用規約
+             */
+            .terms {
+                a {
+                    color: $base-color;
                 }
             }
 

@@ -8,6 +8,18 @@
                 <div class="section">
                     <h3>お知らせ一覧</h3>
                     <div class="row">
+                         <div class="date">2021.08.31</div>
+                         <div class="description"><a href="/page/notice/31">サーバーを移管しました！</a></div>
+                    </div>
+                    <div class="row">
+                         <div class="date">2021.08.05</div>
+                         <div class="description"><a href="/page/notice/30">ゲームタイトルからの検索を可能にしました！</a></div>
+                    </div>
+                    <div class="row">
+                         <div class="date">2021.07.31</div>
+                         <div class="description"><a href="/page/notice/29">XERUS様とのスポンサー契約を解除しました</a></div>
+                    </div>
+                    <div class="row">
                          <div class="date">2021.07.12</div>
                          <div class="description"><a href="/page/notice/28">【ログイン不要】ゲストコメントの機能を実装したよ！</a></div>
                     </div>

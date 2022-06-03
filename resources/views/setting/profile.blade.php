@@ -35,6 +35,11 @@
                             <label class="label">表示名</label>
                             <input type="text" name="name" value="{{ old('name', $user->name) }}" placeholder="ニックネーム">
                         </li>
+<!--
+                        <li>
+                            <label class="label">紹介動画（任意）</label>
+                        </li>
+-->
                         <li>
                             <label class="label">Twitter URL（任意）</label>
                             <input type="text" name="twitter_url" value="{{ old('twitter_url', $user->twitter_url) }}" placeholder="https://twitter.com/BLIVE77191685">

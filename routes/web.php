@@ -1,12 +1,20 @@
 <?php
 
+use App\Http\Controllers\Auth\AppleSigninController;
+use App\Http\Controllers\Auth\FacebookController;
 use App\Http\Controllers\Auth\TwitterController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\EventRankingController;
+use App\Http\Controllers\FollowerController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MovieController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomRankingController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,13 +28,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::get('/', [HomeController::class, 'index']);
 
 // 問い合わせ
-Route::get('contact', 'ContactController@form');
-Route::post('contact', 'ContactController@send');
-Route::get('contact/complete', 'ContactController@complete');
+Route::get('contact', [ContactController::class, 'form']);
+Route::post('contact', [ContactController::class, 'send']);
+Route::get('contact/complete', [ContactController::class, 'complete']);
 
 // 動画配信個別
 Route::get('room/{room_id}', [RoomController::class, 'stream']);
@@ -36,14 +43,14 @@ Route::post('room/count-views', [RoomController::class, 'countViews']);
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 
 // Appleログイン
-Route::get('auth/apple-signin', 'Auth\AppleSigninController@login');
+Route::get('auth/apple-signin', [AppleSigninController::class, 'login']);
 // Appleコールバック
-Route::post('auth/apple-signin/callback', 'Auth\AppleSigninController@callback');
+Route::post('auth/apple-signin/callback', [AppleSigninController::class, 'callback']);
 
 // Facebookログイン
-Route::get('auth/facebook', 'Auth\FacebookController@redirectToProvider');
+Route::get('auth/facebook', [FacebookController::class, 'redirectToProvider']);
 // Facebookコールバック
-Route::get('auth/facebook/callback', 'Auth\FacebookController@handleProviderCallback');
+Route::get('auth/facebook/callback', [FacebookController::class, 'handleProviderCallback']);
 
 // Twitterログイン
 Route::get('auth/twitter', [TwitterController::class, 'redirectToProvider']);
@@ -54,7 +61,11 @@ Route::get('auth/twitter/callback', [TwitterController::class, 'handleProviderCa
 Route::get('auth/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 
 // クラン個別
-Route::get('group/detail/{group_id}', 'GroupController@detail');
+Route::get('group/detail/{group_id}', [GroupController::class, 'detail']);
+
+// 動画個別
+Route::get('movie/search', [MovieController::class, 'search']);
+Route::get('movie/detail/{movie_id}', [MovieController::class, 'detail']);
 
 // ルームランキング
 Route::get('room-ranking/{target_month}/{target_rank}', [RoomRankingController::class, 'index']);
@@ -64,22 +75,23 @@ Route::get('api/room-ranking/{target_month}/{target_rank}', [RoomRankingControll
 Route::get('search', [RoomController::class, 'search']);
 
 // ユーザーページ
-Route::get('user/{user_id}', 'UserController@detail');
-Route::get('api/user', 'UserController@getRooms');
+Route::get('user/{user_id}', [UserController::class, 'detail']);
+Route::get('api/user', [UserController::class, 'getRooms']);
 
 // イベントページ
-Route::get('event', 'EventRankingController@index');
+Route::get('event', [EventRankingController::class, 'index']);
+Route::get('event2', [EventRankingController::class, 'event2']);
 
 // 認証
 Route::middleware('auth')->group(function () {
 
     // 自分がフォローしているユーザー一覧
-    Route::get('followers/follows', 'FollowerController@follows');
-    Route::get('api/followers/follows', 'FollowerController@getMyFollows');
+    Route::get('followers/follows', [FollowerController::class, 'follows']);
+    Route::get('api/followers/follows', [FollowerController::class, 'getMyFollows']);
 
     // 自分をフォローしているユーザー一覧
-    Route::get('followers/followers', 'FollowerController@followers');
-    Route::get('api/followers/followers', 'FollowerController@getMyFollowers');
+    Route::get('followers/followers', [FollowerController::class, 'followers']);
+    Route::get('api/followers/followers', [FollowerController::class, 'getMyFollowers']);
 
     // 設定
     Route::prefix('setting')->group(function () {
@@ -89,9 +101,9 @@ Route::middleware('auth')->group(function () {
         Route::post('/payment-exec', [SettingController::class, 'paymentExec']);
         Route::get('/payment-complete', [SettingController::class, 'paymentComplete']);
 
-        Route::get('/coin', 'SettingController@coin');
-        Route::get('/coin-request', 'SettingController@coinRequest');
-        Route::post('/coin-request', 'SettingController@coinRequestPost');
+        Route::get('/coin', [SettingController::class, 'coin']);
+        Route::get('/coin-request', [SettingController::class, 'coinRequest']);
+        Route::post('/coin-request', [SettingController::class, 'coinRequestPost']);
 
         // LINE連携
         Route::get('/line', [SettingController::class, 'line'])->name('line');
@@ -103,16 +115,21 @@ Route::middleware('auth')->group(function () {
         Route::get('/archive', [SettingController::class, 'archive']);
 
         // クラン
-        Route::get('/group-list', 'SettingController@groupList');
-        Route::get('/group/{group_id?}', 'SettingController@group');
-        Route::get('/group', 'SettingController@group');
-        Route::post('/group', 'SettingController@groupPost');
+        Route::get('/group-list', [SettingController::class, 'groupList']);
+        Route::get('/group/{group_id?}', [SettingController::class, 'group']);
+        Route::get('/group', [SettingController::class, 'group']);
+        Route::post('/group', [SettingController::class, 'groupPost']);
+
+        // 動画
+        Route::get('/movie-list', [SettingController::class, 'movieList']);
+        Route::get('/movie/{movie_id?}', [SettingController::class, 'movie']);
+        Route::post('/movie', [SettingController::class, 'moviePost']);
     });
 });
 
 // LINE連携
 Route::prefix('setting')->group(function () {
-    Route::post('line-callback', 'SettingController@lineCallback');
+    Route::post('line-callback', [SettingController::class, 'lineCallback']);
 });
 
 // 静的ページ

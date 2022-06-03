@@ -24,7 +24,25 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('command:delete-rooms')
+            ->daily();
+
+        $schedule->command('command:update-user-rank')
+            ->daily();
+
+        $schedule->command('command:update-room-ranking')
+            ->monthlyOn(1, '00:00');
+
+        $schedule->command('command:update-wowza-status')
+            ->everyMinute()
+            ->appendOutputTo(storage_path('logs/cron.log'));
+
+        $schedule->command('command:update-room-status')
+            ->everyFiveMinutes();
+
+        $schedule->command('command:update-room-image')
+            ->everyMinute()
+            ->appendOutputTo(storage_path('logs/cron.log'));
     }
 
     /**

@@ -18,6 +18,22 @@ class Room extends Model
     ];
 
     /**
+     * このルームを所有するGameを取得
+     */
+    public function game()
+    {
+        return $this->belongsTo(Game::class);
+    }
+
+    /**
+     * Roomの所有するMessageを取得
+     */
+    public function logs()
+    {
+        return $this->hasMany(Log::class);
+    }
+
+    /**
      * Roomの所有するMessageを取得
      */
     public function messages()
