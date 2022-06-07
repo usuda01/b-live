@@ -3,9 +3,11 @@
     <div class="home-index">
         @include('parts.home_menu')
         <div class="main-area">
+<!--
             <div class="slider">
                 <video src="https://reserve.kamakura-chokin.com/top-movie.mp4" loop autoplay muted playsinline></video>
             </div>
+-->
 
             @if (Config::get('services.event.is_active'))
                 <div class="event">
@@ -18,6 +20,13 @@
                 <div class="event">
                     <h2 class="main-title">イベント情報</h2>
                     <a href="/event2"><img src="/images/event2/fv.jpg"></a>
+                </div>
+            @endif
+
+            @if (Config::get('services.event3.is_active'))
+                <div class="event">
+                    <h2 class="main-title">イベント情報</h2>
+                    <a href="/event3"><img src="/images/event3/fv.jpg"></a>
                 </div>
             @endif
 

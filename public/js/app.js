@@ -84274,14 +84274,6 @@ var render = function() {
               : _vm._e()
           ]),
           _vm._v(" "),
-          _c("li", [
-            _vm.isXcode == false
-              ? _c("a", { attrs: { href: "/auth/facebook" } }, [
-                  _c("img", { attrs: { src: "/images/btn-facebook.png" } })
-                ])
-              : _vm._e()
-          ]),
-          _vm._v(" "),
           _vm._m(1)
         ]),
         _vm._v(" "),

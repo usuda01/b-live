@@ -30,6 +30,12 @@ return [
         'end_date' => env('EVENT2_END_DATE'),
     ],
 
+    'event3' => [
+        'is_active' => env('IS_EVENT3_ACTIVE'),
+        'start_date' => env('EVENT3_START_DATE'),
+        'end_date' => env('EVENT3_END_DATE'),
+    ],
+
     'facebook' => [
         'client_id' => env('FACEBOOK_APP_ID'),
         'client_secret' => env('FACEBOOK_APP_SECRET'),

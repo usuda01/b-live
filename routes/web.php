@@ -81,6 +81,7 @@ Route::get('api/user', [UserController::class, 'getRooms']);
 // イベントページ
 Route::get('event', [EventRankingController::class, 'index']);
 Route::get('event2', [EventRankingController::class, 'event2']);
+Route::get('event3', [EventRankingController::class, 'event3']);
 
 // 認証
 Route::middleware('auth')->group(function () {
