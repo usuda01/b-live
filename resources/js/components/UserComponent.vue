@@ -80,9 +80,11 @@
         },
         methods: {
             createProfileLink() {
-                // アカウント名(スクリーンネーム)をリンクに置き換える
-                let regex = /(^|[^@\w])@(\w{1,15})\b/g;
-                let replace = '$1<a href="http://Twitter.com/$2">@$2</a>';
+                // URLをリンクに置き換える
+                let regex = /((h?)(ttps?:\/\/[a-zA-Z0-9.\-_@:/~?%&;=+#',()*!]+))/g; // ']))/;
+                let replace = function(all, url, h, href) {
+                    return '<a href="h' + href + '" target="_blank">' + url + '</a>';
+                }
                 if (this.targetUser.profile) {
                     this.profile = this.targetUser.profile.replace(regex, replace);
                 }

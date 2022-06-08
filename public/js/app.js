@@ -2734,9 +2734,12 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     createDescriptionLink: function createDescriptionLink() {
-      // アカウント名(スクリーンネーム)をリンクに置き換える
-      var regex = /(^|[^@\w])@(\w{1,15})\b/g;
-      var replace = '$1<a href="http://Twitter.com/$2">@$2</a>';
+      // URLをリンクに置き換える
+      var regex = /((h?)(ttps?:\/\/[a-zA-Z0-9.\-_@:/~?%&;=+#',()*!]+))/g; // ']))/;
+
+      var replace = function replace(all, url, h, href) {
+        return '<a href="h' + href + '" target="_blank">' + url + '</a>';
+      };
 
       if (this.room.description) {
         this.roomDescription = this.room.description.replace(regex, replace);
@@ -3406,9 +3409,12 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     createDescriptionLink: function createDescriptionLink() {
-      // アカウント名(スクリーンネーム)をリンクに置き換える
-      var regex = /(^|[^@\w])@(\w{1,15})\b/g;
-      var replace = '$1<a href="http://Twitter.com/$2">@$2</a>';
+      // URLをリンクに置き換える
+      var regex = /((h?)(ttps?:\/\/[a-zA-Z0-9.\-_@:/~?%&;=+#',()*!]+))/g; // ']))/;
+
+      var replace = function replace(all, url, h, href) {
+        return '<a href="h' + href + '" target="_blank">' + url + '</a>';
+      };
 
       if (this.room.description) {
         this.roomDescription = this.room.description.replace(regex, replace);
@@ -4208,9 +4214,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   methods: {
     createProfileLink: function createProfileLink() {
-      // アカウント名(スクリーンネーム)をリンクに置き換える
-      var regex = /(^|[^@\w])@(\w{1,15})\b/g;
-      var replace = '$1<a href="http://Twitter.com/$2">@$2</a>';
+      // URLをリンクに置き換える
+      var regex = /((h?)(ttps?:\/\/[a-zA-Z0-9.\-_@:/~?%&;=+#',()*!]+))/g; // ']))/;
+
+      var replace = function replace(all, url, h, href) {
+        return '<a href="h' + href + '" target="_blank">' + url + '</a>';
+      };
 
       if (this.targetUser.profile) {
         this.profile = this.targetUser.profile.replace(regex, replace);
@@ -84270,6 +84279,14 @@ var render = function() {
             _vm.isXcode == false
               ? _c("a", { attrs: { href: "/auth/twitter" } }, [
                   _c("img", { attrs: { src: "/images/btn-twitter.png" } })
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _vm.isXcode == false
+              ? _c("a", { attrs: { href: "/auth/facebook" } }, [
+                  _c("img", { attrs: { src: "/images/btn-facebook.png" } })
                 ])
               : _vm._e()
           ]),
