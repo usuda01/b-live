@@ -4,6 +4,7 @@
 
 @section('content')
     <movie-component
+        :admin-user-id="{{ Config::get('services.admin_user_id') }}"
         :movie="{{ $movie->toJson() }}"
         :user="{{ ($user) ? $user->toJson() : "{}" }}"
     >

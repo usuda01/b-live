@@ -1624,6 +1624,47 @@
      */
     .movie-detail {
         .main-area {
+            .bar {
+                display: flex;
+                margin: 10px 10px 6px 10px;
+                .user-profile {
+                    width: 26px;
+                    height: 26px;
+                    border-radius: 50%;
+                    background-position: center;
+                    display: inline-block;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    margin: 0 10px 0 0;
+                }
+                .user-name {
+                    margin-right: 8px;
+                }
+                .user-rank {
+                    display: flex;
+                    align-items: center;
+                    &:before {
+                        content: '';
+                        display: block;
+                        margin-right: 4px;
+                        background-size: cover;
+                        width: 16px;
+                        height: 16px;
+                    }
+                    &.rank2 {
+                        color: #f66951;
+                        &:before {
+                            background-image: url(/images/icon-user-rank2.png);
+                        }
+                    }
+                    &.rank5 {
+                        color: $base-color;
+                        &:before {
+                            background-image: url(/images/icon-user-rank5.png);
+                        }
+                    }
+                }
+            }
             video {
                 width: 100%;
             }

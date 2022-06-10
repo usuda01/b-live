@@ -1597,6 +1597,48 @@
         .main-area {
             margin: 0 10px;
             width: calc(100vw - 360px);
+            .bar {
+                display: flex;
+                margin: 10px 0 6px 0;
+                .user-profile {
+                    width: 26px;
+                    height: 26px;
+                    border-radius: 50%;
+                    background-position: center;
+                    display: inline-block;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    margin: 0 10px;
+                }
+                .user-name {
+                    font-weight: 300;
+                    margin-right: 10px;
+                }
+                .user-rank {
+                    display: flex;
+                    align-items: center;
+                    &:before {
+                        content: '';
+                        display: block;
+                        margin-right: 8px;
+                        background-size: cover;
+                        width: 16px;
+                        height: 16px;
+                    }
+                    &.rank2 {
+                        color: #f66951;
+                        &:before {
+                            background-image: url(/images/icon-user-rank2.png);
+                        }
+                    }
+                    &.rank5 {
+                        color: $base-color;
+                        &:before {
+                            background-image: url(/images/icon-user-rank5.png);
+                        }
+                    }
+                }
+            }
             video {
                 width: 100%;
             }

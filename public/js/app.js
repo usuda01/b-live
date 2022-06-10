@@ -2244,6 +2244,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     movie: Object,
@@ -84469,6 +84477,31 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "movie-detail" }, [
     _c("div", { staticClass: "main-area" }, [
+      _c("div", { staticClass: "bar" }, [
+        _c("a", {
+          staticClass: "user-profile",
+          style: { backgroundImage: "url(" + _vm.movie.user.image_path + ")" },
+          attrs: { href: "/user/" + _vm.movie.user.id }
+        }),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "user-name",
+            attrs: { href: "/user/" + _vm.movie.user.id }
+          },
+          [_vm._v(_vm._s(_vm.movie.user.name))]
+        ),
+        _vm._v(" "),
+        _vm.movie.user.user_data.rank == 2
+          ? _c("span", { staticClass: "user-rank rank2" }, [_vm._v("推し")])
+          : _vm.movie.user.user_data.rank == 5
+          ? _c("span", { staticClass: "user-rank rank5" }, [
+              _vm._v("公認配信者")
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
       _c(
         "video",
         {

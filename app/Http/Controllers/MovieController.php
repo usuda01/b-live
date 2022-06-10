@@ -37,7 +37,9 @@ class MovieController extends Controller
         }
         $user = Auth::user();
         $movie->image_path = $movie->getImagePath();
+        $movie->user->image_path = $movie->user->getImagePath();
         // これを呼んでおかないとVue側でリレーションしてくれない
+        $movie->user->user_data;
         $movie->game;
 
         return view('movie.detail', [

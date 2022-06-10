@@ -8061,6 +8061,48 @@ input[type=email] {
     margin: 0 10px;
     width: calc(100vw - 360px);
   }
+  .movie-detail .main-area .bar {
+    display: flex;
+    margin: 10px 0 6px 0;
+  }
+  .movie-detail .main-area .bar .user-profile {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-position: center;
+    display: inline-block;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0 10px;
+  }
+  .movie-detail .main-area .bar .user-name {
+    font-weight: 300;
+    margin-right: 10px;
+  }
+  .movie-detail .main-area .bar .user-rank {
+    display: flex;
+    align-items: center;
+  }
+  .movie-detail .main-area .bar .user-rank:before {
+    content: "";
+    display: block;
+    margin-right: 8px;
+    background-size: cover;
+    width: 16px;
+    height: 16px;
+  }
+  .movie-detail .main-area .bar .user-rank.rank2 {
+    color: #f66951;
+  }
+  .movie-detail .main-area .bar .user-rank.rank2:before {
+    background-image: url(/images/icon-user-rank2.png);
+  }
+  .movie-detail .main-area .bar .user-rank.rank5 {
+    color: #9e1b9e;
+  }
+  .movie-detail .main-area .bar .user-rank.rank5:before {
+    background-image: url(/images/icon-user-rank5.png);
+  }
   .movie-detail .main-area video {
     width: 100%;
   }
@@ -11105,6 +11147,47 @@ input[type=button] {
   /*
    * 動画個別
    */
+  .movie-detail .main-area .bar {
+    display: flex;
+    margin: 10px 10px 6px 10px;
+  }
+  .movie-detail .main-area .bar .user-profile {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-position: center;
+    display: inline-block;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0 10px 0 0;
+  }
+  .movie-detail .main-area .bar .user-name {
+    margin-right: 8px;
+  }
+  .movie-detail .main-area .bar .user-rank {
+    display: flex;
+    align-items: center;
+  }
+  .movie-detail .main-area .bar .user-rank:before {
+    content: "";
+    display: block;
+    margin-right: 4px;
+    background-size: cover;
+    width: 16px;
+    height: 16px;
+  }
+  .movie-detail .main-area .bar .user-rank.rank2 {
+    color: #f66951;
+  }
+  .movie-detail .main-area .bar .user-rank.rank2:before {
+    background-image: url(/images/icon-user-rank2.png);
+  }
+  .movie-detail .main-area .bar .user-rank.rank5 {
+    color: #9e1b9e;
+  }
+  .movie-detail .main-area .bar .user-rank.rank5:before {
+    background-image: url(/images/icon-user-rank5.png);
+  }
   .movie-detail .main-area video {
     width: 100%;
   }
