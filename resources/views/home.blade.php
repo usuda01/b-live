@@ -9,26 +9,7 @@
             </div>
 -->
 
-            @if (Config::get('services.event.is_active'))
-                <div class="event">
-                    <h2 class="main-title">イベント情報</h2>
-                    <a href="/event"><img src="/images/event/fv.png"></a>
-                </div>
-            @endif
-
-            @if (Config::get('services.event2.is_active'))
-                <div class="event">
-                    <h2 class="main-title">イベント情報</h2>
-                    <a href="/event2"><img src="/images/event2/fv.jpg"></a>
-                </div>
-            @endif
-
-            @if (Config::get('services.event3.is_active'))
-                <div class="event">
-                    <h2 class="main-title">イベント情報</h2>
-                    <a href="/event3"><img src="/images/event3/fv.jpg"></a>
-                </div>
-            @endif
+            <carousel-component></carousel-component>
 
             <div class="category-content">
                 <h2 class="main-title">人気のタイトル</h2>

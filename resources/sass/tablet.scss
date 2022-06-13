@@ -623,14 +623,25 @@
     .home-index {
         .main-area {
             padding-bottom: 100px;
-            .slider {
-                video {
-                    width: 100%;
+            .carousel-3d {
+                width: 100%;
+                height: calc(100vw * 0.319);
+                margin: 0 0 26px 0;
+                .swiper-container {
+                    z-index: 0;
+                    .swiper-slide {
+                        width: 100%;
+                        a {
+                            display: block;
+                            width: 100%;
+                            height: 100%;
+                            background-size: cover;
+                        }
+                    }
                 }
             }
-            .event {
-                text-align: center;
-                img {
+            .slider {
+                video {
                     width: 100%;
                 }
             }

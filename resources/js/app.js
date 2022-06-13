@@ -3,6 +3,7 @@ require('./bootstrap');
 import Vue from 'vue'
 window.Vue = Vue;
 
+Vue.component('carousel-component', require('./components/CarouselComponent.vue').default);
 Vue.component('game-select-component', require('./components/GameSelectComponent.vue').default);
 Vue.component('login-component', require('./components/LoginComponent.vue').default);
 Vue.component('follow-component', require('./components/FollowComponent.vue').default);
