@@ -1,0 +1,9 @@
+起動コマンド
+$docker-compose up -d
+
+停止コマンド
+$docker-compose stop
+
+nginxの中に入る
+$docker-compose exec nginx bash
+

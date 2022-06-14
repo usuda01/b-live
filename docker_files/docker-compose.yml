@@ -1,0 +1,27 @@
+version: '3'
+services:
+    app:
+        container_name: app
+        build:
+            context: .
+            dockerfile: ./docker/app/Dockerfile
+
+    nginx:
+        container_name: nginx
+        build:
+            context: .
+            dockerfile: ./docker/nginx/Dockerfile
+        ports:
+            - 8080:80
+        volumes:
+            - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+
+    db:
+        container_name: db
+        image: mysql:5.7
+        environment:
+            MYSQL_ROOT_PASSWORD: /Vx9kRq*
+            MYSQL_DATABASE: c_live
+            TZ: 'Asia/Tokyo'
+        ports:
+            - 3306:3306
