@@ -52,4 +52,22 @@ class EventRankingController extends Controller
             'movies' => $movies,
         ]);
     }
+
+    public function event4() {
+
+        // いいね数の多い動画
+        $movies = Movie::withCount(['movie_goods' => function (Builder $query) {
+                $query->where('created_at', '<=', config('services.event4.end_date'));
+            }])
+            ->where('is_publish', '1')
+            ->where('created_at', '>=', config('services.event4.start_date'))
+            ->where('created_at', '<=', config('services.event4.end_date'))
+            ->orderBy('movie_goods_count', 'desc')
+            ->orderBy('movies.created_at', 'desc')
+            ->limit(20)
+            ->get();
+        return view('event.event4', [
+            'movies' => $movies,
+        ]);
+    }
 }

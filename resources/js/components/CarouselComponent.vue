@@ -1,7 +1,7 @@
 <template>
     <div class="carousel-3d">
         <swiper class="swiper" :options="swiperOption">
-            <swiper-slide><a href="/event3" style="background-image: url('/images/event3/fv.jpg');"></a></swiper-slide>
+            <swiper-slide><a href="/event4" style="background-image: url('/images/event4/fv.jpg');"></a></swiper-slide>
             <div class="swiper-pagination" slot="pagination"></div>
             <div class="swiper-button-prev" slot="button-prev"></div>
             <div class="swiper-button-next" slot="button-next"></div>
