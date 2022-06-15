@@ -5,6 +5,8 @@ services:
         build:
             context: .
             dockerfile: ./docker/app/Dockerfile
+        volumes:
+            - ../:/var/www/html
 
     nginx:
         container_name: nginx
@@ -14,14 +16,19 @@ services:
         ports:
             - 8080:80
         volumes:
+            - ../:/var/www/html
             - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
 
     db:
         container_name: db
         image: mysql:5.7
+        platform: linux/x86_64 # 必要に応じて変えるか削除する
         environment:
             MYSQL_ROOT_PASSWORD: /Vx9kRq*
             MYSQL_DATABASE: c_live
             TZ: 'Asia/Tokyo'
         ports:
             - 3306:3306
+        volumes:
+           - ./docker/db/data:/var/lib/mysql
+           - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
