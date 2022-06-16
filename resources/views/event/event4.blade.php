@@ -25,7 +25,7 @@
     <link href="{{ mix('css/fonts.css') }}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}?param=37" rel="stylesheet">
     <link href="{{ mix('css/all.css') }}?param=37" rel="stylesheet">
-    <title>B-LIVE｜イベント第３弾！1万円獲得イベント</title>
+    <title>B-LIVE｜イベント第４弾！1万円獲得イベント</title>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
