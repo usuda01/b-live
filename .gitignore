@@ -13,4 +13,7 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-docker_files/docker/db/data/*
+/docker_files/docker/db/data/*
+/docker_files/docker/redis/data/*
+/laravel-echo-server.json
+/laravel-echo-server.lock

@@ -7,7 +7,8 @@ RUN cd /root \
     && php composer-setup.php \
     && php -r "unlink('composer-setup.php');" \
     && mv composer.phar /usr/local/bin/composer
-RUN apt-get install -y git
-RUN apt-get install -y zip unzip
+RUN apt-get install -y git unzip
+RUN docker-php-ext-install pdo_mysql bcmath
+
 # rootだと実行できない
 #RUN composer install

@@ -1,12 +1,13 @@
 version: '3'
 services:
-    app:
-        container_name: app
+    php:
+        container_name: php
         build:
             context: .
-            dockerfile: ./docker/app/Dockerfile
+            dockerfile: ./docker/php/Dockerfile
         volumes:
             - ../:/var/www/html
+            - ./docker/php/php.ini:/usr/local/etc/php/php.ini
 
     nginx:
         container_name: nginx
@@ -34,3 +35,32 @@ services:
         volumes:
            - ./docker/db/data:/var/lib/mysql
            - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+
+    echo-server:
+        image: broadcast-echo-server
+        build:
+            context: .
+            dockerfile: ./docker/echo-server/Dockerfile
+        ports:
+            - 6001:6001
+        command: laravel-echo-server start
+        volumes:
+            - ../:/work
+        working_dir: /work
+
+    redis:
+        image: redis:latest
+        ports:
+            - 6379:6379
+        volumes:
+            - ./docker/redis/data:/data
+
+    phpmyadmin:
+        container_name: phpmyadmin
+        image: phpmyadmin/phpmyadmin
+        environment:
+            - PMA_HOST=db
+        ports:
+            - 8000:80
+        volumes:
+            - ./docker/phpmyadmin/sessions:/sessions
