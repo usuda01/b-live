@@ -14,7 +14,7 @@ $docker-compose down
 $docker-compose exec php bash
 
 ## 初回のみマイグレーションが必要
-$php artisan migrate:refresh
+$php artisan migrate:fresh --seed
 
 # nginxの中に入る
 $docker-compose exec nginx bash

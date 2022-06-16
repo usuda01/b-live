@@ -10,5 +10,8 @@ RUN cd /root \
 RUN apt-get install -y git unzip
 RUN docker-php-ext-install pdo_mysql bcmath
 
+ENV LANG C.UTF-8
+ENV LANGUAGE en_US:
+
 # rootだと実行できない
 #RUN composer install
