@@ -9,6 +9,8 @@ RUN cd /root \
     && mv composer.phar /usr/local/bin/composer
 RUN apt-get install -y git unzip
 RUN docker-php-ext-install pdo_mysql bcmath
+RUN curl -SL https://deb.nodesource.com/setup_16.x | bash
+RUN apt-get install -y nodejs
 
 ENV LANG C.UTF-8
 ENV LANGUAGE en_US:
