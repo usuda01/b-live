@@ -18,9 +18,9 @@
     <meta property="og:image" content="{{ Request::getSchemeAndHttpHost() }}/images/ogp.png" />
     <meta property="og:type" content="website" />
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
-    <link href="{{ mix('css/fonts.css') }}?param=37" rel="stylesheet">
-    <link href="{{ mix('css/app.css') }}?param=37" rel="stylesheet">
-    <link href="{{ mix('css/all.css') }}?param=37" rel="stylesheet">
+    <link href="{{ mix('css/fonts.css') }}?param=43" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}?param=43" rel="stylesheet">
+    <link href="{{ mix('css/all.css') }}?param=43" rel="stylesheet">
     <title>B-live ライブ配信</title>
     {{-- socket io --}}
     <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
@@ -78,9 +78,9 @@
             'apiToken' => \Auth::user()->api_token ?? null
         ]) !!};
     </script>
-    <script src="{{ mix('js/app.js') }}?param=37"></script>
-    <script src="{{ mix('js/all.js') }}?param=37"></script>
-    <script src="{{ mix('js/common.js') }}?param=37"></script>
+    <script src="{{ mix('js/app.js') }}?param=43"></script>
+    <script src="{{ mix('js/all.js') }}?param=43"></script>
+    <script src="{{ mix('js/common.js') }}?param=43"></script>
     @stack('scripts')
 </body>
 </html>

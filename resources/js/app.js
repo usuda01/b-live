@@ -13,6 +13,7 @@ Vue.component('room-component', require('./components/RoomComponent.vue').defaul
 Vue.component('room-message-component', require('./components/RoomMessageComponent.vue').default);
 Vue.component('room-message-viewer-component', require('./components/RoomMessageViewerComponent.vue').default);
 Vue.component('room-ranking-component', require('./components/RoomRankingComponent.vue').default);
+Vue.component('search-component', require('./components/SearchComponent.vue').default);
 Vue.component('user-component', require('./components/UserComponent.vue').default);
 
 const app = new Vue({

@@ -335,6 +335,108 @@
     }
 
     /*
+     * 共通スタイル
+     */
+    %room-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        .room-box {
+            flex-basis: 24.1%;
+            margin: 0 1.2% 20px 0;
+            &:nth-child(4n) {
+                margin-right: 0;
+            }
+            .room-image {
+                position: relative;
+                width: 100%;
+                margin-bottom: 12px;
+                &:before {
+                    content: "";
+                    display: block;
+                    padding-top: 56.8%;
+                }
+                a {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    right: 0;
+                    background-position: center;
+                    display: block;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+                .live {
+                    position: absolute;
+                    top: 4px;
+                    left: 4px;
+                    background: #ff0000;
+                    color: #fff;
+                    padding: 0 4px;
+                    font-size: 1.2rem;
+                }
+            }
+            .room-name {
+                display: block;
+                margin-bottom: 4px;
+            }
+            .user-name {
+                a {
+                    font-size: 1.2rem;
+                    color: #999999;
+                }
+            }
+        }
+    }
+
+    %movie-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        .movie-box {
+            flex-basis: 24.1%;
+            margin: 0 1.2% 20px 0;
+            &:nth-child(4n) {
+                margin-right: 0;
+            }
+            .movie-image {
+                position: relative;
+                width: 100%;
+                margin-bottom: 12px;
+                &:before {
+                    content: "";
+                    display: block;
+                    padding-top: 56.8%;
+                }
+                a {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    right: 0;
+                    background-position: center;
+                    display: block;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+            }
+            .movie-info {
+                .movie-name {
+                    display: block;
+                    margin-bottom: 4px;
+                }
+                .user-name {
+                    a {
+                        font-size: 1.2rem;
+                        color: #999999;
+                    }
+                }
+            }
+        }
+    }
+
+    /*
      * アプリインストール
      */
     .app-install {
@@ -788,61 +890,14 @@
                 }
             }
             .room-content {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: flex-start;
+                @extend %room-content;
                 .room-box {
-                    flex-basis: 24.1%;
-                    margin: 0 1.2% 20px 0;
-                    &:nth-child(4n) {
-                        margin-right: 0;
-                    }
                     .game-title {
                         height: 2rem;
                         overflow: hidden;
                         margin-bottom: 4px;
                         a {
                             color: #f66951;
-                        }
-                    }
-                    .room-image {
-                        position: relative;
-                        width: 100%;
-                        margin-bottom: 12px;
-                        &:before {
-                            content: "";
-                            display: block;
-                            padding-top: 56.8%;
-                        }
-                        a {
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            bottom: 0;
-                            right: 0;
-                            background-position: center;
-                            display: block;
-                            background-size: cover;
-                            background-repeat: no-repeat;
-                        }
-                        .live {
-                            position: absolute;
-                            top: 4px;
-                            left: 4px;
-                            background: #ff0000;
-                            color: #fff;
-                            padding: 0 4px;
-                            font-size: 1.2rem;
-                        }
-                    }
-                    .room-name {
-                        display: block;
-                        margin-bottom: 4px;
-                    }
-                    .user-name {
-                        a {
-                            font-size: 1.2rem;
-                            color: #999999;
                         }
                     }
                 }
@@ -1540,6 +1595,30 @@
                         height: 100vh;
                     }
                 }
+            }
+        }
+    }
+
+    /*
+     * 検索結果
+     */
+    .search-index {
+        display: flex;
+        justify-content: space-between;
+        height: 100%;
+        .main-area {
+            .main-title {
+                font-size: 2rem;
+                padding: 46px 0 18px 0;
+                color: $base-color;
+            }
+            width: calc(100% - 280px);
+            margin-right: 20px;
+            .room-content {
+                @extend %room-content;
+            }
+            .movie-content {
+                @extend %movie-content;
             }
         }
     }

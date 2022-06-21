@@ -188,29 +188,4 @@ class RoomController extends Controller
             'user' => $user,
         ]);
     }
-
-    public function search(Request $request) {
-        $keyword = $request->input('q');
-        if (!$keyword) {
-            return redirect('/');
-        }
-
-        $rooms = Room::leftJoin('users as joinUsers', 'joinUsers.id', '=', 'rooms.user_id')
-            ->leftJoin('games as joinGames', 'joinGames.id', '=', 'rooms.game_id')
-            ->select('rooms.*')
-            ->where(function($query) use($keyword) {
-                $query->orWhere('rooms.status', '=', '1')
-                    ->orWhere('rooms.status', '=', '2');
-                })
-            ->where(function($query) use($keyword) {
-                $query->orWhere('rooms.name', 'like', '%' . $keyword . '%')
-                    ->orWhere('joinGames.name', 'like', '%' . $keyword . '%')
-                    ->orWhere('joinUsers.name', 'like', '%' . $keyword . '%');
-            })
-            ->orderBy('rooms.published_at', 'desc')->get();
-
-        return view('room.search', [
-            'rooms' => $rooms,
-        ]);
-    }
 }

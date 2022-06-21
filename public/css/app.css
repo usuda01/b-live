@@ -7053,6 +7053,102 @@ input[type=email] {
   }
 
   /*
+   * 共通スタイル
+   */
+  .search-index .main-area .room-content, .home-index .main-area .room-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .search-index .main-area .room-content .room-box, .home-index .main-area .room-content .room-box {
+    flex-basis: 24.1%;
+    margin: 0 1.2% 20px 0;
+  }
+  .search-index .main-area .room-content .room-box:nth-child(4n), .home-index .main-area .room-content .room-box:nth-child(4n) {
+    margin-right: 0;
+  }
+  .search-index .main-area .room-content .room-box .room-image, .home-index .main-area .room-content .room-box .room-image {
+    position: relative;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+  .search-index .main-area .room-content .room-box .room-image:before, .home-index .main-area .room-content .room-box .room-image:before {
+    content: "";
+    display: block;
+    padding-top: 56.8%;
+  }
+  .search-index .main-area .room-content .room-box .room-image a, .home-index .main-area .room-content .room-box .room-image a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-position: center;
+    display: block;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .search-index .main-area .room-content .room-box .room-image .live, .home-index .main-area .room-content .room-box .room-image .live {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    background: #ff0000;
+    color: #fff;
+    padding: 0 4px;
+    font-size: 1.2rem;
+  }
+  .search-index .main-area .room-content .room-box .room-name, .home-index .main-area .room-content .room-box .room-name {
+    display: block;
+    margin-bottom: 4px;
+  }
+  .search-index .main-area .room-content .room-box .user-name a, .home-index .main-area .room-content .room-box .user-name a {
+    font-size: 1.2rem;
+    color: #999999;
+  }
+
+  .search-index .main-area .movie-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .search-index .main-area .movie-content .movie-box {
+    flex-basis: 24.1%;
+    margin: 0 1.2% 20px 0;
+  }
+  .search-index .main-area .movie-content .movie-box:nth-child(4n) {
+    margin-right: 0;
+  }
+  .search-index .main-area .movie-content .movie-box .movie-image {
+    position: relative;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+  .search-index .main-area .movie-content .movie-box .movie-image:before {
+    content: "";
+    display: block;
+    padding-top: 56.8%;
+  }
+  .search-index .main-area .movie-content .movie-box .movie-image a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-position: center;
+    display: block;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .search-index .main-area .movie-content .movie-box .movie-info .movie-name {
+    display: block;
+    margin-bottom: 4px;
+  }
+  .search-index .main-area .movie-content .movie-box .movie-info .user-name a {
+    font-size: 1.2rem;
+    color: #999999;
+  }
+
+  /*
    * アプリインストール
    */
   .app-install {
@@ -7470,18 +7566,6 @@ input[type=email] {
     width: 100%;
     height: 100%;
   }
-  .home-index .main-area .room-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-  }
-  .home-index .main-area .room-content .room-box {
-    flex-basis: 24.1%;
-    margin: 0 1.2% 20px 0;
-  }
-  .home-index .main-area .room-content .room-box:nth-child(4n) {
-    margin-right: 0;
-  }
   .home-index .main-area .room-content .room-box .game-title {
     height: 2rem;
     overflow: hidden;
@@ -7489,44 +7573,6 @@ input[type=email] {
   }
   .home-index .main-area .room-content .room-box .game-title a {
     color: #f66951;
-  }
-  .home-index .main-area .room-content .room-box .room-image {
-    position: relative;
-    width: 100%;
-    margin-bottom: 12px;
-  }
-  .home-index .main-area .room-content .room-box .room-image:before {
-    content: "";
-    display: block;
-    padding-top: 56.8%;
-  }
-  .home-index .main-area .room-content .room-box .room-image a {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-position: center;
-    display: block;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-  .home-index .main-area .room-content .room-box .room-image .live {
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    background: #ff0000;
-    color: #fff;
-    padding: 0 4px;
-    font-size: 1.2rem;
-  }
-  .home-index .main-area .room-content .room-box .room-name {
-    display: block;
-    margin-bottom: 4px;
-  }
-  .home-index .main-area .room-content .room-box .user-name a {
-    font-size: 1.2rem;
-    color: #999999;
   }
   .home-index .main-area .group-content {
     display: flex;
@@ -8171,6 +8217,23 @@ input[type=email] {
     height: 100vh;
   }
 
+  /*
+   * 検索結果
+   */
+  .search-index {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+  }
+  .search-index .main-area {
+    width: calc(100% - 280px);
+    margin-right: 20px;
+  }
+  .search-index .main-area .main-title {
+    font-size: 2rem;
+    padding: 46px 0 18px 0;
+    color: #9e1b9e;
+  }
   /*
    * 動画検索
    */
@@ -10214,6 +10277,107 @@ input[type=button] {
   }
 
   /*
+   * 共通スタイル
+   */
+  .search-index .main-area .room-content, .home-index .main-area .room-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .search-index .main-area .room-content .room-box, .home-index .main-area .room-content .room-box {
+    flex-basis: 49%;
+    margin: 0 2% 18px 0;
+  }
+  .search-index .main-area .room-content .room-box:nth-child(2n), .home-index .main-area .room-content .room-box:nth-child(2n) {
+    margin-right: 0;
+  }
+  .search-index .main-area .room-content .room-box .room-image, .home-index .main-area .room-content .room-box .room-image {
+    position: relative;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .search-index .main-area .room-content .room-box .room-image:before, .home-index .main-area .room-content .room-box .room-image:before {
+    content: "";
+    display: block;
+    padding-top: 56.8%;
+  }
+  .search-index .main-area .room-content .room-box .room-image a, .home-index .main-area .room-content .room-box .room-image a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-position: center;
+    display: block;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .search-index .main-area .room-content .room-box .room-image .live, .home-index .main-area .room-content .room-box .room-image .live {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    background: #ff0000;
+    color: #fff;
+    padding: 0 4px;
+  }
+  .search-index .main-area .room-content .room-box .room-info, .home-index .main-area .room-content .room-box .room-info {
+    margin: 0 10px;
+  }
+  .search-index .main-area .room-content .room-box .room-info .room-name, .home-index .main-area .room-content .room-box .room-info .room-name {
+    display: block;
+    margin-bottom: 4px;
+  }
+  .search-index .main-area .room-content .room-box .room-info .user-name a, .home-index .main-area .room-content .room-box .room-info .user-name a {
+    font-size: 1.2rem;
+    color: #999999;
+  }
+
+  .search-index .main-area .movie-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .search-index .main-area .movie-content .movie-box {
+    flex-basis: 49%;
+    margin: 0 2% 18px 0;
+  }
+  .search-index .main-area .movie-content .movie-box:nth-child(2n) {
+    margin-right: 0;
+  }
+  .search-index .main-area .movie-content .movie-box .movie-image {
+    position: relative;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .search-index .main-area .movie-content .movie-box .movie-image:before {
+    content: "";
+    display: block;
+    padding-top: 56.8%;
+  }
+  .search-index .main-area .movie-content .movie-box .movie-image a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-position: center;
+    display: block;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .search-index .main-area .movie-content .movie-box .movie-info {
+    margin: 0 10px;
+  }
+  .search-index .main-area .movie-content .movie-box .movie-info .movie-name {
+    display: block;
+    margin-bottom: 4px;
+  }
+  .search-index .main-area .movie-content .movie-box .movie-info .user-name a {
+    font-size: 1.2rem;
+    color: #999999;
+  }
+
+  /*
    * アプリインストール
    */
   .app-install {
@@ -10574,18 +10738,6 @@ input[type=button] {
     width: 100%;
     height: 100%;
   }
-  .home-index .main-area .room-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-  }
-  .home-index .main-area .room-content .room-box {
-    flex-basis: 49%;
-    margin: 0 2% 18px 0;
-  }
-  .home-index .main-area .room-content .room-box:nth-child(2n) {
-    margin-right: 0;
-  }
   .home-index .main-area .room-content .room-box .game-title {
     height: 2rem;
     overflow: hidden;
@@ -10593,46 +10745,6 @@ input[type=button] {
   }
   .home-index .main-area .room-content .room-box .game-title a {
     color: #f66951;
-  }
-  .home-index .main-area .room-content .room-box .room-image {
-    position: relative;
-    width: 100%;
-    margin-bottom: 8px;
-  }
-  .home-index .main-area .room-content .room-box .room-image:before {
-    content: "";
-    display: block;
-    padding-top: 56.8%;
-  }
-  .home-index .main-area .room-content .room-box .room-image a {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-position: center;
-    display: block;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-  .home-index .main-area .room-content .room-box .room-image .live {
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    background: #ff0000;
-    color: #fff;
-    padding: 0 4px;
-  }
-  .home-index .main-area .room-content .room-box .room-info {
-    margin: 0 10px;
-  }
-  .home-index .main-area .room-content .room-box .room-info .room-name {
-    display: block;
-    margin-bottom: 4px;
-  }
-  .home-index .main-area .room-content .room-box .room-info .user-name a {
-    font-size: 1.2rem;
-    color: #999999;
   }
   .home-index .main-area .group-content {
     display: flex;
@@ -11275,6 +11387,17 @@ input[type=button] {
     height: 100vh;
   }
 
+  /*
+   * 検索結果
+   */
+  .search-index .main-area {
+    padding-bottom: 100px;
+  }
+  .search-index .main-area .main-title {
+    font-size: 2rem;
+    margin: 26px 0 18px 10px;
+    color: #9e1b9e;
+  }
   /*
    * 動画検索
    */
