@@ -32,6 +32,7 @@
     <link href="{{ mix('css/app.css') }}?param=43" rel="stylesheet">
     <link href="{{ mix('css/all.css') }}?param=43" rel="stylesheet">
     <title>@yield('title')B-LIVE ライブ配信</title>
+    @stack('script')
     {{-- socket io --}}
     <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
 </head>

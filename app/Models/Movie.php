@@ -42,4 +42,10 @@ class Movie extends Model
         }
         return $path;
     }
+
+    // 動画のファイルパスを取得
+    public function getFilePath() {
+        $path = '/storage/movies/'.$this->path;
+        return $path;
+    }
 }
