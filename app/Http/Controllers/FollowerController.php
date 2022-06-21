@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Follower;
 use App\Models\User;
+use Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Ncmb\NCMB;
@@ -121,6 +122,8 @@ class FollowerController extends Controller
          * Push通知
          */
         if ($follower->followUser->device_token) {
+            // ncmbmania/php-ncmbがguzzlehttp/guzzleの7系に対応していないためインストールできない
+/*
             NCMB::initialize(config('services.ncmb.applicationkey'), config('services.ncmb.clientkey'));
             Push::Send(array(
                 'immediateDeliveryFlag' => true,
@@ -130,6 +133,17 @@ class FollowerController extends Controller
                 'sound' => 'default',
                 'searchCondition' => ['deviceToken' => $follower->followUser->device_token]
             ));
+*/
+        }
+
+        // LINE通知
+        if ($follower->followUser->line_id) {
+            // 通知設定
+            if ($follower->followUser->user_data->line_notice == 1) {
+                $lineMessage = $follower->followerUser->name . "さんにフォローされました\n"
+                    . config('app.url').'/user/'.$follower->followerUser->id;
+                Helper::pushLineMessage($follower->followUser->line_id, $lineMessage);
+            }
         }
 
         return $follower;
