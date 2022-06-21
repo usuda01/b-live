@@ -25,7 +25,7 @@
     "description": "{{ $movie->name }}",
     "thumbnailUrl": "{{ Request::getSchemeAndHttpHost() }}{{ $movie->image_path }}",
     "uploadDate": "{{ $movie->updated_at->format('Y-m-d') }}",
-    "contentUrl": "{{ Request::getSchemeAndHttpHost() }}{{ $movie->getFilePath() }}",
+    "contentUrl": "{{ Request::getSchemeAndHttpHost() }}{{ $movie->getFilePath() }}"
 }
 </script>
 @endpush
