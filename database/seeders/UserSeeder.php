@@ -51,6 +51,30 @@ class UserSeeder extends Seeder
                 'status' => 2,
                 'image' => 'IVPSIwr5K27CLFHlNhqs0dnALeVQFMXsMcdJvspX.png'
             ],
+            [
+                'id' => 4,
+                'name' => 'イヌシファー　〈ゆるゆる西洋妖怪系Vtuber〉',
+                'email' => 'dog_cipher@pseudo.twitter.com',
+                'password' => '1',
+                'profile' => "いぬのようなナニカ、あなたの後ろに転がるワンワン、ネットに住みついた“なんだかよくわからないもの”。バ美肉系新人Vtuber、イヌシファーと申します。",
+                'twitter_url' => 'https://twitter.com/dog_cipher',
+                'api_token' => 'i0Xr7tTnat9Im7TjgW6hJwzhyia96hWuRHaqdbMFcWuE5jvjh0tOoKCU7MlA7DGr2AiBtt38CBPjlaE4',
+                'twitter_id' => '1175326695454195712',
+                'status' => 2,
+                'image' => 'jjuadM3aMBjcf3qROmDTr3uH5Dne7fHhv6sVT2sb.png'
+            ],
+            [
+                'id' => 5,
+                'name' => 'ちゃんリト＠GCL',
+                'email' => 'romi.21085@outlook.jp',
+                'password' => '1',
+                'profile' => "APEXや大乱闘、さらに音ゲーやモンハンなどいろいろなゲームをやっています。\nGCLはいつも遊んでるグループの名前です。\nよろしく！気軽にコメントしてね。",
+                'twitter_url' => null,
+                'api_token' => 'zIKJOdZIk0xvDPF6hDEzeZQYEg3qknsOXtOAtCvv4PiiS3vHSRxDSqDV0ThMIbtsP5lpVBaWATcU6tt4',
+                'twitter_id' => '901397056262086656',
+                'status' => 2,
+                'image' => 'RgqCW7xPUJKS8krUJxW6iOK1XTYZ7Y1FNi4bPux4.jpeg'
+            ],
         ]);
     }
 }

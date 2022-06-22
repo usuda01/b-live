@@ -21,6 +21,7 @@ class HomeController extends Controller
             ->orderBy('created_at', 'desc')->limit(8)->get();
 
         // 配信者の多いタイトル
+/*
         $mainGameRooms = Room::select(
                 'rooms.game_id as game_id',
                 DB::raw('count(rooms.game_id) as room_count')
@@ -31,6 +32,20 @@ class HomeController extends Controller
         $mainGames = [];
         foreach ($mainGameRooms as $mainGameRoom) {
             $game = Game::where('id', $mainGameRoom->game_id)->first();
+            $mainGames []= $game;
+        }
+*/
+        // 投稿動画の多いタイトル
+        $mainGameMovies = Movie::select(
+                'movies.game_id as game_id',
+                DB::raw('count(movies.game_id) as movie_count')
+            )
+            ->whereNotNull('movies.game_id')
+            ->groupBy('movies.game_id')
+            ->orderBy('movie_count', 'desc')->limit(6)->get();
+        $mainGames = [];
+        foreach ($mainGameMovies as $mainGameMovie) {
+            $game = Game::where('id', $mainGameMovie->game_id)->first();
             $mainGames []= $game;
         }
 
