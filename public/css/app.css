@@ -7106,29 +7106,29 @@ input[type=email] {
     color: #999999;
   }
 
-  .search-index .main-area .movie-content {
+  .movie-detail .video-info .movie-content, .search-index .main-area .movie-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
   }
-  .search-index .main-area .movie-content .movie-box {
+  .movie-detail .video-info .movie-content .movie-box, .search-index .main-area .movie-content .movie-box {
     flex-basis: 24.1%;
     margin: 0 1.2% 20px 0;
   }
-  .search-index .main-area .movie-content .movie-box:nth-child(4n) {
+  .movie-detail .video-info .movie-content .movie-box:nth-child(4n), .search-index .main-area .movie-content .movie-box:nth-child(4n) {
     margin-right: 0;
   }
-  .search-index .main-area .movie-content .movie-box .movie-image {
+  .movie-detail .video-info .movie-content .movie-box .movie-image, .search-index .main-area .movie-content .movie-box .movie-image {
     position: relative;
     width: 100%;
     margin-bottom: 12px;
   }
-  .search-index .main-area .movie-content .movie-box .movie-image:before {
+  .movie-detail .video-info .movie-content .movie-box .movie-image:before, .search-index .main-area .movie-content .movie-box .movie-image:before {
     content: "";
     display: block;
     padding-top: 56.8%;
   }
-  .search-index .main-area .movie-content .movie-box .movie-image a {
+  .movie-detail .video-info .movie-content .movie-box .movie-image a, .search-index .main-area .movie-content .movie-box .movie-image a {
     position: absolute;
     top: 0;
     left: 0;
@@ -7139,11 +7139,11 @@ input[type=email] {
     background-size: cover;
     background-repeat: no-repeat;
   }
-  .search-index .main-area .movie-content .movie-box .movie-info .movie-name {
+  .movie-detail .video-info .movie-content .movie-box .movie-info .movie-name, .search-index .main-area .movie-content .movie-box .movie-info .movie-name {
     display: block;
     margin-bottom: 4px;
   }
-  .search-index .main-area .movie-content .movie-box .movie-info .user-name a {
+  .movie-detail .video-info .movie-content .movie-box .movie-info .user-name a, .search-index .main-area .movie-content .movie-box .movie-info .user-name a {
     font-size: 1.2rem;
     color: #999999;
   }
@@ -8292,10 +8292,14 @@ input[type=email] {
    */
   .movie-detail {
     display: flex;
+    overflow: hidden auto;
+    margin-right: 340px;
+    max-height: calc(100vh - 50px);
+    flex-wrap: wrap;
   }
   .movie-detail .main-area {
+    width: 100%;
     margin: 0 10px;
-    width: calc(100vw - 360px);
   }
   .movie-detail .main-area .bar {
     display: flex;
@@ -8350,25 +8354,33 @@ input[type=email] {
   .movie-detail .main-area .video-footer .share-content a img {
     width: 100px;
   }
-  .movie-detail .main-area .video-info {
-    padding: 20px 0;
+  .movie-detail .tabs {
+    display: none;
   }
-  .movie-detail .main-area .video-info .movie-title {
+  .movie-detail .video-info {
+    width: 100%;
+    margin: 0 10px;
+  }
+  .movie-detail .video-info .movie-title {
     font-size: 1.8rem;
     margin-bottom: 14px;
   }
-  .movie-detail .main-area .video-info .headline {
+  .movie-detail .video-info .headline {
     display: flex;
     align-items: center;
   }
-  .movie-detail .main-area .video-info .headline .good {
+  .movie-detail .video-info .headline .good {
     margin-right: 10px;
   }
-  .movie-detail .main-area .video-info .headline .good i {
+  .movie-detail .video-info .headline .good i {
     font-size: 20px;
   }
-  .movie-detail .main-area .video-info .headline .good-count {
+  .movie-detail .video-info .headline .good-count {
     font-size: 1.6rem;
+  }
+  .movie-detail .video-info .main-title {
+    font-size: 2rem;
+    margin: 46px 0 18px 0;
   }
   .movie-detail .right-area {
     width: 340px;
@@ -10332,29 +10344,29 @@ input[type=button] {
     color: #999999;
   }
 
-  .search-index .main-area .movie-content {
+  .movie-detail .video-info .movie-content, .search-index .main-area .movie-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
   }
-  .search-index .main-area .movie-content .movie-box {
+  .movie-detail .video-info .movie-content .movie-box, .search-index .main-area .movie-content .movie-box {
     flex-basis: 49%;
     margin: 0 2% 18px 0;
   }
-  .search-index .main-area .movie-content .movie-box:nth-child(2n) {
+  .movie-detail .video-info .movie-content .movie-box:nth-child(2n), .search-index .main-area .movie-content .movie-box:nth-child(2n) {
     margin-right: 0;
   }
-  .search-index .main-area .movie-content .movie-box .movie-image {
+  .movie-detail .video-info .movie-content .movie-box .movie-image, .search-index .main-area .movie-content .movie-box .movie-image {
     position: relative;
     width: 100%;
     margin-bottom: 8px;
   }
-  .search-index .main-area .movie-content .movie-box .movie-image:before {
+  .movie-detail .video-info .movie-content .movie-box .movie-image:before, .search-index .main-area .movie-content .movie-box .movie-image:before {
     content: "";
     display: block;
     padding-top: 56.8%;
   }
-  .search-index .main-area .movie-content .movie-box .movie-image a {
+  .movie-detail .video-info .movie-content .movie-box .movie-image a, .search-index .main-area .movie-content .movie-box .movie-image a {
     position: absolute;
     top: 0;
     left: 0;
@@ -10365,14 +10377,14 @@ input[type=button] {
     background-size: cover;
     background-repeat: no-repeat;
   }
-  .search-index .main-area .movie-content .movie-box .movie-info {
+  .movie-detail .video-info .movie-content .movie-box .movie-info, .search-index .main-area .movie-content .movie-box .movie-info {
     margin: 0 10px;
   }
-  .search-index .main-area .movie-content .movie-box .movie-info .movie-name {
+  .movie-detail .video-info .movie-content .movie-box .movie-info .movie-name, .search-index .main-area .movie-content .movie-box .movie-info .movie-name {
     display: block;
     margin-bottom: 4px;
   }
-  .search-index .main-area .movie-content .movie-box .movie-info .user-name a {
+  .movie-detail .video-info .movie-content .movie-box .movie-info .user-name a, .search-index .main-area .movie-content .movie-box .movie-info .user-name a {
     font-size: 1.2rem;
     color: #999999;
   }
@@ -11505,25 +11517,46 @@ input[type=button] {
   .movie-detail .main-area .video-footer .share-content a img {
     height: 20px;
   }
-  .movie-detail .main-area .video-info {
+  .movie-detail .tabs {
+    display: flex;
+    line-height: 42px;
+    height: 42px;
+    border-bottom: 1px solid #ccc;
+  }
+  .movie-detail .tabs li {
+    flex: 1;
+    text-align: center;
+  }
+  .movie-detail .tabs .active {
+    border-bottom: 2px solid #9e1b9e;
+  }
+  .movie-detail .video-info {
+    display: none;
     margin: 20px 10px 0 10px;
   }
-  .movie-detail .main-area .video-info .movie-title {
+  .movie-detail .video-info.active {
+    display: block;
+  }
+  .movie-detail .video-info .movie-title {
     font-size: 1.6rem;
     margin-bottom: 14px;
   }
-  .movie-detail .main-area .video-info .headline {
+  .movie-detail .video-info .headline {
     display: flex;
     align-items: center;
   }
-  .movie-detail .main-area .video-info .headline .good {
+  .movie-detail .video-info .headline .good {
     margin-right: 10px;
   }
-  .movie-detail .main-area .video-info .headline .good i {
+  .movie-detail .video-info .headline .good i {
     font-size: 20px;
   }
-  .movie-detail .main-area .video-info .headline .good-count {
+  .movie-detail .video-info .headline .good-count {
     font-size: 1.6rem;
+  }
+  .movie-detail .video-info .main-title {
+    font-size: 2rem;
+    margin: 26px 0 18px 0;
   }
   /*
    * ユーザー個別

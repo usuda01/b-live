@@ -56,7 +56,7 @@
             </div>
 
             <div class="live-content">
-                <h2 class="main-title">みんなのショート動画</h2>
+                <h2 class="main-title">新着動画</h2>
                 @if ($movies->count() > 0)
                     <div class="room-content">
                     @foreach ($movies as $movie)

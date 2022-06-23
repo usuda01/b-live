@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div><!--// .main-area -->
 
         <ul class="tabs">
             <li v-on:click="tabChange(1)" v-bind:class="{'active': activeTab === 1}">動画情報</li>

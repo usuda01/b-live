@@ -25,6 +25,11 @@ class MovieSeeder extends Seeder
                 'image' => 'TCgQd3KaeFEH9GSATnTDsORonqTT4OM9oBxaVqkh.png', 'path' => '2021-08-19-01-41-30.mp4', 'is_publish' => 1,
                 'created_at' => '2021-08-19 01:41:32', 'updated_at' => '2021-08-19 01:41:32'
             ],
+            [
+                'id' => 3, 'user_id' => 3, 'game_id' => 5, 'name' => 'PKサンダーバースト',
+                'image' => 'LSDXpE0VapaLuRYJXoDEgPNHLM9MP4THAOiEA0N3.png', 'path' => '2021-08-18-01-19-48.mp4', 'is_publish' => 1,
+                'created_at' => '2021-08-18 01:19:49', 'updated_at' => '2021-08-18 01:20:51'
+            ],
         ]);
     }
 }

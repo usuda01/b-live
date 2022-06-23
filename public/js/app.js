@@ -2285,6 +2285,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-infinite-loading */ "./node_modules/vue-infinite-loading/dist/vue-infinite-loading.js");
+/* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_infinite_loading__WEBPACK_IMPORTED_MODULE_0__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 //
 //
 //
@@ -2316,6 +2330,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     movie: Object,
@@ -2341,9 +2379,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      isGood: false,
+      activeTab: 1,
       goodCount: 0,
-      locationUrl: location.href
+      isGood: false,
+      locationUrl: location.href,
+      movies: [],
+      page: 1
     };
   },
   mounted: function mounted() {
@@ -2402,6 +2443,33 @@ __webpack_require__.r(__webpack_exports__);
       axios.post(url, params).then(function (response) {
         _this3.isGood = false;
         _this3.goodCount--;
+      });
+    },
+    infiniteHandler: function infiniteHandler($state) {
+      var _this4 = this;
+
+      axios.get('/api/search-movie', {
+        params: {
+          page: this.page,
+          per_page: 1,
+          q: this.movie.game.name
+        }
+      }).then(function (_ref) {
+        var data = _ref.data;
+
+        if (data.data.length) {
+          var _this4$movies;
+
+          _this4.page += 1;
+
+          (_this4$movies = _this4.movies).push.apply(_this4$movies, _toConsumableArray(data.data));
+
+          $state.loaded();
+        } else {
+          $state.complete();
+        }
+      })["catch"](function (err) {
+        $state.complete();
       });
     }
   }
@@ -4286,7 +4354,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
       }).then(function (_ref) {
         var data = _ref.data;
-        console.log(data);
 
         if (data.data.length) {
           var _this$movies;
@@ -4314,7 +4381,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
       }).then(function (_ref2) {
         var data = _ref2.data;
-        console.log(data);
 
         if (data.data.length) {
           var _this2$rooms;
@@ -94889,9 +94955,28 @@ var render = function() {
             [_c("img", { attrs: { src: "/images/btn-share-twitter.png" } })]
           )
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "video-info" }, [
+      ])
+    ]),
+    _vm._v(" "),
+    _c("ul", { staticClass: "tabs" }, [
+      _c(
+        "li",
+        {
+          class: { active: _vm.activeTab === 1 },
+          on: {
+            click: function($event) {
+              return _vm.tabChange(1)
+            }
+          }
+        },
+        [_vm._v("動画情報")]
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "video-info", class: { active: _vm.activeTab === 1 } },
+      [
         _c("div", { staticClass: "movie-title" }, [
           _vm._v(_vm._s(_vm.movie.name))
         ]),
@@ -94930,9 +95015,63 @@ var render = function() {
           _c("div", { staticClass: "good-count" }, [
             _vm._v(_vm._s(_vm.goodCount))
           ])
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c(
+            "div",
+            { staticClass: "movie-wrapper" },
+            [
+              _c("h2", { staticClass: "main-title" }, [_vm._v("関連動画")]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "movie-content" },
+                _vm._l(_vm.movies, function(movie) {
+                  return _c(
+                    "div",
+                    { key: movie.id, staticClass: "movie-box" },
+                    [
+                      _c("div", { staticClass: "movie-image" }, [
+                        _c("a", {
+                          style: {
+                            backgroundImage: "url(" + movie.image_path + ")"
+                          },
+                          attrs: { href: "/movie/detail/" + movie.id }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "movie-info" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "movie-name",
+                            attrs: { href: "/movie/detail/" + movie.id }
+                          },
+                          [_vm._v(_vm._s(movie.name))]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "user-name" }, [
+                          _c(
+                            "a",
+                            { attrs: { href: "/user/" + movie.user.id } },
+                            [_vm._v(_vm._s(movie.user.name))]
+                          )
+                        ])
+                      ])
+                    ]
+                  )
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c("infinite-loading", { on: { infinite: _vm.infiniteHandler } })
+            ],
+            1
+          )
         ])
-      ])
-    ]),
+      ]
+    ),
     _vm._v(" "),
     _c("div", { staticClass: "right-area" })
   ])

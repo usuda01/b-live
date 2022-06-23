@@ -1766,25 +1766,49 @@
                     }
                 }
             }
-            .video-info {
-                margin: 20px 10px 0 10px;
-                .movie-title {
+        }
+        .tabs {
+            display: flex;
+            line-height: 42px;
+            height: 42px;
+            border-bottom: 1px solid #ccc;
+            li {
+                flex: 1;
+                text-align: center;
+            }
+            .active {
+                border-bottom: 2px solid $base-color;
+            }
+        }
+        .video-info {
+            display: none;
+            &.active {
+                display: block;
+            }
+            margin: 20px 10px 0 10px;
+            .movie-title {
+                font-size: 1.6rem;
+                margin-bottom: 14px;
+            }
+            .headline {
+                display: flex;
+                align-items: center;
+                .good {
+                    margin-right: 10px;
+                    i {
+                        font-size: 20px;
+                    }
+                }
+                .good-count {
                     font-size: 1.6rem;
-                    margin-bottom: 14px;
                 }
-                .headline {
-                    display: flex;
-                    align-items: center;
-                    .good {
-                        margin-right: 10px;
-                        i {
-                            font-size: 20px;
-                        }
-                    }
-                    .good-count {
-                        font-size: 1.6rem;
-                    }
-                }
+            }
+            .main-title {
+                font-size: 2rem;
+                margin: 26px 0 18px 0;
+            }
+            .movie-content {
+                @extend %movie-content-tablet;
             }
         }
         .right-area {

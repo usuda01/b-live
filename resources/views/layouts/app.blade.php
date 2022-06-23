@@ -29,8 +29,8 @@
     @endif
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
     <link href="{{ mix('css/fonts.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/app.css') }}?param=44" rel="stylesheet">
-    <link href="{{ mix('css/all.css') }}?param=44" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}?param=45" rel="stylesheet">
+    <link href="{{ mix('css/all.css') }}?param=45" rel="stylesheet">
     <title>@yield('title')B-LIVE ライブ配信</title>
     @stack('script')
     {{-- socket io --}}
@@ -201,9 +201,9 @@
             'apiToken' => \Auth::user()->api_token ?? null
         ]) !!};
     </script>
-    <script src="{{ mix('js/app.js') }}?param=44"></script>
-    <script src="{{ mix('js/all.js') }}?param=44"></script>
-    <script src="{{ mix('js/common.js') }}?param=44"></script>
+    <script src="{{ mix('js/app.js') }}?param=45"></script>
+    <script src="{{ mix('js/all.js') }}?param=45"></script>
+    <script src="{{ mix('js/common.js') }}?param=45"></script>
     @stack('scripts')
 </body>
 </html>

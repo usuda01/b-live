@@ -79,7 +79,6 @@
                         q: this.q
                     },
                 }).then(({ data }) => {
-console.log(data);
                     if (data.data.length) {
                         this.page += 1
                         this.movies.push(...data.data)
@@ -99,7 +98,6 @@ console.log(data);
                         q: this.q
                     },
                 }).then(({ data }) => {
-console.log(data);
                     if (data.data.length) {
                         this.page += 1
                         this.rooms.push(...data.data)
