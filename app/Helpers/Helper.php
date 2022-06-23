@@ -107,7 +107,7 @@ class Helper
 
     // LINE ユーザーIDによるメッセージ送信
     public static function pushLineMessage($to, $text) {
-        $accessToken = config('services.line.access_token');
+        $accessToken = config('services.line_message.access_token');
         $textObject = [
             [
             'type' => 'text',

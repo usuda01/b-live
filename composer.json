@@ -16,7 +16,8 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
         "pbmedia/laravel-ffmpeg": "7.5.12",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "socialiteproviders/line": "^4.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

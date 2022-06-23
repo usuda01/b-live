@@ -352,10 +352,11 @@ class SettingController extends Controller
         $user->email = $request->input('email');
         $user->profile = $request->input('profile');
         $user->twitter_url = $request->input('twitter_url');
-        if ($request->input('line_disconnect') == '1') {
-            $user->line_id = null;
-        }
         $user->save();
+
+        if ($request->input('line_disconnect') == '1') {
+            $user->user_data->is_line_connected = null;
+        }
         $user->user_data->join_ranking = $request->input('join_ranking');
         if ($request->input('line_notice') !== null) {
             $user->user_data->line_notice = $request->input('line_notice');
@@ -373,7 +374,7 @@ class SettingController extends Controller
     }
 
     public function lineCallback(Request $request) {
-        $accessToken = config('services.line.access_token');
+        $accessToken = config('services.line_message.access_token');
 
         //ユーザーからのメッセージ取得
         $json_string = file_get_contents('php://input');
@@ -407,6 +408,9 @@ class SettingController extends Controller
 
         $user->line_id = $userId;
         $user->save();
+
+        $user->user_data->is_line_connected = 1;
+        $user->user_data->save();
 
         $returnMessageText = "LINE連携が完了しました！\n引き続きB-LIVEをお楽しみください！";
 
@@ -558,10 +562,11 @@ class SettingController extends Controller
                     }
 
                     // LINE通知
-                    if ($follower->followerUser->line_id) {
+                    if ($follower->followerUser->user_data->is_line_connected == 1) {
                         // 通知設定
                         if ($follower->followerUser->user_data->line_notice == 1) {
-                            $lineMessage = $room->user->name . "さんが配信を開始しました！\n"
+                            $lineMessage = "{$follower->followerUser->name}さん\n"
+                                . "【{$room->user->name}】さんが配信を開始しました！\n"
                                 . $room->name . "\n"
                                 . config('app.url').'/room/'.$room->id;
                             Helper::pushLineMessage($follower->followerUser->line_id, $lineMessage);

@@ -2251,6 +2251,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -94631,6 +94632,14 @@ var render = function() {
         _c("h3", { staticClass: "login-title" }, [_vm._v("SNSでログイン")]),
         _vm._v(" "),
         _c("ul", [
+          _c("li", [
+            _vm.isXcode == false
+              ? _c("a", { attrs: { href: "/auth/line" } }, [
+                  _c("img", { attrs: { src: "/images/btn-line.png" } })
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
           _c("li", [
             _vm.isXcode == false
               ? _c("a", { attrs: { href: "/auth/twitter" } }, [

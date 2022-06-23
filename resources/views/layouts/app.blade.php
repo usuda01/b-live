@@ -29,8 +29,8 @@
     @endif
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
     <link href="{{ mix('css/fonts.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/app.css') }}?param=43" rel="stylesheet">
-    <link href="{{ mix('css/all.css') }}?param=43" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}?param=44" rel="stylesheet">
+    <link href="{{ mix('css/all.css') }}?param=44" rel="stylesheet">
     <title>@yield('title')B-LIVE ライブ配信</title>
     @stack('script')
     {{-- socket io --}}
@@ -128,7 +128,7 @@
         </div>
     </header>
 
-    @if (!Auth::check() || (Auth::check() && !Auth::user()->line_id))
+    @if (!Auth::check() || (Auth::check() && Auth::user()->user_data->is_line_connected == null))
         <div id="line-connect" class="line-connect {{ class_basename(Route::current()->controller) }}-{{ request()->route()->getActionMethod() }}">
             <div class="headline">
                 <div class="line-logo"><img src="/images/icon-line.png"></div>
@@ -201,9 +201,9 @@
             'apiToken' => \Auth::user()->api_token ?? null
         ]) !!};
     </script>
-    <script src="{{ mix('js/app.js') }}?param=43"></script>
-    <script src="{{ mix('js/all.js') }}?param=43"></script>
-    <script src="{{ mix('js/common.js') }}?param=43"></script>
+    <script src="{{ mix('js/app.js') }}?param=44"></script>
+    <script src="{{ mix('js/all.js') }}?param=44"></script>
+    <script src="{{ mix('js/common.js') }}?param=44"></script>
     @stack('scripts')
 </body>
 </html>

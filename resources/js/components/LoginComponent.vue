@@ -5,6 +5,7 @@
             <div class="sns-login">
                 <h3 class="login-title">SNSでログイン</h3>
                 <ul>
+                    <li><a v-if="isXcode == false" href="/auth/line"><img src="/images/btn-line.png"></a></li>
                     <li><a v-if="isXcode == false" href="/auth/twitter"><img src="/images/btn-twitter.png"></a></li>
                     <li><a v-if="isXcode == false" href="/auth/facebook"><img src="/images/btn-facebook.png"></a></li>
                     <li><a  href="/auth/apple-signin"><img src="/images/btn-apple.png"></a></li>

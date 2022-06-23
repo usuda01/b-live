@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AppleSigninController;
 use App\Http\Controllers\Auth\FacebookController;
+use App\Http\Controllers\Auth\LineController;
 use App\Http\Controllers\Auth\TwitterController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventRankingController;
@@ -42,6 +43,11 @@ Route::post('room/count-views', [RoomController::class, 'countViews']);
 
 // ログイン画面
 Route::get('/login', [LoginController::class, 'login'])->name('login');
+
+// LINEログイン
+Route::get('auth/line', [LineController::class, 'redirectToProvider']);
+// LINEコールバック
+Route::get('auth/line/callback', [LineController::class, 'handleProviderCallback']);
 
 // Appleログイン
 Route::get('auth/apple-signin', [AppleSigninController::class, 'login']);

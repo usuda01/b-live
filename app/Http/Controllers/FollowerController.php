@@ -137,10 +137,11 @@ class FollowerController extends Controller
         }
 
         // LINE通知
-        if ($follower->followUser->line_id) {
+        if ($follower->followUser->user_data->is_line_connected == 1) {
             // 通知設定
             if ($follower->followUser->user_data->line_notice == 1) {
-                $lineMessage = $follower->followerUser->name . "さんにフォローされました\n"
+                $lineMessage = "{$follower->followUser->name}さん\n"
+                    . "【{$follower->followerUser->name}】さんにフォローされました\n"
                     . config('app.url').'/user/'.$follower->followerUser->id;
                 Helper::pushLineMessage($follower->followUser->line_id, $lineMessage);
             }

@@ -59,7 +59,7 @@
                         </li>
                         <li>
                             <label class="label">LINE連携</label>
-                            @if ($user->line_id === null)
+                            @if ($user->user_data->is_line_connected === null)
                                 <div class="no-connected-box">
                                     <div class="no-connected">連携されていません</div>
                                 </div>
@@ -70,7 +70,7 @@
                                 </div>
                             @endif
                         </li>
-                        @if ($user->line_id !== null)
+                        @if ($user->user_data->is_line_connected == 1)
                             <li>
                                 <label class="label">フォローしたユーザーの配信をLINEで通知</label>
                                 <label><input type="radio" name="line_notice" value="1" {{ old('line_notice', $user->user_data->line_notice) == 1 ? 'checked' : '' }}> 通知する</label>
