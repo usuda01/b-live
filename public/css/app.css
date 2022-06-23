@@ -603,6 +603,165 @@
   font-weight: bold;
 }
 
+.event-event5 {
+  max-width: 720px;
+  margin: 0 auto;
+  padding-bottom: 100px;
+  background: #ffeaff;
+}
+.event-event5 .fv {
+  margin-bottom: 35px;
+}
+.event-event5 .fv img {
+  width: 100%;
+}
+.event-event5 .event-end {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+  color: #ff0000;
+}
+.event-event5 .ranking {
+  margin-bottom: 35px;
+}
+.event-event5 .ranking .title {
+  font-size: 1.6rem;
+  margin-bottom: 25px;
+  text-align: center;
+  font-weight: bold;
+}
+.event-event5 .ranking .movie-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 6px 10px 10px 10px;
+}
+.event-event5 .ranking .movie-box.first {
+  background: #f2c94d;
+}
+.event-event5 .ranking .movie-box .game-title {
+  width: 100%;
+  height: 2rem;
+  overflow: hidden;
+}
+.event-event5 .ranking .movie-box .game-title a {
+  font-size: 1.2rem;
+  color: #f66951;
+}
+.event-event5 .ranking .movie-box .movie-image {
+  position: relative;
+  width: 33%;
+}
+.event-event5 .ranking .movie-box .movie-image:before {
+  content: "";
+  display: block;
+  padding-top: 56.8%;
+}
+.event-event5 .ranking .movie-box .movie-image a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-position: center;
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.event-event5 .ranking .movie-box .movie-info {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 63%;
+}
+.event-event5 .ranking .movie-box .movie-info .movie-name {
+  margin-bottom: 6px;
+  overflow: hidden;
+  height: 1.4em;
+}
+.event-event5 .ranking .movie-box .movie-info .user-info {
+  display: flex;
+}
+.event-event5 .ranking .movie-box .movie-info .user-info .user-profile {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-position: center;
+  display: inline-block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0 8px 0 0;
+}
+.event-event5 .ranking .movie-box .movie-info .user-info .user-name {
+  font-size: 1.2rem;
+  color: #999999;
+}
+.event-event5 .ranking .movie-box .movie-info .count {
+  margin-top: auto;
+}
+.event-event5 .ranking .movie-box .movie-info .count .number {
+  font-size: 1.8rem;
+  color: #9e1b9e;
+  margin-right: 20px;
+}
+.event-event5 .event-detail {
+  margin-bottom: 35px;
+}
+.event-event5 .event-detail .title {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  text-align: center;
+  font-weight: bold;
+}
+.event-event5 .event-detail .detail {
+  margin: 0 15px;
+  background: #fff;
+  padding: 20px;
+  font-weight: bold;
+  border-radius: 6px;
+}
+.event-event5 .event-detail .detail .twitter {
+  color: #00acee;
+}
+.event-event5 .event-detail .detail div {
+  margin-bottom: 10px;
+}
+.event-event5 .event-detail .detail div:last-child {
+  margin-bottom: 0;
+}
+.event-event5 .event-caution {
+  margin-bottom: 35px;
+}
+.event-event5 .event-caution .title {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  text-align: center;
+  font-weight: bold;
+}
+.event-event5 .event-caution .note {
+  margin: 0 15px;
+  background: #fff;
+  padding: 20px;
+  font-size: 1.2rem;
+  border-radius: 6px;
+}
+.event-event5 .event-caution .note .twitter {
+  color: #00acee;
+}
+.event-event5 .to-top {
+  text-align: center;
+}
+.event-event5 .to-top a {
+  display: inline-block;
+  color: #fff;
+  background: #9e1b9e;
+  border-radius: 4px;
+  padding: 4px 24px;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
 /*!
  * Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)

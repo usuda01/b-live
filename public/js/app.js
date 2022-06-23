@@ -94391,9 +94391,9 @@ var render = function() {
           _c("swiper-slide", [
             _c("a", {
               staticStyle: {
-                "background-image": "url('/images/event4/fv.jpg')"
+                "background-image": "url('/images/event5/fv.jpg')"
               },
-              attrs: { href: "/event4" }
+              attrs: { href: "/event5" }
             })
           ]),
           _vm._v(" "),
