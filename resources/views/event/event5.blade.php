@@ -86,8 +86,8 @@
                 <h2 class="title">イベント詳細</h2>
                 <div class="detail">
                     <div>▼特典<br>動画のいいね数１位の方に<br>amazon ギフト券 1万円分プレゼント</div>
-                    <div>▼イベント期間<br>2022/06/27(月) 0時 ～ 2022/07/07(木) 23:59:59</div>
-                    <div>▼参加方法<br>①<a class="twitter" href="https://twitter.com/BLIVE77191685/status/1536353004693385216" target="_blank">この投稿</a>をリツイート＆フォロー<br>②B-LIVEにて、ショート動画を投稿</div>
+                    <div>▼イベント期間<br>2022/6/27(月) 0時 ～ 2022/7/7(木) 23:59:59</div>
+                    <div>▼参加方法<br>①<a class="twitter" href="https://twitter.com/BLIVE77191685/status/1540265976859480064" target="_blank">この投稿</a>をリツイート＆フォロー<br>②B-LIVEにて、ショート動画を投稿</div>
                     <div>▼対象コンテンツ<br>ゲームのプレイ動画</div>
                 </div>
             </div>
