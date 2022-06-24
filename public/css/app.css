@@ -7939,6 +7939,9 @@ input[type=email] {
   .room-stream .video-info .description a {
     color: #9e1b9e;
   }
+  .room-stream .video-info .twitter-content {
+    width: 400px;
+  }
   .room-stream .message-wrapper {
     position: fixed;
     right: 0;
