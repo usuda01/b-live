@@ -26,7 +26,7 @@ class LineController extends Controller
         }
 
         try {
-            $lineUser = Socialite::driver('line')->user();
+            $lineUser = Socialite::driver('line')->stateless()->user();
         } catch (Exception $e) {
             return redirect('auth/line');
         }
