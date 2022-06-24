@@ -8,6 +8,10 @@
                 <div class="section">
                     <h3>お知らせ一覧</h3>
                     <div class="row">
+                         <div class="date">2022.06.24</div>
+                         <div class="description"><a href="/page/notice/33">アマゾンギフト券１万円獲得イベント開催！</a></div>
+                    </div>
+                    <div class="row">
                          <div class="date">2022.06.13</div>
                          <div class="description"><a href="/page/notice/32">アマゾンギフト券１万円獲得イベント開催！</a></div>
                     </div>
