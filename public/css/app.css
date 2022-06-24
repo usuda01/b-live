@@ -749,6 +749,9 @@
 .event-event5 .event-caution .note .twitter {
   color: #00acee;
 }
+.event-event5 .event-caution .note li {
+  margin-bottom: 4px;
+}
 .event-event5 .to-top {
   text-align: center;
 }
