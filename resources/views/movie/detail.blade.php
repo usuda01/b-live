@@ -16,7 +16,7 @@
     <meta property="twitter:image" content="{{ Request::getSchemeAndHttpHost() }}/{{ $movie->image_path }}" />
 @endpush
 
-@push('script')
+@push('header-script')
 <script type="application/ld+json">
 {
     "@context": "http://schema.org",
