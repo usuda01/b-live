@@ -1886,6 +1886,11 @@
                     color: $base-color;
                 }
             }
+            .movie-wrapper {
+                .movie-content {
+                    @extend %movie-content;
+                }
+            }
             .room-wrapper {
                 .main-title {
                     font-size: 2rem;

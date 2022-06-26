@@ -1891,10 +1891,11 @@
             }
             .tabs {
                 display: flex;
+                overflow-x: scroll;
                 border-bottom: 1px solid #ccc;
                 margin-bottom: 20px;
                 li {
-                    flex: 1;
+                    flex: 0 0 7em;
                     text-align: center;
                     padding-bottom: 4px;
                 }
@@ -1906,6 +1907,11 @@
                 white-space: pre-wrap;
                 a {
                     color: $base-color;
+                }
+            }
+            .movie-wrapper {
+                .movie-content {
+                    @extend %movie-content-tablet;
                 }
             }
             .room-wrapper {

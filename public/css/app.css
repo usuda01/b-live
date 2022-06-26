@@ -7268,29 +7268,29 @@ input[type=email] {
     color: #999999;
   }
 
-  .movie-detail .video-info .movie-content, .search-index .main-area .movie-content {
+  .user-detail .main-content .movie-wrapper .movie-content, .movie-detail .video-info .movie-content, .search-index .main-area .movie-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
   }
-  .movie-detail .video-info .movie-content .movie-box, .search-index .main-area .movie-content .movie-box {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box, .movie-detail .video-info .movie-content .movie-box, .search-index .main-area .movie-content .movie-box {
     flex-basis: 24.1%;
     margin: 0 1.2% 20px 0;
   }
-  .movie-detail .video-info .movie-content .movie-box:nth-child(4n), .search-index .main-area .movie-content .movie-box:nth-child(4n) {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box:nth-child(4n), .movie-detail .video-info .movie-content .movie-box:nth-child(4n), .search-index .main-area .movie-content .movie-box:nth-child(4n) {
     margin-right: 0;
   }
-  .movie-detail .video-info .movie-content .movie-box .movie-image, .search-index .main-area .movie-content .movie-box .movie-image {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-image, .movie-detail .video-info .movie-content .movie-box .movie-image, .search-index .main-area .movie-content .movie-box .movie-image {
     position: relative;
     width: 100%;
     margin-bottom: 12px;
   }
-  .movie-detail .video-info .movie-content .movie-box .movie-image:before, .search-index .main-area .movie-content .movie-box .movie-image:before {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-image:before, .movie-detail .video-info .movie-content .movie-box .movie-image:before, .search-index .main-area .movie-content .movie-box .movie-image:before {
     content: "";
     display: block;
     padding-top: 56.8%;
   }
-  .movie-detail .video-info .movie-content .movie-box .movie-image a, .search-index .main-area .movie-content .movie-box .movie-image a {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-image a, .movie-detail .video-info .movie-content .movie-box .movie-image a, .search-index .main-area .movie-content .movie-box .movie-image a {
     position: absolute;
     top: 0;
     left: 0;
@@ -7301,11 +7301,11 @@ input[type=email] {
     background-size: cover;
     background-repeat: no-repeat;
   }
-  .movie-detail .video-info .movie-content .movie-box .movie-info .movie-name, .search-index .main-area .movie-content .movie-box .movie-info .movie-name {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-info .movie-name, .movie-detail .video-info .movie-content .movie-box .movie-info .movie-name, .search-index .main-area .movie-content .movie-box .movie-info .movie-name {
     display: block;
     margin-bottom: 4px;
   }
-  .movie-detail .video-info .movie-content .movie-box .movie-info .user-name a, .search-index .main-area .movie-content .movie-box .movie-info .user-name a {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-info .user-name a, .movie-detail .video-info .movie-content .movie-box .movie-info .user-name a, .search-index .main-area .movie-content .movie-box .movie-info .user-name a {
     font-size: 1.2rem;
     color: #999999;
   }
@@ -10509,29 +10509,29 @@ input[type=button] {
     color: #999999;
   }
 
-  .movie-detail .video-info .movie-content, .search-index .main-area .movie-content {
+  .user-detail .main-content .movie-wrapper .movie-content, .movie-detail .video-info .movie-content, .search-index .main-area .movie-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
   }
-  .movie-detail .video-info .movie-content .movie-box, .search-index .main-area .movie-content .movie-box {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box, .movie-detail .video-info .movie-content .movie-box, .search-index .main-area .movie-content .movie-box {
     flex-basis: 49%;
     margin: 0 2% 18px 0;
   }
-  .movie-detail .video-info .movie-content .movie-box:nth-child(2n), .search-index .main-area .movie-content .movie-box:nth-child(2n) {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box:nth-child(2n), .movie-detail .video-info .movie-content .movie-box:nth-child(2n), .search-index .main-area .movie-content .movie-box:nth-child(2n) {
     margin-right: 0;
   }
-  .movie-detail .video-info .movie-content .movie-box .movie-image, .search-index .main-area .movie-content .movie-box .movie-image {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-image, .movie-detail .video-info .movie-content .movie-box .movie-image, .search-index .main-area .movie-content .movie-box .movie-image {
     position: relative;
     width: 100%;
     margin-bottom: 8px;
   }
-  .movie-detail .video-info .movie-content .movie-box .movie-image:before, .search-index .main-area .movie-content .movie-box .movie-image:before {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-image:before, .movie-detail .video-info .movie-content .movie-box .movie-image:before, .search-index .main-area .movie-content .movie-box .movie-image:before {
     content: "";
     display: block;
     padding-top: 56.8%;
   }
-  .movie-detail .video-info .movie-content .movie-box .movie-image a, .search-index .main-area .movie-content .movie-box .movie-image a {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-image a, .movie-detail .video-info .movie-content .movie-box .movie-image a, .search-index .main-area .movie-content .movie-box .movie-image a {
     position: absolute;
     top: 0;
     left: 0;
@@ -10542,14 +10542,14 @@ input[type=button] {
     background-size: cover;
     background-repeat: no-repeat;
   }
-  .movie-detail .video-info .movie-content .movie-box .movie-info, .search-index .main-area .movie-content .movie-box .movie-info {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-info, .movie-detail .video-info .movie-content .movie-box .movie-info, .search-index .main-area .movie-content .movie-box .movie-info {
     margin: 0 10px;
   }
-  .movie-detail .video-info .movie-content .movie-box .movie-info .movie-name, .search-index .main-area .movie-content .movie-box .movie-info .movie-name {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-info .movie-name, .movie-detail .video-info .movie-content .movie-box .movie-info .movie-name, .search-index .main-area .movie-content .movie-box .movie-info .movie-name {
     display: block;
     margin-bottom: 4px;
   }
-  .movie-detail .video-info .movie-content .movie-box .movie-info .user-name a, .search-index .main-area .movie-content .movie-box .movie-info .user-name a {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-info .user-name a, .movie-detail .video-info .movie-content .movie-box .movie-info .user-name a, .search-index .main-area .movie-content .movie-box .movie-info .user-name a {
     font-size: 1.2rem;
     color: #999999;
   }
@@ -11801,11 +11801,12 @@ input[type=button] {
   }
   .user-detail .main-content .tabs {
     display: flex;
+    overflow-x: scroll;
     border-bottom: 1px solid #ccc;
     margin-bottom: 20px;
   }
   .user-detail .main-content .tabs li {
-    flex: 1;
+    flex: 0 0 7em;
     text-align: center;
     padding-bottom: 4px;
   }

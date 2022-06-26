@@ -48,6 +48,7 @@ class SearchController extends Controller
 
     public function searchMovies(Request $request) {
         $q = $request->input('q');
+        $userId = $request->input('user_id');
 
         $movies = Movie::with(['user'])
             ->leftJoin('users as joinUsers', 'joinUsers.id', '=', 'movies.user_id')
@@ -58,8 +59,11 @@ class SearchController extends Controller
                 $query->orWhere('movies.name', 'like', '%' . $q . '%')
                     ->orWhere('joinGames.name', 'like', '%' . $q . '%')
                     ->orWhere('joinUsers.name', 'like', '%' . $q . '%');
-            })
-            ->orderBy('movies.created_at', 'desc')->paginate(10);
+            });
+        if ($userId) {
+            $movies->where('user_id', $userId);
+        }
+        $movies = $movies->orderBy('movies.created_at', 'desc')->paginate(10);
         // 画像の設定
         foreach ($movies as $movie) {
             $movie->image_path = $movie->getImagePath();

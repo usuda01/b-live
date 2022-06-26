@@ -6,47 +6,66 @@
         </div>
         <ul class="tabs">
             <li v-on:click="tabChange(1)" v-bind:class="{'active': activeTab === 1}">プロフィール</li>
-            <li v-on:click="tabChange(2)" v-bind:class="{'active': activeTab === 2}">動画</li>
-            <li v-on:click="tabChange(3)" v-bind:class="{'active': activeTab === 3}">サポーター</li>
+            <li v-on:click="tabChange(2)" v-bind:class="{'active': activeTab === 2}">ショート動画</li>
+            <li v-on:click="tabChange(3)" v-bind:class="{'active': activeTab === 3}">配信履歴</li>
+            <li v-on:click="tabChange(4)" v-bind:class="{'active': activeTab === 4}">サポーター</li>
         </ul>
         <div>
-        <div class="profile" v-if="activeTab === 1" v-html="profile"></div>
-        <div class="room-wrapper" v-else-if="activeTab === 2">
-            <h2 v-if="liveRooms.length" class="main-title">配信中</h2>
-            <div class="room-content">
-                <div v-for="room in liveRooms" :key="room.id" class="room-box">
-                    <div class="room-image"><a v-bind:href="'/room/' + room.id" v-bind:style="{ backgroundImage: 'url(' + room.stream_image_path + ')' }"></a></div>
-                    <div class="room-info">
-                        <a class="room-name" v-bind:href="'/room/' + room.id">{{ room.name }}</a>
-                        <div class="user-name">{{ room.user.name }}</div>
+
+            <div class="profile" v-if="activeTab === 1" v-html="profile"></div>
+
+            <div class="movie-wrapper" v-else-if="activeTab === 2">
+                <div class="movie-content">
+                    <div class="movie-box" v-for="movie in movies" :key="movie.id">
+                        <div class="movie-image">
+                            <a v-bind:href="'/movie/detail/' + movie.id" v-bind:style="{ backgroundImage: 'url(' + movie.image_path + ')' }"></a>
+                        </div>
+                        <div class="movie-info">
+                            <a v-bind:href="'/movie/detail/' + movie.id" class="movie-name">{{ movie.name }}</a>
+                            <div class="user-name"><a v-bind:href="'/user/' + movie.user.id">{{ movie.user.name }}</a></div>
+                        </div>
                     </div>
-                </div>
+                </div><!--// .movie-content -->
+                <infinite-loading @infinite="tab2InfiniteHandler"></infinite-loading>
             </div>
 
-            <h2 v-if="hasRoomData==true" class="main-title">過去の動画</h2>
-            <div class="room-content">
-                <div v-for="room in rooms" :key="room.id" class="room-box">
-                    <div class="room-image"><a v-bind:href="'/room/' + room.id" v-bind:style="{ backgroundImage: 'url(' + room.image_path + ')' }"></a></div>
-                    <div class="room-info">
-                        <a class="room-name" v-bind:href="'/room/' + room.id">{{ room.name }}</a>
-                        <div class="user-name">{{ room.user.name }}</div>
+            <div class="room-wrapper" v-else-if="activeTab === 3">
+                <h2 v-if="liveRooms.length" class="main-title">配信中</h2>
+                <div class="room-content">
+                    <div v-for="room in liveRooms" :key="room.id" class="room-box">
+                        <div class="room-image"><a v-bind:href="'/room/' + room.id" v-bind:style="{ backgroundImage: 'url(' + room.stream_image_path + ')' }"></a></div>
+                        <div class="room-info">
+                            <a class="room-name" v-bind:href="'/room/' + room.id">{{ room.name }}</a>
+                            <div class="user-name">{{ room.user.name }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 v-if="hasRoomData==true" class="main-title">過去の動画</h2>
+                <div class="room-content">
+                    <div v-for="room in rooms" :key="room.id" class="room-box">
+                        <div class="room-image"><a v-bind:href="'/room/' + room.id" v-bind:style="{ backgroundImage: 'url(' + room.image_path + ')' }"></a></div>
+                        <div class="room-info">
+                            <a class="room-name" v-bind:href="'/room/' + room.id">{{ room.name }}</a>
+                            <div class="user-name">{{ room.user.name }}</div>
+                        </div>
+                    </div>
+                </div>
+                <infinite-loading @infinite="tab3InfiniteHandler"></infinite-loading>
+            </div>
+
+            <div class="supporter" v-else-if="activeTab === 4">
+                <div v-for="supporter in supporters" :key="supporter.id" class="supporter-box">
+                    <a class="user-profile" v-bind:href="'/user/' + supporter.id" v-bind:style="{ backgroundImage: 'url(' + supporter.user_image_path + ')' }"></a>
+                    <div class="user-right">
+                        <div class="user-name"><a v-bind:href="'/user/' + supporter.id">{{ supporter.user_name }}</a></div>
+                        <div class="coin">
+                            <img src="/images/icon-coin.png">
+                            <div class="price">{{ supporter.total_price }}</div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <infinite-loading @infinite="infiniteHandler"></infinite-loading>
-        </div>
-        <div class="supporter" v-else-if="activeTab === 3">
-            <div v-for="supporter in supporters" :key="supporter.id" class="supporter-box">
-                <a class="user-profile" v-bind:href="'/user/' + supporter.id" v-bind:style="{ backgroundImage: 'url(' + supporter.user_image_path + ')' }"></a>
-                <div class="user-right">
-                    <div class="user-name"><a v-bind:href="'/user/' + supporter.id">{{ supporter.user_name }}</a></div>
-                    <div class="coin">
-                        <img src="/images/icon-coin.png">
-                        <div class="price">{{ supporter.total_price }}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
         </div>
     </div>
 </template>
@@ -64,8 +83,10 @@
         },
         data () {
             return {
-                page: 1,
+                tab2Page: 1,
+                tab3Page: 1,
                 profile: '',
+                movies: [],
                 rooms: [],
                 hasRoomData: true,
                 activeTab: 1,
@@ -145,22 +166,41 @@
             tabChange(num) {
                 this.activeTab = num
             },
-            infiniteHandler($state) {
+            tab2InfiniteHandler($state) {
+                axios.get('/api/search-movie', {
+                    params: {
+                        page: this.tab2Page,
+                        per_page: 1,
+                        user_id: this.targetUser.id
+                    },
+                }).then(({ data }) => {
+                    if (data.data.length) {
+                        this.tab2Page += 1
+                        this.movies.push(...data.data)
+                        $state.loaded();
+                    } else {
+                        $state.complete();
+                    }
+                }).catch((err) => {
+                    $state.complete()
+                })
+            },
+            tab3InfiniteHandler($state) {
                 axios.get('/api/user/', {
                     params: {
-                        page: this.page,
+                        page: this.tab3Page,
                         per_page: 1,
                         target_user: this.targetUser.id
                     },
                 }).then(({ data }) => {
                     // そのままだと読み込み時にカクつくので1500毎に読み込む
                     setTimeout(() => {
-                        if (data.data.length == 0 && this.page == 1) {
+                        if (data.data.length == 0 && this.tab3Page == 1) {
                             // 1件もデータがない場合
                             this.hasRoomData = false;
                         }
                         if (data.data.length) {
-                            this.page += 1
+                            this.tab3Page += 1
                             this.rooms.push(...data.data)
                             //console.log(this.rooms);
                             $state.loaded();

@@ -4481,6 +4481,25 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -4492,8 +4511,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   data: function data() {
     return {
-      page: 1,
+      tab2Page: 1,
+      tab3Page: 1,
       profile: '',
+      movies: [],
       rooms: [],
       hasRoomData: true,
       activeTab: 1,
@@ -4581,30 +4602,57 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     tabChange: function tabChange(num) {
       this.activeTab = num;
     },
-    infiniteHandler: function infiniteHandler($state) {
+    tab2InfiniteHandler: function tab2InfiniteHandler($state) {
       var _this4 = this;
 
-      axios.get('/api/user/', {
+      axios.get('/api/search-movie', {
         params: {
-          page: this.page,
+          page: this.tab2Page,
           per_page: 1,
-          target_user: this.targetUser.id
+          user_id: this.targetUser.id
         }
       }).then(function (_ref) {
         var data = _ref.data;
+
+        if (data.data.length) {
+          var _this4$movies;
+
+          _this4.tab2Page += 1;
+
+          (_this4$movies = _this4.movies).push.apply(_this4$movies, _toConsumableArray(data.data));
+
+          $state.loaded();
+        } else {
+          $state.complete();
+        }
+      })["catch"](function (err) {
+        $state.complete();
+      });
+    },
+    tab3InfiniteHandler: function tab3InfiniteHandler($state) {
+      var _this5 = this;
+
+      axios.get('/api/user/', {
+        params: {
+          page: this.tab3Page,
+          per_page: 1,
+          target_user: this.targetUser.id
+        }
+      }).then(function (_ref2) {
+        var data = _ref2.data;
         // そのままだと読み込み時にカクつくので1500毎に読み込む
         setTimeout(function () {
-          if (data.data.length == 0 && _this4.page == 1) {
+          if (data.data.length == 0 && _this5.tab3Page == 1) {
             // 1件もデータがない場合
-            _this4.hasRoomData = false;
+            _this5.hasRoomData = false;
           }
 
           if (data.data.length) {
-            var _this4$rooms;
+            var _this5$rooms;
 
-            _this4.page += 1;
+            _this5.tab3Page += 1;
 
-            (_this4$rooms = _this4.rooms).push.apply(_this4$rooms, _toConsumableArray(data.data)); //console.log(this.rooms);
+            (_this5$rooms = _this5.rooms).push.apply(_this5$rooms, _toConsumableArray(data.data)); //console.log(this.rooms);
 
 
             $state.loaded();
@@ -99432,7 +99480,7 @@ var render = function() {
             }
           }
         },
-        [_vm._v("動画")]
+        [_vm._v("ショート動画")]
       ),
       _vm._v(" "),
       _c(
@@ -99442,6 +99490,19 @@ var render = function() {
           on: {
             click: function($event) {
               return _vm.tabChange(3)
+            }
+          }
+        },
+        [_vm._v("配信履歴")]
+      ),
+      _vm._v(" "),
+      _c(
+        "li",
+        {
+          class: { active: _vm.activeTab === 4 },
+          on: {
+            click: function($event) {
+              return _vm.tabChange(4)
             }
           }
         },
@@ -99456,6 +99517,58 @@ var render = function() {
             domProps: { innerHTML: _vm._s(_vm.profile) }
           })
         : _vm.activeTab === 2
+        ? _c(
+            "div",
+            { staticClass: "movie-wrapper" },
+            [
+              _c(
+                "div",
+                { staticClass: "movie-content" },
+                _vm._l(_vm.movies, function(movie) {
+                  return _c(
+                    "div",
+                    { key: movie.id, staticClass: "movie-box" },
+                    [
+                      _c("div", { staticClass: "movie-image" }, [
+                        _c("a", {
+                          style: {
+                            backgroundImage: "url(" + movie.image_path + ")"
+                          },
+                          attrs: { href: "/movie/detail/" + movie.id }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "movie-info" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "movie-name",
+                            attrs: { href: "/movie/detail/" + movie.id }
+                          },
+                          [_vm._v(_vm._s(movie.name))]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "user-name" }, [
+                          _c(
+                            "a",
+                            { attrs: { href: "/user/" + movie.user.id } },
+                            [_vm._v(_vm._s(movie.user.name))]
+                          )
+                        ])
+                      ])
+                    ]
+                  )
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c("infinite-loading", {
+                on: { infinite: _vm.tab2InfiniteHandler }
+              })
+            ],
+            1
+          )
+        : _vm.activeTab === 3
         ? _c(
             "div",
             { staticClass: "room-wrapper" },
@@ -99536,11 +99649,13 @@ var render = function() {
                 0
               ),
               _vm._v(" "),
-              _c("infinite-loading", { on: { infinite: _vm.infiniteHandler } })
+              _c("infinite-loading", {
+                on: { infinite: _vm.tab3InfiniteHandler }
+              })
             ],
             1
           )
-        : _vm.activeTab === 3
+        : _vm.activeTab === 4
         ? _c(
             "div",
             { staticClass: "supporter" },
