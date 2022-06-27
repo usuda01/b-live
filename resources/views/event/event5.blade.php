@@ -70,7 +70,7 @@
                                 </div>
                                 <div class="user-info">
                                     <a class="user-profile" href="/user/{{ $movie->user->id }}" style="background-image: url({{ $movie->user->getImagePath() }})"></a>
-                                    <a class="user-name">{{ $movie->user->name }}</a>
+                                    <a class="user-name" href="/user/{{ $movie->user->id }}">{{ $movie->user->name }}</a>
                                 </div>
                                 <div class="count">
                                     <span class="number">{{ $movie->movie_goods_count }}</span>
