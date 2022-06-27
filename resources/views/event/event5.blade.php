@@ -13,14 +13,14 @@
     <meta name="keywords" content="B-LIVE,ライブ配信,配信,ゲーム,ゲーム実況,ゲーム配信">
     <meta name="description" content="B-LIVE（ビーライブ）は、ゲームのライブ配信プラットフォームです！お気に入りの配信者を見つけて、一緒に盛り上がろう！">
     <meta property="og:title" content="B-LIVE｜1万円獲得イベント" />
-    <meta property="og:description" content="動画をアップしていいね数１位を目指そう！" />
+    <meta property="og:description" content="ショート動画を投稿していいね数１位を目指そう！" />
     <meta property="og:url" content="{{ Request::url() }}" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="{{ Request::getSchemeAndHttpHost() }}/images/event5/ogp-event.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="1万円獲得イベント｜B-LIVE" />
     <meta property="twitter:image" content="{{ Request::getSchemeAndHttpHost() }}/images/event5/ogp-event.png" />
-    <meta name="twitter:description" content="動画をアップしていいね数１位を目指そう！" />
+    <meta name="twitter:description" content="ショート動画を投稿していいね数１位を目指そう！" />
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
     <link href="{{ mix('css/fonts.css') }}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}?param=37" rel="stylesheet">
