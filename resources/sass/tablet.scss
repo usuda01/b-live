@@ -1905,6 +1905,7 @@
             }
             .profile {
                 white-space: pre-wrap;
+                word-wrap: break-word;
                 a {
                     color: $base-color;
                 }

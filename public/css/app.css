@@ -11815,6 +11815,7 @@ input[type=button] {
   }
   .user-detail .main-content .profile {
     white-space: pre-wrap;
+    word-wrap: break-word;
   }
   .user-detail .main-content .profile a {
     color: #9e1b9e;
