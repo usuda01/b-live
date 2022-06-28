@@ -343,6 +343,7 @@ class SettingController extends Controller
         $originImg = $request->image;
         if ($originImg) {
             if ($originImg->isValid()) {
+                Helper::resizeImage($originImg->getPathname(), 1280);
                 $filePath = $originImg->store('public/users');
                 $user->image = str_replace('public/users/', '', $filePath);
             }
