@@ -62,7 +62,7 @@
         },
         computed: {
             snsTags: function () {
-                let result = '#BLIVE動画 #ゲーム動画';
+                let result = '#BLIVEショート #ゲーム動画';
                 if (this.movie.game) {
                     let tagsArray = this.movie.game.sns_tags.split(',');
                     let tagsJoin = '';

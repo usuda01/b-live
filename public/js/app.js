@@ -2361,7 +2361,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   computed: {
     snsTags: function snsTags() {
-      var result = '#BLIVE動画 #ゲーム動画';
+      var result = '#BLIVEショート #ゲーム動画';
 
       if (this.movie.game) {
         var tagsArray = this.movie.game.sns_tags.split(',');
