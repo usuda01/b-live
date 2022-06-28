@@ -33,9 +33,13 @@ class TwitterController extends Controller
 
         $user = User::where('twitter_id', $twitterUser->id)->first();
         if (!$user) {
+            $email = $twitterUser->getEmail();
+            if (!$email) {
+                $email = $twitterUser->nickname . '@pseudo.twitter.com';
+            }
             $user = User::create([
                 'name' => mb_substr($twitterUser->name, 0, 24),
-                'email' => $twitterUser->nickname . '@pseudo.twitter.com',
+                'email' => $email,
                 'password' => '1',
                 'api_token' => Str::random(80),
                 'status' => 2,
