@@ -138,6 +138,10 @@
                     });
             },
             infiniteHandler($state) {
+                if (this.movie.game == null) {
+                    $state.complete();
+                    return;
+                }
                 axios.get('/api/search-movie', {
                     params: {
                         page: this.page,
@@ -153,7 +157,7 @@
                         $state.complete();
                     }
                 }).catch((err) => {
-                    $state.complete()
+                    $state.complete();
                 })
             },
         }

@@ -2448,6 +2448,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     infiniteHandler: function infiniteHandler($state) {
       var _this4 = this;
 
+      if (this.movie.game == null) {
+        $state.complete();
+        return;
+      }
+
       axios.get('/api/search-movie', {
         params: {
           page: this.page,
