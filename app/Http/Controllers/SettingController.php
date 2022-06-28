@@ -332,6 +332,7 @@ class SettingController extends Controller
             'email' => 'required|max:64',
             'profile' => 'max:500',
             'twitter_url' => 'max:128',
+            'image' => 'image',
         ]);
 
         if ($validator->fails()) {
