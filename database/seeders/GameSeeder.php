@@ -34,6 +34,7 @@ class GameSeeder extends Seeder
             ['id' => 17, 'name' => 'Fall Guys: Ultimate Knockout', 'sns_tags' => 'FallGuys', 'sales_agency' => '任天堂'],
             ['id' => 18, 'name' => 'スーパーマリオ ３Ｄワールド ＋ フューリーワールド', 'sns_tags' => 'スーパーマリオ3Dワールド,マリオ3Dワールド', 'sales_agency' => '任天堂'],
             ['id' => 19, 'name' => 'Tom Clancy`s Rainbow Six Siege', 'sns_tags' => 'レインボーシックスシージ,シージ,RainbowSix,RainbowSixSiege', 'sales_agency' => 'ユービーアイソフト'],
+            ['id' => 20, 'name' => 'モンスターハンターライズ', 'sns_tags' => 'モンハンライズ', 'sales_agency' => '任天堂'],
         ]);
     }
 }
