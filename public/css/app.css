@@ -726,12 +726,42 @@
 }
 .event-event5 .event-detail .detail div {
   margin-bottom: 10px;
+  line-height: 1.5;
 }
 .event-event5 .event-detail .detail div:last-child {
   margin-bottom: 0;
 }
+.event-event5 .event-howto {
+  margin-bottom: 35px;
+}
+.event-event5 .event-howto .title {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  text-align: center;
+  font-weight: bold;
+}
+.event-event5 .event-howto .notice {
+  color: #ff0000;
+  text-align: center;
+  margin-bottom: 12px;
+}
+.event-event5 .event-howto .detail {
+  margin: 0 15px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 6px;
+}
+.event-event5 .event-howto .detail .margin {
+  margin-bottom: 10px;
+}
+.event-event5 .event-howto .detail .child {
+  padding-left: 1em;
+}
 .event-event5 .event-caution {
   margin-bottom: 35px;
+}
+.event-event5 .event-caution a {
+  color: #9e1b9e;
 }
 .event-event5 .event-caution .title {
   font-size: 1.6rem;

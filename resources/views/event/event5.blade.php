@@ -85,10 +85,38 @@
             <div class="event-detail">
                 <h2 class="title">イベント詳細</h2>
                 <div class="detail">
-                    <div>▼特典<br>動画のいいね数１位の方に<br>amazon ギフト券 1万円分プレゼント</div>
-                    <div>▼イベント期間<br>2022/6/27(月) 0時 ～ 2022/7/7(木) 23:59:59</div>
-                    <div>▼参加方法<br>①<a class="twitter" href="https://twitter.com/BLIVE77191685/status/1540265976859480064" target="_blank">この投稿</a>をリツイート＆フォロー<br>②B-LIVEにて、ショート動画を投稿</div>
+                    <div>
+                        <p>▼特典</p>
+                        <p>動画のいいね数１位の方に</p>
+                        <p>amazon ギフト券 1万円分プレゼント</p>
+                    </div>
+                    <div>
+                        <p>▼イベント期間</p>
+                        <p>2022/6/27(月) 0時 ～ 2022/7/7(木) 23:59:59</p>
+                    </div>
+                    <div>
+                        <p>▼参加方法</p>
+                        <p>① <a class="twitter" href="https://twitter.com/BLIVE77191685/status/1540265976859480064" target="_blank">この投稿</a>をリツイート＆フォロー</p>
+                        <p>② B-LIVEにて、ショート動画を投稿</p>
+                    </div>
                     <div>▼対象コンテンツ<br>ゲームのプレイ動画</div>
+                </div>
+            </div>
+
+            <div class="event-howto">
+                <h2 class="title">動画投稿の方法</h2>
+                <div class="notice">※PCからのみ投稿可能です。<br>スマホからは投稿できません。</div>
+                <div class="detail">
+                    <ul>
+                        <li class="midashi">① B-LIVEに登録</li>
+                        <li class="child margin">SNSアカウントでログイン出来ます</li>
+                        <li class="midashi margin">② ログイン後、右上のアイコンから"配信管理"を選択</li>
+                        <li class="midashi margin">③ 左メニューの"動画投稿"を選択</li>
+                        <li class="midashi">④ 投稿可能な動画について</li>
+                        <li class="child">・mp4形式の動画</li>
+                        <li class="child">・30秒以内、50Mバイト以内</li>
+                        <li class="child">・10本まで投稿可能です</li>
+                    </ul>
                 </div>
             </div>
 

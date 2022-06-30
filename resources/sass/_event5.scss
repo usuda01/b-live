@@ -120,13 +120,43 @@
             }
             div {
                 margin-bottom: 10px;
+                line-height: 1.5;
                 &:last-child {
                     margin-bottom: 0;
                 }
             }
         }
     }
+    .event-howto {
+        margin-bottom: 35px;
+        .title {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .notice {
+            color: #ff0000;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        .detail {
+            margin: 0 15px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 6px;
+            .margin {
+                margin-bottom: 10px;
+            }
+            .child {
+                padding-left: 1em;
+            }
+        }
+    }
     .event-caution {
+        a {
+            color: #9e1b9e;
+        }
         margin-bottom: 35px;
         .title {
             font-size: 1.6rem;
