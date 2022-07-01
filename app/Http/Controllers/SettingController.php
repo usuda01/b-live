@@ -223,7 +223,8 @@ class SettingController extends Controller
             $fileName = date('Y-m-d-H-i-s').'.'.$pathInfo['extension'];
             if ($originMovie->isValid()) {
                 if (!in_array($pathInfo['extension'], ['mp4', 'MP4'])) {
-                    abort(404);
+                    $request->session()->flash('flash_message', 'mp4形式の動画を投稿してください');
+                    return redirect('setting/movie');
                 }
             } else {
                 //echo $originMovie->getErrorMessage();
@@ -243,9 +244,6 @@ class SettingController extends Controller
                         if ($durationInSeconds > config('services.max_movie_upload_seconds')) {
                             Storage::disk('public')->delete('movies/'.$fileName);
                             $fail(config('services.max_movie_upload_seconds').'秒以内の動画を投稿してください');
-                        } else if (!in_array($pathInfo['extension'], ['mp4', 'MP4'])) {
-                            Storage::disk('public')->delete('movies/'.$fileName);
-                            $fail('mp4形式の動画を投稿してください');
                         }
                     }
                 ],
