@@ -12757,6 +12757,10 @@ input[type=button] {
   /*
    * 動画投稿
    */
+  .setting-movie .main-content .movie-form .flash_message {
+    margin-bottom: 30px;
+    color: #ff0000;
+  }
   .setting-movie .main-content .movie-form li {
     margin-bottom: 30px;
   }
