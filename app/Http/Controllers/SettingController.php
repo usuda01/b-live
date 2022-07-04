@@ -220,9 +220,9 @@ class SettingController extends Controller
                 abort(404);
             }
             $pathInfo = pathinfo($originMovie->getClientOriginalName());
-            $fileName = date('Y-m-d-H-i-s').'.'.$pathInfo['extension'];
+            $fileName = date('Y-m-d-H-i-s') . '.' . $pathInfo['extension'];
             if ($originMovie->isValid()) {
-                if (!in_array($pathInfo['extension'], ['mp4', 'MP4'])) {
+                if (!in_array($pathInfo['extension'], ['mp4', 'MP4', 'MOV'])) {
                     $request->session()->flash('flash_message', 'mp4形式の動画を投稿してください');
                     return redirect('setting/movie');
                 }
@@ -231,22 +231,28 @@ class SettingController extends Controller
                 abort(404);
             }
 
+            $originMovie->storeAs('public/movies', $fileName);
+
+            // mov→mp4へ変換
+            if ($pathInfo['extension'] === 'MOV') {
+                $path = storage_path('app/public/movies/');
+                // ffmpeg -i xxx.MOV xxx.mp4
+                $out = shell_exec('ffmpeg -i '.$path.$fileName.' '.$path.str_replace($pathInfo['extension'], '', $fileName).'mp4');
+                Storage::disk('public')->delete('movies/'.$fileName);
+                $fileName = str_replace($pathInfo['extension'], 'mp4', $fileName);
+            }
+
+            $media = FFMpeg::fromDisk('public')->open('movies/'.$fileName);
+            $durationInSeconds = $media->getDurationInSeconds();
+            if ($durationInSeconds > config('services.max_movie_upload_seconds')) {
+                Storage::disk('public')->delete('movies/'.$fileName);
+                $request->session()->flash('flash_message', config('services.max_movie_upload_seconds').'秒以内の動画を投稿してください');
+                return redirect('setting/movie');
+            }
+
             $validator = Validator::make($request->all(), [
                 'name' => 'required|max:64',
                 'is_publish' => 'required|integer',
-                'movie' => [
-                    function ($attribute, $value, $fail) use ($fileName) {
-                        $originMovie = $value;
-                        $pathInfo = pathinfo($originMovie->getClientOriginalName());
-                        $originMovie->storeAs('public/movies', $fileName);
-                        $media = FFMpeg::fromDisk('public')->open('movies/'.$fileName);
-                        $durationInSeconds = $media->getDurationInSeconds();
-                        if ($durationInSeconds > config('services.max_movie_upload_seconds')) {
-                            Storage::disk('public')->delete('movies/'.$fileName);
-                            $fail(config('services.max_movie_upload_seconds').'秒以内の動画を投稿してください');
-                        }
-                    }
-                ],
             ]);
             $movie = new Movie();
             $movie->path = $fileName;
@@ -273,6 +279,10 @@ class SettingController extends Controller
         }
 
         if ($validator->fails()) {
+            if ($mode == 'create') {
+                Storage::disk('public')->delete('movies/'.$fileName);
+            }
+
             return redirect('setting/movie/' . $movieId)
                 ->withErrors($validator)
                 ->withInput();

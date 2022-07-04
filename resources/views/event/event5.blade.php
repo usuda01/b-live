@@ -105,7 +105,7 @@
 
             <div class="event-howto">
                 <h2 class="title">動画投稿の方法</h2>
-                <div class="notice">※PCからのみ投稿可能です。<br>スマホからは投稿できません。</div>
+                <!--<div class="notice">※PCからのみ投稿可能です。<br>スマホからは投稿できません。</div>-->
                 <div class="detail">
                     <ul>
                         <li class="midashi">① B-LIVEに登録</li>
