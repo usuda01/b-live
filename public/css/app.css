@@ -10539,29 +10539,29 @@ input[type=button] {
     color: #999999;
   }
 
-  .user-detail .main-content .movie-wrapper .movie-content, .movie-detail .video-info .movie-content, .search-index .main-area .movie-content {
+  .user-detail .main-content .movie-wrapper .movie-content, .movie-detail .video-info .movie-content, .movie-search .main-area .movie-content, .search-index .main-area .movie-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
   }
-  .user-detail .main-content .movie-wrapper .movie-content .movie-box, .movie-detail .video-info .movie-content .movie-box, .search-index .main-area .movie-content .movie-box {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box, .movie-detail .video-info .movie-content .movie-box, .movie-search .main-area .movie-content .movie-box, .search-index .main-area .movie-content .movie-box {
     flex-basis: 49%;
     margin: 0 2% 18px 0;
   }
-  .user-detail .main-content .movie-wrapper .movie-content .movie-box:nth-child(2n), .movie-detail .video-info .movie-content .movie-box:nth-child(2n), .search-index .main-area .movie-content .movie-box:nth-child(2n) {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box:nth-child(2n), .movie-detail .video-info .movie-content .movie-box:nth-child(2n), .movie-search .main-area .movie-content .movie-box:nth-child(2n), .search-index .main-area .movie-content .movie-box:nth-child(2n) {
     margin-right: 0;
   }
-  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-image, .movie-detail .video-info .movie-content .movie-box .movie-image, .search-index .main-area .movie-content .movie-box .movie-image {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-image, .movie-detail .video-info .movie-content .movie-box .movie-image, .movie-search .main-area .movie-content .movie-box .movie-image, .search-index .main-area .movie-content .movie-box .movie-image {
     position: relative;
     width: 100%;
     margin-bottom: 8px;
   }
-  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-image:before, .movie-detail .video-info .movie-content .movie-box .movie-image:before, .search-index .main-area .movie-content .movie-box .movie-image:before {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-image:before, .movie-detail .video-info .movie-content .movie-box .movie-image:before, .movie-search .main-area .movie-content .movie-box .movie-image:before, .search-index .main-area .movie-content .movie-box .movie-image:before {
     content: "";
     display: block;
     padding-top: 56.8%;
   }
-  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-image a, .movie-detail .video-info .movie-content .movie-box .movie-image a, .search-index .main-area .movie-content .movie-box .movie-image a {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-image a, .movie-detail .video-info .movie-content .movie-box .movie-image a, .movie-search .main-area .movie-content .movie-box .movie-image a, .search-index .main-area .movie-content .movie-box .movie-image a {
     position: absolute;
     top: 0;
     left: 0;
@@ -10572,14 +10572,14 @@ input[type=button] {
     background-size: cover;
     background-repeat: no-repeat;
   }
-  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-info, .movie-detail .video-info .movie-content .movie-box .movie-info, .search-index .main-area .movie-content .movie-box .movie-info {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-info, .movie-detail .video-info .movie-content .movie-box .movie-info, .movie-search .main-area .movie-content .movie-box .movie-info, .search-index .main-area .movie-content .movie-box .movie-info {
     margin: 0 10px;
   }
-  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-info .movie-name, .movie-detail .video-info .movie-content .movie-box .movie-info .movie-name, .search-index .main-area .movie-content .movie-box .movie-info .movie-name {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-info .movie-name, .movie-detail .video-info .movie-content .movie-box .movie-info .movie-name, .movie-search .main-area .movie-content .movie-box .movie-info .movie-name, .search-index .main-area .movie-content .movie-box .movie-info .movie-name {
     display: block;
     margin-bottom: 4px;
   }
-  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-info .user-name a, .movie-detail .video-info .movie-content .movie-box .movie-info .user-name a, .search-index .main-area .movie-content .movie-box .movie-info .user-name a {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-info .user-name a, .movie-detail .video-info .movie-content .movie-box .movie-info .user-name a, .movie-search .main-area .movie-content .movie-box .movie-info .user-name a, .search-index .main-area .movie-content .movie-box .movie-info .user-name a {
     font-size: 1.2rem;
     color: #999999;
   }
@@ -11616,48 +11616,6 @@ input[type=button] {
     margin: 26px 0 18px 10px;
     color: #9e1b9e;
   }
-  .movie-search .main-area .movie-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-  }
-  .movie-search .main-area .movie-content .movie-box {
-    flex-basis: 49%;
-    margin: 0 2% 18px 0;
-  }
-  .movie-search .main-area .movie-content .movie-box:nth-child(2n) {
-    margin-right: 0;
-  }
-  .movie-search .main-area .movie-content .movie-box .movie-image {
-    position: relative;
-    width: 100%;
-    margin-bottom: 8px;
-  }
-  .movie-search .main-area .movie-content .movie-box .movie-image:before {
-    content: "";
-    display: block;
-    padding-top: 56.8%;
-  }
-  .movie-search .main-area .movie-content .movie-box .movie-image a {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-position: center;
-    display: block;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-  .movie-search .main-area .movie-content .movie-box .movie-info .movie-name {
-    display: block;
-    margin-bottom: 4px;
-  }
-  .movie-search .main-area .movie-content .movie-box .movie-info .user-name a {
-    font-size: 1.2rem;
-    color: #999999;
-  }
-
   /*
    * 動画個別
    */
