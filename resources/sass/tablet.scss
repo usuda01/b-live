@@ -461,6 +461,16 @@
                     background-size: cover;
                     background-repeat: no-repeat;
                 }
+                .time {
+                    position: absolute;
+                    left: 6px;
+                    bottom: 6px;
+                    padding: 1px 8px;
+                    color: #fff;
+                    background-color: rgba(0,0,0,.54);
+                    font-size: 1.2rem;
+                    border-radius: 8px;
+                }
                 .live {
                     position: absolute;
                     top: 4px;
@@ -515,6 +525,16 @@
                     display: block;
                     background-size: cover;
                     background-repeat: no-repeat;
+                }
+                .time {
+                    position: absolute;
+                    left: 6px;
+                    bottom: 6px;
+                    padding: 1px 8px;
+                    color: #fff;
+                    background-color: rgba(0,0,0,.54);
+                    font-size: 1.2rem;
+                    border-radius: 8px;
                 }
             }
             .movie-info {

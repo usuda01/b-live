@@ -5,6 +5,38 @@ namespace App\Helpers;
 class Helper
 {
 
+    /*
+     * Time型文字列をISO 8601 形式に変換
+     *
+     * @param string $time
+     * @return string
+     */
+    public static function timeToIso($time) {
+        $seconds = (int)substr($time, -2); //秒
+        $duration = "PT{$seconds}S";
+        return $duration;
+    }
+
+    /**
+     * 秒数をTime型に変換
+     *
+     * @param int $seconds
+     * @return string
+     */
+    public static function secToStr($sec) {
+        $hours = floor($sec / 3600); //時間
+        $minutes = floor(($sec / 60) % 60); //分
+        $seconds = floor($sec % 60); //秒
+        if ($hours == 0) {
+            $hms = '00:' . sprintf('%02d', $minutes) .':'. sprintf('%02d', $seconds);
+        } else if ($minutes == 0) {
+            $hms = '00:00:' . sprintf('%02d', $seconds);
+        } else {
+            $hms = sprintf('%02d', $hours) . ':' . sprintf('%02d', $minutes) .':'. sprintf('%02d', $seconds);
+        }
+        return $hms;
+    }
+
     /**
      * 時間の差分を計算する
      *

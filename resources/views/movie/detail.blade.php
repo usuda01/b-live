@@ -27,6 +27,7 @@
     "@type": "VideoObject",
     "name": "@if($movie->game){{ $movie->game->name }}｜@endif{{ $movie->name }} - ショート動画",
     "description": "{{ $movie->name }}",
+    "duration": "{{ \App\Helpers\Helper::timeToIso($movie->duration) }}",
     "thumbnailUrl": "{{ Request::getSchemeAndHttpHost() }}{{ $movie->image_path }}",
     "uploadDate": "{{ $movie->updated_at->format('Y-m-d') }}",
     "contentUrl": "{{ Request::getSchemeAndHttpHost() }}{{ $movie->getFilePath() }}"

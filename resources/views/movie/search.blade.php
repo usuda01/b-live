@@ -8,6 +8,7 @@
                     <div class="movie-box">
                         <div class="movie-image">
                             <a href="/movie/detail/{{ $movie->id }}" v-bind:style="{ backgroundImage: 'url({{ $movie->getImagePath() }})' }"></a>
+                            <div class="time">{{ substr($movie->duration, -5) }}</div>
                         </div>
                         <div class="movie-info">
                             <a class="movie-name" href="/movie/detail/{{ $movie->id }}">{{ $movie->name }}</a>

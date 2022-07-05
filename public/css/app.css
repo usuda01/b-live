@@ -7280,6 +7280,16 @@ input[type=email] {
     background-size: cover;
     background-repeat: no-repeat;
   }
+  .search-index .main-area .room-content .room-box .room-image .time, .home-index .main-area .room-content .room-box .room-image .time {
+    position: absolute;
+    left: 6px;
+    bottom: 6px;
+    padding: 1px 8px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.54);
+    font-size: 1.2rem;
+    border-radius: 8px;
+  }
   .search-index .main-area .room-content .room-box .room-image .live, .home-index .main-area .room-content .room-box .room-image .live {
     position: absolute;
     top: 4px;
@@ -7298,29 +7308,29 @@ input[type=email] {
     color: #999999;
   }
 
-  .user-detail .main-content .movie-wrapper .movie-content, .movie-detail .video-info .movie-content, .search-index .main-area .movie-content {
+  .user-detail .main-content .movie-wrapper .movie-content, .movie-detail .video-info .movie-content, .movie-search .main-area .movie-content, .search-index .main-area .movie-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
   }
-  .user-detail .main-content .movie-wrapper .movie-content .movie-box, .movie-detail .video-info .movie-content .movie-box, .search-index .main-area .movie-content .movie-box {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box, .movie-detail .video-info .movie-content .movie-box, .movie-search .main-area .movie-content .movie-box, .search-index .main-area .movie-content .movie-box {
     flex-basis: 24.1%;
     margin: 0 1.2% 20px 0;
   }
-  .user-detail .main-content .movie-wrapper .movie-content .movie-box:nth-child(4n), .movie-detail .video-info .movie-content .movie-box:nth-child(4n), .search-index .main-area .movie-content .movie-box:nth-child(4n) {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box:nth-child(4n), .movie-detail .video-info .movie-content .movie-box:nth-child(4n), .movie-search .main-area .movie-content .movie-box:nth-child(4n), .search-index .main-area .movie-content .movie-box:nth-child(4n) {
     margin-right: 0;
   }
-  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-image, .movie-detail .video-info .movie-content .movie-box .movie-image, .search-index .main-area .movie-content .movie-box .movie-image {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-image, .movie-detail .video-info .movie-content .movie-box .movie-image, .movie-search .main-area .movie-content .movie-box .movie-image, .search-index .main-area .movie-content .movie-box .movie-image {
     position: relative;
     width: 100%;
     margin-bottom: 12px;
   }
-  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-image:before, .movie-detail .video-info .movie-content .movie-box .movie-image:before, .search-index .main-area .movie-content .movie-box .movie-image:before {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-image:before, .movie-detail .video-info .movie-content .movie-box .movie-image:before, .movie-search .main-area .movie-content .movie-box .movie-image:before, .search-index .main-area .movie-content .movie-box .movie-image:before {
     content: "";
     display: block;
     padding-top: 56.8%;
   }
-  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-image a, .movie-detail .video-info .movie-content .movie-box .movie-image a, .search-index .main-area .movie-content .movie-box .movie-image a {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-image a, .movie-detail .video-info .movie-content .movie-box .movie-image a, .movie-search .main-area .movie-content .movie-box .movie-image a, .search-index .main-area .movie-content .movie-box .movie-image a {
     position: absolute;
     top: 0;
     left: 0;
@@ -7331,11 +7341,21 @@ input[type=email] {
     background-size: cover;
     background-repeat: no-repeat;
   }
-  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-info .movie-name, .movie-detail .video-info .movie-content .movie-box .movie-info .movie-name, .search-index .main-area .movie-content .movie-box .movie-info .movie-name {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-image .time, .movie-detail .video-info .movie-content .movie-box .movie-image .time, .movie-search .main-area .movie-content .movie-box .movie-image .time, .search-index .main-area .movie-content .movie-box .movie-image .time {
+    position: absolute;
+    left: 6px;
+    bottom: 6px;
+    padding: 1px 8px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.54);
+    font-size: 1.2rem;
+    border-radius: 8px;
+  }
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-info .movie-name, .movie-detail .video-info .movie-content .movie-box .movie-info .movie-name, .movie-search .main-area .movie-content .movie-box .movie-info .movie-name, .search-index .main-area .movie-content .movie-box .movie-info .movie-name {
     display: block;
     margin-bottom: 4px;
   }
-  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-info .user-name a, .movie-detail .video-info .movie-content .movie-box .movie-info .user-name a, .search-index .main-area .movie-content .movie-box .movie-info .user-name a {
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-info .user-name a, .movie-detail .video-info .movie-content .movie-box .movie-info .user-name a, .movie-search .main-area .movie-content .movie-box .movie-info .user-name a, .search-index .main-area .movie-content .movie-box .movie-info .user-name a {
     font-size: 1.2rem;
     color: #999999;
   }
@@ -8440,48 +8460,6 @@ input[type=email] {
     padding: 46px 0 18px 0;
     color: #9e1b9e;
   }
-  .movie-search .main-area .movie-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-  }
-  .movie-search .main-area .movie-content .movie-box {
-    flex-basis: 24.1%;
-    margin: 0 1.2% 20px 0;
-  }
-  .movie-search .main-area .movie-content .movie-box:nth-child(4n) {
-    margin-right: 0;
-  }
-  .movie-search .main-area .movie-content .movie-box .movie-image {
-    position: relative;
-    width: 100%;
-    margin-bottom: 12px;
-  }
-  .movie-search .main-area .movie-content .movie-box .movie-image:before {
-    content: "";
-    display: block;
-    padding-top: 56.8%;
-  }
-  .movie-search .main-area .movie-content .movie-box .movie-image a {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-position: center;
-    display: block;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-  .movie-search .main-area .movie-content .movie-box .movie-info .movie-name {
-    display: block;
-    margin-bottom: 4px;
-  }
-  .movie-search .main-area .movie-content .movie-box .movie-info .user-name a {
-    font-size: 1.2rem;
-    color: #999999;
-  }
-
   /*
    * 動画個別
    */
@@ -10519,6 +10497,16 @@ input[type=button] {
     background-size: cover;
     background-repeat: no-repeat;
   }
+  .search-index .main-area .room-content .room-box .room-image .time, .home-index .main-area .room-content .room-box .room-image .time {
+    position: absolute;
+    left: 6px;
+    bottom: 6px;
+    padding: 1px 8px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.54);
+    font-size: 1.2rem;
+    border-radius: 8px;
+  }
   .search-index .main-area .room-content .room-box .room-image .live, .home-index .main-area .room-content .room-box .room-image .live {
     position: absolute;
     top: 4px;
@@ -10571,6 +10559,16 @@ input[type=button] {
     display: block;
     background-size: cover;
     background-repeat: no-repeat;
+  }
+  .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-image .time, .movie-detail .video-info .movie-content .movie-box .movie-image .time, .movie-search .main-area .movie-content .movie-box .movie-image .time, .search-index .main-area .movie-content .movie-box .movie-image .time {
+    position: absolute;
+    left: 6px;
+    bottom: 6px;
+    padding: 1px 8px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.54);
+    font-size: 1.2rem;
+    border-radius: 8px;
   }
   .user-detail .main-content .movie-wrapper .movie-content .movie-box .movie-info, .movie-detail .video-info .movie-content .movie-box .movie-info, .movie-search .main-area .movie-content .movie-box .movie-info, .search-index .main-area .movie-content .movie-box .movie-info {
     margin: 0 10px;

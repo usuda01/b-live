@@ -4331,6 +4331,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -4433,6 +4434,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+//
 //
 //
 //
@@ -99289,7 +99291,11 @@ var render = function() {
                         backgroundImage: "url(" + movie.image_path + ")"
                       },
                       attrs: { href: "/movie/detail/" + movie.id }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "time" }, [
+                      _vm._v(_vm._s(movie.duration.slice(-5)))
+                    ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "movie-info" }, [
@@ -99540,7 +99546,11 @@ var render = function() {
                             backgroundImage: "url(" + movie.image_path + ")"
                           },
                           attrs: { href: "/movie/detail/" + movie.id }
-                        })
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "time" }, [
+                          _vm._v(_vm._s(movie.duration.slice(-5)))
+                        ])
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "movie-info" }, [

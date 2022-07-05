@@ -255,6 +255,7 @@ class SettingController extends Controller
                 'is_publish' => 'required|integer',
             ]);
             $movie = new Movie();
+            $movie->duration = Helper::secToStr($durationInSeconds);
             $movie->path = $fileName;
         } else if ($mode == 'edit') {
             // 編集

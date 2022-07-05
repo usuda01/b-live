@@ -367,6 +367,16 @@
                     background-size: cover;
                     background-repeat: no-repeat;
                 }
+                .time {
+                    position: absolute;
+                    left: 6px;
+                    bottom: 6px;
+                    padding: 1px 8px;
+                    color: #fff;
+                    background-color: rgba(0,0,0,.54);
+                    font-size: 1.2rem;
+                    border-radius: 8px;
+                }
                 .live {
                     position: absolute;
                     top: 4px;
@@ -419,6 +429,16 @@
                     display: block;
                     background-size: cover;
                     background-repeat: no-repeat;
+                }
+                .time {
+                    position: absolute;
+                    left: 6px;
+                    bottom: 6px;
+                    padding: 1px 8px;
+                    color: #fff;
+                    background-color: rgba(0,0,0,.54);
+                    font-size: 1.2rem;
+                    border-radius: 8px;
                 }
             }
             .movie-info {
@@ -1638,49 +1658,7 @@
                 color: $base-color;
             }
             .movie-content {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: flex-start;
-                .movie-box {
-                    flex-basis: 24.1%;
-                    margin: 0 1.2% 20px 0;
-                    &:nth-child(4n) {
-                        margin-right: 0;
-                    }
-                    .movie-image {
-                        position: relative;
-                        width: 100%;
-                        margin-bottom: 12px;
-                        &:before {
-                            content: "";
-                            display: block;
-                            padding-top: 56.8%;
-                        }
-                        a {
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            bottom: 0;
-                            right: 0;
-                            background-position: center;
-                            display: block;
-                            background-size: cover;
-                            background-repeat: no-repeat;
-                        }
-                    }
-                    .movie-info {
-                        .movie-name {
-                            display: block;
-                            margin-bottom: 4px;
-                        }
-                        .user-name {
-                            a {
-                                font-size: 1.2rem;
-                                color: #999999;
-                            }
-                        }
-                    }
-                }
+                @extend %movie-content;
             }
         }
     }
