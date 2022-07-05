@@ -16,6 +16,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomRankingController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+
+// サイトマップ
+Route::get('/sitemap.xml', [SitemapController::class, 'index']);
+Route::group(['prefix' => 'sitemap'], function () {
+    Route::get('movie.xml', [SitemapController::class, 'movie']);
+    Route::get('page.xml', [SitemapController::class, 'page']);
+});
 
 // 問い合わせ
 Route::get('contact', [ContactController::class, 'form']);
