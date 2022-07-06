@@ -456,6 +456,38 @@
         }
     }
 
+    %user-content {
+        .user-box {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            .user-image {
+                margin-right: 34px;
+                a {
+                    display: block;
+                    width: 120px;
+                    height: 120px;
+                    border-radius: 50%;
+                    border: 3px solid $base-color;
+                    background-position: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+            }
+            .user-info {
+                display: flex;
+                flex-direction: column;
+                .user-name {
+                    font-size: 1.6rem;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                }
+                .user-profile {
+                }
+            }
+        }
+    }
+
     /*
      * アプリインストール
      */
@@ -1632,16 +1664,53 @@
         .main-area {
             .main-title {
                 font-size: 2rem;
-                padding: 46px 0 18px 0;
+                padding: 46px 0 30px 0;
                 color: $base-color;
             }
             width: calc(100% - 280px);
             margin-right: 20px;
-            .room-content {
-                @extend %room-content;
+            .tabs {
+                display: flex;
+                border-bottom: 1px solid #ccc;
+                margin-bottom: 30px;
+                li {
+                    flex-basis: 120px;
+                    text-align: center;
+                    padding-bottom: 6px;
+                    a {
+                        display: block;
+                    }
+                }
+                .active {
+                    border-bottom: 2px solid $base-color;
+                }
             }
-            .movie-content {
-                @extend %movie-content;
+            .room-wrapper {
+                display: none;
+                &.active {
+                    display: block;
+                }
+                .room-content {
+                    @extend %room-content;
+                }
+            }
+            .movie-wrapper {
+                display: none;
+                &.active {
+                    display: block;
+                }
+                .movie-content {
+                    @extend %movie-content;
+                }
+            }
+            .user-wrapper {
+                display: none;
+                &.active {
+                    display: block;
+                }
+                .user-content {
+                    @extend %user-content;
+                }
             }
         }
     }

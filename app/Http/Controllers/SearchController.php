@@ -3,19 +3,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use App\Models\Room;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
 
-    public function index(Request $request, $activeTab) {
+    public function index(Request $request) {
         $q = $request->input('q');
         if (!$q) {
             return redirect('/');
         }
 
         return view('search.index', [
-            'activeTab' => $activeTab,
             'q' => $q,
         ]);
     }
@@ -70,5 +70,19 @@ class SearchController extends Controller
         }
 
         return $movies;
+    }
+
+    public function searchUsers(Request $request) {
+        $q = $request->input('q');
+
+        $users = User::where('status', 2)
+            ->where('name', 'like', '%' . $q . '%')
+            ->orderBy('created_at', 'desc')->paginate(10);
+        // 画像の設定
+        foreach ($users as $user) {
+            $user->user_image_path = $user->getImagePath();
+        }
+
+        return $users;
     }
 }

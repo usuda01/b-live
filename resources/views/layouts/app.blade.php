@@ -29,8 +29,8 @@
     @endif
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
     <link href="{{ mix('css/fonts.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/app.css') }}?param=49" rel="stylesheet">
-    <link href="{{ mix('css/all.css') }}?param=49" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}?param=50" rel="stylesheet">
+    <link href="{{ mix('css/all.css') }}?param=50" rel="stylesheet">
     <title>@yield('title')B-LIVE ライブ配信</title>
     @stack('header-script')
     {{-- socket io --}}
@@ -77,7 +77,7 @@
             <a href="#" id="search-content__close-btn"><img src="/images/btn-search-close.png"></a>
         </div>
         <div class="search-content__box">
-            <form method="GET" action="/search/1">
+            <form method="GET" action="/search">
                 <input type="text" name="q" placeholder="タイトル、ユーザー名"><input type="submit" value="">
             </form>
         </div>
@@ -105,7 +105,7 @@
             <div id="toggle-slidebar" class="site-header__toggle-sidebar"><a href="#"><img src="/images/btn-sidebar-open.png"></a></div>
             <div class="site-header__logo"><a href="/"><img src="/images/logo.png"></a></div>
             <div class="site-header__search">
-                <form method="GET" action="/search/1">
+                <form method="GET" action="/search">
                     <input type="text" name="q" placeholder="タイトル、ユーザー名"><input type="submit" value="">
                 </form>
             </div>
@@ -201,9 +201,9 @@
             'apiToken' => \Auth::user()->api_token ?? null
         ]) !!};
     </script>
-    <script src="{{ mix('js/app.js') }}?param=49"></script>
-    <script src="{{ mix('js/all.js') }}?param=49"></script>
-    <script src="{{ mix('js/common.js') }}?param=49"></script>
+    <script src="{{ mix('js/app.js') }}?param=50"></script>
+    <script src="{{ mix('js/all.js') }}?param=50"></script>
+    <script src="{{ mix('js/common.js') }}?param=50"></script>
     @stack('scripts')
 </body>
 </html>

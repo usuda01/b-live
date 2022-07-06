@@ -87,7 +87,7 @@ Route::get('room-ranking/{target_month}/{target_rank}', [RoomRankingController::
 Route::get('api/room-ranking/{target_month}/{target_rank}', [RoomRankingController::class, 'getRooms']);
 
 // 検索
-Route::get('search/{target_tag}', [SearchController::class, 'index']);
+Route::get('search', [SearchController::class, 'index']);
 Route::get('api/search-movie', [SearchController::class, 'searchMovies']);
 Route::get('api/search-room', [SearchController::class, 'searchRooms']);
 Route::get('api/search-user', [SearchController::class, 'searchUsers']);

@@ -75,6 +75,18 @@ class UserSeeder extends Seeder
                 'status' => 2,
                 'image' => 'RgqCW7xPUJKS8krUJxW6iOK1XTYZ7Y1FNi4bPux4.jpeg'
             ],
+            [
+                'id' => 6,
+                'name' => 'エリー',
+                'email' => 'EllieOrz@pseudo.twitter.com',
+                'password' => '1',
+                'profile' => null,
+                'twitter_url' => 'https://twitter.com/EllieOrz',
+                'api_token' => 'HnfgNIeVXOM1Psx5wpvCyvQ42pSqRB7eG6jazl6GLw0WuAgk2ROWY7t0pwTy56tAsWjUSF2wcqE2ymTb',
+                'twitter_id' => '1234501705930133504',
+                'status' => 2,
+                'image' => 'pu7UrNfArmjW9aS0JCRkSqX04Var2QM2c2kdd2FS.jpg'
+            ],
         ]);
     }
 }

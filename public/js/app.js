@@ -4342,19 +4342,28 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    activeTab: Number,
     q: String
   },
   computed: {},
   data: function data() {
     return {
-      page: 1,
+      activeTab: 1,
       movies: [],
       rooms: [],
-      users: []
+      users: [],
+      tab1Page: 1,
+      tab2Page: 1,
+      tab3Page: 1
     };
   },
   mounted: function mounted() {},
@@ -4364,7 +4373,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       axios.get('/api/search-movie', {
         params: {
-          page: this.page,
+          page: this.tab1Page,
           per_page: 1,
           q: this.q
         }
@@ -4374,7 +4383,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (data.data.length) {
           var _this$movies;
 
-          _this.page += 1;
+          _this.tab1Page += 1;
 
           (_this$movies = _this.movies).push.apply(_this$movies, _toConsumableArray(data.data));
 
@@ -4391,7 +4400,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       axios.get('/api/search-room', {
         params: {
-          page: this.page,
+          page: this.tab2Page,
           per_page: 1,
           q: this.q
         }
@@ -4401,7 +4410,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (data.data.length) {
           var _this2$rooms;
 
-          _this2.page += 1;
+          _this2.tab2Page += 1;
 
           (_this2$rooms = _this2.rooms).push.apply(_this2$rooms, _toConsumableArray(data.data));
 
@@ -4413,7 +4422,36 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         $state.complete();
       });
     },
-    tab3InfiniteHandler: function tab3InfiniteHandler($state) {},
+    tab3InfiniteHandler: function tab3InfiniteHandler($state) {
+      var _this3 = this;
+
+      axios.get('/api/search-user', {
+        params: {
+          page: this.tab3Page,
+          per_page: 1,
+          q: this.q
+        }
+      }).then(function (_ref3) {
+        var data = _ref3.data;
+
+        if (data.data.length) {
+          var _this3$users;
+
+          _this3.tab3Page += 1;
+
+          (_this3$users = _this3.users).push.apply(_this3$users, _toConsumableArray(data.data));
+
+          $state.loaded();
+        } else {
+          $state.complete();
+        }
+      })["catch"](function (err) {
+        $state.complete();
+      });
+    },
+    tabChange: function tabChange(num) {
+      this.activeTab = num;
+    },
     timeFormat: function timeFormat(time) {
       var formatTime;
 
@@ -99298,10 +99336,47 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c("ul", { staticClass: "tabs" }, [
+      _c("li", { class: { active: _vm.activeTab === 1 } }, [
+        _c(
+          "a",
+          {
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.tabChange(1)
+              }
+            }
+          },
+          [_vm._v("ショート動画")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", { class: { active: _vm.activeTab === 3 } }, [
+        _c(
+          "a",
+          {
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.tabChange(3)
+              }
+            }
+          },
+          [_vm._v("ユーザー")]
+        )
+      ])
+    ]),
+    _vm._v(" "),
     _vm.activeTab === 1
       ? _c(
           "div",
-          { staticClass: "movie-wrapper" },
+          {
+            staticClass: "movie-wrapper",
+            class: { active: _vm.activeTab === 1 }
+          },
           [
             _c(
               "div",
@@ -99343,17 +99418,19 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("infinite-loading", {
+              attrs: { identifier: 1 },
               on: { infinite: _vm.tab1InfiniteHandler }
             })
           ],
           1
         )
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.activeTab === 2
+      : _vm.activeTab === 2
       ? _c(
           "div",
-          { staticClass: "room-wrapper" },
+          {
+            staticClass: "room-wrapper",
+            class: { active: _vm.activeTab === 2 }
+          },
           [
             _c(
               "div",
@@ -99405,21 +99482,52 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("infinite-loading", {
+              attrs: { identifier: 2 },
               on: { infinite: _vm.tab2InfiniteHandler }
             })
           ],
           1
         )
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.activeTab === 3
+      : _vm.activeTab === 3
       ? _c(
           "div",
-          { staticClass: "user-wrapper" },
+          {
+            staticClass: "user-wrapper",
+            class: { active: _vm.activeTab === 3 }
+          },
           [
-            _c("div", { attrs: { classs: "user-content" } }),
+            _c(
+              "div",
+              { staticClass: "user-content" },
+              _vm._l(_vm.users, function(user) {
+                return _c("div", { key: user.id, staticClass: "user-box" }, [
+                  _c("div", { staticClass: "user-image" }, [
+                    _c("a", {
+                      style: {
+                        backgroundImage: "url(" + user.user_image_path + ")"
+                      },
+                      attrs: { href: "/user/" + user.id }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "user-info" }, [
+                    _c("div", { staticClass: "user-name" }, [
+                      _c("a", { attrs: { href: "/user/" + user.id } }, [
+                        _vm._v(_vm._s(user.name))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "user-profile" }, [
+                      _vm._v(_vm._s(user.profile))
+                    ])
+                  ])
+                ])
+              }),
+              0
+            ),
             _vm._v(" "),
             _c("infinite-loading", {
+              attrs: { identifier: 3 },
               on: { infinite: _vm.tab3InfiniteHandler }
             })
           ],
