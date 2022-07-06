@@ -72,13 +72,6 @@
         mounted () {
         },
         methods: {
-            timeFormat(time) {
-                let formatTime;
-                if (time !== null) {
-                    formatTime = time.slice(-5)
-                }
-                return formatTime;
-            },
             tab1InfiniteHandler($state) {
                 axios.get('/api/search-movie', {
                     params: {
@@ -118,6 +111,13 @@
                 })
             },
             tab3InfiniteHandler($state) {
+            },
+            timeFormat(time) {
+                let formatTime;
+                if (time !== null) {
+                    formatTime = time.slice(-5)
+                }
+                return formatTime;
             },
         }
     }

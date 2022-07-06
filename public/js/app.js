@@ -2353,6 +2353,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -2476,6 +2477,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       })["catch"](function (err) {
         $state.complete();
       });
+    },
+    timeFormat: function timeFormat(time) {
+      var formatTime;
+
+      if (time !== null) {
+        formatTime = time.slice(-5);
+      }
+
+      return formatTime;
     }
   }
 });
@@ -4349,15 +4359,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   mounted: function mounted() {},
   methods: {
-    timeFormat: function timeFormat(time) {
-      var formatTime;
-
-      if (time !== null) {
-        formatTime = time.slice(-5);
-      }
-
-      return formatTime;
-    },
     tab1InfiniteHandler: function tab1InfiniteHandler($state) {
       var _this = this;
 
@@ -4412,7 +4413,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         $state.complete();
       });
     },
-    tab3InfiniteHandler: function tab3InfiniteHandler($state) {}
+    tab3InfiniteHandler: function tab3InfiniteHandler($state) {},
+    timeFormat: function timeFormat(time) {
+      var formatTime;
+
+      if (time !== null) {
+        formatTime = time.slice(-5);
+      }
+
+      return formatTime;
+    }
   }
 });
 
@@ -95102,7 +95112,11 @@ var render = function() {
                             backgroundImage: "url(" + movie.image_path + ")"
                           },
                           attrs: { href: "/movie/detail/" + movie.id }
-                        })
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "time" }, [
+                          _vm._v(_vm._s(_vm.timeFormat(movie.duration)))
+                        ])
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "movie-info" }, [
