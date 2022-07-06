@@ -13,7 +13,7 @@
                 <div class="movie-box" v-for="movie in movies" :key="movie.id">
                     <div class="movie-image">
                         <a v-bind:href="'/movie/detail/' + movie.id" v-bind:style="{ backgroundImage: 'url(' + movie.image_path + ')' }"></a>
-                        <div class="time">{{ movie.duration.slice(-5) }}</div>
+                        <div class="time">{{ timeFormat(movie.duration) }}</div>
                     </div>
                     <div class="movie-info">
                         <a v-bind:href="'/movie/detail/' + movie.id" class="movie-name">{{ movie.name }}</a>
@@ -72,6 +72,13 @@
         mounted () {
         },
         methods: {
+            timeFormat(time) {
+                let formatTime;
+                if (time !== null) {
+                    formatTime = time.slice(-5)
+                }
+                return formatTime;
+            },
             tab1InfiniteHandler($state) {
                 axios.get('/api/search-movie', {
                     params: {

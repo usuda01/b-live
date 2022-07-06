@@ -4349,6 +4349,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   mounted: function mounted() {},
   methods: {
+    timeFormat: function timeFormat(time) {
+      var formatTime;
+
+      if (time !== null) {
+        formatTime = time.slice(-5);
+      }
+
+      return formatTime;
+    },
     tab1InfiniteHandler: function tab1InfiniteHandler($state) {
       var _this = this;
 
@@ -99294,7 +99303,7 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("div", { staticClass: "time" }, [
-                      _vm._v(_vm._s(movie.duration.slice(-5)))
+                      _vm._v(_vm._s(_vm.timeFormat(movie.duration)))
                     ])
                   ]),
                   _vm._v(" "),
