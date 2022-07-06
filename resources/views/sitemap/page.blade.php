@@ -165,12 +165,12 @@
         <loc>{{ url('/page/company') }}</loc>
         <lastmod>2022-04-08</lastmod>
     </url>
+
+
     <url>
-        <loc>{{ url('/page/contact') }}</loc>
+        <loc>{{ url('/contact') }}</loc>
         <lastmod>2022-04-08</lastmod>
     </url>
-
-
     <url>
         <loc>{{ url('/room-ranking/0/1') }}</loc>
         <lastmod>{{ now()->format('Y-m-d') }}</lastmod>
