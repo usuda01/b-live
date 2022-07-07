@@ -2492,6 +2492,104 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MovieSearchComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MovieSearchComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-infinite-loading */ "./node_modules/vue-infinite-loading/dist/vue-infinite-loading.js");
+/* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_infinite_loading__WEBPACK_IMPORTED_MODULE_0__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    game: Object
+  },
+  data: function data() {
+    return {
+      activeTab: 1,
+      movies: [],
+      page: 1
+    };
+  },
+  mounted: function mounted() {},
+  methods: {
+    infiniteHandler: function infiniteHandler($state) {
+      var _this = this;
+
+      axios.get('/api/search-movie', {
+        params: {
+          page: this.page,
+          per_page: 1,
+          q: this.game.name
+        }
+      }).then(function (_ref) {
+        var data = _ref.data;
+
+        if (data.data.length) {
+          var _this$movies;
+
+          _this.page += 1;
+
+          (_this$movies = _this.movies).push.apply(_this$movies, _toConsumableArray(data.data));
+
+          $state.loaded();
+        } else {
+          $state.complete();
+        }
+      })["catch"](function (err) {
+        $state.complete();
+      });
+    },
+    timeFormat: function timeFormat(time) {
+      var formatTime;
+
+      if (time !== null) {
+        formatTime = time.slice(-5);
+      }
+
+      return formatTime;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RoomComponent.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/RoomComponent.vue?vue&type=script&lang=js& ***!
@@ -4752,6 +4850,7 @@ vue__WEBPACK_IMPORTED_MODULE_0__.default.component('login-component', __webpack_
 vue__WEBPACK_IMPORTED_MODULE_0__.default.component('follow-component', __webpack_require__(/*! ./components/FollowComponent.vue */ "./resources/js/components/FollowComponent.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_0__.default.component('follower-component', __webpack_require__(/*! ./components/FollowerComponent.vue */ "./resources/js/components/FollowerComponent.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_0__.default.component('movie-component', __webpack_require__(/*! ./components/MovieComponent.vue */ "./resources/js/components/MovieComponent.vue").default);
+vue__WEBPACK_IMPORTED_MODULE_0__.default.component('movie-search-component', __webpack_require__(/*! ./components/MovieSearchComponent.vue */ "./resources/js/components/MovieSearchComponent.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_0__.default.component('room-component', __webpack_require__(/*! ./components/RoomComponent.vue */ "./resources/js/components/RoomComponent.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_0__.default.component('room-message-component', __webpack_require__(/*! ./components/RoomMessageComponent.vue */ "./resources/js/components/RoomMessageComponent.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_0__.default.component('room-message-viewer-component', __webpack_require__(/*! ./components/RoomMessageViewerComponent.vue */ "./resources/js/components/RoomMessageViewerComponent.vue").default);
@@ -93846,6 +93945,45 @@ component.options.__file = "resources/js/components/MovieComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/MovieSearchComponent.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/MovieSearchComponent.vue ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _MovieSearchComponent_vue_vue_type_template_id_53114560___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MovieSearchComponent.vue?vue&type=template&id=53114560& */ "./resources/js/components/MovieSearchComponent.vue?vue&type=template&id=53114560&");
+/* harmony import */ var _MovieSearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MovieSearchComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/MovieSearchComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _MovieSearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _MovieSearchComponent_vue_vue_type_template_id_53114560___WEBPACK_IMPORTED_MODULE_0__.render,
+  _MovieSearchComponent_vue_vue_type_template_id_53114560___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/MovieSearchComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/RoomComponent.vue":
 /*!***************************************************!*\
   !*** ./resources/js/components/RoomComponent.vue ***!
@@ -94176,6 +94314,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/MovieSearchComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/MovieSearchComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MovieSearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MovieSearchComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MovieSearchComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MovieSearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/RoomComponent.vue?vue&type=script&lang=js&":
 /*!****************************************************************************!*\
   !*** ./resources/js/components/RoomComponent.vue?vue&type=script&lang=js& ***!
@@ -94370,6 +94524,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MovieComponent_vue_vue_type_template_id_5875e058___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MovieComponent_vue_vue_type_template_id_5875e058___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MovieComponent.vue?vue&type=template&id=5875e058& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MovieComponent.vue?vue&type=template&id=5875e058&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/MovieSearchComponent.vue?vue&type=template&id=53114560&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/MovieSearchComponent.vue?vue&type=template&id=53114560& ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MovieSearchComponent_vue_vue_type_template_id_53114560___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MovieSearchComponent_vue_vue_type_template_id_53114560___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MovieSearchComponent_vue_vue_type_template_id_53114560___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MovieSearchComponent.vue?vue&type=template&id=53114560& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MovieSearchComponent.vue?vue&type=template&id=53114560&");
 
 
 /***/ }),
@@ -95191,6 +95362,74 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "right-area" })
   ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MovieSearchComponent.vue?vue&type=template&id=53114560&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MovieSearchComponent.vue?vue&type=template&id=53114560& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "div",
+        { staticClass: "movie-content" },
+        _vm._l(_vm.movies, function(movie) {
+          return _c("div", { key: movie.id, staticClass: "movie-box" }, [
+            _c("div", { staticClass: "movie-image" }, [
+              _c("a", {
+                style: { backgroundImage: "url(" + movie.image_path + ")" },
+                attrs: { href: "/movie/detail/" + movie.id }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "time" }, [
+                _vm._v(_vm._s(_vm.timeFormat(movie.duration)))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "movie-info" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "movie-name",
+                  attrs: { href: "/movie/detail/" + movie.id }
+                },
+                [_vm._v(_vm._s(movie.name))]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "user-name" }, [
+                _c("a", { attrs: { href: "/user/" + movie.user.id } }, [
+                  _vm._v(_vm._s(movie.user.name))
+                ])
+              ])
+            ])
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("infinite-loading", { on: { infinite: _vm.infiniteHandler } })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

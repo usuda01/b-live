@@ -9,6 +9,7 @@ Vue.component('login-component', require('./components/LoginComponent.vue').defa
 Vue.component('follow-component', require('./components/FollowComponent.vue').default);
 Vue.component('follower-component', require('./components/FollowerComponent.vue').default);
 Vue.component('movie-component', require('./components/MovieComponent.vue').default);
+Vue.component('movie-search-component', require('./components/MovieSearchComponent.vue').default);
 Vue.component('room-component', require('./components/RoomComponent.vue').default);
 Vue.component('room-message-component', require('./components/RoomMessageComponent.vue').default);
 Vue.component('room-message-viewer-component', require('./components/RoomMessageViewerComponent.vue').default);

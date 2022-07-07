@@ -20,13 +20,8 @@ class MovieController extends Controller
             return redirect('/');
         }
 
-        $movies = Movie::where('is_publish', '1')
-            ->where('game_id', $gameId)
-            ->orderBy('movies.created_at', 'desc')->get();
-
         return view('movie.search', [
             'game' => $game,
-            'movies' => $movies,
         ]);
     }
 
