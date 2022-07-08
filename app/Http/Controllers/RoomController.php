@@ -26,6 +26,13 @@ class RoomController extends Controller
         $roomId = $request->input('data.room_id');
         $ipAddress = $request->ip();
 
+        // $roomId が取得できなかった場合は0を返す
+        if (!$roomId) {
+            return response()->json([
+                'views' => 0,
+            ]);
+        }
+
         // IPアドレス が取得できなかった場合はカウントしない
         if (!$ipAddress) {
             // レコード数を取得
