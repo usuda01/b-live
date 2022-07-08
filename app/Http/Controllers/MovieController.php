@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Game;
 use App\Models\Movie;
 use App\Models\MovieGood;
+use App\Models\MovieViewLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -80,5 +81,44 @@ class MovieController extends Controller
 
         return;
     }
+
+    /*
+     * 動画の再生ログ記録
+     * 同じIP、UAからは7日間記録しない
+     */
+    public function play(Request $request)
+    {
+        $movieId = $request->input('movie_id');
+        $ipAddress = $request->ip();
+        $userAgent = $request->header('User-Agent');
+
+        if (!$ipAddress) {
+            return;
+        }
+        if (!$userAgent) {
+            return;
+        }
+
+        $movieViewLog = MovieViewLog::where([
+            'movie_id' => $movieId,
+            'ip_address' => $ipAddress,
+            'user_agent' => $userAgent,
+        ])
+        ->where('created_at', '>', date('Y-m-d H:i:s', strtotime('-7 day')))
+        ->orderBy('created_at', 'desc')->first();
+
+        if ($movieViewLog) {
+            return;
+        }
+
+        $movieViewLog = MovieViewLog::create([
+            'movie_id' => $movieId,
+            'ip_address' => $ipAddress,
+            'user_agent' => $userAgent,
+        ]);
+
+        return;
+    }
+
 }
 

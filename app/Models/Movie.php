@@ -34,6 +34,14 @@ class Movie extends Model
         return $this->hasMany(MovieGood::class);
     }
 
+    /**
+     * 動画の再生ログを取得
+     */
+    public function movie_view_logs()
+    {
+        return $this->hasMany(MovieViewLog::class);
+    }
+
     // 動画サムネイルのパスを取得
     public function getImagePath() {
         $path = '/images/noimage-video.png';

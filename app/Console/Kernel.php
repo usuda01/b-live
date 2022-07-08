@@ -43,6 +43,9 @@ class Kernel extends ConsoleKernel
         $schedule->command('command:update-room-image')
             ->everyMinute()
             ->appendOutputTo(storage_path('logs/cron.log'));
+
+        $schedule->command('command:update-movie-views')
+            ->everyMinute();
     }
 
     /**

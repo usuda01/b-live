@@ -2478,6 +2478,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         $state.complete();
       });
     },
+    onPlay: function onPlay() {
+      var url = '/api/movie/play/';
+      var params = {
+        movie_id: this.movie.id
+      };
+      axios.post(url, params).then(function (response) {// console.log(response.data);
+      });
+    },
     timeFormat: function timeFormat(time) {
       var formatTime;
 
@@ -95211,7 +95219,12 @@ var render = function() {
       _c(
         "video",
         {
-          attrs: { poster: _vm.movie.image_path, controls: "", playsinline: "" }
+          attrs: {
+            poster: _vm.movie.image_path,
+            controls: "",
+            playsinline: ""
+          },
+          on: { play: _vm.onPlay }
         },
         [_c("source", { attrs: { src: "/storage/movies/" + this.movie.path } })]
       ),

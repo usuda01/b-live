@@ -31,6 +31,7 @@ Route::group(['middleware' => ['api']], function () {
     Route::get('message', [MessageController::class, 'show']);
     Route::post('message', [MessageController::class, 'store']);
     Route::get('movie/get-goods/{movie_id}', [MovieController::class, 'getMovieGoods']);
+    Route::post('movie/play/', [MovieController::class, 'play']);
     Route::get('room-supporters', [UserController::class, 'getRoomSupporters']);
 
     // 認証が必要なページ

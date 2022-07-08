@@ -8,7 +8,7 @@
                 <span v-else-if="movie.user.user_data.rank==5" class="user-rank rank5">公認配信者</span>
             </div>
 
-            <video :poster="movie.image_path" controls playsinline>
+            <video v-on:play="onPlay" :poster="movie.image_path" controls playsinline>
                 <source v-bind:src="'/storage/movies/'+this.movie.path"></source>
             </video>
 
@@ -160,6 +160,16 @@
                 }).catch((err) => {
                     $state.complete();
                 })
+            },
+            onPlay() {
+                const url = '/api/movie/play/';
+                const params = {
+                    movie_id: this.movie.id
+                };
+                axios.post(url, params)
+                    .then((response) => {
+                        // console.log(response.data);
+                    });
             },
             timeFormat(time) {
                 let formatTime;
