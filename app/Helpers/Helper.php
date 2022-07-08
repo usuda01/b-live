@@ -61,6 +61,16 @@ class Helper
         return $return;
     }
 
+    /**
+     * 再生回数をフォーマットする
+     *
+     * @param int $views
+     * @return string
+     */
+    public static function formatCount($views) {
+        return $views;
+    }
+
     // オリジナルサイズのときは $size = 0 とする
     public static function resizeImage($path = null, $size = 750) {
         $save_path = $path;

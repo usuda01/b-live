@@ -506,6 +506,14 @@
             &:nth-child(2n) {
                 margin-right: 0;
             }
+            .game-title {
+                height: 2rem;
+                overflow: hidden;
+                margin-bottom: 4px;
+                a {
+                    color: #f66951;
+                }
+            }
             .movie-image {
                 position: relative;
                 width: 100%;
@@ -527,6 +535,16 @@
                     background-repeat: no-repeat;
                 }
                 .time {
+                    position: absolute;
+                    right: 6px;
+                    top: 6px;
+                    padding: 1px 8px;
+                    color: #fff;
+                    background-color: rgba(0,0,0,.54);
+                    font-size: 1.2rem;
+                    border-radius: 8px;
+                }
+                .views {
                     position: absolute;
                     left: 6px;
                     bottom: 6px;
@@ -971,16 +989,9 @@
             }
             .room-content {
                 @extend %room-content-tablet;
-                .room-box {
-                    .game-title {
-                        height: 2rem;
-                        overflow: hidden;
-                        margin-bottom: 4px;
-                        a {
-                            color: #f66951;
-                        }
-                    }
-                }
+            }
+            .movie-content {
+                @extend %movie-content-tablet;
             }
             .group-content {
                 display: flex;

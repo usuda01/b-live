@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             GameSeeder::class,
             UserSeeder::class,
             UserDataSeeder::class,
+            GroupSeeder::class,
             WowzaSeeder::class,
             RoomSeeder::class,
             MovieSeeder::class,

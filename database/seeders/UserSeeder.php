@@ -87,6 +87,18 @@ class UserSeeder extends Seeder
                 'status' => 2,
                 'image' => 'pu7UrNfArmjW9aS0JCRkSqX04Var2QM2c2kdd2FS.jpg'
             ],
+            [
+                'id' => 7,
+                'name' => 'いずさん。',
+                'email' => 'izuna.kuwai@gmail.com',
+                'password' => '1',
+                'profile' => "もう少し上に書いて主張してもいいかなと思ったので書きますね。\n\nB-LIVEさんのトップページ上のほうで流れている動画を作らせて頂いた者でございます！\n\n 不定期に配信してる人だよ。\n\n基本深夜に。\n\n基本的にFPSしかしないよ。\n\nたぶん。\n\nそう、きっと。\n\n\n\nサイトを作成。\n→https://izusanwhatever.myportfolio.com/",
+                'twitter_url' => 'https://twitter.com/izu_gamer',
+                'api_token' => 'Wx3cdfsVhXbp5LyLf2jOjXRYtolhL1B27DEPWVFdLFBKC6kwxZC0VDjUl55Q6sQlM3z5Ew84plZsK5mR',
+                'twitter_id' => '979402618144407552',
+                'status' => 2,
+                'image' => 'QoeUliDUK2N3xQdR1ZlsqDNDKuPakcyCAQNTz4s2.png'
+            ],
         ]);
     }
 }

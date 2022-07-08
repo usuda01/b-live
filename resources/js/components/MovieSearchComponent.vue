@@ -5,6 +5,7 @@
                 <div class="movie-image">
                     <a v-bind:href="'/movie/detail/' + movie.id" v-bind:style="{ backgroundImage: 'url(' + movie.image_path + ')' }"></a>
                     <div class="time">{{ timeFormat(movie.duration) }}</div>
+                    <div class="views">{{ countFormat(movie.views) }} 回視聴</div>
                 </div>
                 <div class="movie-info">
                     <a v-bind:href="'/movie/detail/' + movie.id" class="movie-name">{{ movie.name }}</a>
@@ -58,6 +59,10 @@
                     formatTime = time.slice(-5)
                 }
                 return formatTime;
+            },
+            countFormat(views) {
+                let formatViews = views;
+                return formatViews;
             },
         }
     }

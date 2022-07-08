@@ -2354,6 +2354,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -2494,6 +2495,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }
 
       return formatTime;
+    },
+    countFormat: function countFormat(views) {
+      var formatViews = views;
+      return formatViews;
     }
   }
 });
@@ -2525,6 +2530,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+//
 //
 //
 //
@@ -2592,6 +2598,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }
 
       return formatTime;
+    },
+    countFormat: function countFormat(views) {
+      var formatViews = views;
+      return formatViews;
     }
   }
 });
@@ -4455,6 +4465,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -4566,6 +4577,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }
 
       return formatTime;
+    },
+    countFormat: function countFormat(views) {
+      var formatViews = views;
+      return formatViews;
     }
   }
 });
@@ -4597,6 +4612,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+//
 //
 //
 //
@@ -4833,6 +4849,19 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       })["catch"](function (err) {
         $state.complete();
       });
+    },
+    timeFormat: function timeFormat(time) {
+      var formatTime;
+
+      if (time !== null) {
+        formatTime = time.slice(-5);
+      }
+
+      return formatTime;
+    },
+    countFormat: function countFormat(views) {
+      var formatViews = views;
+      return formatViews;
     }
   }
 });
@@ -95338,6 +95367,12 @@ var render = function() {
                         _vm._v(" "),
                         _c("div", { staticClass: "time" }, [
                           _vm._v(_vm._s(_vm.timeFormat(movie.duration)))
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "views" }, [
+                          _vm._v(
+                            _vm._s(_vm.countFormat(movie.views)) + " 回視聴"
+                          )
                         ])
                       ]),
                       _vm._v(" "),
@@ -95415,6 +95450,10 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "time" }, [
                 _vm._v(_vm._s(_vm.timeFormat(movie.duration)))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "views" }, [
+                _vm._v(_vm._s(_vm.countFormat(movie.views)) + " 回視聴")
               ])
             ]),
             _vm._v(" "),
@@ -99645,6 +99684,10 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "time" }, [
                       _vm._v(_vm._s(_vm.timeFormat(movie.duration)))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "views" }, [
+                      _vm._v(_vm._s(_vm.countFormat(movie.views)) + " 回視聴")
                     ])
                   ]),
                   _vm._v(" "),
@@ -99932,7 +99975,13 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("div", { staticClass: "time" }, [
-                          _vm._v(_vm._s(movie.duration.slice(-5)))
+                          _vm._v(_vm._s(_vm.timeFormat(movie.duration)))
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "views" }, [
+                          _vm._v(
+                            _vm._s(_vm.countFormat(movie.views)) + " 回視聴"
+                          )
                         ])
                       ]),
                       _vm._v(" "),
