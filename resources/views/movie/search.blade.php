@@ -1,4 +1,7 @@
 @extends('layouts.app')
+
+@section('title', $game->name . '｜ショート動画' . ' - ')
+
 @section('content')
     <div class="movie-search">
         <div class="main-area">
