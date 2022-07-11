@@ -36,6 +36,7 @@ Route::get('/', [HomeController::class, 'index']);
 // サイトマップ
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 Route::group(['prefix' => 'sitemap'], function () {
+    Route::get('game.xml', [SitemapController::class, 'game']);
     Route::get('movie.xml', [SitemapController::class, 'movie']);
     Route::get('page.xml', [SitemapController::class, 'page']);
 });

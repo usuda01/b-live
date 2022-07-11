@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
 use App\Models\Movie;
 
 class SitemapController extends Controller
@@ -19,6 +20,28 @@ class SitemapController extends Controller
                 'pages' => $pages,
             ])
             ->header('Content-Type', 'text/xml');;
+    }
+
+    /**
+     * ゲームタイトルページのサイトマップを表示する。
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function game()
+    {
+        $games = Game::orderBy('id', 'asc')->get();
+
+        $pages = [];
+        foreach ($games as $game) {
+            $pages []= [
+                'url' => url("/movie/search?game_id={$game->id}"),
+                'modifiedAt' => '2022-07-11',
+            ];
+        }
+        return response()->view('sitemap.game', [
+                'pages' => $pages,
+            ])
+            ->header('Content-Type', 'text/xml');
     }
 
     /**
