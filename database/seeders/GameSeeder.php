@@ -35,6 +35,8 @@ class GameSeeder extends Seeder
             ['id' => 18, 'name' => 'スーパーマリオ ３Ｄワールド ＋ フューリーワールド', 'sns_tags' => 'スーパーマリオ3Dワールド,マリオ3Dワールド', 'sales_agency' => '任天堂'],
             ['id' => 19, 'name' => 'Tom Clancy`s Rainbow Six Siege', 'sns_tags' => 'レインボーシックスシージ,シージ,RainbowSix,RainbowSixSiege', 'sales_agency' => 'ユービーアイソフト'],
             ['id' => 20, 'name' => 'モンスターハンターライズ', 'sns_tags' => 'モンハンライズ', 'sales_agency' => '任天堂'],
+            ['id' => 21, 'name' => 'Phasmophobia', 'sns_tags' => 'Phasmophobia', 'sales_agency' => 'Kinetic Games'],
+            ['id' => 22, 'name' => 'バイオハザード ヴィレッジ', 'sns_tags' => 'バイオハザード,バイオハザードヴィレッジ', 'sales_agency' => 'カプコン'],
         ]);
     }
 }
