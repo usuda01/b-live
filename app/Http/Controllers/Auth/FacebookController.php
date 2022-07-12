@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Socialite;
@@ -16,7 +17,7 @@ class FacebookController extends Controller
         return Socialite::driver('facebook')->redirect();
     }
 
-    public function handleProviderCallback()
+    public function handleProviderCallback(Request $request)
     {
         try {
             $facebookUser = Socialite::driver('facebook')->user();
@@ -55,6 +56,8 @@ class FacebookController extends Controller
             ]);
         }
         Auth::login($user, true);
-        return redirect('/?api_token=' . $user->api_token);
+        $loginRedirect = $request->session()->get('loginRedirect', '/');
+        $loginRedirect .= '?api_token=' . $user->api_token;
+        return redirect($loginRedirect);
     }
 }

@@ -31,7 +31,11 @@
     <link href="{{ mix('css/fonts.css') }}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}?param=51" rel="stylesheet">
     <link href="{{ mix('css/all.css') }}?param=51" rel="stylesheet">
-    <title>@yield('title')B-LIVE ライブ配信</title>
+    @if (Request::is('/'))
+        <title>B-LIVE｜ゲームのライブ配信、ショート動画サイト</title>
+    @else
+        <title>@yield('title')B-LIVE</title>
+    @endif
     @stack('header-script')
     {{-- socket io --}}
     <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>

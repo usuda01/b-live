@@ -26,7 +26,7 @@ class MovieController extends Controller
         ]);
     }
 
-    public function detail($movieId) {
+    public function detail(Request $request, $movieId) {
         $movie = Movie::with('user')->where('id', $movieId)->first();
         if (!$movie) {
             abort(404);
@@ -37,6 +37,8 @@ class MovieController extends Controller
         // これを呼んでおかないとVue側でリレーションしてくれない
         $movie->user->user_data;
         $movie->game;
+
+        $request->session()->put('loginRedirect', url()->full());
 
         return view('movie.detail', [
             'movie' => $movie,

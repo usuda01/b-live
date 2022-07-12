@@ -56,6 +56,8 @@ class AppleSigninController extends Controller
             ]);
         }
         Auth::login($user, true);
-        return redirect('/?api_token=' . $user->api_token);
+        $loginRedirect = $request->session()->get('loginRedirect', '/');
+        $loginRedirect .= '?api_token=' . $user->api_token;
+        return redirect($loginRedirect);
     }
 }
