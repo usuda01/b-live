@@ -87,6 +87,30 @@ class MovieSeeder extends Seeder
                 'created_at' => '2022-06-30 18:12:37',
                 'updated_at' => '2022-06-30 18:12:37'
             ],
+            [
+                'id' => 7,
+                'user_id' => 8,
+                'game_id' => 22,
+                'name' => '#1 今作一のトラウマシーン',
+                'image' => 'GF2Kj7bQP4HEtpGPPUizEiNX5yrRe8PiQHESCgpI.jpg',
+                'path' => '2022-07-11-11-21-39.mp4',
+                'is_publish' => 1,
+                'duration' => '00:00:28',
+                'created_at' => '2022-07-11 11:21:47',
+                'updated_at' => '2022-07-11 12:05:02'
+            ],
+            [
+                'id' => 8,
+                'user_id' => 8,
+                'game_id' => 22,
+                'name' => '#2 今作一のトラウマシーン！！',
+                'image' => 'XS6NnY97FvDFV4MCJoViXSeXETo8eKNaYrOUoitV.jpg',
+                'path' => '2022-07-11-11-24-37.mp4',
+                'is_publish' => 1,
+                'duration' => '00:00:25',
+                'created_at' => '2022-07-11 11:24:45',
+                'updated_at' => '2022-07-11 12:05:02'
+            ],
         ]);
     }
 }

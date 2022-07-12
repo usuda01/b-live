@@ -24,6 +24,7 @@ class UserSeeder extends Seeder
                 'twitter_url' => 'https://twitter.com/BLIVE77191685',
                 'api_token' => null,
                 'twitter_id' => null,
+                'apple_id' => null,
                 'status' => 2,
                 'image' => 'mdhYzvjTCyq6qPgzRdcgXxMwMmcN37uaQZi95TSh.png'
             ],
@@ -35,7 +36,8 @@ class UserSeeder extends Seeder
                 'profile' => 'とにかく赤字にならなければいい。',
                 'twitter_url' => null,
                 'api_token' => null,
-                'twitter_id' => null,
+                'twitter_id' => '1247529279342039042',
+                'apple_id' => null,
                 'status' => 2,
                 'image' => 'iq17OfCyvQAjuINKgnwiPNUAG0Eyjq5pYN4Hyps9.jpeg'
             ],
@@ -48,6 +50,7 @@ class UserSeeder extends Seeder
                 'twitter_url' => 'https://twitter.com/sumaburaness12',
                 'api_token' => '2nKX6Jy9UdqhUcw8ME9rE840IErPqCZaBndA20orkR5HDS6ILBSuglBL9yjkwiReOMZUs0EScaCMuoD0',
                 'twitter_id' => '1143331834702381056',
+                'apple_id' => null,
                 'status' => 2,
                 'image' => 'IVPSIwr5K27CLFHlNhqs0dnALeVQFMXsMcdJvspX.png'
             ],
@@ -60,6 +63,7 @@ class UserSeeder extends Seeder
                 'twitter_url' => 'https://twitter.com/dog_cipher',
                 'api_token' => 'i0Xr7tTnat9Im7TjgW6hJwzhyia96hWuRHaqdbMFcWuE5jvjh0tOoKCU7MlA7DGr2AiBtt38CBPjlaE4',
                 'twitter_id' => '1175326695454195712',
+                'apple_id' => null,
                 'status' => 2,
                 'image' => 'jjuadM3aMBjcf3qROmDTr3uH5Dne7fHhv6sVT2sb.png'
             ],
@@ -72,6 +76,7 @@ class UserSeeder extends Seeder
                 'twitter_url' => null,
                 'api_token' => 'zIKJOdZIk0xvDPF6hDEzeZQYEg3qknsOXtOAtCvv4PiiS3vHSRxDSqDV0ThMIbtsP5lpVBaWATcU6tt4',
                 'twitter_id' => '901397056262086656',
+                'apple_id' => null,
                 'status' => 2,
                 'image' => 'RgqCW7xPUJKS8krUJxW6iOK1XTYZ7Y1FNi4bPux4.jpeg'
             ],
@@ -84,6 +89,7 @@ class UserSeeder extends Seeder
                 'twitter_url' => 'https://twitter.com/EllieOrz',
                 'api_token' => 'HnfgNIeVXOM1Psx5wpvCyvQ42pSqRB7eG6jazl6GLw0WuAgk2ROWY7t0pwTy56tAsWjUSF2wcqE2ymTb',
                 'twitter_id' => '1234501705930133504',
+                'apple_id' => null,
                 'status' => 2,
                 'image' => 'pu7UrNfArmjW9aS0JCRkSqX04Var2QM2c2kdd2FS.jpg'
             ],
@@ -96,8 +102,22 @@ class UserSeeder extends Seeder
                 'twitter_url' => 'https://twitter.com/izu_gamer',
                 'api_token' => 'Wx3cdfsVhXbp5LyLf2jOjXRYtolhL1B27DEPWVFdLFBKC6kwxZC0VDjUl55Q6sQlM3z5Ew84plZsK5mR',
                 'twitter_id' => '979402618144407552',
+                'apple_id' => null,
                 'status' => 2,
                 'image' => 'QoeUliDUK2N3xQdR1ZlsqDNDKuPakcyCAQNTz4s2.png'
+            ],
+            [
+                'id' => 8,
+                'name' => 'こんぶの実況ちゃんねる',
+                'email' => 'ruichika@icloud.com',
+                'password' => '1',
+                'profile' => "YouTubeで主に配信してます！\nこんぶの実況ちゃんねるです😘",
+                'twitter_url' => null,
+                'api_token' => 'S7HPJh8nw4ANoFDhPV3w8VAFR6sN0IdcHV9UB1m4Rw23TNVOo0pTjCnvRFzYwFpS2XBNdYYwnJT12VPK',
+                'twitter_id' => null,
+                'apple_id' => '001432.b3fa3b01605e48f59bf3e2aa4be900e6.0228',
+                'status' => 2,
+                'image' => 'WVO0h8jGEaSsmuhl3CCVppRq9BIqN67sAUz46Aej.jpg'
             ],
         ]);
     }
