@@ -9,7 +9,9 @@
             </div>
 -->
 
+<!--
             <carousel-component></carousel-component>
+-->
 
             <div class="category-content">
                 <h2 class="main-title">人気のタイトル</h2>
