@@ -57,6 +57,33 @@
                 @endif
             </div>
 
+            <div class="popular-content">
+                <h2 class="main-title">人気のショート動画</h2>
+                @if ($popularMovies->count() > 0)
+                    <div class="movie-content">
+                    @foreach ($popularMovies as $movie)
+                        <div class="movie-box">
+                            <div class="game-title">
+                                @if ($movie->game)
+                                    <a href="/movie/search?game_id={{ $movie->game_id }}">{{ $movie->game->name }}</a>
+                                @else
+                                @endif
+                            </div>
+                            <div class="movie-image">
+                                <a href="/movie/detail/{{ $movie->id }}" v-bind:style="{ backgroundImage: 'url({{ $movie->getImagePath() }})' }"></a>
+                                <div class="time">{{ substr($movie->duration, -5) }}</div>
+                                <div class="views">{{ \App\Helpers\Helper::formatCount($movie->views) }} 回視聴</div>
+                            </div>
+                            <div class="movie-info">
+                                <a class="movie-name" href="/movie/detail/{{ $movie->id }}">{{ $movie->name }}</a>
+                                <div class="user-name"><a href="/user/{{ $movie->user->id }}">{{ $movie->user->name }}</a></div>
+                            </div>
+                        </div>
+                    @endforeach
+                    </div>
+                @endif
+            </div>
+
             <div class="live-content">
                 <h2 class="main-title">新着ショート動画</h2>
                 @if ($movies->count() > 0)

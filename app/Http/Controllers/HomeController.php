@@ -35,6 +35,12 @@ class HomeController extends Controller
             $mainGames []= $game;
         }
 */
+        // 人気のショート動画
+        $popularMovies = Movie::where('is_publish', 1)
+            ->orderBy('views', 'desc')
+            ->orderBy('id', 'desc')
+            ->limit(16)->get();
+
         // 投稿動画の多いタイトル
         $mainGameMovies = Movie::select(
                 'movies.game_id as game_id',
@@ -159,16 +165,17 @@ class HomeController extends Controller
 
         return view('home', [
             'archiveRooms' => $archiveRooms,
+            'connectionUsers' => $connectionUsers,
+            'groups' => $groups,
             'mainGames' => $mainGames,
             'movies' => $movies,
             'officialUsers' => $officialUsers,
-            'connectionUsers' => $connectionUsers,
             'recentUsers' => $recentUsers,
             'followerUsers' => $followerUsers,
             'paidUsers' => $paidUsers,
             'paymentUsers' => $paymentUsers,
+            'popularMovies' => $popularMovies,
             'rooms' => $rooms,
-            'groups' => $groups,
         ]);
     }
 
