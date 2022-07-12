@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'お知らせ一覧｜')
 @section('content')
     <div class="page-content">
         @include('parts.page_menu')
@@ -7,6 +8,10 @@
             <div class="box notice">
                 <div class="section">
                     <h3>お知らせ一覧</h3>
+                    <div class="row">
+                         <div class="date">2022.07.13</div>
+                         <div class="description"><a href="/page/notice/34">アマゾンギフト券１万円獲得イベント開催！</a></div>
+                    </div>
                     <div class="row">
                          <div class="date">2022.06.24</div>
                          <div class="description"><a href="/page/notice/33">アマゾンギフト券１万円獲得イベント開催！</a></div>

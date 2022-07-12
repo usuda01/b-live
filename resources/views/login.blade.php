@@ -13,7 +13,7 @@
     <link href="{{ mix('css/fonts.css') }}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('css/all.css') }}" rel="stylesheet">
-    <title>B-LIVE ライブ配信</title>
+    <title>ログイン｜B-LIVE</title>
     {{-- socket io --}}
     <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
 </head>
