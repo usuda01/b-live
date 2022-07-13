@@ -1803,12 +1803,33 @@
             }
             .video-footer {
                 background: #eeeeee;
+                color: #666666;
                 padding: 6px 10px;
                 margin-bottom: 14px;
-                .share-content {
-                    a {
-                        img {
-                            width: 100px;
+                display: flex;
+                justify-content: space-between;
+                .left-content {
+                    display: flex;
+                    align-items: center;
+                    .view-content {
+                        margin-right: 10px;
+                        .icon-views {
+                            display: inline-block;
+                            margin-right: 6px;
+                            vertical-align: middle;
+                        }
+                        .view-count-wrapper {
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+                    }
+                }
+                .right-content {
+                    .share-content {
+                        a {
+                            img {
+                                width: 100px;
+                            }
                         }
                     }
                 }

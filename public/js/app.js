@@ -2360,6 +2360,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -95279,26 +95287,43 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "video-footer" }, [
-        _c("div", { staticClass: "share-content" }, [
-          _c(
-            "a",
-            {
-              attrs: {
-                href:
-                  "http://twitter.com/intent/tweet?text=" +
-                  encodeURIComponent(
-                    _vm.movie.name +
-                      "\n" +
-                      _vm.locationUrl +
-                      "\n" +
-                      _vm.snsTags +
-                      "\n@BLIVE77191685 にて"
-                  ),
-                target: "_blank"
-              }
-            },
-            [_c("img", { attrs: { src: "/images/btn-share-twitter.png" } })]
-          )
+        _c("div", { staticClass: "left-content" }, [
+          _c("div", { staticClass: "view-content" }, [
+            _c("img", {
+              staticClass: "icon-views",
+              attrs: { src: "/images/icon-views.png" }
+            }),
+            _vm._v(" "),
+            _c("span", { staticClass: "view-count-wrapper" }, [
+              _c("span", { staticClass: "view-count" }, [
+                _vm._v(_vm._s(_vm.countFormat(_vm.movie.views)) + " 回視聴")
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "right-content" }, [
+          _c("div", { staticClass: "share-content" }, [
+            _c(
+              "a",
+              {
+                attrs: {
+                  href:
+                    "http://twitter.com/intent/tweet?text=" +
+                    encodeURIComponent(
+                      _vm.movie.name +
+                        "\n" +
+                        _vm.locationUrl +
+                        "\n" +
+                        _vm.snsTags +
+                        "\n@BLIVE77191685 にて"
+                    ),
+                  target: "_blank"
+                }
+              },
+              [_c("img", { attrs: { src: "/images/btn-share-twitter.png" } })]
+            )
+          ])
         ])
       ])
     ]),

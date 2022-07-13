@@ -1888,11 +1888,33 @@
             }
             .video-footer {
                 background: #eeeeee;
+                color: #666666;
                 padding: 6px 20px 6px 10px;
-                .share-content {
-                    a {
-                        img {
-                            height: 20px;
+                display: flex;
+                justify-content: space-between;
+                .left-content {
+                    display: flex;
+                    align-items: center;
+                    .view-content {
+                        margin-right: 10px;
+                        .icon-views {
+                            display: inline-block;
+                            margin-right: 6px;
+                            vertical-align: middle;
+                        }
+                        .view-count-wrapper {
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+                    }
+                }
+                .right-content {
+                    display: flex;
+                    .share-content {
+                        a {
+                            img {
+                                height: 20px;
+                            }
                         }
                     }
                 }

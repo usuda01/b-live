@@ -13,7 +13,15 @@
             </video>
 
             <div class="video-footer">
-                <div class="share-content"><a v-bind:href="'http://twitter.com/intent/tweet?text=' + encodeURIComponent(movie.name + '\n' + locationUrl + '\n' + snsTags + '\n@BLIVE77191685 にて')" target="_blank"><img src="/images/btn-share-twitter.png"></a></div>
+                <div class="left-content">
+                    <div class="view-content">
+                        <img src="/images/icon-views.png" class="icon-views">
+                        <span class="view-count-wrapper"><span class="view-count">{{ countFormat(movie.views) }} 回視聴</span></span>
+                    </div>
+                </div>
+                <div class="right-content">
+                    <div class="share-content"><a v-bind:href="'http://twitter.com/intent/tweet?text=' + encodeURIComponent(movie.name + '\n' + locationUrl + '\n' + snsTags + '\n@BLIVE77191685 にて')" target="_blank"><img src="/images/btn-share-twitter.png"></a></div>
+                </div>
             </div>
         </div><!--// .main-area -->
 
