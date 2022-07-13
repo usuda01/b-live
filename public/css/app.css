@@ -8798,6 +8798,10 @@ input[type=email] {
     width: 100%;
     margin: 0 10px;
   }
+  .movie-detail .video-info .date {
+    color: #666;
+    margin-bottom: 14px;
+  }
   .movie-detail .video-info .movie-title {
     font-size: 1.8rem;
     margin-bottom: 14px;
@@ -12091,6 +12095,10 @@ input[type=button] {
   }
   .movie-detail .video-info.active {
     display: block;
+  }
+  .movie-detail .video-info .date {
+    color: #666;
+    margin-bottom: 10px;
   }
   .movie-detail .video-info .movie-title {
     font-size: 1.6rem;

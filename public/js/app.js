@@ -2289,6 +2289,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-infinite-loading */ "./node_modules/vue-infinite-loading/dist/vue-infinite-loading.js");
 /* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_infinite_loading__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2357,6 +2359,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -2390,6 +2394,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       movies: [],
       page: 1
     };
+  },
+  filters: {
+    moment: function moment(date) {
+      return moment__WEBPACK_IMPORTED_MODULE_1___default()(date).format('YYYY/MM/DD');
+    }
   },
   mounted: function mounted() {
     this.getMovieGoods();
@@ -95313,6 +95322,10 @@ var render = function() {
       "div",
       { staticClass: "video-info", class: { active: _vm.activeTab === 1 } },
       [
+        _c("div", { staticClass: "date" }, [
+          _vm._v(_vm._s(_vm._f("moment")(_vm.movie.created_at)))
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "movie-title" }, [
           _vm._v(_vm._s(_vm.movie.name))
         ]),

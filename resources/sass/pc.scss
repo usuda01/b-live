@@ -1820,6 +1820,10 @@
         .video-info {
             width: 100%;
             margin: 0 10px;
+            .date {
+                color: #666;
+                margin-bottom: 14px;
+            }
             .movie-title {
                 font-size: 1.8rem;
                 margin-bottom: 14px;

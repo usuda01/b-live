@@ -22,6 +22,7 @@
         </ul>
 
         <div class="video-info" v-bind:class="{'active': activeTab === 1}">
+            <div class="date">{{ movie.created_at | moment }}</div>
             <div class="movie-title">{{ movie.name }}</div>
             <div class="headline">
                 <a v-if="isGood" class="good" v-on:click.prevent="goodCancel" href="#"><i class="fas fa-heart"></i></a>
@@ -56,6 +57,7 @@
 
 <script>
     import InfiniteLoading from 'vue-infinite-loading';
+    import moment from 'moment';
 
     export default {
         props: {
@@ -84,6 +86,11 @@
                 locationUrl: location.href,
                 movies: [],
                 page: 1,
+            }
+        },
+        filters: {
+            moment: function (date) {
+                return moment(date).format('YYYY/MM/DD');
             }
         },
         mounted () {
