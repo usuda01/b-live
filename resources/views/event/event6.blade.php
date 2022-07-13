@@ -96,7 +96,7 @@
                     </div>
                     <div>
                         <p>▼参加方法</p>
-                        <p>① <a class="twitter" href="https://twitter.com/BLIVE77191685/status/1540265976859480064" target="_blank">この投稿</a>をリツイート＆フォロー</p>
+                        <p>① <a class="twitter" href="https://twitter.com/BLIVE77191685/status/1547084530955104257" target="_blank">この投稿</a>をリツイート＆フォロー</p>
                         <p>② B-LIVEにて、ショート動画を投稿</p>
                     </div>
                     <div>▼対象コンテンツ<br>ゲームのプレイ動画</div>
