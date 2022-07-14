@@ -7181,12 +7181,37 @@ input[type=email] {
     top: 0;
     width: 100%;
     z-index: 2;
+    /* ログインモーダル */
   }
   .modal.open {
     display: block;
   }
   .modal.modal01 .modal__content {
     width: 520px;
+    margin: 0 auto;
+    padding: 42px 92px 60px 92px;
+    background: #fff;
+  }
+  .modal.modal01 .modal__content .sns-login .login-title {
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-bottom: 34px;
+  }
+  .modal.modal01 .modal__content .sns-login ul li {
+    margin-bottom: 22px;
+  }
+  .modal.modal01 .modal__content .sns-login .desc {
+    color: #6d6d6d;
+    font-size: 1.6rem;
+    margin-bottom: 46px;
+  }
+  .modal.modal01 .modal__content .sns-login .agree {
+    color: #6d6d6d;
+    font-size: 1.6rem;
+  }
+  .modal.modal01 .modal__content .sns-login .agree a {
+    color: #6d6d6d;
+    text-decoration: underline;
   }
 
   .modal__bg {
@@ -10433,6 +10458,38 @@ input[type=button] {
   .modal.open {
     display: block;
   }
+  .modal.modal01 .modal__content {
+    background: #fff;
+    padding: 20px 50px 20px 50px;
+  }
+  .modal.modal01 .modal__content .sns-login {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .modal.modal01 .modal__content .sns-login .login-title {
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .modal.modal01 .modal__content .sns-login ul li {
+    margin-bottom: 10px;
+  }
+  .modal.modal01 .modal__content .sns-login ul li img {
+    width: 100%;
+  }
+  .modal.modal01 .modal__content .sns-login .desc {
+    color: #6d6d6d;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+  }
+  .modal.modal01 .modal__content .sns-login .agree {
+    color: #6d6d6d;
+    font-size: 1.2rem;
+  }
+  .modal.modal01 .modal__content .sns-login .agree a {
+    color: #6d6d6d;
+    text-decoration: underline;
+  }
+
   .modal__bg {
     background: rgba(0, 0, 0, 0.8);
     height: 100vh;

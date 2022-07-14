@@ -29,8 +29,8 @@
     @endif
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
     <link href="{{ mix('css/fonts.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/app.css') }}?param=54" rel="stylesheet">
-    <link href="{{ mix('css/all.css') }}?param=54" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}?param=55" rel="stylesheet">
+    <link href="{{ mix('css/all.css') }}?param=55" rel="stylesheet">
     @if (Request::is('/'))
         <title>B-LIVE｜ゲームのライブ配信、ショート動画サイト</title>
     @else
@@ -194,7 +194,17 @@
         <div class="modal__bg js-modal-close"></div>
         <div class="modal__content">
             <a class="js-modal-close" href="#"><img src="/images/btn-close02.png"></a>
-            <p>ログインしてください</p>
+            <div class="sns-login">
+                <h3 class="login-title">SNSでログイン</h3>
+                <ul>
+                    <li><a href="/auth/line"><img src="/images/btn-line.png"></a></li>
+                    <li><a href="/auth/twitter"><img src="/images/btn-twitter.png"></a></li>
+                    <li><a href="/auth/facebook"><img src="/images/btn-facebook.png"></a></li>
+                    <li><a href="/auth/apple-signin"><img src="/images/btn-apple.png"></a></li>
+                </ul>
+                <div class="desc">※SNSに勝手にツイートや投稿をすることはありません</div>
+                <div class="agree"><a target="_blank" href="/page/terms">利用規約</a>に同意の上、ご利用ください</div>
+            </div>
         </div><!--modal__inner-->
     </div><!--modal-->
     <!--// ログインモーダル -->
@@ -205,9 +215,9 @@
             'apiToken' => \Auth::user()->api_token ?? null
         ]) !!};
     </script>
-    <script src="{{ mix('js/app.js') }}?param=54"></script>
-    <script src="{{ mix('js/all.js') }}?param=54"></script>
-    <script src="{{ mix('js/common.js') }}?param=54"></script>
+    <script src="{{ mix('js/app.js') }}?param=55"></script>
+    <script src="{{ mix('js/all.js') }}?param=55"></script>
+    <script src="{{ mix('js/common.js') }}?param=55"></script>
     @stack('scripts')
 </body>
 </html>

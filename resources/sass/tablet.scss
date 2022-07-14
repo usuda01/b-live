@@ -79,6 +79,37 @@
         }
         &.modal01 {
             .modal__content {
+                background: #fff;
+                padding: 20px 50px 20px 50px;
+                .sns-login {
+                    max-width: 320px;
+                    margin: 0 auto;
+                    .login-title {
+                        font-weight: 600;
+                        margin-bottom: 20px;
+                    }
+                    ul {
+                        li {
+                            margin-bottom: 10px;
+                            img {
+                                width: 100%;
+                            }
+                        }
+                    }
+                    .desc {
+                        color: #6d6d6d;
+                        margin-bottom: 10px;
+                        font-size: 1.2rem;
+                    }
+                    .agree {
+                        color: #6d6d6d;
+                        font-size: 1.2rem;
+                        a {
+                            color: #6d6d6d;
+                            text-decoration: underline;
+                        }
+                    }
+                }
             }
         }
     }

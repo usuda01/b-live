@@ -65,9 +65,38 @@
         &.open {
             display: block;
         }
+        /* ログインモーダル */
         &.modal01 {
             .modal__content {
                 width: 520px;
+                margin: 0 auto;
+                padding: 42px 92px 60px 92px;
+                background: #fff;
+                .sns-login {
+                    .login-title {
+                        font-size: 2.4rem;
+                        font-weight: 600;
+                        margin-bottom: 34px;
+                    }
+                    ul {
+                        li {
+                            margin-bottom: 22px;
+                        }
+                    }
+                    .desc {
+                        color: #6d6d6d;
+                        font-size: 1.6rem;
+                        margin-bottom: 46px;
+                    }
+                    .agree {
+                        color: #6d6d6d;
+                        font-size: 1.6rem;
+                        a {
+                            color: #6d6d6d;
+                            text-decoration: underline;
+                        }
+                    }
+                }
             }
         }
     }

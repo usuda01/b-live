@@ -33,7 +33,8 @@
             <div class="date">{{ movie.created_at | moment }}</div>
             <div class="movie-title">{{ movie.name }}</div>
             <div class="headline">
-                <a v-if="isGood" class="good" v-on:click.prevent="goodCancel" href="#"><i class="fas fa-heart"></i></a>
+                <a v-if="isLoggedIn===false" class="good js-modal-open" data-target="modal01" href="#"><i class="far fa-heart"></i></a>
+                <a v-else-if="isGood" class="good" v-on:click.prevent="goodCancel" href="#"><i class="fas fa-heart"></i></a>
                 <a v-else class="good" v-on:click.prevent="good" href="#"><i class="far fa-heart"></i></a>
                 <div class="good-count">{{ goodCount }}</div>
             </div>
@@ -91,6 +92,7 @@
                 activeTab: 1,
                 goodCount: 0,
                 isGood: false,
+                isLoggedIn: Object.keys(this.user).length > 0,
                 locationUrl: location.href,
                 movies: [],
                 page: 1,

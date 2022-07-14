@@ -2368,6 +2368,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2398,6 +2399,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       activeTab: 1,
       goodCount: 0,
       isGood: false,
+      isLoggedIn: Object.keys(this.user).length > 0,
       locationUrl: location.href,
       movies: [],
       page: 1
@@ -95356,7 +95358,16 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "headline" }, [
-          _vm.isGood
+          _vm.isLoggedIn === false
+            ? _c(
+                "a",
+                {
+                  staticClass: "good js-modal-open",
+                  attrs: { "data-target": "modal01", href: "#" }
+                },
+                [_c("i", { staticClass: "far fa-heart" })]
+              )
+            : _vm.isGood
             ? _c(
                 "a",
                 {
