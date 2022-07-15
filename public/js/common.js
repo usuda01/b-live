@@ -43,11 +43,11 @@ $(function () {
   }); // ログインモーダル
 
   $('.js-modal-open').each(function () {
-    $(this).on('click', function () {
+    $(this).on('click', function (e) {
+      e.preventDefault();
       var target = $(this).data('target');
       var modal = document.getElementById(target);
       $(modal).fadeIn();
-      return false;
     });
   });
   $('.js-modal-close').on('click', function () {

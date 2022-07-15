@@ -17,10 +17,10 @@
                     @foreach ($mainGames as $mainGame)
                         <div class="game-box">
                             <div class="game-image">
-                                <a href="/movie/search/?game_id={{ $mainGame->id }}" v-bind:style="{ backgroundImage: 'url({{ $mainGame->getImagePath() }})' }"></a>
+                                <a href="/movie/search?game_id={{ $mainGame->id }}" v-bind:style="{ backgroundImage: 'url({{ $mainGame->getImagePath() }})' }"></a>
                             </div>
                             <div class="game-info pc_only">
-                                <a href="/movie/search/?game_id={{ $mainGame->id }}" class="game-name">{{ $mainGame->name }}</a>
+                                <a href="/movie/search?game_id={{ $mainGame->id }}" class="game-name">{{ $mainGame->name }}</a>
                             </div>
                         </div>
                     @endforeach
