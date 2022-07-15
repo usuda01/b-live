@@ -23,6 +23,7 @@ class UserDataSeeder extends Seeder
             ['id' => 6, 'user_id' => 6, 'stripe_id' => '', 'point' => 10, 'rank' => 1],
             ['id' => 7, 'user_id' => 7, 'stripe_id' => '', 'point' => 600, 'rank' => 1],
             ['id' => 8, 'user_id' => 8, 'stripe_id' => '', 'point' => 0, 'rank' => 1],
+            ['id' => 9, 'user_id' => 9, 'stripe_id' => '', 'point' => 660, 'rank' => 1],
         ]);
     }
 }

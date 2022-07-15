@@ -119,6 +119,19 @@ class UserSeeder extends Seeder
                 'status' => 2,
                 'image' => 'WVO0h8jGEaSsmuhl3CCVppRq9BIqN67sAUz46Aej.jpg'
             ],
+            [
+                'id' => 9,
+                'name' => '世界一美しい日本一汚い男',
+                'email' => 'rcb78vyxbg@privaterelay.appleid.com',
+                'password' => '1',
+                'profile' => "ゲーム誘ってね",
+                'twitter_url' => null,
+                'api_token' => 'EcComFp8rtCYFsqcM0hlNxF8Elm7sMXzDiVatgBApiT8ucJCizZIue2k5lRtizZbFRDttcN5n3yENoGi',
+                'twitter_id' => null,
+                'apple_id' => '000101.837d3dd7d9b049b799d3897ab51242bd.1227',
+                'status' => 2,
+                'image' => 'ND3DuNs22XAsJpY2Jvk5fG8EInVXva5L0Vy6RW7W.jpg'
+            ],
         ]);
     }
 }

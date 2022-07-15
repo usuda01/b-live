@@ -111,6 +111,18 @@ class MovieSeeder extends Seeder
                 'created_at' => '2022-07-11 11:24:45',
                 'updated_at' => '2022-07-11 12:05:02'
             ],
+            [
+                'id' => 9,
+                'user_id' => 9,
+                'game_id' => 23,
+                'name' => 'そんなことある！？',
+                'image' => 'BPFpQ6BkJYXZ6KT5pRUFTMKGiki2hc7hlb1pDgTB.png',
+                'path' => '2022-07-14-23-46-54.mp4',
+                'is_publish' => 1,
+                'duration' => '00:00:20',
+                'created_at' => '2022-07-14 23:46:56',
+                'updated_at' => '2022-07-15 15:03:01'
+            ],
         ]);
     }
 }
