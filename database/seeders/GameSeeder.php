@@ -37,6 +37,7 @@ class GameSeeder extends Seeder
             ['id' => 20, 'name' => 'モンスターハンターライズ', 'sns_tags' => 'モンハンライズ', 'sales_agency' => '任天堂'],
             ['id' => 21, 'name' => 'Phasmophobia', 'sns_tags' => 'Phasmophobia', 'sales_agency' => 'Kinetic Games'],
             ['id' => 22, 'name' => 'バイオハザード ヴィレッジ', 'sns_tags' => 'バイオハザード,バイオハザードヴィレッジ', 'sales_agency' => 'カプコン'],
+            ['id' => 23, 'name' => 'PUBG: BATTLEGROUNDS', 'sns_tags' => 'PUBG,PUBGBATTLEGROUNDS', 'sales_agency' => 'KRAFTON, Inc.'],
         ]);
     }
 }
