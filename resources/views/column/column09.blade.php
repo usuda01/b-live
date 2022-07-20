@@ -1,104 +1,9 @@
-<html>
-<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WW3H9DP');</script>
-    <!-- End Google Tag Manager -->
-    <meta name="google-site-verification" content="P5MZYRt5GLFguKhLczvQkpUCRLTIkm1LyOF93FHd4bM" />
-    <meta name="csrf-token" content="iPTl81TBKbsmks6fiqWlI3jfb6hA9esZ58Vn9FCi">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="keywords" content="B-LIVE,ライブ配信,配信,ゲーム,ゲーム実況,ゲーム配信">
-    <meta name="description" content="ゲーム配信の実況メンバー募集は、SNSや掲示板を活用したり、ギルドやクランに参加したりして行うことができます。ここでは、仲間とゲームを楽しみたい方へ、ゲーム配信の実況メンバー募集方法についてご紹介します。また、ゲーム配信のプラットフォームB-LIVEのサービスの特徴についてもご紹介するので、ぜひ参考にしてください。">
-    <meta property="og:title" content="B-LIVE｜ライブ配信" />
-    <meta property="og:description" content="B-LIVE（ビーライブ）は、ゲームのライブ配信プラットフォームです！お気に入りの配信者を見つけて、ラジオ感覚で楽しもう！" />
-    <meta property="og:url" content="https://live.carol-i.com/page/company" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="【ライブ配信サービス】視聴者を増やして楽しく配信しよう！！" />
-    <meta name="twitter:description" content="ゲーム配信プラットフォーム、、新サービス「B-LIVE」が誕生！！" />
-            <meta property="og:image" content="https://live.carol-i.com/images/ogp.png" />
-        <meta property="twitter:image" content="https://live.carol-i.com/images/ogp.png" />
-        <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
-    <link href="/css/fonts.css" rel="stylesheet">
-    <link href="/css/app.css?param=37" rel="stylesheet">
-    <link href="/css/all.css?param=37" rel="stylesheet">
-    <title>ゲーム配信の実況メンバー募集！クランやSNS・掲示板で募集する方法も！サービスの特徴も紹介 | B-LIVE</title>
-    
-    <script src="//live.carol-i.com:6001/socket.io/socket.io.js"></script>
-</head>
-<body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WW3H9DP"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+@extends('layouts.column')
 
-    <!-- ドロワーメニュー -->
-    <div class="drawer-bg"></div>
-    <div class="drawer-menu">
-        <div class="drawer-menu_close">
-            <a href="#" id="drawer-menu__close-btn"><img src="/images/btn-sidebar-close.png"></a>
-        </div>
-        <ul class="drawer-menu__list">
-            <li><a href="/page/notice"><img src="/images/icon-menu05.png"><span>お知らせ</span></a></li>
-            <li><a href="/page/benefits"><img src="/images/icon-menu03.png"><span>配信者特典</span></a></li>
-            <li><a href="/page/ranking"><img src="/images/icon-menu07.png"><span>ランキングについて</span></a></li>
-            <li><a href="/page/liver"><img src="/images/icon-menu04.png"><span>配信者の方へ</span></a></li>
-            <li><a href="/page/howto"><img src="/images/icon-menu02.png"><span>配信方法</span></a></li>
-            <li><a href="/page/terms"><img src="/images/icon-menu04.png"><span>利用規約</span></a></li>
-        </ul>
-    </div><!--// .drawer-menu -->
+@section('title', 'ゲーム配信の実況メンバー募集！クランやSNS・掲示板で募集する方法も！サービスの特徴も紹介 - ')
 
-    <!-- 検索メニュー -->
-    <div class="search-bg"></div>
-    <div class="search-content">
-        <div class="search-content_close">
-            <a href="#" id="search-content__close-btn"><img src="/images/btn-search-close.png"></a>
-        </div>
-        <div class="search-content__box">
-            <form method="GET" action="/search">
-                <input type="text" name="q" placeholder="タイトル、ユーザー名"><input type="submit" value="">
-            </form>
-        </div>
-    </div><!--// .search-content -->
-
-    
-    <header id="header" class="site-header PageController-company ">
-        <div class="site-header__inner">
-            <div id="toggle-slidebar" class="site-header__toggle-sidebar"><a href="#"><img src="/images/btn-sidebar-open.png"></a></div>
-            <div class="site-header__logo"><a href="/"><img src="/images/logo.png"></a></div>
-            <div class="site-header__search">
-                <form method="GET" action="/search">
-                    <input type="text" name="q" placeholder="タイトル、ユーザー名"><input type="submit" value="">
-                </form>
-            </div>
-            <div id="toggle-search-slidebar" class="site-header__search-sp">
-                <a href="#"><img src="/images/btn-search02.png"></a>
-            </div>
-            <div class="site-header__notice">
-                <a href="#"><i class="fas fa-bell"></i></a>
-            </div>
-                            <div class="site-header__account">
-                    <a href="/login" class="site-header__login">ログイン</a>
-                    <a href="/login" class="site-header__register">登録</a>
-                </div>
-                    </div>
-    </header>
-
-    <div id="app-install" class="app-install">
-        <div class="headline">
-            <div class="app-logo"><img src="/images/btn-app.png"></div>
-            <!--<div class="app-text">アプリで快適に視聴！</div>-->
-            <!--<div class="app-text">アプリなら遅延ほぼ無し！</div>-->
-            <div class="app-text">アプリで配信通知を受け取ろう！</div>
-        </div>
-        <a class="btn-install" href="https://itunes.apple.com/jp/app/b-live-%E3%83%A9%E3%82%A4%E3%83%96%E9%85%8D%E4%BF%A1/id1507393495">今すぐインストール</a>
-    </div>
-
-    <div id="app" class="site-content PageController-company ">
-            <div class="page-content">
+@section('content')
+    <div class="page-content">
         <div class="sidebar">
     <ul class="menu-list">
         <li class="menu01 "><a href="/page/notice"><span>お知らせ</span></a></li>
@@ -219,30 +124,15 @@ $('.column_area').append('<style type="text/css">.breadcrumbs{clear: both;font-s
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4280.9379284695615!2d139.68962138692413!3d35.73291123883149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601892ab2356a291%3A0x8d19ccf5af7cda87!2z44CSMTcxLTAwNDQg5p2x5Lqs6YO96LGK5bO25Yy65Y2D5pep77yS5LiB55uu77yR77yU4oiS77yY!5e0!3m2!1sja!2sjp!4v1590242837398!5m2!1sja!2sjp" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 </div>
 <!-- コンテンツここまで -->
-
             </div>
-
         </div>
     </div>
-    </div>
+@endsection
 
-    
-    <!-- ログインモーダル -->
-    <div id="modal01" class="modal js-modal modal01">
-        <div class="modal__bg js-modal-close"></div>
-        <div class="modal__content">
-            <a class="js-modal-close" href="#"><img src="/images/btn-close02.png"></a>
-            <p>ログインしてください</p>
-        </div><!--modal__inner-->
-    </div><!--modal-->
-    <!--// ログインモーダル -->
-
-    <!-- api 認証のための記述 -->
-    <script>
-        window.Laravel = {"apiToken":null};
-    </script>
-    <script src="/js/app.js?param=37"></script>
-    <script src="/js/all.js?param=37"></script>
-    <script src="/js/common.js?param=37"></script>
-    </body>
-</html>
+@push('meta')
+    <meta name="description" content="ゲーム配信の実況メンバー募集は、SNSや掲示板を活用したり、ギルドやクランに参加したりして行うことができます。ここでは、仲間とゲームを楽しみたい方へ、ゲーム配信の実況メンバー募集方法についてご紹介します。また、ゲーム配信のプラットフォームB-LIVEのサービスの特徴についてもご紹介するので、ぜひ参考にしてください。">
+    <meta property="og:description" content="B-LIVE（ビーライブ）は、ゲームのライブ配信プラットフォームです！お気に入りの配信者を見つけて、一緒に盛り上がろう！" />
+    <meta property="og:image" content="{{ Request::getSchemeAndHttpHost() }}/images/ogp.png" />
+    <meta name="twitter:description" content="ゲーム配信プラットフォーム、「B-LIVE」！！" />
+    <meta property="twitter:image" content="{{ Request::getSchemeAndHttpHost() }}/images/ogp.png" />
+@endpush

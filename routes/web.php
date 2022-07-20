@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AppleSigninController;
 use App\Http\Controllers\Auth\FacebookController;
 use App\Http\Controllers\Auth\LineController;
 use App\Http\Controllers\Auth\TwitterController;
+use App\Http\Controllers\ColumnController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventRankingController;
 use App\Http\Controllers\FollowerController;
@@ -32,6 +33,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+
+// コラム
+Route::group(['prefix' => 'column'], function () {
+    Route::get('column.html', [ColumnController::class, 'column']);
+    Route::get('column01.html', [ColumnController::class, 'column01']);
+    Route::get('column02.html', [ColumnController::class, 'column02']);
+    Route::get('column03.html', [ColumnController::class, 'column03']);
+    Route::get('column04.html', [ColumnController::class, 'column04']);
+    Route::get('column05.html', [ColumnController::class, 'column05']);
+    Route::get('column06.html', [ColumnController::class, 'column06']);
+    Route::get('column07.html', [ColumnController::class, 'column07']);
+    Route::get('column08.html', [ColumnController::class, 'column08']);
+    Route::get('column09.html', [ColumnController::class, 'column09']);
+    Route::get('column10.html', [ColumnController::class, 'column10']);
+});
 
 // サイトマップ
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);

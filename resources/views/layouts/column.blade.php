@@ -119,7 +119,7 @@
             <div id="toggle-search-slidebar" class="site-header__search-sp">
                 <a href="#"><img src="/images/btn-search02.png"></a>
             </div>
-            <div id="toggle-notice" class="site-header__notice">
+            <div class="site-header__notice">
                 <a href="#"><i class="fas fa-bell"></i></a>
             </div>
             @if (Auth::check())
@@ -134,16 +134,6 @@
             @endif
         </div>
     </header>
-
-    @if (!Auth::check() || (Auth::check() && Auth::user()->user_data->is_line_connected == null))
-        <div id="line-connect" class="line-connect {{ class_basename(Route::current()->controller) }}-{{ request()->route()->getActionMethod() }}">
-            <div class="headline">
-                <div class="line-logo"><img src="/images/icon-line.png"></div>
-                <div class="line-text">LINE連携で配信通知を受け取ろう！</div>
-            </div>
-            <a class="btn-connect" href="/setting/line">LINE連携はこちらから</a>
-        </div>
-    @endif
 
     <div id="app-install" class="app-install">
         <div class="headline">

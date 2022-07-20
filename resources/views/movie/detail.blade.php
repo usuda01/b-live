@@ -16,6 +16,9 @@
 @endsection
 
 @push('meta')
+    <meta name="description" content="B-LIVE（ビーライブ）は、ゲームのライブ配信プラットフォームです！お気に入りの配信者を見つけて、一緒に盛り上がろう！">
+    <meta property="og:description" content="B-LIVE（ビーライブ）は、ゲームのライブ配信プラットフォームです！お気に入りの配信者を見つけて、一緒に盛り上がろう！" />
+    <meta name="twitter:description" content="ゲーム配信プラットフォーム、「B-LIVE」！！" />
     <meta property="og:image" content="{{ Request::getSchemeAndHttpHost() }}/{{ $movie->image_path }}" />
     <meta property="twitter:image" content="{{ Request::getSchemeAndHttpHost() }}/{{ $movie->image_path }}" />
 @endpush
