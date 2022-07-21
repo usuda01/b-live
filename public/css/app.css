@@ -7627,6 +7627,7 @@ input[type=email] {
    */
   .app-install {
     display: none;
+    position: -webkit-sticky;
     position: sticky;
     top: 50px;
     z-index: 1;
@@ -7666,6 +7667,7 @@ input[type=email] {
    * LINE連携
    */
   .line-connect {
+    position: -webkit-sticky;
     position: sticky;
     top: 50px;
     z-index: 1;
@@ -11046,6 +11048,7 @@ input[type=button] {
    */
   .app-install {
     display: none;
+    position: -webkit-sticky;
     position: sticky;
     top: 0px;
     z-index: 1;
@@ -11084,6 +11087,7 @@ input[type=button] {
    * LINE連携
    */
   .line-connect {
+    position: -webkit-sticky;
     position: sticky;
     top: 0px;
     z-index: 1;
