@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', $group->name . ' - ')
 @section('content')
     <div class="group-detail">
         <div class="main-content">

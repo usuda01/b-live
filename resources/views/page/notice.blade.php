@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'お知らせ一覧｜')
+@section('title', 'お知らせ一覧 - ')
 @section('content')
     <div class="page-content">
         @include('parts.page_menu')

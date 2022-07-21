@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', $q . 'の検索結果' . ' - ')
 @section('content')
     <div class="search-index">
         @include('parts.home_menu')

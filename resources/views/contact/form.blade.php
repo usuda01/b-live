@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'お問い合わせ - ')
 @section('content')
     <div class="page-content">
         @include('parts.page_menu')

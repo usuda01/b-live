@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', '同時接続数ランキング' . ' - ')
 @section('content')
     <div class="room-ranking-index">
         @include('parts.home_menu')

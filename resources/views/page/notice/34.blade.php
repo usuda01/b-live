@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'アマゾンギフト券１万円獲得イベント開催！' . ' - ')
 @section('content')
     <div class="page-content">
         @include('parts.page_menu')

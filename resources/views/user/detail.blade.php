@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', $targetUser->name . ' - ')
 @section('content')
     <div class="user-detail @if (request()->header('User-Agent') == 'webview') webview @endif">
         <div class="main-content">
