@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'フォロワー - ')
 @section('content')
     <div class="follower-follows">
         @include('parts.home_menu')

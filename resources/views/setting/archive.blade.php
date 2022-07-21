@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', '過去の配信 - ')
 @section('content')
     <div class="setting-archive">
         @include('parts.mypage_menu')

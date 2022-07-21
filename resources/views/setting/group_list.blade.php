@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'クラン一覧 - ')
 @section('content')
     <div class="setting-group-list">
         @include('parts.account_menu')

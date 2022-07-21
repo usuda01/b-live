@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('title', $room->name . ' - ')
-
 @section('content')
     <room-component
         :admin-user-id="{{ Config::get('services.admin_user_id') }}"

@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', '配信する - ')
 @section('content')
     <div class="setting-stream">
         @include('parts.mypage_menu')

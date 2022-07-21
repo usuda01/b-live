@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'LINE連携 - ')
 @section('content')
     <div class="setting-line">
         @include('parts.account_menu')

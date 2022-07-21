@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', '所持コイン - ')
 @section('content')
     <div class="setting-coin">
         @include('parts.account_menu')

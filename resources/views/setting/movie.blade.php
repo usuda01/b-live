@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', '掲載動画 - ')
 @section('content')
     <div class="setting-movie">
         @include('parts.mypage_menu')

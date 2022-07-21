@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'アカウント - ')
 @section('content')
     <div class="setting-profile">
         @include('parts.account_menu')
