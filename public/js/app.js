@@ -3352,7 +3352,16 @@ __webpack_require__.r(__webpack_exports__);
       var videoUrl = this.room.wowza.hls_url;
 
       if (hls_js__WEBPACK_IMPORTED_MODULE_1___default().isSupported()) {
-        this.hls = new (hls_js__WEBPACK_IMPORTED_MODULE_1___default())();
+        var config = {
+          enableWorker: true,
+          maxBufferLength: 1,
+          liveBackBufferLength: 0,
+          liveSyncDuration: 0,
+          liveMaxLatencyDuration: 5,
+          liveDurationInfinity: true,
+          highBufferWatchdogPeriod: 1
+        };
+        this.hls = new (hls_js__WEBPACK_IMPORTED_MODULE_1___default())(config);
         this.hls.loadSource(videoUrl);
         this.hls.attachMedia(video);
         video.play();

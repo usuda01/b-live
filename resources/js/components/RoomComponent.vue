@@ -656,7 +656,16 @@
                 const video = document.getElementById('main-video');
                 const videoUrl = this.room.wowza.hls_url;
                 if (Hls.isSupported()) {
-                    this.hls = new Hls();
+                    var config = {
+                        enableWorker: true,
+                        maxBufferLength: 1,
+                        liveBackBufferLength: 0,
+                        liveSyncDuration: 0,
+                        liveMaxLatencyDuration: 5,
+                        liveDurationInfinity: true,
+                        highBufferWatchdogPeriod: 1
+                    };
+                    this.hls = new Hls(config);
                     this.hls.loadSource(videoUrl);
                     this.hls.attachMedia(video);
                     video.play();
