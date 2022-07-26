@@ -1112,6 +1112,8 @@
             }
             .main-video {
                 width: 100%;
+                max-height: 60vh;
+                min-height: 400px;
             }
             .video-footer {
                 background: #eeeeee;
@@ -1829,6 +1831,7 @@
             video {
                 width: 100%;
                 max-height: 60vh;
+                min-height: 400px;
             }
             .video-footer {
                 background: #eeeeee;

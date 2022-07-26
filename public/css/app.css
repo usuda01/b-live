@@ -8161,6 +8161,8 @@ input[type=email] {
   }
   .room-stream .main-area .main-video {
     width: 100%;
+    max-height: 60vh;
+    min-height: 400px;
   }
   .room-stream .main-area .video-footer {
     background: #eeeeee;
@@ -8809,6 +8811,7 @@ input[type=email] {
   .movie-detail .main-area video {
     width: 100%;
     max-height: 60vh;
+    min-height: 400px;
   }
   .movie-detail .main-area .video-footer {
     background: #eeeeee;
