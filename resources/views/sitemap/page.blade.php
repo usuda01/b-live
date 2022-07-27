@@ -7,7 +7,15 @@
     </url>
     <url>
         <loc>{{ url('/page/notice') }}</loc>
-        <lastmod>2022-06-24</lastmod>
+        <lastmod>2022-07-28</lastmod>
+    </url>
+    <url>
+        <loc>{{ url('/page/notice/35') }}</loc>
+        <lastmod>2022-07-28</lastmod>
+    </url>
+    <url>
+        <loc>{{ url('/page/notice/34') }}</loc>
+        <lastmod>2022-07-13</lastmod>
     </url>
     <url>
         <loc>{{ url('/page/notice/33') }}</loc>
