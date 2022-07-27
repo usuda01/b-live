@@ -65,7 +65,7 @@
 <p>ゲーム実況のプラットフォームをお探しでしたら、B-LIVEをご利用ください。B-LIVEはゲーム実況に特化したプラットフォームで、制約も少ないため、これから配信を進めたいという方におすすめです。</p>
 <p>アプリをインストールすることなく、Webからご利用いただけます。ゲーム実況に挑戦してみたいという方は、ぜひお試しください。</p>
 
-<p class="column_btn"><a href="https://live.carol-i.com/contact" target="_blank" rel="noopener noreferrer">お問い合わせはこちら</a></p>
+<p class="column_btn"><a href="/contact" target="_blank" rel="noopener noreferrer">お問い合わせはこちら</a></p>
 
 <div class="column_link">
 <h3>コラム一覧</h3>
@@ -137,14 +137,4 @@
     <meta property="og:image" content="{{ Request::getSchemeAndHttpHost() }}/images/ogp.png" />
     <meta name="twitter:description" content="ゲーム配信プラットフォーム、「B-LIVE」！！" />
     <meta property="twitter:image" content="{{ Request::getSchemeAndHttpHost() }}/images/ogp.png" />
-@endpush
-
-@push('scripts')
-    <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript">
-        jQuery(function($) {
-            $('meta[name=description]').attr({content: 'ゲーム実況で儲かるプラットフォームを探している、ゲーム実況におすすめのゲーム・アプリを知りたいという方へ！こちらではゲーム実況に適したゲームの特徴や、選び方を紹介します。配信で儲かるためにはどんなゲームを選べばいいかお悩みなら、ぜひチェックしてみてください。'});
-            $('.column_area').append('<style type="text/css">.breadcrumbs{clear: both;font-size: 90%;margin: 0 0 60px;}.column_area{margin: 0 15px;}.column_area h2{font-size: 25px;text-align: center;}.column_area h3{clear: both;font-size: 20px;text-align: left;margin: 60px 0 20px;padding: 0 0 5px;border-bottom: 2px solid #ccc;}.column_area h4{clear: none;font-size: 18px;text-align: left;margin: 45px 0 20px;padding: 2px 0 2px 5px;border-left: 5px solid #ccc;}.column_area p,.column_area ul{text-align: left;margin: 0 0 1em;}.column_area ul li{list-style: disc;margin: 0 0 5px 20px;}.column_area a{text-decoration: underline;}.column_area a.text_a{color: #9e1b9e;font-size: 120%;font-weight: 700;}.column_area a.text_a:hover{text-decoration: none;}.column_area .b-backpattern{margin: 60px 0;}.column_area p.summarize{clear: both;margin: 2.5em 0 1em;}.column_area p.column_btn{clear: both;margin: 2.5em 0 0 0;}.column_area .column_btn a{color: #fff;display: block;max-width: 300px;background: #000;text-align: center;text-decoration: none;margin: 0 auto;padding: 13px 10px;transition: all 0.3s;}.column_area .column_btn a:hover{background: #666;}.column_company{margin: 0 0 60px;}.column_area .column_link{margin: 60px 0 45px;}.column_area .column_link ul{padding: 0;list-style-type: none;background: #FFF;}.column_area .column_link ul li{text-align: left;margin: 0;padding: 10px 0;list-style-type: none;border-bottom: 1px dotted #CCC;}.column_area .column_link li:last-child{border-bottom: none;}.column_area .column_link a{text-decoration: none;display: block;padding: 7px 10px;transition: all 0.5s;}.column_area .column_link a.active, .column_link a:hover{color: #fff;text-decoration: none;background: #c35ec3;}.column_company{margin: 60px 0 20px;}.column_company table{width: 100%;margin: 25px 0 60px;border: none;border-collapse: collapse;}.column_company tr{border-bottom: 2px solid #eee;}.column_company th{font-size: 16px;text-align: left;vertical-align: middle;padding: 15px;width: 30%;background: #fff;border: none;border-collapse: collapse;}.column_company td{font-size: 16px;text-align: left;padding: 15px;width: 80%;border: none;border-collapse: collapse;}.image_area{max-width: 400px;width: 100%;display: block;vertical-align: bottom;border: none;}@media only screen and (min-width: 769px){.image_right{float: right;margin: 0 0 1.8rem 20px;}.image_left{float: left;margin: 0 20px 1.8rem 0;}}@media only screen and (max-width: 769px){.column_area h2{font-size: 22px;}.column_area h3{font-size: 18px;}.column_area h4{font-size: 16px;}.column_company th,.column_company td{font-size: 14px;}.image_right{float: none;margin: 25px auto;}.image_left{float: none;margin: 25px auto;}}</style>');
-        });
-    </script>
 @endpush

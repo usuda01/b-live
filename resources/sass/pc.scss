@@ -732,6 +732,15 @@
                         }
                     }
                 }
+                &.menu03 {
+                    a {
+                        &:before {
+                            content: url(/images/icon-menu09.png);
+                            width: 20px;
+                            height: 20px;
+                        }
+                    }
+                }
             }
         }
     }
@@ -3471,7 +3480,148 @@
                     }
                 }
             }
+
+            /*
+             * コラム
+             */
+            .column_area {
+                margin: 0 15px;
+                .breadcrumbs {
+                    clear: both;
+                    font-size: 90%;
+                    margin: 0 0 60px;
+                }
+                h2 {
+                    font-size: 25px;
+                    text-align: center;
+                }
+                h3 {
+                    clear: both;
+                    font-size: 20px;
+                    text-align: left;
+                    margin: 60px 0 20px;
+                    padding: 0 0 5px;
+                    border-bottom: 2px solid #ccc;
+                }
+                h4 {
+                    clear: none;
+                    font-size: 18px;
+                    text-align: left;
+                    margin: 45px 0 20px;
+                    padding: 2px 0 2px 5px;
+                    border-left: 5px solid #ccc;
+                }
+                p, ul {
+                    text-align: left;
+                    margin: 0 0 1em;
+                }
+                ul li {
+                    list-style: disc;
+                    margin: 0 0 5px 20px;
+                }
+                a {
+                    text-decoration: underline;
+                }
+                a.text_a{
+                    color: #9e1b9e;
+                    font-size: 120%;
+                    font-weight: 700;
+                }
+                a.text_a:hover {
+                    text-decoration: none;
+                }
+                .b-backpattern {
+                    margin: 60px 0;
+                }
+                p.summarize {
+                    clear: both;
+                    margin: 2.5em 0 1em;
+                }
+                p.column_btn {
+                    clear: both;
+                    margin: 2.5em 0 0 0;
+                }
+                .column_btn a {
+                    color: #fff;
+                    display: block;
+                    max-width: 300px;
+                    background: #000;
+                    text-align: center;
+                    text-decoration: none;
+                    margin: 0 auto;
+                    padding: 13px 10px;
+                    transition: all 0.3s;
+                }
+                .column_btn a:hover {
+                    background: #666;
+                }
+                .column_company {
+                    margin: 60px 0 20px;
+                    table {
+                        width: 100%;
+                        margin: 25px 0 60px;
+                        border: none;
+                        border-collapse: collapse;
+                    }
+                    tr{
+                        border-bottom: 2px solid #eee;
+                    }
+                    th{
+                        font-size: 16px;
+                        text-align: left;
+                        vertical-align: middle;
+                        padding: 15px;
+                        width: 30%;
+                        background: #fff;
+                        border: none;
+                        border-collapse: collapse;
+                    }
+                    td {
+                        font-size: 16px;
+                        text-align: left;
+                        padding: 15px;
+                        width: 80%;
+                        border: none;
+                        border-collapse: collapse;
+                    }
+                }
+                .column_link {
+                    margin: 60px 0 45px;
+                }
+                .column_link ul {
+                    padding: 0;
+                    list-style-type: none;
+                    background: #FFF;
+                }
+                .column_link ul li {
+                    text-align: left;
+                    margin: 0;
+                    padding: 10px 0;
+                    list-style-type: none;
+                    border-bottom: 1px dotted #CCC;
+                }
+                .column_link li:last-child {
+                    border-bottom: none;
+                }
+                .column_link a {
+                    text-decoration: none;
+                    display: block;
+                    padding: 7px 10px;
+                    transition: all 0.5s;
+                }
+                .column_link a.active, .column_link a:hover {
+                    color: #fff;
+                    text-decoration: none;
+                    background: #c35ec3;
+                }
+                .image_area {
+                    max-width: 400px;
+                    width: 100%;
+                    display: block;
+                    vertical-align: bottom;
+                    border: none;
+                }
+            }
         }
     }
-
 }

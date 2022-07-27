@@ -32,8 +32,8 @@
     @endif
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
     <link href="{{ mix('css/fonts.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/app.css') }}?param=55" rel="stylesheet">
-    <link href="{{ mix('css/all.css') }}?param=55" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}?param=56" rel="stylesheet">
+    <link href="{{ mix('css/all.css') }}?param=56" rel="stylesheet">
     @if (Request::is('/'))
         <title>B-LIVE｜ゲームのライブ配信、ショート動画サイト</title>
     @else
@@ -63,6 +63,7 @@
             <li><a href="/page/howto"><img src="/images/icon-menu02.png"><span>配信方法</span></a></li>
             <li><a href="/page/terms"><img src="/images/icon-menu04.png"><span>利用規約</span></a></li>
             <li><a href="/page/company"><img src="/images/icon-menu08.jpg"><span>運営者</span></a></li>
+            <li><a href="/column/column.html"><img src="/images/icon-menu09.png"><span>コラム</span></a></li>
         </ul>
     </div><!--// .drawer-menu -->
 
@@ -208,9 +209,9 @@
             'apiToken' => \Auth::user()->api_token ?? null
         ]) !!};
     </script>
-    <script src="{{ mix('js/app.js') }}?param=55"></script>
-    <script src="{{ mix('js/all.js') }}?param=55"></script>
-    <script src="{{ mix('js/common.js') }}?param=55"></script>
+    <script src="{{ mix('js/app.js') }}?param=56"></script>
+    <script src="{{ mix('js/all.js') }}?param=56"></script>
+    <script src="{{ mix('js/common.js') }}?param=56"></script>
     @stack('scripts')
 </body>
 </html>
