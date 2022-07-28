@@ -28,7 +28,7 @@
                         </div>
                     </div>
                 </div><!--// .movie-content -->
-                <infinite-loading @infinite="tab2InfiniteHandler"></infinite-loading>
+                <infinite-loading :identifier="1" @infinite="tab2InfiniteHandler"></infinite-loading>
             </div>
 
             <div class="room-wrapper" v-else-if="activeTab === 3">
@@ -53,7 +53,7 @@
                         </div>
                     </div>
                 </div>
-                <infinite-loading @infinite="tab3InfiniteHandler"></infinite-loading>
+                <infinite-loading :identifier="2" @infinite="tab3InfiniteHandler"></infinite-loading>
             </div>
 
             <div class="supporter" v-else-if="activeTab === 4">
