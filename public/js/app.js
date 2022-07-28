@@ -100089,6 +100089,7 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("infinite-loading", {
+                attrs: { identifier: 1 },
                 on: { infinite: _vm.tab2InfiniteHandler }
               })
             ],
@@ -100176,6 +100177,7 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("infinite-loading", {
+                attrs: { identifier: 2 },
                 on: { infinite: _vm.tab3InfiniteHandler }
               })
             ],
