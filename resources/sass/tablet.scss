@@ -1857,10 +1857,27 @@
     .movie-search {
         .main-area {
             padding-bottom: 100px;
-            .main-title {
-                font-size: 2rem;
+            .breadcrumbs {
                 margin: 26px 0 18px 10px;
-                color: $base-color;
+                span {
+                    a {
+                        text-decoration: underline;
+                    }
+                }
+            }
+            .tabs {
+                display: flex;
+                line-height: 42px;
+                height: 42px;
+                border-bottom: 1px solid #ccc;
+                margin-bottom: 20px;
+                li {
+                    flex: 1;
+                    text-align: center;
+                }
+                .active {
+                    border-bottom: 2px solid $base-color;
+                }
             }
             .movie-content {
                 @extend %movie-content-tablet;

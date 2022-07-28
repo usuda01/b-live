@@ -32,8 +32,8 @@
     @endif
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
     <link href="{{ mix('css/fonts.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/app.css') }}?param=56" rel="stylesheet">
-    <link href="{{ mix('css/all.css') }}?param=56" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}?param=57" rel="stylesheet">
+    <link href="{{ mix('css/all.css') }}?param=57" rel="stylesheet">
     @if (Request::is('/'))
         <title>B-LIVE｜ゲームのライブ配信、ショート動画サイト</title>
     @else
@@ -150,7 +150,12 @@
         @yield('content')
     </div>
 
-    @if (Request::is('/') || Request::is('room-ranking/*') || Request::is('followers/follows'))
+    @if (
+        Request::is('/')
+        || Request::is('movie/search*')
+        || Request::is('room-ranking/*')
+        || Request::is('followers/follows')
+    )
         <footer id="footer" class="footer-menu">
             <ul>
                 <li>
@@ -163,6 +168,19 @@
                         <a href="/">
                             <img src="/images/btn-footer-menu01.png">
                             <span>ホーム</span>
+                        </a>
+                    @endif
+                </li>
+                <li>
+                    @if (Request::is('movie/search*'))
+                        <a href="/movie/search" class="active">
+                            <img src="/images/btn-footer-menu03_on.png">
+                            <span>ショート動画</span>
+                        </a>
+                    @else
+                        <a href="/movie/search">
+                            <img src="/images/btn-footer-menu03.png">
+                            <span>ショート動画</span>
                         </a>
                     @endif
                 </li>
@@ -209,9 +227,9 @@
             'apiToken' => \Auth::user()->api_token ?? null
         ]) !!};
     </script>
-    <script src="{{ mix('js/app.js') }}?param=56"></script>
-    <script src="{{ mix('js/all.js') }}?param=56"></script>
-    <script src="{{ mix('js/common.js') }}?param=56"></script>
+    <script src="{{ mix('js/app.js') }}?param=57"></script>
+    <script src="{{ mix('js/all.js') }}?param=57"></script>
+    <script src="{{ mix('js/common.js') }}?param=57"></script>
     @stack('scripts')
 </body>
 </html>

@@ -9,6 +9,11 @@
         <div v-if="activeTab===1" class="movie-wrapper" v-bind:class="{'active': activeTab === 1}">
             <div class="movie-content">
                 <div class="movie-box" v-for="movie in movies" :key="movie.id">
+                    <div class="game-title">
+                        <template v-if="movie.game">
+                            <a v-bind:href="'/movie/search?game_id=' + movie.game.id">{{ movie.game.name }}</a>
+                        </template>
+                    </div>
                     <div class="movie-image">
                         <a v-bind:href="'/movie/detail/' + movie.id" v-bind:style="{ backgroundImage: 'url(' + movie.image_path + ')' }"></a>
                         <div class="time">{{ timeFormat(movie.duration) }}</div>

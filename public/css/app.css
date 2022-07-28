@@ -7999,6 +7999,11 @@ input[type=email] {
     height: 17px;
   }
   .common-sidebar .menu-list li.menu03 a:before {
+    content: url(/images/icon-menu10.png);
+    width: 20px;
+    height: 17px;
+  }
+  .common-sidebar .menu-list li.menu04 a:before {
     content: url(/images/icon-menu09.png);
     width: 20px;
     height: 20px;
@@ -8944,10 +8949,27 @@ input[type=email] {
   .movie-search .main-area {
     margin: 0 20px;
   }
-  .movie-search .main-area .main-title {
-    font-size: 2rem;
+  .movie-search .main-area .breadcrumbs {
     padding: 46px 0 18px 0;
-    color: #9e1b9e;
+  }
+  .movie-search .main-area .breadcrumbs span a {
+    text-decoration: underline;
+  }
+  .movie-search .main-area .tabs {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 30px;
+  }
+  .movie-search .main-area .tabs li {
+    flex-basis: 120px;
+    text-align: center;
+    padding-bottom: 6px;
+  }
+  .movie-search .main-area .tabs li a {
+    display: block;
+  }
+  .movie-search .main-area .tabs .active {
+    border-bottom: 2px solid #9e1b9e;
   }
   /*
    * 動画個別
@@ -12438,10 +12460,25 @@ input[type=button] {
   .movie-search .main-area {
     padding-bottom: 100px;
   }
-  .movie-search .main-area .main-title {
-    font-size: 2rem;
+  .movie-search .main-area .breadcrumbs {
     margin: 26px 0 18px 10px;
-    color: #9e1b9e;
+  }
+  .movie-search .main-area .breadcrumbs span a {
+    text-decoration: underline;
+  }
+  .movie-search .main-area .tabs {
+    display: flex;
+    line-height: 42px;
+    height: 42px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+  }
+  .movie-search .main-area .tabs li {
+    flex: 1;
+    text-align: center;
+  }
+  .movie-search .main-area .tabs .active {
+    border-bottom: 2px solid #9e1b9e;
   }
   /*
    * 動画個別

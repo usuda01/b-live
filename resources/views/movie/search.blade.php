@@ -1,11 +1,21 @@
 @extends('layouts.app')
-@section('title', $game->name . '｜ショート動画' . ' - ')
+@if ($game)
+    @section('title', $game->name . '｜ショート動画' . ' - ')
+@else
+    @section('title', 'ショート動画' . ' - ')
+@endif
 @section('content')
     <div class="movie-search">
         <div class="main-area">
-            <h2 class="main-title">{{ $game->name }}</h2>
+            <div class="breadcrumbs">
+                @if ($game)
+                    <span><a href="/movie/search"><span>ショート動画</span></a></span>&nbsp;»&nbsp;<span>{{ $game->name }}</span>
+                @else
+                    <span>ショート動画</span>
+                @endif
+            </div>
             <movie-search-component
-                :game="{{ $game->toJson() }}"
+                :game="{{ ($game) ? $game->toJson() : "{}" }}"
             >
             </movie-search-component>
         </div>

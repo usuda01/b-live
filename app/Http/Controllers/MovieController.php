@@ -13,12 +13,12 @@ class MovieController extends Controller
     public function search(Request $request) {
         $gameId = $request->input('game_id');
         if (!$gameId) {
-            return redirect('/');
+            $game = null;
         }
 
         $game = Game::where('id', $gameId)->first();
         if (!$game) {
-            return redirect('/');
+            $game = null;
         }
 
         return view('movie.search', [

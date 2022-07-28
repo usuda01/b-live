@@ -48,22 +48,40 @@ class SearchController extends Controller
 
     public function searchMovies(Request $request) {
         $q = $request->input('q');
+        $sort = $request->input('sort');
         $userId = $request->input('user_id');
 
-        $movies = Movie::with(['user'])
+        $movies = Movie::with(['user', 'game'])
             ->leftJoin('users as joinUsers', 'joinUsers.id', '=', 'movies.user_id')
             ->leftJoin('games as joinGames', 'joinGames.id', '=', 'movies.game_id')
             ->select('movies.*')
-            ->where('is_publish', '1')
-            ->where(function($query) use($q) {
+            ->where('is_publish', '1');
+
+        // ワード検索
+        if ($q) {
+            $movies->where(function($query) use($q) {
                 $query->orWhere('movies.name', 'like', '%' . $q . '%')
-                    ->orWhere('joinGames.name', 'like', '%' . $q . '%')
-                    ->orWhere('joinUsers.name', 'like', '%' . $q . '%');
-            });
+                        ->orWhere('joinGames.name', 'like', '%' . $q . '%')
+                        ->orWhere('joinUsers.name', 'like', '%' . $q . '%');
+                });
+        }
+
+        // 特定のユーザーの動画
         if ($userId) {
             $movies->where('user_id', $userId);
         }
-        $movies = $movies->orderBy('movies.created_at', 'desc')->paginate(10);
+
+        // 並び順
+        if ($sort === 'popular') {
+            $movies->orderBy('movies.views', 'desc');
+        } else if ($sort === 'latest') {
+            $movies->orderBy('movies.created_at', 'desc');
+        } else {
+            $movies->orderBy('movies.created_at', 'desc');
+        }
+
+        $movies = $movies->paginate(10);
+
         // 画像の設定
         foreach ($movies as $movie) {
             $movie->image_path = $movie->getImagePath();

@@ -2571,6 +2571,41 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -2580,19 +2615,28 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     return {
       activeTab: 1,
       movies: [],
-      page: 1
+      tab1Page: 1,
+      tab2Page: 1
     };
   },
   mounted: function mounted() {},
   methods: {
-    infiniteHandler: function infiniteHandler($state) {
+    tabChange: function tabChange(num) {
+      this.activeTab = num; // 初期化する
+
+      this.movies = [];
+      this.tab1Page = 1;
+      this.tab2Page = 1;
+    },
+    tab1InfiniteHandler: function tab1InfiniteHandler($state) {
       var _this = this;
 
       axios.get('/api/search-movie', {
         params: {
-          page: this.page,
+          page: this.tab1Page,
           per_page: 1,
-          q: this.game.name
+          q: this.game.name,
+          sort: 'popular'
         }
       }).then(function (_ref) {
         var data = _ref.data;
@@ -2600,9 +2644,37 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (data.data.length) {
           var _this$movies;
 
-          _this.page += 1;
+          _this.tab1Page += 1;
 
           (_this$movies = _this.movies).push.apply(_this$movies, _toConsumableArray(data.data));
+
+          $state.loaded();
+        } else {
+          $state.complete();
+        }
+      })["catch"](function (err) {
+        $state.complete();
+      });
+    },
+    tab2InfiniteHandler: function tab2InfiniteHandler($state) {
+      var _this2 = this;
+
+      axios.get('/api/search-movie', {
+        params: {
+          page: this.tab2Page,
+          per_page: 1,
+          q: this.game.name,
+          sort: 'latest'
+        }
+      }).then(function (_ref2) {
+        var data = _ref2.data;
+
+        if (data.data.length) {
+          var _this2$movies;
+
+          _this2.tab2Page += 1;
+
+          (_this2$movies = _this2.movies).push.apply(_this2$movies, _toConsumableArray(data.data));
 
           $state.loaded();
         } else {
@@ -4497,6 +4569,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -4643,6 +4720,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -95513,54 +95594,189 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
+  return _c("div", [
+    _c("ul", { staticClass: "tabs" }, [
       _c(
-        "div",
-        { staticClass: "movie-content" },
-        _vm._l(_vm.movies, function(movie) {
-          return _c("div", { key: movie.id, staticClass: "movie-box" }, [
-            _c("div", { staticClass: "movie-image" }, [
-              _c("a", {
-                style: { backgroundImage: "url(" + movie.image_path + ")" },
-                attrs: { href: "/movie/detail/" + movie.id }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "time" }, [
-                _vm._v(_vm._s(_vm.timeFormat(movie.duration)))
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "views" }, [
-                _vm._v(_vm._s(_vm.countFormat(movie.views)) + " 回視聴")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "movie-info" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "movie-name",
-                  attrs: { href: "/movie/detail/" + movie.id }
-                },
-                [_vm._v(_vm._s(movie.name))]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "user-name" }, [
-                _c("a", { attrs: { href: "/user/" + movie.user.id } }, [
-                  _vm._v(_vm._s(movie.user.name))
-                ])
-              ])
-            ])
-          ])
-        }),
-        0
+        "li",
+        {
+          class: { active: _vm.activeTab === 1 },
+          on: {
+            click: function($event) {
+              return _vm.tabChange(1)
+            }
+          }
+        },
+        [_vm._v("人気順")]
       ),
       _vm._v(" "),
-      _c("infinite-loading", { on: { infinite: _vm.infiniteHandler } })
-    ],
-    1
-  )
+      _c(
+        "li",
+        {
+          class: { active: _vm.activeTab === 2 },
+          on: {
+            click: function($event) {
+              return _vm.tabChange(2)
+            }
+          }
+        },
+        [_vm._v("新着順")]
+      )
+    ]),
+    _vm._v(" "),
+    _vm.activeTab === 1
+      ? _c(
+          "div",
+          { staticClass: "movie-wrapper" },
+          [
+            _c(
+              "div",
+              { staticClass: "movie-content" },
+              _vm._l(_vm.movies, function(movie) {
+                return _c("div", { key: movie.id, staticClass: "movie-box" }, [
+                  _c(
+                    "div",
+                    { staticClass: "game-title" },
+                    [
+                      movie.game
+                        ? [
+                            _c(
+                              "a",
+                              {
+                                attrs: {
+                                  href: "/movie/search?game_id=" + movie.game.id
+                                }
+                              },
+                              [_vm._v(_vm._s(movie.game.name))]
+                            )
+                          ]
+                        : _vm._e()
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "movie-image" }, [
+                    _c("a", {
+                      style: {
+                        backgroundImage: "url(" + movie.image_path + ")"
+                      },
+                      attrs: { href: "/movie/detail/" + movie.id }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "time" }, [
+                      _vm._v(_vm._s(_vm.timeFormat(movie.duration)))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "views" }, [
+                      _vm._v(_vm._s(_vm.countFormat(movie.views)) + " 回視聴")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "movie-info" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "movie-name",
+                        attrs: { href: "/movie/detail/" + movie.id }
+                      },
+                      [_vm._v(_vm._s(movie.name))]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "user-name" }, [
+                      _c("a", { attrs: { href: "/user/" + movie.user.id } }, [
+                        _vm._v(_vm._s(movie.user.name))
+                      ])
+                    ])
+                  ])
+                ])
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _c("infinite-loading", {
+              attrs: { identifier: 1 },
+              on: { infinite: _vm.tab1InfiniteHandler }
+            })
+          ],
+          1
+        )
+      : _vm.activeTab === 2
+      ? _c(
+          "div",
+          { staticClass: "movie-wrapper" },
+          [
+            _c(
+              "div",
+              { staticClass: "movie-content" },
+              _vm._l(_vm.movies, function(movie) {
+                return _c("div", { key: movie.id, staticClass: "movie-box" }, [
+                  _c(
+                    "div",
+                    { staticClass: "game-title" },
+                    [
+                      movie.game
+                        ? [
+                            _c(
+                              "a",
+                              {
+                                attrs: {
+                                  href: "/movie/search?game_id=" + movie.game.id
+                                }
+                              },
+                              [_vm._v(_vm._s(movie.game.name))]
+                            )
+                          ]
+                        : _vm._e()
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "movie-image" }, [
+                    _c("a", {
+                      style: {
+                        backgroundImage: "url(" + movie.image_path + ")"
+                      },
+                      attrs: { href: "/movie/detail/" + movie.id }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "time" }, [
+                      _vm._v(_vm._s(_vm.timeFormat(movie.duration)))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "views" }, [
+                      _vm._v(_vm._s(_vm.countFormat(movie.views)) + " 回視聴")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "movie-info" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "movie-name",
+                        attrs: { href: "/movie/detail/" + movie.id }
+                      },
+                      [_vm._v(_vm._s(movie.name))]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "user-name" }, [
+                      _c("a", { attrs: { href: "/user/" + movie.user.id } }, [
+                        _vm._v(_vm._s(movie.user.name))
+                      ])
+                    ])
+                  ])
+                ])
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _c("infinite-loading", {
+              attrs: { identifier: 2 },
+              on: { infinite: _vm.tab2InfiniteHandler }
+            })
+          ],
+          1
+        )
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -99753,6 +99969,27 @@ var render = function() {
               { staticClass: "movie-content" },
               _vm._l(_vm.movies, function(movie) {
                 return _c("div", { key: movie.id, staticClass: "movie-box" }, [
+                  _c(
+                    "div",
+                    { staticClass: "game-title" },
+                    [
+                      movie.game
+                        ? [
+                            _c(
+                              "a",
+                              {
+                                attrs: {
+                                  href: "/movie/search?game_id=" + movie.game.id
+                                }
+                              },
+                              [_vm._v(_vm._s(movie.game.name))]
+                            )
+                          ]
+                        : _vm._e()
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
                   _c("div", { staticClass: "movie-image" }, [
                     _c("a", {
                       style: {
@@ -100045,6 +100282,28 @@ var render = function() {
                     "div",
                     { key: movie.id, staticClass: "movie-box" },
                     [
+                      _c(
+                        "div",
+                        { staticClass: "game-title" },
+                        [
+                          movie.game
+                            ? [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href:
+                                        "/movie/search?game_id=" + movie.game.id
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(movie.game.name))]
+                                )
+                              ]
+                            : _vm._e()
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
                       _c("div", { staticClass: "movie-image" }, [
                         _c("a", {
                           style: {
