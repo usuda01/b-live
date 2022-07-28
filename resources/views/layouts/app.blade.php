@@ -140,7 +140,7 @@
         <div id="line-connect" class="line-connect {{ class_basename(Route::current()->controller) }}-{{ request()->route()->getActionMethod() }}">
             <div class="headline">
                 <div class="line-logo"><img src="/images/icon-line.png"></div>
-                <div class="line-text">LINE連携で配信通知を受け取ろう！</div>
+                <div class="line-text">LINEで配信通知を受け取ろう！</div>
             </div>
             <a class="btn-connect" href="/setting/line">LINE連携はこちらから</a>
         </div>
