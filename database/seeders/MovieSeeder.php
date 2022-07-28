@@ -24,6 +24,7 @@ class MovieSeeder extends Seeder
                 'path' => '2022-06-17-10-52-39.mp4',
                 'is_publish' => 1,
                 'duration' => '00:00:16',
+                'views' => 0,
                 'created_at' => '2022-06-17 10:52:42',
                 'updated_at' => '2022-06-17 11:52:00'
             ],
@@ -36,6 +37,7 @@ class MovieSeeder extends Seeder
                 'path' => '2021-08-19-01-41-30.mp4',
                 'is_publish' => 1,
                 'duration' => '00:00:19',
+                'views' => 0,
                 'created_at' => '2021-08-19 01:41:32',
                 'updated_at' => '2021-08-19 01:41:32'
             ],
@@ -48,6 +50,7 @@ class MovieSeeder extends Seeder
                 'path' => '2021-08-18-01-19-48.mp4',
                 'is_publish' => 1,
                 'duration' => '00:00:05',
+                'views' => 0,
                 'created_at' => '2021-08-18 01:19:49',
                 'updated_at' => '2021-08-18 01:20:51'
             ],
@@ -60,6 +63,7 @@ class MovieSeeder extends Seeder
                 'path' => '2021-08-15-20-54-14.mp4',
                 'is_publish' => 1,
                 'duration' => '00:00:11',
+                'views' => 0,
                 'created_at' => '2021-08-15 20:54:14',
                 'updated_at' => '2021-08-22 00:00:50'
             ],
@@ -72,6 +76,7 @@ class MovieSeeder extends Seeder
                 'path' => '2021-08-19-23-33-53.mp4',
                 'is_publish' => 1,
                 'duration' => '00:00:12',
+                'views' => 100,
                 'created_at' => '2021-08-19 23:33:55',
                 'updated_at' => '2021-08-19 23:33:55'
             ],
@@ -84,6 +89,7 @@ class MovieSeeder extends Seeder
                 'path' => '2022-06-30-18-12-36.mp4',
                 'is_publish' => 1,
                 'duration' => '00:00:11',
+                'views' => 0,
                 'created_at' => '2022-06-30 18:12:37',
                 'updated_at' => '2022-06-30 18:12:37'
             ],
@@ -96,6 +102,7 @@ class MovieSeeder extends Seeder
                 'path' => '2022-07-11-11-21-39.mp4',
                 'is_publish' => 1,
                 'duration' => '00:00:28',
+                'views' => 0,
                 'created_at' => '2022-07-11 11:21:47',
                 'updated_at' => '2022-07-11 12:05:02'
             ],
@@ -108,6 +115,7 @@ class MovieSeeder extends Seeder
                 'path' => '2022-07-11-11-24-37.mp4',
                 'is_publish' => 1,
                 'duration' => '00:00:25',
+                'views' => 23,
                 'created_at' => '2022-07-11 11:24:45',
                 'updated_at' => '2022-07-11 12:05:02'
             ],
@@ -120,6 +128,7 @@ class MovieSeeder extends Seeder
                 'path' => '2022-07-14-23-46-54.mp4',
                 'is_publish' => 1,
                 'duration' => '00:00:20',
+                'views' => 0,
                 'created_at' => '2022-07-14 23:46:56',
                 'updated_at' => '2022-07-15 15:03:01'
             ],
