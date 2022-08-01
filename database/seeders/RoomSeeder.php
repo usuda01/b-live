@@ -66,6 +66,23 @@ class RoomSeeder extends Seeder
                 'created_at' => '2022-06-21 18:06:49',
                 'updated_at' => '2022-06-21 20:00:02'
             ],
+            [
+                'id' => 4,
+                'user_id' => 10,
+                'name' => '【MHRS/参加型】日曜日だよ♪金冠集め',
+                'description' => "ご視聴・ご参加していただきありがとうございます♪\n超絶下手なみちゃそがまったりぼちぼちやっていきます♪\nチャンネル登録・高評価していただけると今後の励みになりますのでお願いします♪\n\n✿配信時間\n9：30～12：00\n\n✿お休み\n月曜日・木曜日\n\n✿配信内容\n火・水\nDBD APEX PCゲーム\n金・土・日\nMHRSB\n配信予定・内容はTwitterで報告させていただきますので登録お願いします♪",
+                'image' => '4bh1EfX3amhMdoqNlUW7zlptV420TIs2FgncKupM.png',
+                'published_at' => DB::raw('NOW()'),
+                'finished_at' => null,
+                'stream_time' => null,
+                'max_view' => 4,
+                'rank' => 1,
+                'status' => 1,
+                'game_id' => 20,
+                'wowza_id' => 4,
+                'created_at' => DB::raw('NOW()'),
+                'updated_at' => '2022-06-21 20:00:02'
+            ],
         ]);
     }
 }

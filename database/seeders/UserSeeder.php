@@ -132,6 +132,19 @@ class UserSeeder extends Seeder
                 'status' => 2,
                 'image' => 'ND3DuNs22XAsJpY2Jvk5fG8EInVXva5L0Vy6RW7W.jpg'
             ],
+            [
+                'id' => 10,
+                'name' => 'みちゃそ',
+                'email' => 'michaso0606@pseudo.twitter.com',
+                'password' => '1',
+                'profile' => null,
+                'twitter_url' => 'https://twitter.com/michaso0606',
+                'api_token' => 'xAvcNepp1oiXDhyYFxqrkqRR3W9diPcWZNTQZtJL4shB0nFQEJQ5coxNRUCA0H7UlK2YSYe3ZUip0Uoe',
+                'twitter_id' => '876635324448874496',
+                'apple_id' => null,
+                'status' => 2,
+                'image' => 'PRUPVLnNxFwXo4eNTyNWfgNTM46hH6DErVcpqsom.png'
+            ],
         ]);
     }
 }
