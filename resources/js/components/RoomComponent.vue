@@ -659,9 +659,9 @@
                     var config = {
                         enableWorker: true,
                         maxBufferLength: 1,
-                        liveBackBufferLength: 0,
-                        liveSyncDuration: 0,
-                        liveMaxLatencyDuration: 5,
+                        liveBackBufferLength: 1,
+                        liveSyncDurationCount: 1.5,
+                        liveMaxLatencyDurationCount: 2,
                         liveDurationInfinity: true,
                         highBufferWatchdogPeriod: 1
                     };
