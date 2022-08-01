@@ -59,7 +59,7 @@
 <p>すぐにゲーム実況を始められるプラットフォームをお探しなら、B-LIVEをご利用ください。B-LIVEは審査なしで利用でき、すぐに配信を始めることができます。</p>
 <p>ゲーム実況で儲かるためには、配信者側の工夫はもちろん、プラットフォームのシステムも重要なポイントです。B-LIVEは還元率が比較的高く、配信者に対しての制約も少ないため、ぜひご活用ください。</p>
 
-<p class="column_btn"><a href="/page/terms" target="_blank" rel="noopener noreferrer">B-LIVEの利用規約はこちら</a></p>
+<p class="column_btn"><a href="/page/howto" target="_blank" rel="noopener noreferrer">B-LIVEの配信方法はこちら</a></p>
 
 <div class="column_link">
 <h3>コラム一覧</h3>
