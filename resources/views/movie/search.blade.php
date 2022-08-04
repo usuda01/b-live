@@ -6,6 +6,7 @@
 @endif
 @section('content')
     <div class="movie-search">
+        @include('parts.home_menu')
         <div class="main-area">
             <div class="breadcrumbs">
                 @if ($game)

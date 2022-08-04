@@ -8946,8 +8946,14 @@ input[type=email] {
   /*
    * 動画検索
    */
+  .movie-search {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+  }
   .movie-search .main-area {
-    margin: 0 20px;
+    width: calc(100% - 280px);
+    margin-right: 20px;
   }
   .movie-search .main-area .breadcrumbs {
     padding: 46px 0 18px 0;

@@ -1779,8 +1779,12 @@
      * 動画検索
      */
     .movie-search {
+        display: flex;
+        justify-content: space-between;
+        height: 100%;
         .main-area {
-            margin: 0 20px;
+            width: calc(100% - 280px);
+            margin-right: 20px;
             .breadcrumbs {
                 padding: 46px 0 18px 0;
                 span {
