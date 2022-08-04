@@ -170,12 +170,12 @@
             <ul>
                 <li>
                     @if (Request::is('/'))
-                        <a href="/" class="active">
+                        <a href="/" class="active" data-gtm-target="sp-click-footer01">
                             <img src="/images/btn-footer-menu01_on.png">
                             <span>ホーム</span>
                         </a>
                     @else
-                        <a href="/">
+                        <a href="/" data-gtm-target="sp-click-footer01">
                             <img src="/images/btn-footer-menu01.png">
                             <span>ホーム</span>
                         </a>
@@ -183,12 +183,12 @@
                 </li>
                 <li>
                     @if (Request::is('movie/search*'))
-                        <a href="/movie/search" class="active">
+                        <a href="/movie/search" class="active" data-gtm-target="sp-click-footer02">
                             <img src="/images/btn-footer-menu03_on.png">
                             <span>ショート動画</span>
                         </a>
                     @else
-                        <a href="/movie/search">
+                        <a href="/movie/search" data-gtm-target="sp-click-footer02">
                             <img src="/images/btn-footer-menu03.png">
                             <span>ショート動画</span>
                         </a>
@@ -196,12 +196,12 @@
                 </li>
                 <li>
                     @if (Request::is('room-ranking/*'))
-                        <a href="/room-ranking/0/1" class="active">
+                        <a href="/room-ranking/0/1" class="active" data-gtm-target="sp-click-footer03">
                             <img src="/images/btn-footer-menu02_on.png">
                             <span>ランキング</span>
                         </a>
                     @else
-                        <a href="/room-ranking/0/1">
+                        <a href="/room-ranking/0/1" data-gtm-target="sp-click-footer03">
                             <img src="/images/btn-footer-menu02.png">
                             <span>ランキング</span>
                         </a>
