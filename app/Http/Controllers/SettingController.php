@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -392,10 +393,20 @@ class SettingController extends Controller
         $json_object = json_decode($json_string);
 
         //取得データ
-        $replyToken = $json_object->{"events"}[0]->{"replyToken"}; //返信用トークン
         $userId = $json_object->{"events"}[0]->{"source"}->{"userId"}; // ユーザーID
-        $messageType = $json_object->{"events"}[0]->{"message"}->{"type"}; //メッセージタイプ
-        $messageText = $json_object->{"events"}[0]->{"message"}->{"text"}; //メッセージ内容
+        $eventType = $json_object->{"events"}[0]->{"type"}; // イベントタイプ
+
+        Log::info('LINE webhook イベント: ' . $eventType);
+        if ($eventType === 'unfollow') {
+            Log::info('LINE ブロック userID: ' . $userId);
+            return;
+        }
+        if ($eventType !== 'message') {
+            return;
+        }
+        $replyToken = $json_object->{"events"}[0]->{"replyToken"}; // 返信用トークン
+        $messageType = $json_object->{"events"}[0]->{"message"}->{"type"}; // メッセージタイプ
+        $messageText = $json_object->{"events"}[0]->{"message"}->{"text"}; // メッセージ内容
         $messageText = preg_replace("/\r\n|\r|\n/", "\n", $messageText); // 改行コードを揃える
 
         // メッセージタイプが「text」以外のときは何も返さず終了
