@@ -5,6 +5,7 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\MovieMessageController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -32,6 +33,9 @@ Route::group(['middleware' => ['api']], function () {
     Route::post('message', [MessageController::class, 'store']);
     Route::get('movie/get-goods/{movie_id}', [MovieController::class, 'getMovieGoods']);
     Route::post('movie/play/', [MovieController::class, 'play']);
+    Route::get('movie-message', [MovieMessageController::class, 'show']);
+    Route::post('movie-message', [MovieMessageController::class, 'store']);
+    Route::post('movie-message-delete', [MovieMessageController::class, 'delete']);
     Route::get('room-supporters', [UserController::class, 'getRoomSupporters']);
 
     // 認証が必要なページ

@@ -32,6 +32,9 @@ class MovieController extends Controller
             abort(404);
         }
         $user = Auth::user();
+        if ($user) {
+            $user->image_path = $user->getImagePath();
+        }
         $movie->image_path = $movie->getImagePath();
         $movie->user->image_path = $movie->user->getImagePath();
         // これを呼んでおかないとVue側でリレーションしてくれない

@@ -615,6 +615,9 @@
         &.RoomController-stream {
             width: calc(100% - 340px);
         }
+        &.MovieController-detail {
+            width: calc(100% - 340px);
+        }
     }
 
     /*
@@ -1943,8 +1946,182 @@
                 @extend %movie-content;
             }
         }
-        .right-area {
-            width: 340px;
+        .message-wrapper {
+            position: fixed;
+            right: 0;
+            top: 50px;
+            height: calc(100vh - 50px);
+            border: solid 1px #ccc;
+            border-top: none;
+            border-right: 0;
+            .message-area {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                width: 340px;
+                background: #f9f9f9;
+                .title-area {
+                    text-align: center;
+                    line-height: 42px;
+                    height: 42px;
+                    background: #fff;
+                    border-bottom: 1px solid #ccc;
+                }
+                .chat-area {
+                    display: flex;
+                    flex-direction: column;
+                    height: calc(100% - 42px);
+                    .user-detail {
+                        z-index: 1;
+                        position: absolute;
+                        width: 76%;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        -webkit-transform: translate(-50%, -50%);
+                        -ms-transform: translate(-50%, -50%);
+                        background: #fff;
+                        padding-top: 19px;
+                        padding-bottom: 19px;
+                        border-radius: 4px;
+                        &:before {
+                            content: "";
+                            display: block;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 50px;
+                            background: #ffd2ff;
+                            border-radius: 4px 4px 0 0;
+                        }
+                        .close {
+                            position: absolute;
+                            top: -10px;
+                            right: -10px;
+                        }
+                        .user-profile {
+                            position: relative;
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                            background-position: center;
+                            display: block;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                            margin: 0 auto 8px auto;
+                        }
+                        .user-name {
+                            display: block;
+                            text-align: center;
+                            font-size: 1.2rem;
+                            margin-bottom: 14px;
+                        }
+                    }
+                    .chat-list {
+                        height: 100%;
+                        overflow-y: scroll;
+                        overflow-x: hidden;
+                        display: flex;
+                        flex-flow: column-reverse;
+                        padding-top: 8px;
+                        .user-message {
+                            position: relative;
+                            margin: 0 10px 10px 10px;
+                            .user-profile {
+                                width: 20px;
+                                height: 20px;
+                                border-radius: 50%;
+                                background-position: center;
+                                display: inline-block;
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                                vertical-align: top;
+                                margin-right: 10px;
+                            }
+                            .user-name {
+                                color: #666666;
+                                vertical-align: top;
+                            }
+                            .message {
+                                vertical-align: top;
+                            }
+                            .delete {
+                                position: absolute;
+                                right: 0;
+                                bottom: 0;
+                                background-color: transparent;
+                                border: none;
+                                cursor: pointer;
+                                outline: none;
+                                padding: 0;
+                                appearance: none;
+                            }
+                            .delete-modal {
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                                background: #fff;
+                                padding: 13px 19px 10px 10px;
+                                border: solid 1px #ccc;
+                                .close {
+                                    position: absolute;
+                                    top: -10px;
+                                    right: -10px;
+                                }
+                                .delete-btn {
+                                }
+                            }
+                        }
+                    }
+                    .send-chat {
+                        background: #fff;
+                        padding: 10px 10px 8px 10px;
+                        .user-info {
+                            display: flex;
+                            margin-bottom: 8px;
+                            .user-profile {
+                                width: 20px;
+                                height: 20px;
+                                border-radius: 50%;
+                                background-position: center;
+                                display: inline-block;
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                                margin-right: 10px;
+                            }
+                            .user-name {
+                                color: #666;
+                            }
+                        }
+                        .send-footer {
+                            display: flex;
+                            align-items: center;
+                            .send-box {
+                                display: flex;
+                                align-items: center;
+                                width: calc(100% - 54px);
+                                .send-message {
+                                    display: block;
+                                    width: 100%;
+                                    border: none;
+                                    border-bottom: 2px solid $base-color;
+                                    border-radius: 0;
+                                }
+                                .send-btn {
+                                    display: flex;
+                                    margin-left: auto;
+                                }
+                            }
+                            &.no-gift {
+                                .send-box {
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 

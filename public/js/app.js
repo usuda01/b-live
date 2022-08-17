@@ -2370,6 +2370,42 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2398,12 +2434,25 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   data: function data() {
     return {
       activeTab: 1,
+      canSend: true,
+      // 連投を防ぐ
       goodCount: 0,
       isGood: false,
       isLoggedIn: Object.keys(this.user).length > 0,
       locationUrl: location.href,
+      messageData: {
+        movie_id: '',
+        content: ''
+      },
+      messages: [],
       movies: [],
-      page: 1
+      page: 1,
+      selectedUser: {
+        id: '',
+        name: '',
+        image_path: ''
+      },
+      showingUserInfo: false
     };
   },
   filters: {
@@ -2413,28 +2462,68 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   mounted: function mounted() {
     this.getMovieGoods();
+    this.messageData.movie_id = this.movie.id;
+    this.connectChannel();
+    this.receiveMessage();
   },
   methods: {
-    getMovieGoods: function getMovieGoods() {
+    canDelete: function canDelete(message) {
+      var result = false;
+
+      if (message.user_id == this.user.id) {
+        result = true;
+      }
+
+      if (this.movie.user_id == this.user.id) {
+        result = true;
+      }
+
+      return result;
+    },
+    connectChannel: function connectChannel() {
       var _this = this;
+
+      Echo.channel('movie-message.received.' + this.movie.id).listen('MovieMessageReceived', function (e) {
+        _this.receiveMessage();
+      });
+    },
+    closeMessageModal: function closeMessageModal(message) {
+      this.$set(message, 'showingMessageModal', false);
+    },
+    closeUserInfo: function closeUserInfo() {
+      this.showingUserInfo = false;
+    },
+    deleteMessage: function deleteMessage(messageId) {
+      var _this2 = this;
+
+      var url = '/api/movie-message-delete';
+      var params = {
+        message_id: messageId
+      };
+      axios.post(url, params).then(function (response) {
+        _this2.receiveMessage();
+      });
+    },
+    getMovieGoods: function getMovieGoods() {
+      var _this3 = this;
 
       var url = '/api/movie/get-goods/' + this.movie.id;
       var params = {
         params: {}
       };
       axios.get(url, params).then(function (response) {
-        _this.goodCount = response.data.length; // 自分がフォローしているかどうかのチェック
+        _this3.goodCount = response.data.length; // 自分がフォローしているかどうかのチェック
 
         for (var i = 0; i < response.data.length; i++) {
-          if (response.data[i].user_id == _this.user.id) {
-            _this.isGood = true;
+          if (response.data[i].user_id == _this3.user.id) {
+            _this3.isGood = true;
             break;
           }
         }
       });
     },
     good: function good() {
-      var _this2 = this;
+      var _this4 = this;
 
       if (!Object.keys(this.user).length) {
         // 未ログイン
@@ -2447,12 +2536,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         movie_id: this.movie.id
       };
       axios.post(url, params).then(function (response) {
-        _this2.isGood = true;
-        _this2.goodCount++;
+        _this4.isGood = true;
+        _this4.goodCount++;
       });
     },
     goodCancel: function goodCancel() {
-      var _this3 = this;
+      var _this5 = this;
 
       if (!Object.keys(this.user).length) {
         // 未ログイン
@@ -2465,12 +2554,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         movie_id: this.movie.id
       };
       axios.post(url, params).then(function (response) {
-        _this3.isGood = false;
-        _this3.goodCount--;
+        _this5.isGood = false;
+        _this5.goodCount--;
       });
     },
     infiniteHandler: function infiniteHandler($state) {
-      var _this4 = this;
+      var _this6 = this;
 
       if (this.movie.game == null) {
         $state.complete();
@@ -2487,11 +2576,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var data = _ref.data;
 
         if (data.data.length) {
-          var _this4$movies;
+          var _this6$movies;
 
-          _this4.page += 1;
+          _this6.page += 1;
 
-          (_this4$movies = _this4.movies).push.apply(_this4$movies, _toConsumableArray(data.data));
+          (_this6$movies = _this6.movies).push.apply(_this6$movies, _toConsumableArray(data.data));
 
           $state.loaded();
         } else {
@@ -2508,6 +2597,52 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       };
       axios.post(url, params).then(function (response) {// console.log(response.data);
       });
+    },
+    receiveMessage: function receiveMessage() {
+      var _this7 = this;
+
+      var url = '/api/movie-message';
+      var params = {
+        params: {
+          movie_id: this.movie.id,
+          api_token: this.user.api_token
+        }
+      };
+      axios.get(url, params).then(function (response) {
+        _this7.messages = response.data;
+      });
+    },
+    send: function send() {
+      var _this8 = this;
+
+      if (this.messageData.content.length == 0) {
+        return false;
+      }
+
+      if (this.canSend === true) {
+        this.canSend = false;
+        var url = '/api/movie-message';
+        var params = {
+          data: this.messageData
+        };
+        axios.post(url, params).then(function (response) {
+          // 成功したらメッセージをクリア
+          _this8.messageData.content = '';
+          _this8.canSend = true;
+        });
+      }
+    },
+    showUserInfo: function showUserInfo(user) {
+      this.selectedUser.id = user.id;
+      this.selectedUser.name = user.name;
+      this.selectedUser.image_path = user.image_path;
+      this.showingUserInfo = true;
+    },
+    showMessageModal: function showMessageModal(message) {
+      this.$set(message, 'showingMessageModal', true);
+    },
+    tabChange: function tabChange(num) {
+      this.activeTab = num;
     },
     timeFormat: function timeFormat(time) {
       var formatTime;
@@ -2994,11 +3129,11 @@ __webpack_require__.r(__webpack_exports__);
       followerCount: 0,
       canSend: true,
       // 連投を防ぐ
-      messages: [],
       messageData: {
         room_id: '',
         content: ''
       },
+      messages: [],
       supporters: [],
       selectedUser: {
         id: '',
@@ -95442,6 +95577,19 @@ var render = function() {
           }
         },
         [_vm._v("動画情報")]
+      ),
+      _vm._v(" "),
+      _c(
+        "li",
+        {
+          class: { active: _vm.activeTab === 2 },
+          on: {
+            click: function($event) {
+              return _vm.tabChange(2)
+            }
+          }
+        },
+        [_vm._v("コメント")]
       )
     ]),
     _vm._v(" "),
@@ -95568,10 +95716,251 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "right-area" })
+    _c(
+      "div",
+      {
+        staticClass: "message-wrapper",
+        class: { active: _vm.activeTab === 2 }
+      },
+      [
+        _c("div", { staticClass: "message-area" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "chat-area" },
+            [
+              _vm.showingUserInfo
+                ? _c("div", { staticClass: "user-detail" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "close",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.closeUserInfo.apply(null, arguments)
+                          }
+                        }
+                      },
+                      [_c("img", { attrs: { src: "/images/btn-close.png" } })]
+                    ),
+                    _vm._v(" "),
+                    _c("a", {
+                      staticClass: "user-profile",
+                      style: {
+                        backgroundImage:
+                          "url(" + _vm.selectedUser.image_path + ")"
+                      },
+                      attrs: { href: "/user/" + _vm.selectedUser.id }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "user-name" }, [
+                      _c(
+                        "a",
+                        { attrs: { href: "/user/" + _vm.selectedUser.id } },
+                        [_vm._v(_vm._s(_vm.selectedUser.name))]
+                      )
+                    ])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "transition-group",
+                {
+                  staticClass: "chat-list",
+                  attrs: { tag: "div", name: "list", id: "chat-list" }
+                },
+                _vm._l(_vm.messages, function(message, index) {
+                  return _c("div", { key: message.id }, [
+                    _c("div", { staticClass: "user-message" }, [
+                      _c("a", {
+                        staticClass: "user-profile",
+                        style: {
+                          backgroundImage:
+                            "url(" + message.user.image_path + ")"
+                        },
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.showUserInfo(message.user)
+                          }
+                        }
+                      }),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "user-name",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.showUserInfo(message.user)
+                            }
+                          }
+                        },
+                        [_vm._v(_vm._s(message.user.name) + "：")]
+                      ),
+                      _c("span", { staticClass: "message" }, [
+                        _vm._v(_vm._s(message.content))
+                      ]),
+                      _vm._v(" "),
+                      _vm.canDelete(message)
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "delete",
+                              on: {
+                                click: function($event) {
+                                  return _vm.showMessageModal(message)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-ellipsis-v" })]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      message.showingMessageModal
+                        ? _c("div", { staticClass: "delete-modal" }, [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "close",
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.closeMessageModal(message)
+                                  }
+                                }
+                              },
+                              [
+                                _c("img", {
+                                  attrs: { src: "/images/btn-close.png" }
+                                })
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "delete-btn",
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.deleteMessage(message.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("削除")]
+                            )
+                          ])
+                        : _vm._e()
+                    ])
+                  ])
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  staticClass: "send-chat",
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.send.apply(null, arguments)
+                    }
+                  }
+                },
+                [
+                  _vm.isLoggedIn
+                    ? _c("div", { staticClass: "user-info" }, [
+                        _c("span", {
+                          staticClass: "user-profile",
+                          style: {
+                            backgroundImage: "url(" + this.user.image_path + ")"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "user-name" }, [
+                          _vm._v(_vm._s(this.user.name))
+                        ])
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "send-footer no-gift" }, [
+                    _c("div", { staticClass: "send-box" }, [
+                      _vm.isLoggedIn
+                        ? _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.messageData.content,
+                                expression: "messageData.content"
+                              }
+                            ],
+                            staticClass: "send-message",
+                            attrs: {
+                              type: "text",
+                              placeholder: "メッセージを入力"
+                            },
+                            domProps: { value: _vm.messageData.content },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.messageData,
+                                  "content",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        : _c("input", {
+                            staticClass: "send-message js-modal-open",
+                            attrs: {
+                              type: "text",
+                              placeholder: "メッセージを入力",
+                              "data-target": "modal01"
+                            }
+                          }),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "send-btn",
+                        attrs: {
+                          type: "image",
+                          src: "/images/btn-message-send.png"
+                        }
+                      })
+                    ])
+                  ])
+                ]
+              )
+            ],
+            1
+          )
+        ])
+      ]
+    )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "title-area" }, [
+      _c("div", { staticClass: "title" }, [_vm._v("コメント")])
+    ])
+  }
+]
 render._withStripped = true
 
 

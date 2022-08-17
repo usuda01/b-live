@@ -27,6 +27,7 @@
 
         <ul class="tabs">
             <li v-on:click="tabChange(1)" v-bind:class="{'active': activeTab === 1}">動画情報</li>
+            <li v-on:click="tabChange(2)" v-bind:class="{'active': activeTab === 2}">コメント</li>
         </ul>
 
         <div class="video-info" v-bind:class="{'active': activeTab === 1}">
@@ -59,8 +60,43 @@
             </div>
         </div>
 
-        <div class="right-area">
-        </div>
+        <div class="message-wrapper" v-bind:class="{'active': activeTab === 2}">
+            <div class="message-area">
+                <div class="title-area"><div class="title">コメント</div></div>
+                <div class="chat-area">
+                    <div v-if="showingUserInfo" class="user-detail">
+                        <a v-on:click.prevent="closeUserInfo" href="#" class="close"><img src="/images/btn-close.png"></a>
+                        <a class="user-profile" v-bind:href="'/user/' + selectedUser.id" v-bind:style="{ backgroundImage: 'url(' + selectedUser.image_path + ')' }"></a>
+                        <span class="user-name"><a v-bind:href="'/user/' + selectedUser.id">{{ selectedUser.name }}</a></span>
+                    </div>
+                    <transition-group tag="div" class="chat-list" name="list" id="chat-list">
+                        <div v-for="(message, index) in messages" :key="message.id">
+                            <div class="user-message">
+                                <a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}：</a><span class="message">{{ message.content }}</span>
+                                <button class="delete" v-if="canDelete(message)" v-on:click="showMessageModal(message)"><i class="fas fa-ellipsis-v"></i></button>
+                                <div class="delete-modal" v-if="message.showingMessageModal">
+                                    <a v-on:click.prevent="closeMessageModal(message)" href="#" class="close"><img src="/images/btn-close.png"></a>
+                                    <a v-on:click.prevent="deleteMessage(message.id)" href="#" class="delete-btn">削除</a>
+                                </div>
+                            </div>
+                        </div>
+                    </transition-group>
+                    <form class="send-chat" @submit.prevent="send">
+                        <div class="user-info" v-if="isLoggedIn">
+                            <span class="user-profile" v-bind:style="{ backgroundImage: 'url(' + this.user.image_path + ')' }"></span>
+                            <div class="user-name">{{ this.user.name }}</div>
+                        </div>
+                        <div class="send-footer no-gift">
+                            <div class="send-box">
+                                <input v-if="isLoggedIn" type="text" placeholder="メッセージを入力" class="send-message" v-model="messageData.content">
+                                <input v-else type="text" placeholder="メッセージを入力" class="send-message js-modal-open" data-target="modal01">
+                                <input type="image" src="/images/btn-message-send.png" class="send-btn">
+                            </div>
+                        </div>
+                    </form>
+                </div><!--// .chat-area -->
+            </div><!--// .message-area -->
+        </div><!--// .message-wrapper -->
     </div>
 </template>
 
@@ -90,12 +126,24 @@
         data () {
             return {
                 activeTab: 1,
+                canSend: true, // 連投を防ぐ
                 goodCount: 0,
                 isGood: false,
                 isLoggedIn: Object.keys(this.user).length > 0,
                 locationUrl: location.href,
+                messageData: {
+                    movie_id: '',
+                    content: ''
+                },
+                messages: [],
                 movies: [],
                 page: 1,
+                selectedUser: {
+                    id: '',
+                    name: '',
+                    image_path: ''
+                },
+                showingUserInfo: false,
             }
         },
         filters: {
@@ -105,8 +153,42 @@
         },
         mounted () {
             this.getMovieGoods();
+            this.messageData.movie_id = this.movie.id;
+            this.connectChannel();
+            this.receiveMessage();
         },
         methods: {
+            canDelete(message) {
+                let result = false;
+                if (message.user_id == this.user.id) {
+                    result = true;
+                }
+                if (this.movie.user_id == this.user.id) {
+                    result = true;
+                }
+                return result;
+            },
+            connectChannel() {
+                Echo.channel('movie-message.received.'+this.movie.id).listen('MovieMessageReceived', e => {
+                    this.receiveMessage();
+                })
+            },
+            closeMessageModal(message) {
+                this.$set(message, 'showingMessageModal', false);
+            },
+            closeUserInfo() {
+                this.showingUserInfo = false;
+            },
+            deleteMessage(messageId) {
+                const url = '/api/movie-message-delete';
+                const params = {
+                    message_id: messageId
+                };
+                axios.post(url, params)
+                    .then((response) => {
+                        this.receiveMessage();
+                    });
+            },
             getMovieGoods() {
                 const url = '/api/movie/get-goods/'+this.movie.id;
                 const params = { params: {
@@ -188,6 +270,45 @@
                     .then((response) => {
                         // console.log(response.data);
                     });
+            },
+            receiveMessage() {
+                const url = '/api/movie-message';
+                const params = { params: {
+                    movie_id: this.movie.id,
+                    api_token: this.user.api_token
+                }};
+                axios.get(url, params)
+                    .then((response) => {
+                        this.messages = response.data;
+                    });
+            },
+            send() {
+                if (this.messageData.content.length == 0) {
+                    return false;
+                }
+                if (this.canSend === true) {
+                    this.canSend = false;
+                    const url = '/api/movie-message';
+                    const params = { data: this.messageData };
+                    axios.post(url, params)
+                        .then((response) => {
+                            // 成功したらメッセージをクリア
+                            this.messageData.content = '';
+                            this.canSend = true;
+                        });
+                }
+            },
+            showUserInfo(user) {
+                this.selectedUser.id = user.id;
+                this.selectedUser.name = user.name;
+                this.selectedUser.image_path = user.image_path;
+                this.showingUserInfo = true;
+            },
+            showMessageModal(message) {
+                this.$set(message, 'showingMessageModal', true);
+            },
+            tabChange(num) {
+                this.activeTab = num
             },
             timeFormat(time) {
                 let formatTime;

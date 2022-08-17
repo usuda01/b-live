@@ -271,11 +271,11 @@
                 isFollow: false,
                 followerCount: 0,
                 canSend: true, // 連投を防ぐ
-                messages: [],
                 messageData: {
                     room_id: '',
                     content: ''
                 },
+                messages: [],
                 supporters: [],
                 selectedUser: {
                     id: '',
