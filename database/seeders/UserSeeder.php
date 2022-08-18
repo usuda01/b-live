@@ -145,6 +145,19 @@ class UserSeeder extends Seeder
                 'status' => 2,
                 'image' => 'PRUPVLnNxFwXo4eNTyNWfgNTM46hH6DErVcpqsom.png'
             ],
+            [
+                'id' => 11,
+                'name' => 'Harpy(はーぴぃ)',
+                'email' => 'harpyy@outlook.jp',
+                'password' => '1',
+                'profile' => "こんにちは!はーぴぃと申します！B-LIVERやってます。基本ゲーム配信してます。やってほしいゲームがあったらコメントしてください！できるだけ希望に答えます。よろしく！\n[Twitter]\n@Harpy_B_LIVE\n[YouTube]\nhttps://www.youtube.com/channel/UCIV8BSseMdmURTks2wBHSBw",
+                'twitter_url' => 'https://twitter.com/Harpy_B_LIVE',
+                'api_token' => 'Wdvf9pUYdA3IdAty3io1SLkYUXAAXCjKa6sckHxJhRTcqg3FLdPqz035LpmYHE45oRNC4Cmm2nN2jO5F',
+                'twitter_id' => '1144432903364857856',
+                'apple_id' => null,
+                'status' => 2,
+                'image' => 'XoJ7BGgomAkerE70ygdBvypeyVW02WP8xNC3TBi4.jpeg'
+            ],
         ]);
     }
 }

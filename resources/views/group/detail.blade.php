@@ -5,10 +5,11 @@
         <div class="main-content">
             <div class="group-info">
                 <div class="group-profile" style="background-image:url({{ $group->user_image_path }})"></div>
-                <div class="group-name">{{ $group->name }}（{{ $group->member_number }}）</div>
+                <div class="group-name">{{ $group->name }}</div>
             </div>
             <div class="game-title">{{ $group->game_title }}</div>
-            <div class="user-name">作成者：{{ $group->user->name }}</div>
+            <div class="user-name">作成者：<a href="/user/{{ $group->user->id }}">{{ $group->user->name }}</a></div>
+            <div class="group-member">クラン人数：{{ $group->member_number }}人</div>
             <div class="description">
                 {!! nl2br($group->description) !!}
             </div>

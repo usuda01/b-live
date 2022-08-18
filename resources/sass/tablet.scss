@@ -2615,7 +2615,7 @@
         }
         .main-content {
             position: relative;
-            padding: 54px 10px 0 10px;
+            padding: 54px 10px 10px 10px;
             .group-info {
                 display: flex;
                 align-items: center;
@@ -2630,6 +2630,9 @@
                     background-repeat: no-repeat;
                     margin-right: 12px;
                 }
+                .group-name {
+                    flex: 1;
+                }
             }
             .game-title {
                 color: #f66951;
@@ -2637,8 +2640,17 @@
             }
             .user-name {
                 margin-bottom: 10px;
+                a {
+                    color: $base-color;
+                }
+            }
+            .group-member {
+                margin-bottom: 10px;
             }
             .description {
+                a {
+                    color: $base-color;
+                }
             }
         }
     }

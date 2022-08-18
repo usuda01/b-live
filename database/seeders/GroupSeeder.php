@@ -17,6 +17,18 @@ class GroupSeeder extends Seeder
         DB::table('groups')->insert([
             [
                 'id' => 1,
+                'user_id' => 11,
+                'game_title' => '基本FortniteかApex  もし他のゲームの部門も作ってほしかったら作ります',
+                'name' => 'aNクラン',
+                'image' => 'qFGI0dMH7g7jA5kNG7Wwuym6CGYVtGWBavrkTGct.jpeg',
+                'member_number' => 6,
+                'description' => "こんにちは！はーぴぃです。自分が参加しているクランの掲載をしたいと思います。参加したい方はTwitterで@aN_kousikiにDMください。参加条件はまあ,,,常識があることですね。弱いよぉって方でもOKです！自分も弱いんで(笑) よろしく！",
+                'is_publish' => 1,
+                'created_at' => '2020-11-18 21:44:44',
+                'updated_at' => '2020-11-18 21:49:51'
+            ],
+            [
+                'id' => 2,
                 'user_id' => 7,
                 'game_title' => '色々！　',
                 'name' => '配信参加可能人材募集って書いたらかっこよくない？',
