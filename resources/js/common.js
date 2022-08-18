@@ -40,6 +40,11 @@ $(function() {
         return false;
     });
 
+    // LINE通知の広告非表示
+    $('#line-connect #line-connect-btn-close').click(function() {
+        $('#line-connect').hide();
+    });
+
     // ログインモーダル
     $('.js-modal-open').each(function() {
         $(this).on('click', function(e) {

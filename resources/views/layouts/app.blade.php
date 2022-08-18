@@ -32,8 +32,8 @@
     @endif
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
     <link href="{{ mix('css/fonts.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/app.css') }}?param=59" rel="stylesheet">
-    <link href="{{ mix('css/all.css') }}?param=59" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}?param=60" rel="stylesheet">
+    <link href="{{ mix('css/all.css') }}?param=60" rel="stylesheet">
     @if (Request::is('/'))
         <title>B-LIVE｜ゲームのライブ配信、ショート動画サイト</title>
     @else
@@ -138,6 +138,7 @@
 
     @if (!Auth::check() || (Auth::check() && Auth::user()->user_data->is_line_connected == null))
         <div id="line-connect" class="line-connect {{ class_basename(Route::current()->controller) }}-{{ request()->route()->getActionMethod() }}">
+            <i id="line-connect-btn-close" class="fas fa-times-circle btn-close"></i>
             <div class="headline">
                 <div class="line-logo"><img src="/images/icon-line.png"></div>
                 <div class="line-text">LINEで配信通知を受け取ろう！</div>
@@ -237,9 +238,9 @@
             'apiToken' => \Auth::user()->api_token ?? null
         ]) !!};
     </script>
-    <script src="{{ mix('js/app.js') }}?param=59"></script>
-    <script src="{{ mix('js/all.js') }}?param=59"></script>
-    <script src="{{ mix('js/common.js') }}?param=59"></script>
+    <script src="{{ mix('js/app.js') }}?param=60"></script>
+    <script src="{{ mix('js/all.js') }}?param=60"></script>
+    <script src="{{ mix('js/common.js') }}?param=60"></script>
     @stack('scripts')
 </body>
 </html>

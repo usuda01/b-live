@@ -757,6 +757,12 @@
         background: $base-color;
         padding: 12px 10px 17px 10px;
         color: #fff;
+        .btn-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.4em;
+        }
         .headline {
             display: flex;
             align-items: center;

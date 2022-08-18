@@ -7869,6 +7869,13 @@ input[type=email] {
     padding: 20px 20px;
     color: #fff;
   }
+  .line-connect .btn-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2em;
+    cursor: pointer;
+  }
   .line-connect .headline {
     display: flex;
     align-items: center;
@@ -11638,6 +11645,12 @@ input[type=button] {
     background: #9e1b9e;
     padding: 12px 10px 17px 10px;
     color: #fff;
+  }
+  .line-connect .btn-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.4em;
   }
   .line-connect .headline {
     display: flex;

@@ -40,6 +40,10 @@ $(function () {
     $('#account-menu-bg').toggleClass('active');
     $('#account-menu').toggleClass('active');
     return false;
+  }); // LINE通知の広告非表示
+
+  $('#line-connect #line-connect-btn-close').click(function () {
+    $('#line-connect').hide();
   }); // ログインモーダル
 
   $('.js-modal-open').each(function () {
