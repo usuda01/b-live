@@ -145,4 +145,43 @@ class EventRankingController extends Controller
             'displayEndDate' => $displayEndDate,
         ]);
     }
+
+    public function event8() {
+
+        // いいね数の多い動画
+        $movies = Movie::withCount(['movie_goods' => function (Builder $query) {
+                $query->where('created_at', '<=', config('services.event8.end_date'));
+            }])
+            ->where('is_publish', '1')
+            ->where('created_at', '>=', config('services.event8.start_date'))
+            ->where('created_at', '<=', config('services.event8.end_date'))
+            ->orderBy('movie_goods_count', 'desc')
+            ->orderBy('movies.created_at', 'asc')
+            ->limit(20)
+            ->get();
+
+        $week = [
+            '日', //0
+            '月', //1
+            '火', //2
+            '水', //3
+            '木', //4
+            '金', //5
+            '土', //6
+        ];
+
+        $displayStartDate = date('Y/n/j', strtotime(config('services.event8.start_date')));
+        $startWeek = $week[date('w', strtotime(config('services.event8.start_date')))];
+        $displayStartDate .= "({$startWeek})";
+
+        $displayEndDate = date('Y/n/j', strtotime(config('services.event8.end_date')));
+        $endWeek = $week[date('w', strtotime(config('services.event8.end_date')))];
+        $displayEndDate .= "({$endWeek})" . " " . date('H:i:s', strtotime(config('services.event8.end_date')));
+
+        return view('event.event8', [
+            'movies' => $movies,
+            'displayStartDate' => $displayStartDate,
+            'displayEndDate' => $displayEndDate,
+        ]);
+    }
 }

@@ -1861,6 +1861,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -1877,7 +1878,7 @@ __webpack_require__.r(__webpack_exports__);
         centeredSlides: true,
         effect: 'coverflow',
         grabCursor: true,
-        initialSlide: 2,
+        initialSlide: 3,
         slidesPerView: 'auto',
         coverflowEffect: {
           rotate: 50,
@@ -94979,6 +94980,15 @@ var render = function() {
                 "background-image": "url('/images/event7/fv.jpg')"
               },
               attrs: { href: "/event7" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("swiper-slide", [
+            _c("a", {
+              staticStyle: {
+                "background-image": "url('/images/event8/fv.jpg')"
+              },
+              attrs: { href: "/event8" }
             })
           ]),
           _vm._v(" "),
