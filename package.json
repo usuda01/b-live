@@ -22,7 +22,7 @@
         "webpack": "^5.44.0"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^5.15.3",
+        "@fortawesome/fontawesome-free": "^5.15.4",
         "hls.js": "^1.0.7",
         "jquery": "^3.6.0",
         "laravel-echo": "^1.11.0",

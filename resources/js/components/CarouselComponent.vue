@@ -5,6 +5,7 @@
             <swiper-slide><a href="/event6" style="background-image: url('/images/event6/fv.jpg');"></a></swiper-slide>
             <swiper-slide><a href="/event7" style="background-image: url('/images/event7/fv.jpg');"></a></swiper-slide>
             <swiper-slide><a href="/event8" style="background-image: url('/images/event8/fv.jpg');"></a></swiper-slide>
+            <swiper-slide><a href="/event9" style="background-image: url('/images/event9/fv.jpg');"></a></swiper-slide>
             <div class="swiper-pagination" slot="pagination"></div>
             <div class="swiper-button-prev" slot="button-prev"></div>
             <div class="swiper-button-next" slot="button-next"></div>
@@ -30,7 +31,7 @@
                     centeredSlides: true,
                     effect: 'coverflow',
                     grabCursor: true,
-                    initialSlide: 3,
+                    initialSlide: 4,
                     slidesPerView: 'auto',
                     coverflowEffect: {
                         rotate: 50,

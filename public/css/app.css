@@ -1371,6 +1371,139 @@
   font-weight: bold;
 }
 
+.event-event9 {
+  max-width: 720px;
+  margin: 0 auto;
+  padding-bottom: 100px;
+  background: #ffeaff;
+}
+.event-event9 .fv {
+  margin-bottom: 35px;
+}
+.event-event9 .fv img {
+  width: 100%;
+}
+.event-event9 .event-end {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+  color: #ff0000;
+}
+.event-event9 .ranking {
+  margin-bottom: 35px;
+}
+.event-event9 .ranking .title {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  text-align: center;
+  font-weight: bold;
+}
+.event-event9 .ranking .ranking-header {
+  margin: 0 15px 10px 15px;
+}
+.event-event9 .ranking .ranking-header .rank {
+  min-width: 6%;
+  margin-right: 4%;
+  display: inline-block;
+}
+.event-event9 .ranking .ranking-header .views {
+  display: inline-block;
+  min-width: 10%;
+  text-align: center;
+}
+.event-event9 .ranking ul li {
+  padding: 5px 0;
+  border-bottom: 1px solid #999999;
+}
+.event-event9 .ranking ul li .rank-inner {
+  margin: 0 15px;
+}
+.event-event9 .ranking ul li .rank {
+  display: inline-block;
+  vertical-align: middle;
+  width: 6%;
+  text-align: center;
+  margin-right: 4%;
+}
+.event-event9 .ranking ul li .views {
+  display: inline-block;
+  vertical-align: middle;
+  width: 10%;
+  text-align: center;
+}
+.event-event9 .ranking ul li .name {
+  display: inline-block;
+  vertical-align: middle;
+  width: 80%;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #9e1b9e;
+}
+.event-event9 .ranking ul li.first {
+  background: #dfb93e;
+  border-bottom: none;
+}
+.event-event9 .event-detail {
+  margin-bottom: 35px;
+}
+.event-event9 .event-detail .title {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  text-align: center;
+  font-weight: bold;
+}
+.event-event9 .event-detail .detail {
+  margin: 0 15px;
+  background: #fff;
+  padding: 20px;
+  font-weight: bold;
+  border-radius: 6px;
+}
+.event-event9 .event-detail .detail .twitter {
+  color: #00acee;
+}
+.event-event9 .event-detail .detail div {
+  margin-bottom: 10px;
+}
+.event-event9 .event-detail .detail div:last-child {
+  margin-bottom: 0;
+}
+.event-event9 .event-caution {
+  margin-bottom: 35px;
+}
+.event-event9 .event-caution .title {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  text-align: center;
+  font-weight: bold;
+}
+.event-event9 .event-caution .note {
+  margin: 0 15px;
+  background: #fff;
+  padding: 20px;
+  font-size: 1.1rem;
+  border-radius: 6px;
+}
+.event-event9 .event-caution .note .twitter {
+  color: #00acee;
+}
+.event-event9 .event-caution .note li {
+  margin-bottom: 4px;
+}
+.event-event9 .to-top {
+  text-align: center;
+}
+.event-event9 .to-top a {
+  display: inline-block;
+  color: #fff;
+  background: #9e1b9e;
+  border-radius: 4px;
+  padding: 4px 24px;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
 /*!
  * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)

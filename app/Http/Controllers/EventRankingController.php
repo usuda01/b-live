@@ -184,4 +184,35 @@ class EventRankingController extends Controller
             'displayEndDate' => $displayEndDate,
         ]);
     }
+
+    public function event9() {
+        $rooms = EventRanking::join('rooms', 'event_rankings.room_id', '=', 'rooms.id')
+            ->orderBy('event_rankings.max_view', 'desc')
+            ->orderBy('rooms.finished_at', 'desc')->get();
+
+        $week = [
+            '日', //0
+            '月', //1
+            '火', //2
+            '水', //3
+            '木', //4
+            '金', //5
+            '土', //6
+        ];
+
+        $displayStartDate = date('Y/n/j', strtotime(config('services.event9.start_date')));
+        $startWeek = $week[date('w', strtotime(config('services.event9.start_date')))];
+        $displayStartDate .= "({$startWeek})";
+
+        $displayEndDate = date('Y/n/j', strtotime(config('services.event9.end_date')));
+        $endWeek = $week[date('w', strtotime(config('services.event9.end_date')))];
+        $displayEndDate .= "({$endWeek})" . " " . date('H:i:s', strtotime(config('services.event9.end_date')));
+
+        return view('event.event9', [
+            'rooms' => $rooms,
+            'displayStartDate' => $displayStartDate,
+            'displayEndDate' => $displayEndDate,
+        ]);
+    }
+
 }

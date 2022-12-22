@@ -46,6 +46,10 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('command:update-movie-views')
             ->everyMinute();
+
+        // イベント中
+        $schedule->command('command:update-event-ranking')
+            ->everyMinute();
     }
 
     /**

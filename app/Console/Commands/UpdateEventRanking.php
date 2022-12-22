@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\EventRanking;
-use App\Room;
+use App\Models\EventRanking;
+use App\Models\Room;
 use Illuminate\Console\Command;
 
 class UpdateEventRanking extends Command
@@ -39,7 +39,7 @@ class UpdateEventRanking extends Command
      */
     public function handle()
     {
-        if (config('services.event.is_active') == false) {
+        if (config('services.event9.is_active') == false) {
             return;
         }
         $rooms = Room::where(function($query) {
@@ -47,8 +47,8 @@ class UpdateEventRanking extends Command
                 ->orWhere('rooms.status', 2);
             })
             ->where(function($query) {
-                $query->where('published_at', '>=', config('services.event.start_date'))
-                    ->where('published_at', '<=', config('services.event.end_date'));
+                $query->where('published_at', '>=', config('services.event9.start_date'))
+                    ->where('published_at', '<=', config('services.event9.end_date'));
             });
 
         $rooms = $rooms->get();
