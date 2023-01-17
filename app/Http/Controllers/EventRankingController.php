@@ -188,7 +188,7 @@ class EventRankingController extends Controller
     public function event9() {
         $rooms = EventRanking::join('rooms', 'event_rankings.room_id', '=', 'rooms.id')
             ->orderBy('event_rankings.max_view', 'desc')
-            ->orderBy('rooms.finished_at', 'desc')->get();
+            ->orderBy('rooms.created_at', 'asc')->get();
 
         $week = [
             '日', //0
