@@ -2600,6 +2600,7 @@
                 margin-bottom: 10px;
             }
             .description {
+                white-space: pre-line;
                 a {
                     color: $base-color;
                 }

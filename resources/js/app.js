@@ -5,6 +5,7 @@ window.Vue = Vue;
 
 Vue.component('carousel-component', require('./components/CarouselComponent.vue').default);
 Vue.component('game-select-component', require('./components/GameSelectComponent.vue').default);
+Vue.component('group-component', require('./components/GroupComponent.vue').default);
 Vue.component('login-component', require('./components/LoginComponent.vue').default);
 Vue.component('follow-component', require('./components/FollowComponent.vue').default);
 Vue.component('follower-component', require('./components/FollowerComponent.vue').default);

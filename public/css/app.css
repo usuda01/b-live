@@ -10046,6 +10046,9 @@ input[type=email] {
   .group-detail .main-content .group-member {
     margin-bottom: 10px;
   }
+  .group-detail .main-content .description {
+    white-space: pre-line;
+  }
   .group-detail .main-content .description a {
     color: #9e1b9e;
   }
@@ -13715,6 +13718,9 @@ input[type=button] {
   }
   .group-detail .main-content .group-member {
     margin-bottom: 10px;
+  }
+  .group-detail .main-content .description {
+    white-space: pre-line;
   }
   .group-detail .main-content .description a {
     color: #9e1b9e;
