@@ -38,7 +38,8 @@ class Kernel extends ConsoleKernel
             ->appendOutputTo(storage_path('logs/cron.log'));
 
         $schedule->command('command:update-room-status')
-            ->everyFiveMinutes();
+            ->everyFiveMinutes()
+            ->appendOutputTo(storage_path('logs/cron.log'));
 
         $schedule->command('command:update-room-image')
             ->everyMinute()
@@ -48,8 +49,10 @@ class Kernel extends ConsoleKernel
             ->everyMinute();
 
         // イベント中
+/*
         $schedule->command('command:update-event-ranking')
             ->everyMinute();
+*/
     }
 
     /**

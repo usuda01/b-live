@@ -2659,16 +2659,18 @@
     /*
      * アカウント設定
      */
-    .setting-profile,
     .setting-coin,
     .setting-coin-request,
     .setting-group-list,
     .setting-group,
-    .setting-line {
+    .setting-line,
+    .setting-notice,
+    .setting-profile {
         .account-sidebar {
             padding: 40px 0 0 0;
             .menu-list {
                 display: flex;
+                flex-wrap: wrap;
                 li {
                     a {
                         display: block;
@@ -2761,6 +2763,36 @@
                     .no-connected-box {
                         .no-connected {
                         }
+                    }
+                }
+                .submit {
+                    font-size: 1.4rem;
+                    color: #fff;
+                    background: $base-color;
+                    border-radius: 4px;
+                    padding: 4px 24px;
+                    border: none;
+                }
+            }
+        }
+    }
+
+    .setting-notice {
+        .main-content {
+            .notice-form {
+                box-shadow: 0 0 15px #ccc;
+                padding: 30px 20px 30px 20px;
+                background: #fff;
+                border-radius: 4px;
+                .flash_message {
+                    margin-bottom: 30px;
+                    color: #ff0000;
+                }
+                li {
+                    margin-bottom: 30px;
+                    .label {
+                        display: block;
+                        margin-bottom: 18px;
                     }
                 }
                 .submit {

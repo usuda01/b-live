@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\LiveStarted;
 use App\Models\Group;
 use App\Models\Movie;
 use App\Models\PointRequest;
@@ -327,6 +328,25 @@ class SettingController extends Controller
         ]);
     }
 
+    // 通知設定
+    public function notice() {
+        $user = Auth::user();
+        return view('setting.notice', [
+            'user' => $user
+        ]);
+    }
+
+    public function noticePost(Request $request) {
+        $user = Auth::user();
+
+        $user->user_data->is_notice1 = $request->input('is_notice1');
+        $user->user_data->save();
+
+        $request->session()->flash('flash_message', '更新しました');
+
+        return redirect('setting/notice');
+    }
+
     public function profile() {
         $user = Auth::user();
         return view('setting.profile', [
@@ -574,7 +594,7 @@ class SettingController extends Controller
                         Push::Send(array(
                             'immediateDeliveryFlag' => true,
                             'target' => ['ios'],
-                            'title' => $room->user->name . 'さんが配信を開始しました!',
+                            'title' => $room->user->name . 'さんの配信が始まりました!',
                             'message' => $room->name,
                             'badgeIncrementFlag' => false,
                             'sound' => 'default',
@@ -588,10 +608,24 @@ class SettingController extends Controller
                         // 通知設定
                         if ($follower->followerUser->user_data->line_notice == 1) {
                             $lineMessage = "{$follower->followerUser->name}さん\n"
-                                . "【{$room->user->name}】さんが配信を開始しました！\n"
+                                . "【{$room->user->name}】さんの配信が始まりました！\n"
                                 . $room->name . "\n"
                                 . config('app.url').'/room/'.$room->id;
                             Helper::pushLineMessage($follower->followerUser->line_id, $lineMessage);
+                        }
+                    }
+
+                    // メール通知
+                    if ($follower->followerUser->user_data->is_notice1 == 1) {
+                        $data = [
+                            'followerName' => $follower->followerUser->name,
+                            'imageUrl' => $room->getImagePath(),
+                            'roomName' => $room->name,
+                            'roomId' => $room->id,
+                            'userName' => $room->user->name,
+                        ];
+                        if ($follower->followerUser->email) {
+                            \Mail::to($follower->followerUser->email)->send(new LiveStarted($data));
                         }
                     }
                 }

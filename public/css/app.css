@@ -10056,75 +10056,83 @@ input[type=email] {
   /*
    * アカウント設定
    */
-  .setting-profile,
-.setting-coin,
+  .setting-coin,
 .setting-coin-request,
 .setting-group-list,
 .setting-group,
-.setting-line {
+.setting-line,
+.setting-notice,
+.setting-profile {
     display: flex;
     justify-content: space-between;
     height: 100%;
   }
-  .setting-profile .account-sidebar,
-.setting-coin .account-sidebar,
+  .setting-coin .account-sidebar,
 .setting-coin-request .account-sidebar,
 .setting-group-list .account-sidebar,
 .setting-group .account-sidebar,
-.setting-line .account-sidebar {
+.setting-line .account-sidebar,
+.setting-notice .account-sidebar,
+.setting-profile .account-sidebar {
     background: #f3f5f7;
     width: 240px;
     padding: 40px 0;
   }
-  .setting-profile .account-sidebar .menu-list li a,
-.setting-coin .account-sidebar .menu-list li a,
+  .setting-coin .account-sidebar .menu-list li a,
 .setting-coin-request .account-sidebar .menu-list li a,
 .setting-group-list .account-sidebar .menu-list li a,
 .setting-group .account-sidebar .menu-list li a,
-.setting-line .account-sidebar .menu-list li a {
+.setting-line .account-sidebar .menu-list li a,
+.setting-notice .account-sidebar .menu-list li a,
+.setting-profile .account-sidebar .menu-list li a {
     display: block;
     padding: 0 20px;
     line-height: 60px;
   }
-  .setting-profile .account-sidebar .menu-list li a span,
-.setting-coin .account-sidebar .menu-list li a span,
+  .setting-coin .account-sidebar .menu-list li a span,
 .setting-coin-request .account-sidebar .menu-list li a span,
 .setting-group-list .account-sidebar .menu-list li a span,
 .setting-group .account-sidebar .menu-list li a span,
-.setting-line .account-sidebar .menu-list li a span {
+.setting-line .account-sidebar .menu-list li a span,
+.setting-notice .account-sidebar .menu-list li a span,
+.setting-profile .account-sidebar .menu-list li a span {
     vertical-align: middle;
   }
-  .setting-profile .account-sidebar .menu-list li.active,
-.setting-coin .account-sidebar .menu-list li.active,
+  .setting-coin .account-sidebar .menu-list li.active,
 .setting-coin-request .account-sidebar .menu-list li.active,
 .setting-group-list .account-sidebar .menu-list li.active,
 .setting-group .account-sidebar .menu-list li.active,
-.setting-line .account-sidebar .menu-list li.active {
+.setting-line .account-sidebar .menu-list li.active,
+.setting-notice .account-sidebar .menu-list li.active,
+.setting-profile .account-sidebar .menu-list li.active {
     background: #9e1b9e;
   }
-  .setting-profile .account-sidebar .menu-list li.active a,
-.setting-coin .account-sidebar .menu-list li.active a,
+  .setting-coin .account-sidebar .menu-list li.active a,
 .setting-coin-request .account-sidebar .menu-list li.active a,
 .setting-group-list .account-sidebar .menu-list li.active a,
 .setting-group .account-sidebar .menu-list li.active a,
-.setting-line .account-sidebar .menu-list li.active a {
+.setting-line .account-sidebar .menu-list li.active a,
+.setting-notice .account-sidebar .menu-list li.active a,
+.setting-profile .account-sidebar .menu-list li.active a {
     color: #fff;
   }
-  .setting-profile .main-content,
-.setting-coin .main-content,
+  .setting-coin .main-content,
 .setting-coin-request .main-content,
 .setting-group-list .main-content,
 .setting-group .main-content,
-.setting-line .main-content {
+.setting-line .main-content,
+.setting-notice .main-content,
+.setting-profile .main-content {
     width: 100%;
     margin: 0 40px;
   }
-  .setting-profile .main-content h2,
-.setting-coin .main-content h2,
+  .setting-coin .main-content h2,
 .setting-coin-request .main-content h2,
 .setting-group-list .main-content h2,
 .setting-group .main-content h2,
-.setting-line .main-content h2 {
+.setting-line .main-content h2,
+.setting-notice .main-content h2,
+.setting-profile .main-content h2 {
     font-weight: 600;
     font-size: 2.4rem;
     padding: 40px 0;
@@ -10194,6 +10202,33 @@ input[type=email] {
     margin-right: 30px;
   }
   .setting-profile .main-content .profile-form .submit {
+    font-size: 1.8rem;
+    color: #fff;
+    background: #9e1b9e;
+    border-radius: 4px;
+    padding: 5px 24px;
+    border: none;
+  }
+
+  .setting-notice .main-content .notice-form {
+    box-shadow: 0 0 15px #ccc;
+    padding: 34px 40px;
+    background: #fff;
+    border-radius: 4px;
+  }
+  .setting-notice .main-content .notice-form .flash_message {
+    margin-bottom: 42px;
+    color: #ff0000;
+  }
+  .setting-notice .main-content .notice-form li {
+    margin-bottom: 42px;
+  }
+  .setting-notice .main-content .notice-form li .label {
+    font-size: 1.6rem;
+    display: block;
+    margin-bottom: 18px;
+  }
+  .setting-notice .main-content .notice-form .submit {
     font-size: 1.8rem;
     color: #fff;
     background: #9e1b9e;
@@ -13729,71 +13764,80 @@ input[type=button] {
   /*
    * アカウント設定
    */
-  .setting-profile .account-sidebar,
-.setting-coin .account-sidebar,
+  .setting-coin .account-sidebar,
 .setting-coin-request .account-sidebar,
 .setting-group-list .account-sidebar,
 .setting-group .account-sidebar,
-.setting-line .account-sidebar {
+.setting-line .account-sidebar,
+.setting-notice .account-sidebar,
+.setting-profile .account-sidebar {
     padding: 40px 0 0 0;
   }
-  .setting-profile .account-sidebar .menu-list,
-.setting-coin .account-sidebar .menu-list,
+  .setting-coin .account-sidebar .menu-list,
 .setting-coin-request .account-sidebar .menu-list,
 .setting-group-list .account-sidebar .menu-list,
 .setting-group .account-sidebar .menu-list,
-.setting-line .account-sidebar .menu-list {
+.setting-line .account-sidebar .menu-list,
+.setting-notice .account-sidebar .menu-list,
+.setting-profile .account-sidebar .menu-list {
     display: flex;
+    flex-wrap: wrap;
   }
-  .setting-profile .account-sidebar .menu-list li a,
-.setting-coin .account-sidebar .menu-list li a,
+  .setting-coin .account-sidebar .menu-list li a,
 .setting-coin-request .account-sidebar .menu-list li a,
 .setting-group-list .account-sidebar .menu-list li a,
 .setting-group .account-sidebar .menu-list li a,
-.setting-line .account-sidebar .menu-list li a {
+.setting-line .account-sidebar .menu-list li a,
+.setting-notice .account-sidebar .menu-list li a,
+.setting-profile .account-sidebar .menu-list li a {
     display: block;
     padding: 0 10px;
     line-height: 40px;
   }
-  .setting-profile .account-sidebar .menu-list li a span,
-.setting-coin .account-sidebar .menu-list li a span,
+  .setting-coin .account-sidebar .menu-list li a span,
 .setting-coin-request .account-sidebar .menu-list li a span,
 .setting-group-list .account-sidebar .menu-list li a span,
 .setting-group .account-sidebar .menu-list li a span,
-.setting-line .account-sidebar .menu-list li a span {
+.setting-line .account-sidebar .menu-list li a span,
+.setting-notice .account-sidebar .menu-list li a span,
+.setting-profile .account-sidebar .menu-list li a span {
     vertical-align: middle;
   }
-  .setting-profile .account-sidebar .menu-list li.active,
-.setting-coin .account-sidebar .menu-list li.active,
+  .setting-coin .account-sidebar .menu-list li.active,
 .setting-coin-request .account-sidebar .menu-list li.active,
 .setting-group-list .account-sidebar .menu-list li.active,
 .setting-group .account-sidebar .menu-list li.active,
-.setting-line .account-sidebar .menu-list li.active {
+.setting-line .account-sidebar .menu-list li.active,
+.setting-notice .account-sidebar .menu-list li.active,
+.setting-profile .account-sidebar .menu-list li.active {
     background: #9e1b9e;
   }
-  .setting-profile .account-sidebar .menu-list li.active a,
-.setting-coin .account-sidebar .menu-list li.active a,
+  .setting-coin .account-sidebar .menu-list li.active a,
 .setting-coin-request .account-sidebar .menu-list li.active a,
 .setting-group-list .account-sidebar .menu-list li.active a,
 .setting-group .account-sidebar .menu-list li.active a,
-.setting-line .account-sidebar .menu-list li.active a {
+.setting-line .account-sidebar .menu-list li.active a,
+.setting-notice .account-sidebar .menu-list li.active a,
+.setting-profile .account-sidebar .menu-list li.active a {
     color: #fff;
   }
-  .setting-profile .main-content,
-.setting-coin .main-content,
+  .setting-coin .main-content,
 .setting-coin-request .main-content,
 .setting-group-list .main-content,
 .setting-group .main-content,
-.setting-line .main-content {
+.setting-line .main-content,
+.setting-notice .main-content,
+.setting-profile .main-content {
     margin: 0 10px;
     position: relative;
   }
-  .setting-profile .main-content h2,
-.setting-coin .main-content h2,
+  .setting-coin .main-content h2,
 .setting-coin-request .main-content h2,
 .setting-group-list .main-content h2,
 .setting-group .main-content h2,
-.setting-line .main-content h2 {
+.setting-line .main-content h2,
+.setting-notice .main-content h2,
+.setting-profile .main-content h2 {
     font-size: 2rem;
     padding: 26px 0 18px 0;
   }
@@ -13858,6 +13902,32 @@ input[type=button] {
     margin-right: 30px;
   }
   .setting-profile .main-content .profile-form .submit {
+    font-size: 1.4rem;
+    color: #fff;
+    background: #9e1b9e;
+    border-radius: 4px;
+    padding: 4px 24px;
+    border: none;
+  }
+
+  .setting-notice .main-content .notice-form {
+    box-shadow: 0 0 15px #ccc;
+    padding: 30px 20px 30px 20px;
+    background: #fff;
+    border-radius: 4px;
+  }
+  .setting-notice .main-content .notice-form .flash_message {
+    margin-bottom: 30px;
+    color: #ff0000;
+  }
+  .setting-notice .main-content .notice-form li {
+    margin-bottom: 30px;
+  }
+  .setting-notice .main-content .notice-form li .label {
+    display: block;
+    margin-bottom: 18px;
+  }
+  .setting-notice .main-content .notice-form .submit {
     font-size: 1.4rem;
     color: #fff;
     background: #9e1b9e;

@@ -152,6 +152,11 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/profile', [SettingController::class, 'profile']);
         Route::post('/profile', [SettingController::class, 'profilePost']);
+
+        // 通知設定
+        Route::get('/notice', [SettingController::class, 'notice']);
+        Route::post('/notice', [SettingController::class, 'noticePost']);
+
         Route::get('/stream/{room_id?}', [SettingController::class, 'stream']);
         Route::post('/stream', [SettingController::class, 'streamPost']);
         Route::get('/archive', [SettingController::class, 'archive']);

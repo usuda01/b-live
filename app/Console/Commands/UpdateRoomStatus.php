@@ -45,13 +45,14 @@ class UpdateRoomStatus extends Command
     {
         $rooms = Room::where('status', 1)->get();
         foreach ($rooms as $room) {
+            $url = 'http://'.config('services.wowza.host').':8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/blive/instances/_definst_/incomingstreams/'.$room->wowza->stream_key.'/monitoring/current';
             $response = Http::withBasicAuth(config('services.wowza.username'), config('services.wowza.password'))
                 ->withHeaders([
                     'Accept' => 'application/json',
                     'Content-Type' => 'application/json',
                     'charset' => 'utf-8',
                 ])
-                ->get('http://'.config('services.wowza.host').':8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/blive/instances/_definst_/incomingstreams/'.$room->wowza->stream_key.'/monitoring/current');
+                ->get($url);
 
             if ($response->successful()) {
                 $response = json_decode($response->body());
@@ -59,6 +60,8 @@ class UpdateRoomStatus extends Command
                     $room->finish();
                     $room->push();
                 }
+            } else {
+                $this->info(date('Y-m-d H:i:s').' [command:update-room-status] '.$response->body());
             }
         }
     }

@@ -2611,12 +2611,13 @@
     /*
      * アカウント設定
      */
-    .setting-profile,
     .setting-coin,
     .setting-coin-request,
     .setting-group-list,
     .setting-group,
-    .setting-line {
+    .setting-line,
+    .setting-notice,
+    .setting-profile {
         display: flex;
         justify-content: space-between;
         height: 100%;
@@ -2720,6 +2721,37 @@
                     .no-connected-box {
                         .no-connected {
                         }
+                    }
+                }
+                .submit {
+                    font-size: 1.8rem;
+                    color: #fff;
+                    background: $base-color;
+                    border-radius: 4px;
+                    padding: 5px 24px;
+                    border: none;
+                }
+            }
+        }
+    }
+
+    .setting-notice {
+        .main-content {
+            .notice-form {
+                box-shadow: 0 0 15px #ccc;
+                padding: 34px 40px;
+                background: #fff;
+                border-radius: 4px;
+                .flash_message {
+                    margin-bottom: 42px;
+                    color: #ff0000;
+                }
+                li {
+                    margin-bottom: 42px;
+                    .label {
+                        font-size: 1.6rem;
+                        display: block;
+                        margin-bottom: 18px;
                     }
                 }
                 .submit {
