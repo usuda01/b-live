@@ -1504,6 +1504,143 @@
   font-weight: bold;
 }
 
+.event-event10 {
+  max-width: 720px;
+  margin: 0 auto;
+  padding-bottom: 100px;
+  background: #ffeaff;
+}
+.event-event10 .fv {
+  margin-bottom: 35px;
+}
+.event-event10 .fv img {
+  width: 100%;
+}
+.event-event10 .event-end {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+  color: #ff0000;
+}
+.event-event10 .ranking {
+  .margin-bottom: 35px;
+}
+.event-event10 .ranking .title {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  text-align: center;
+  font-weight: bold;
+}
+.event-event10 .ranking .ranking-header {
+  display: flex;
+  margin: 0 15px;
+}
+.event-event10 .ranking .ranking-header .times {
+  margin-left: auto;
+}
+.event-event10 .ranking .user-box .rank-inner {
+  display: flex;
+  align-items: center;
+  margin: 15px;
+}
+.event-event10 .ranking .user-box .rank-inner .rank {
+  width: 2em;
+}
+.event-event10 .ranking .user-box .rank-inner .user-profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-position: center;
+  display: inline-block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0 20px 0 0;
+  border: solid 1px #000;
+}
+.event-event10 .ranking .user-box .rank-inner .user-name {
+  flex: 1;
+  margin-right: 10px;
+}
+.event-event10 .ranking .user-box .rank-inner .total-time {
+  margin-left: auto;
+}
+.event-event10 .ranking .user-box.first .user-profile {
+  position: relative;
+  border: solid 2px #e9ba31;
+}
+.event-event10 .ranking .user-box.first .user-profile::before {
+  font-family: "Font Awesome 5 Free";
+  content: "";
+  font-weight: 900;
+  position: absolute;
+  top: -16px;
+  color: #e9ba31;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+}
+.event-event10 .event-detail {
+  margin-bottom: 35px;
+}
+.event-event10 .event-detail .title {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  text-align: center;
+  font-weight: bold;
+}
+.event-event10 .event-detail .detail {
+  margin: 0 15px;
+  background: #fff;
+  padding: 20px;
+  font-weight: bold;
+  border-radius: 6px;
+}
+.event-event10 .event-detail .detail .twitter {
+  color: #00acee;
+}
+.event-event10 .event-detail .detail div {
+  margin-bottom: 10px;
+}
+.event-event10 .event-detail .detail div:last-child {
+  margin-bottom: 0;
+}
+.event-event10 .event-caution {
+  margin-bottom: 35px;
+}
+.event-event10 .event-caution .title {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  text-align: center;
+  font-weight: bold;
+}
+.event-event10 .event-caution .note {
+  margin: 0 15px;
+  background: #fff;
+  padding: 20px;
+  font-size: 1.1rem;
+  border-radius: 6px;
+}
+.event-event10 .event-caution .note .twitter {
+  color: #00acee;
+}
+.event-event10 .event-caution .note li {
+  margin-bottom: 4px;
+}
+.event-event10 .to-top {
+  text-align: center;
+}
+.event-event10 .to-top a {
+  display: inline-block;
+  color: #fff;
+  background: #9e1b9e;
+  border-radius: 4px;
+  padding: 4px 24px;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
 /*!
  * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)

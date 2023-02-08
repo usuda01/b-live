@@ -95083,15 +95083,6 @@ var render = function() {
           _c("swiper-slide", [
             _c("a", {
               staticStyle: {
-                "background-image": "url('/images/event5/fv.jpg')"
-              },
-              attrs: { href: "/event5" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("swiper-slide", [
-            _c("a", {
-              staticStyle: {
                 "background-image": "url('/images/event6/fv.jpg')"
               },
               attrs: { href: "/event6" }
@@ -95122,6 +95113,15 @@ var render = function() {
                 "background-image": "url('/images/event9/fv.jpg')"
               },
               attrs: { href: "/event9" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("swiper-slide", [
+            _c("a", {
+              staticStyle: {
+                "background-image": "url('/images/event10/fv.jpg')"
+              },
+              attrs: { href: "/event10" }
             })
           ]),
           _vm._v(" "),

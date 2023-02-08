@@ -44,21 +44,16 @@ class UpdateWowzaStatus extends Command
          */
         $wowzas = Wowza::where('status', 1)->get();
         if ($wowzas->isEmpty()) {
-            $this->info(date('Y-m-d H:i:s').' [command:update-wowza-status] 配信者がいません');
             return;
         }
         foreach ($wowzas as $wowza) {
             if (strtotime($wowza->started_at) <= strtotime('-4 hour')) {
-                $this->info(date('Y-m-d H:i:s').' [command:update-wowza-status] wowza_id:'.$wowza->id.' started_at:'.strtotime($wowza->started_at).' strtotime:'.strtotime('-4 hour'));
-                $wowza->status = 2;
+                $this->info(date('Y-m-d H:i:s').' [command:update-wowza-status] 配信時間が上限を超えました wowza_id:'.$wowza->id.' started_at:'.strtotime($wowza->started_at).' strtotime:'.strtotime('-4 hour'));
                 $rooms = Room::where('wowza_id', $wowza->id)->where('status', 1)->get();
                 foreach ($rooms as $room) {
-                    $room->status = 2;
-                    $room->finished_at = date('Y-m-d H:i:s');
-                    $room->save();
+                    $room->finish();
+                    $room->push();
                 }
-                $wowza->finished_at = date('Y-m-d H:i:s');
-                $wowza->save();
             }
         }
     }

@@ -9,6 +9,10 @@
                 <div class="section">
                     <h3>お知らせ一覧</h3>
                     <div class="row">
+                         <div class="date">2023.02.08</div>
+                         <div class="description"><a href="/page/notice/40">アマゾンギフト券１万円獲得イベント開催！</a></div>
+                    </div>
+                    <div class="row">
                          <div class="date">2023.01.27</div>
                          <div class="description"><a href="/page/notice/39">フォロワーにメールで配信開始をお知らせする機能を追加しました！</a></div>
                     </div>

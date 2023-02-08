@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\EventRanking;
 use App\Models\Movie;
+use App\Models\Room;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class EventRankingController extends Controller
 {
@@ -212,6 +215,53 @@ class EventRankingController extends Controller
             'rooms' => $rooms,
             'displayStartDate' => $displayStartDate,
             'displayEndDate' => $displayEndDate,
+        ]);
+    }
+
+    public function event10() {
+
+        $totalTime = Room::select(
+                'user_id',
+                DB::raw('SEC_TO_TIME(SUM(TIME_TO_SEC(stream_time))) as total_time'),
+                DB::raw('MAX(published_at) AS last_published_at')
+            )
+            ->where('published_at', '>=', config('services.event10.start_date'))
+            ->where('finished_at', '>=', config('services.event10.start_date'))
+            ->where('finished_at', '<=', config('services.event10.end_date'))
+            ->groupBy('user_id')
+            ->orderBy('total_time', 'desc')
+            ->orderBy('last_published_at', 'desc')
+            ->get();
+
+        $users = []; // ランキングに表示するユーザー
+        foreach ($totalTime as $row) {
+            $user = User::where('id', $row->user_id)->first();
+            $user->total_time = $row->total_time;
+            $users[] = $user;
+        }
+
+        $week = [
+            '日', //0
+            '月', //1
+            '火', //2
+            '水', //3
+            '木', //4
+            '金', //5
+            '土', //6
+        ];
+
+        $displayStartDate = date('Y/n/j', strtotime(config('services.event10.start_date')));
+        $startWeek = $week[date('w', strtotime(config('services.event10.start_date')))];
+        $displayStartDate .= "({$startWeek})";
+
+        $displayEndDate = date('Y/n/j', strtotime(config('services.event10.end_date')));
+        $endWeek = $week[date('w', strtotime(config('services.event10.end_date')))];
+        $displayEndDate .= "({$endWeek})" . " " . date('H:i:s', strtotime(config('services.event10.end_date')));
+
+        return view('event.event10', [
+            'displayStartDate' => $displayStartDate,
+            'displayEndDate' => $displayEndDate,
+            'users' => $users,
         ]);
     }
 
