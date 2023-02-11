@@ -55,7 +55,7 @@ class MovieMessageController extends Controller
         $message->save();
 
         // イベントを発火
-        event(new MovieMessageReceived($message));
+        MovieMessageReceived::dispatch($message);
 
         return response($message, 201);
     }

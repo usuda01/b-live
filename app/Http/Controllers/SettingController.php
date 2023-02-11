@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessSendMailLiveStarted;
 use App\Mail\LiveStarted;
 use App\Models\Group;
 use App\Models\Movie;
@@ -625,7 +626,7 @@ class SettingController extends Controller
                             'userName' => $room->user->name,
                         ];
                         if ($follower->followerUser->email) {
-                            \Mail::to($follower->followerUser->email)->send(new LiveStarted($data));
+                            ProcessSendMailLiveStarted::dispatch($follower, $room);
                         }
                     }
                 }

@@ -220,6 +220,8 @@ class EventRankingController extends Controller
 
     public function event10() {
 
+        $disableUserIds = [1358];
+
         $totalTime = Room::select(
                 'user_id',
                 DB::raw('SEC_TO_TIME(SUM(TIME_TO_SEC(stream_time))) as total_time'),
@@ -228,6 +230,7 @@ class EventRankingController extends Controller
             ->where('published_at', '>=', config('services.event10.start_date'))
             ->where('finished_at', '>=', config('services.event10.start_date'))
             ->where('finished_at', '<=', config('services.event10.end_date'))
+            ->whereNotIn('user_id', $disableUserIds)
             ->groupBy('user_id')
             ->orderBy('total_time', 'desc')
             ->orderBy('last_published_at', 'desc')

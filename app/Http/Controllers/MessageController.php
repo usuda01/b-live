@@ -114,7 +114,7 @@ class MessageController extends Controller
         }
 
         // イベントを発火
-        event(new MessageReceived($message));
+        MessageReceived::dispatch($message);
 
         return response($message, 201);
     }
