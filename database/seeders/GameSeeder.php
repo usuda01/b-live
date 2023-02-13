@@ -40,6 +40,7 @@ class GameSeeder extends Seeder
             ['id' => 23, 'name' => 'PUBG: BATTLEGROUNDS', 'sns_tags' => 'PUBG,PUBGBATTLEGROUNDS', 'sales_agency' => 'KRAFTON, Inc.'],
             ['id' => 24, 'name' => 'マリオカート8 デラックス', 'sns_tags' => 'マリオカート8DX', 'sales_agency' => '任天堂'],
             ['id' => 25, 'name' => 'スプラトゥーン3', 'sns_tags' => 'スプラ3,スプラトゥーン3,スプラトゥーン', 'sales_agency' => '任天堂'],
+            ['id' => 26, 'name' => 'ELDEN RING', 'sns_tags' => 'ELDENRING,エルデンリング', 'sales_agency' => 'FromSoftware'],
         ]);
     }
 }
