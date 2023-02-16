@@ -51,13 +51,8 @@ class Helper
         $hours = floor($diff / 3600);
         $minutes = floor(($diff / 60) % 60);
         $seconds = $diff % 60;
-        if ($hours == 0) {
-            $return = '00:' . sprintf('%02d', $minutes) .':'. sprintf('%02d', $seconds);
-        } else if ($minutes == 0) {
-            $return = '00:00:' . sprintf('%02d', $seconds);
-        } else {
-            $return = sprintf('%02d', $hours) . ':' . sprintf('%02d', $minutes) .':'. sprintf('%02d', $seconds);
-        }
+
+        $return = sprintf('%02d', $hours) . ':' . sprintf('%02d', $minutes) .':'. sprintf('%02d', $seconds);
         return $return;
     }
 
