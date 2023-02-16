@@ -55,7 +55,8 @@ class HomeController extends Controller
             $mainGames []= $game;
         }
 
-        $recentUsers = Room::select('rooms.user_id as user_id', DB::raw('count(rooms.id) as room_count'))
+        // 配信頻度高い
+        $frequentUsers = Room::select('rooms.user_id as user_id', DB::raw('count(rooms.id) as room_count'))
             ->leftJoin('users', 'users.id', '=', 'rooms.user_id')
             ->where('published_at', '>=', date('Y-m-d H:i:s', strtotime('-7 day')))
             ->where('stream_time', '>=', '00:10:00')
@@ -67,10 +68,10 @@ class HomeController extends Controller
             ->orderBy('room_count', 'desc')
             ->limit(10)->get();
 
-        foreach ($recentUsers as $recentUser) {
-            $user = User::where('id', $recentUser->user_id)->first();
-            $recentUser->name = $user->name;
-            $recentUser->user_image_path = $user->getImagePath();
+        foreach ($frequentUsers as $frequentUser) {
+            $user = User::where('id', $frequentUser->user_id)->first();
+            $frequentUser->name = $user->name;
+            $frequentUser->user_image_path = $user->getImagePath();
         }
 
         // 公認配信者
@@ -155,6 +156,9 @@ class HomeController extends Controller
             array_multisort($sortKey, SORT_DESC, $followerUsers);
         }
 
+        // 新着ユーザー
+        $newUsers = User::orderBy('created_at', 'desc')->limit(10)->get();
+
         $archiveRooms = Room::where('status', 2)->orderBy('finished_at', 'desc')->limit(4)->get();
 
         $groups = Group::where('is_publish', '1')->inRandomOrder()->get();
@@ -170,8 +174,9 @@ class HomeController extends Controller
             'mainGames' => $mainGames,
             'movies' => $movies,
             'officialUsers' => $officialUsers,
-            'recentUsers' => $recentUsers,
+            'frequentUsers' => $frequentUsers,
             'followerUsers' => $followerUsers,
+            'newUsers' => $newUsers,
             'paidUsers' => $paidUsers,
             'paymentUsers' => $paymentUsers,
             'popularMovies' => $popularMovies,

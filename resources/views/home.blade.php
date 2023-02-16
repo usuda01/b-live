@@ -166,7 +166,7 @@
             <div class="user-content frequent">
                 <h2 class="main-title">配信頻度高い</h2>
                 <div class="user-box">
-                    @foreach ($recentUsers as $recentUser)
+                    @foreach ($frequentUsers as $frequentUser)
                         @if ($loop->index==0)
                             <div class="user-info rank1">
                         @elseif ($loop->index==1)
@@ -176,8 +176,8 @@
                         @else
                             <div class="user-info">
                         @endif
-                            <div class="user-profile"><a style="background-image:url({{ $recentUser->user_image_path }})" href="/user/{{ $recentUser->user_id }}"></a></div>
-                            <div class="user-name"><a href="/user/{{ $recentUser->user_id }}">{{ $recentUser->name }}</a></div>
+                            <div class="user-profile"><a style="background-image:url({{ $frequentUser->user_image_path }})" href="/user/{{ $frequentUser->user_id }}"></a></div>
+                            <div class="user-name"><a href="/user/{{ $frequentUser->user_id }}">{{ $frequentUser->name }}</a></div>
                         </div>
                     @endforeach
                 </div>
@@ -220,6 +220,18 @@
                             <div class="user-profile"><a style="background-image:url({{ $paymentUser->getImagePath() }})" href="/user/{{ $paymentUser->id }}"></a></div>
                             <div class="user-name"><a href="/user/{{ $paymentUser->id }}">{{ $paymentUser->name }}</a></div>
                             <div class="follower-count">-&yen;{{ $paymentUser->sum_price }}</div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="user-content frequent">
+                <h2 class="main-title">新着ユーザー</h2>
+                <div class="user-box">
+                    @foreach ($newUsers as $newUser)
+                        <div class="user-info">
+                            <div class="user-profile"><a style="background-image:url({{ $newUser->getImagePath() }})" href="/user/{{ $newUser->id }}"></a></div>
+                            <div class="user-name"><a href="/user/{{ $newUser->id }}">{{ $newUser->name }}</a></div>
                         </div>
                     @endforeach
                 </div>
