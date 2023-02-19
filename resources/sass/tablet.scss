@@ -1403,6 +1403,16 @@
                         padding-top: 8px;
                         .user-message {
                             margin: 0 10px 8px 10px;
+                            &.rank2 {
+                                .user-name {
+                                    color: #4169e1;
+                                }
+                            }
+                            &.rank5 {
+                                .user-name {
+                                    color: $base-color;
+                                }
+                            }
                             &.admin {
                                 padding: 10px;
                                 border-radius: 4px;
@@ -1458,6 +1468,7 @@
                             }
                             .user-name {
                                 color: #666666;
+                                margin-right: 14px;
                             }
                         }
                     }
@@ -2092,6 +2103,16 @@
                         .user-message {
                             position: relative;
                             margin: 0 10px 8px 10px;
+                            &.rank2 {
+                                .user-name {
+                                    color: #4169e1;
+                                }
+                            }
+                            &.rank5 {
+                                .user-name {
+                                    color: $base-color;
+                                }
+                            }
                             .user-profile {
                                 width: 20px;
                                 height: 20px;
@@ -2105,6 +2126,7 @@
                             }
                             .user-name {
                                 color: #666666;
+                                margin-right: 14px;
                             }
                             .delete {
                                 position: absolute;

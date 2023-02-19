@@ -95975,25 +95975,20 @@ var render = function() {
                 },
                 _vm._l(_vm.messages, function(message, index) {
                   return _c("div", { key: message.id }, [
-                    _c("div", { staticClass: "user-message" }, [
-                      _c("a", {
-                        staticClass: "user-profile",
-                        style: {
-                          backgroundImage:
-                            "url(" + message.user.image_path + ")"
-                        },
-                        attrs: { href: "#" },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.showUserInfo(message.user)
-                          }
-                        }
-                      }),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "user-name",
+                    _c(
+                      "div",
+                      {
+                        class:
+                          "user-message user-rank rank" +
+                          message.user.user_data.rank
+                      },
+                      [
+                        _c("a", {
+                          staticClass: "user-profile",
+                          style: {
+                            backgroundImage:
+                              "url(" + message.user.image_path + ")"
+                          },
                           attrs: { href: "#" },
                           on: {
                             click: function($event) {
@@ -96001,66 +95996,79 @@ var render = function() {
                               return _vm.showUserInfo(message.user)
                             }
                           }
-                        },
-                        [_vm._v(_vm._s(message.user.name) + "：")]
-                      ),
-                      _c("span", { staticClass: "message" }, [
-                        _vm._v(_vm._s(message.content))
-                      ]),
-                      _vm._v(" "),
-                      _vm.canDelete(message)
-                        ? _c(
-                            "button",
-                            {
-                              staticClass: "delete",
-                              on: {
-                                click: function($event) {
-                                  return _vm.showMessageModal(message)
-                                }
+                        }),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "user-name",
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.showUserInfo(message.user)
                               }
-                            },
-                            [_c("i", { staticClass: "fas fa-ellipsis-v" })]
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      message.showingMessageModal
-                        ? _c("div", { staticClass: "delete-modal" }, [
-                            _c(
-                              "a",
+                            }
+                          },
+                          [_vm._v(_vm._s(message.user.name))]
+                        ),
+                        _c("span", { staticClass: "message" }, [
+                          _vm._v(_vm._s(message.content))
+                        ]),
+                        _vm._v(" "),
+                        _vm.canDelete(message)
+                          ? _c(
+                              "button",
                               {
-                                staticClass: "close",
-                                attrs: { href: "#" },
+                                staticClass: "delete",
                                 on: {
                                   click: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.closeMessageModal(message)
+                                    return _vm.showMessageModal(message)
                                   }
                                 }
                               },
-                              [
-                                _c("img", {
-                                  attrs: { src: "/images/btn-close.png" }
-                                })
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "delete-btn",
-                                attrs: { href: "#" },
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.deleteMessage(message.id)
-                                  }
-                                }
-                              },
-                              [_vm._v("削除")]
+                              [_c("i", { staticClass: "fas fa-ellipsis-v" })]
                             )
-                          ])
-                        : _vm._e()
-                    ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        message.showingMessageModal
+                          ? _c("div", { staticClass: "delete-modal" }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "close",
+                                  attrs: { href: "#" },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.closeMessageModal(message)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("img", {
+                                    attrs: { src: "/images/btn-close.png" }
+                                  })
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "delete-btn",
+                                  attrs: { href: "#" },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.deleteMessage(message.id)
+                                    }
+                                  }
+                                },
+                                [_vm._v("削除")]
+                              )
+                            ])
+                          : _vm._e()
+                      ]
+                    )
                   ])
                 }),
                 0
@@ -96793,7 +96801,11 @@ var render = function() {
                     message.payment_product_id === "1"
                       ? _c(
                           "div",
-                          { staticClass: "user-message payment purchase1" },
+                          {
+                            class:
+                              "user-message payment purchase1 user-rank rank" +
+                              message.user.user_data.rank
+                          },
                           [
                             _c("a", {
                               staticClass: "user-profile",
@@ -96834,7 +96846,11 @@ var render = function() {
                       : message.payment_product_id === "2"
                       ? _c(
                           "div",
-                          { staticClass: "user-message payment purchase2" },
+                          {
+                            class:
+                              "user-message payment purchase2 user-rank rank" +
+                              message.user.user_data.rank
+                          },
                           [
                             _c("a", {
                               staticClass: "user-profile",
@@ -96875,7 +96891,11 @@ var render = function() {
                       : message.payment_product_id === "3"
                       ? _c(
                           "div",
-                          { staticClass: "user-message payment purchase3" },
+                          {
+                            class:
+                              "user-message payment purchase3 user-rank rank" +
+                              message.user.user_data.rank
+                          },
                           [
                             _c("a", {
                               staticClass: "user-profile",
@@ -96916,7 +96936,11 @@ var render = function() {
                       : message.payment_product_id === "4"
                       ? _c(
                           "div",
-                          { staticClass: "user-message payment purchase4" },
+                          {
+                            class:
+                              "user-message payment purchase4 user-rank rank" +
+                              message.user.user_data.rank
+                          },
                           [
                             _c("a", {
                               staticClass: "user-profile",
@@ -96957,7 +96981,11 @@ var render = function() {
                       : message.payment_product_id === "5"
                       ? _c(
                           "div",
-                          { staticClass: "user-message payment purchase5" },
+                          {
+                            class:
+                              "user-message payment purchase5 user-rank rank" +
+                              message.user.user_data.rank
+                          },
                           [
                             _c("a", {
                               staticClass: "user-profile",
@@ -96998,7 +97026,11 @@ var render = function() {
                       : message.payment_product_id === "6"
                       ? _c(
                           "div",
-                          { staticClass: "user-message payment purchase6" },
+                          {
+                            class:
+                              "user-message payment purchase6 user-rank rank" +
+                              message.user.user_data.rank
+                          },
                           [
                             _c("a", {
                               staticClass: "user-profile",
@@ -97037,25 +97069,20 @@ var render = function() {
                           ]
                         )
                       : message.user.id === _vm.adminUserId
-                      ? _c("div", { staticClass: "user-message admin" }, [
-                          _c("a", {
-                            staticClass: "user-profile",
-                            style: {
-                              backgroundImage:
-                                "url(" + message.user.image_path + ")"
-                            },
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.showUserInfo(message.user)
-                              }
-                            }
-                          }),
-                          _c(
-                            "a",
-                            {
-                              staticClass: "user-name",
+                      ? _c(
+                          "div",
+                          {
+                            class:
+                              "user-message admin user-rank rank" +
+                              message.user.user_data.rank
+                          },
+                          [
+                            _c("a", {
+                              staticClass: "user-profile",
+                              style: {
+                                backgroundImage:
+                                  "url(" + message.user.image_path + ")"
+                              },
                               attrs: { href: "#" },
                               on: {
                                 click: function($event) {
@@ -97063,32 +97090,40 @@ var render = function() {
                                   return _vm.showUserInfo(message.user)
                                 }
                               }
-                            },
-                            [_vm._v(_vm._s(message.user.name) + "：")]
-                          ),
-                          _c("span", { staticClass: "message" }, [
-                            _vm._v(_vm._s(message.content))
-                          ])
-                        ])
-                      : _c("div", { staticClass: "user-message" }, [
-                          _c("a", {
-                            staticClass: "user-profile",
-                            style: {
-                              backgroundImage:
-                                "url(" + message.user.image_path + ")"
-                            },
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.showUserInfo(message.user)
-                              }
-                            }
-                          }),
-                          _c(
-                            "a",
-                            {
-                              staticClass: "user-name",
+                            }),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "user-name",
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.showUserInfo(message.user)
+                                  }
+                                }
+                              },
+                              [_vm._v(_vm._s(message.user.name))]
+                            ),
+                            _c("span", { staticClass: "message" }, [
+                              _vm._v(_vm._s(message.content))
+                            ])
+                          ]
+                        )
+                      : _c(
+                          "div",
+                          {
+                            class:
+                              "user-message user-rank rank" +
+                              message.user.user_data.rank
+                          },
+                          [
+                            _c("a", {
+                              staticClass: "user-profile",
+                              style: {
+                                backgroundImage:
+                                  "url(" + message.user.image_path + ")"
+                              },
                               attrs: { href: "#" },
                               on: {
                                 click: function($event) {
@@ -97096,13 +97131,26 @@ var render = function() {
                                   return _vm.showUserInfo(message.user)
                                 }
                               }
-                            },
-                            [_vm._v(_vm._s(message.user.name) + "：")]
-                          ),
-                          _c("span", { staticClass: "message" }, [
-                            _vm._v(_vm._s(message.content))
-                          ])
-                        ])
+                            }),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "user-name",
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.showUserInfo(message.user)
+                                  }
+                                }
+                              },
+                              [_vm._v(_vm._s(message.user.name))]
+                            ),
+                            _c("span", { staticClass: "message" }, [
+                              _vm._v(_vm._s(message.content))
+                            ])
+                          ]
+                        )
                   ])
                 }),
                 0
@@ -98465,7 +98513,11 @@ var render = function() {
                     message.payment_product_id === "1"
                       ? _c(
                           "div",
-                          { staticClass: "user-message payment purchase1" },
+                          {
+                            class:
+                              "user-message payment purchase1 user-rank rank" +
+                              message.user.user_data.rank
+                          },
                           [
                             _c("a", {
                               staticClass: "user-profile",
@@ -98506,7 +98558,11 @@ var render = function() {
                       : message.payment_product_id === "2"
                       ? _c(
                           "div",
-                          { staticClass: "user-message payment purchase2" },
+                          {
+                            class:
+                              "user-message payment purchase2 user-rank rank" +
+                              message.user.user_data.rank
+                          },
                           [
                             _c("a", {
                               staticClass: "user-profile",
@@ -98547,7 +98603,11 @@ var render = function() {
                       : message.payment_product_id === "3"
                       ? _c(
                           "div",
-                          { staticClass: "user-message payment purchase3" },
+                          {
+                            class:
+                              "user-message payment purchase3 user-rank rank" +
+                              message.user.user_data.rank
+                          },
                           [
                             _c("a", {
                               staticClass: "user-profile",
@@ -98588,7 +98648,11 @@ var render = function() {
                       : message.payment_product_id === "4"
                       ? _c(
                           "div",
-                          { staticClass: "user-message payment purchase4" },
+                          {
+                            class:
+                              "user-message payment purchase4 user-rank rank" +
+                              message.user.user_data.rank
+                          },
                           [
                             _c("a", {
                               staticClass: "user-profile",
@@ -98629,7 +98693,11 @@ var render = function() {
                       : message.payment_product_id === "5"
                       ? _c(
                           "div",
-                          { staticClass: "user-message payment purchase5" },
+                          {
+                            class:
+                              "user-message payment purchase5 user-rank rank" +
+                              message.user.user_data.rank
+                          },
                           [
                             _c("a", {
                               staticClass: "user-profile",
@@ -98670,7 +98738,11 @@ var render = function() {
                       : message.payment_product_id === "6"
                       ? _c(
                           "div",
-                          { staticClass: "user-message payment purchase6" },
+                          {
+                            class:
+                              "user-message payment purchase6 user-rank rank" +
+                              message.user.user_data.rank
+                          },
                           [
                             _c("a", {
                               staticClass: "user-profile",
@@ -98709,25 +98781,20 @@ var render = function() {
                           ]
                         )
                       : message.user.id === _vm.adminUserId
-                      ? _c("div", { staticClass: "user-message admin" }, [
-                          _c("a", {
-                            staticClass: "user-profile",
-                            style: {
-                              backgroundImage:
-                                "url(" + message.user.image_path + ")"
-                            },
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.showUserInfo(message.user)
-                              }
-                            }
-                          }),
-                          _c(
-                            "a",
-                            {
-                              staticClass: "user-name",
+                      ? _c(
+                          "div",
+                          {
+                            class:
+                              "user-message admin user-rank rank" +
+                              message.user.user_data.rank
+                          },
+                          [
+                            _c("a", {
+                              staticClass: "user-profile",
+                              style: {
+                                backgroundImage:
+                                  "url(" + message.user.image_path + ")"
+                              },
                               attrs: { href: "#" },
                               on: {
                                 click: function($event) {
@@ -98735,32 +98802,40 @@ var render = function() {
                                   return _vm.showUserInfo(message.user)
                                 }
                               }
-                            },
-                            [_vm._v(_vm._s(message.user.name) + "：")]
-                          ),
-                          _c("span", { staticClass: "message" }, [
-                            _vm._v(_vm._s(message.content))
-                          ])
-                        ])
-                      : _c("div", { staticClass: "user-message" }, [
-                          _c("a", {
-                            staticClass: "user-profile",
-                            style: {
-                              backgroundImage:
-                                "url(" + message.user.image_path + ")"
-                            },
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.showUserInfo(message.user)
-                              }
-                            }
-                          }),
-                          _c(
-                            "a",
-                            {
-                              staticClass: "user-name",
+                            }),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "user-name",
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.showUserInfo(message.user)
+                                  }
+                                }
+                              },
+                              [_vm._v(_vm._s(message.user.name))]
+                            ),
+                            _c("span", { staticClass: "message" }, [
+                              _vm._v(_vm._s(message.content))
+                            ])
+                          ]
+                        )
+                      : _c(
+                          "div",
+                          {
+                            class:
+                              "user-message user-rank rank" +
+                              message.user.user_data.rank
+                          },
+                          [
+                            _c("a", {
+                              staticClass: "user-profile",
+                              style: {
+                                backgroundImage:
+                                  "url(" + message.user.image_path + ")"
+                              },
                               attrs: { href: "#" },
                               on: {
                                 click: function($event) {
@@ -98768,13 +98843,26 @@ var render = function() {
                                   return _vm.showUserInfo(message.user)
                                 }
                               }
-                            },
-                            [_vm._v(_vm._s(message.user.name) + "：")]
-                          ),
-                          _c("span", { staticClass: "message" }, [
-                            _vm._v(_vm._s(message.content))
-                          ])
-                        ])
+                            }),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "user-name",
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.showUserInfo(message.user)
+                                  }
+                                }
+                              },
+                              [_vm._v(_vm._s(message.user.name))]
+                            ),
+                            _c("span", { staticClass: "message" }, [
+                              _vm._v(_vm._s(message.content))
+                            ])
+                          ]
+                        )
                   ])
                 }),
                 0
@@ -99833,7 +99921,11 @@ var render = function() {
                     message.payment_product_id === "1"
                       ? _c(
                           "div",
-                          { staticClass: "user-message payment purchase1" },
+                          {
+                            class:
+                              "user-message payment purchase1 user-rank rank" +
+                              message.user.user_data.rank
+                          },
                           [
                             _c("a", {
                               staticClass: "user-profile",
@@ -99874,7 +99966,11 @@ var render = function() {
                       : message.payment_product_id === "2"
                       ? _c(
                           "div",
-                          { staticClass: "user-message payment purchase2" },
+                          {
+                            class:
+                              "user-message payment purchase2 user-rank rank" +
+                              message.user.user_data.rank
+                          },
                           [
                             _c("a", {
                               staticClass: "user-profile",
@@ -99915,7 +100011,11 @@ var render = function() {
                       : message.payment_product_id === "3"
                       ? _c(
                           "div",
-                          { staticClass: "user-message payment purchase3" },
+                          {
+                            class:
+                              "user-message payment purchase3 user-rank rank" +
+                              message.user.user_data.rank
+                          },
                           [
                             _c("a", {
                               staticClass: "user-profile",
@@ -99956,7 +100056,11 @@ var render = function() {
                       : message.payment_product_id === "4"
                       ? _c(
                           "div",
-                          { staticClass: "user-message payment purchase4" },
+                          {
+                            class:
+                              "user-message payment purchase4 user-rank rank" +
+                              message.user.user_data.rank
+                          },
                           [
                             _c("a", {
                               staticClass: "user-profile",
@@ -99997,7 +100101,11 @@ var render = function() {
                       : message.payment_product_id === "5"
                       ? _c(
                           "div",
-                          { staticClass: "user-message payment purchase5" },
+                          {
+                            class:
+                              "user-message payment purchase5 user-rank rank" +
+                              message.user.user_data.rank
+                          },
                           [
                             _c("a", {
                               staticClass: "user-profile",
@@ -100038,7 +100146,11 @@ var render = function() {
                       : message.payment_product_id === "6"
                       ? _c(
                           "div",
-                          { staticClass: "user-message payment purchase6" },
+                          {
+                            class:
+                              "user-message payment purchase6 user-rank rank" +
+                              message.user.user_data.rank
+                          },
                           [
                             _c("a", {
                               staticClass: "user-profile",
@@ -100077,25 +100189,20 @@ var render = function() {
                           ]
                         )
                       : message.user.id === _vm.adminUserId
-                      ? _c("div", { staticClass: "user-message admin" }, [
-                          _c("a", {
-                            staticClass: "user-profile",
-                            style: {
-                              backgroundImage:
-                                "url(" + message.user.image_path + ")"
-                            },
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.showUserInfo(message.user)
-                              }
-                            }
-                          }),
-                          _c(
-                            "a",
-                            {
-                              staticClass: "user-name",
+                      ? _c(
+                          "div",
+                          {
+                            class:
+                              "user-message admin user-rank rank" +
+                              message.user.user_data.rank
+                          },
+                          [
+                            _c("a", {
+                              staticClass: "user-profile",
+                              style: {
+                                backgroundImage:
+                                  "url(" + message.user.image_path + ")"
+                              },
                               attrs: { href: "#" },
                               on: {
                                 click: function($event) {
@@ -100103,32 +100210,40 @@ var render = function() {
                                   return _vm.showUserInfo(message.user)
                                 }
                               }
-                            },
-                            [_vm._v(_vm._s(message.user.name) + "：")]
-                          ),
-                          _c("span", { staticClass: "message" }, [
-                            _vm._v(_vm._s(message.content))
-                          ])
-                        ])
-                      : _c("div", { staticClass: "user-message" }, [
-                          _c("a", {
-                            staticClass: "user-profile",
-                            style: {
-                              backgroundImage:
-                                "url(" + message.user.image_path + ")"
-                            },
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.showUserInfo(message.user)
-                              }
-                            }
-                          }),
-                          _c(
-                            "a",
-                            {
-                              staticClass: "user-name",
+                            }),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "user-name",
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.showUserInfo(message.user)
+                                  }
+                                }
+                              },
+                              [_vm._v(_vm._s(message.user.name))]
+                            ),
+                            _c("span", { staticClass: "message" }, [
+                              _vm._v(_vm._s(message.content))
+                            ])
+                          ]
+                        )
+                      : _c(
+                          "div",
+                          {
+                            class:
+                              "user-message user-rank rank" +
+                              message.user.user_data.rank
+                          },
+                          [
+                            _c("a", {
+                              staticClass: "user-profile",
+                              style: {
+                                backgroundImage:
+                                  "url(" + message.user.image_path + ")"
+                              },
                               attrs: { href: "#" },
                               on: {
                                 click: function($event) {
@@ -100136,13 +100251,26 @@ var render = function() {
                                   return _vm.showUserInfo(message.user)
                                 }
                               }
-                            },
-                            [_vm._v(_vm._s(message.user.name) + "：")]
-                          ),
-                          _c("span", { staticClass: "message" }, [
-                            _vm._v(_vm._s(message.content))
-                          ])
-                        ])
+                            }),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "user-name",
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.showUserInfo(message.user)
+                                  }
+                                }
+                              },
+                              [_vm._v(_vm._s(message.user.name))]
+                            ),
+                            _c("span", { staticClass: "message" }, [
+                              _vm._v(_vm._s(message.content))
+                            ])
+                          ]
+                        )
                   ])
                 }),
                 0

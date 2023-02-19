@@ -71,8 +71,8 @@
                     </div>
                     <transition-group tag="div" class="chat-list" name="list" id="chat-list">
                         <div v-for="(message, index) in messages" :key="message.id">
-                            <div class="user-message">
-                                <a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}：</a><span class="message">{{ message.content }}</span>
+                            <div v-bind:class="'user-message user-rank rank' + message.user.user_data.rank">
+                                <a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="message">{{ message.content }}</span>
                                 <button class="delete" v-if="canDelete(message)" v-on:click="showMessageModal(message)"><i class="fas fa-ellipsis-v"></i></button>
                                 <div class="delete-modal" v-if="message.showingMessageModal">
                                     <a v-on:click.prevent="closeMessageModal(message)" href="#" class="close"><img src="/images/btn-close.png"></a>

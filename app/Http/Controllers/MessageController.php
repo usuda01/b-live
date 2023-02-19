@@ -32,6 +32,9 @@ class MessageController extends Controller
         $roomId = $request->input('room_id');
         $messages = Message::with('user:id,image,name,profile')->where('room_id', $roomId)->orderBy('created_at', 'desc')->get();
         foreach ($messages as $message) {
+            // これを呼んでおかないとVue側でリレーションしてくれない
+            $message->user->user_data;
+
             $message->user->image_path = $message->user->getImagePath();
             // ブロックしていた場合はメッセージを表示しない
             if (in_array($message->user->id, $blockIds)) {

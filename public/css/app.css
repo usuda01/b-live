@@ -9051,6 +9051,12 @@ input[type=email] {
   .room-stream .message-wrapper .message-area .chat-area .chat-list .user-message {
     margin: 0 10px 10px 10px;
   }
+  .room-stream .message-wrapper .message-area .chat-area .chat-list .user-message.rank2 .user-name {
+    color: #4169e1;
+  }
+  .room-stream .message-wrapper .message-area .chat-area .chat-list .user-message.rank5 .user-name {
+    color: #9e1b9e;
+  }
   .room-stream .message-wrapper .message-area .chat-area .chat-list .user-message.admin {
     padding: 10px;
     border-radius: 4px;
@@ -9107,6 +9113,7 @@ input[type=email] {
   .room-stream .message-wrapper .message-area .chat-area .chat-list .user-message .user-name {
     color: #666666;
     vertical-align: top;
+    margin-right: 14px;
   }
   .room-stream .message-wrapper .message-area .chat-area .chat-list .user-message .message {
     vertical-align: top;
@@ -9652,6 +9659,12 @@ input[type=email] {
     position: relative;
     margin: 0 10px 10px 10px;
   }
+  .movie-detail .message-wrapper .message-area .chat-area .chat-list .user-message.rank2 .user-name {
+    color: #4169e1;
+  }
+  .movie-detail .message-wrapper .message-area .chat-area .chat-list .user-message.rank5 .user-name {
+    color: #9e1b9e;
+  }
   .movie-detail .message-wrapper .message-area .chat-area .chat-list .user-message .user-profile {
     width: 20px;
     height: 20px;
@@ -9666,6 +9679,7 @@ input[type=email] {
   .movie-detail .message-wrapper .message-area .chat-area .chat-list .user-message .user-name {
     color: #666666;
     vertical-align: top;
+    margin-right: 14px;
   }
   .movie-detail .message-wrapper .message-area .chat-area .chat-list .user-message .message {
     vertical-align: top;
@@ -12763,6 +12777,12 @@ input[type=button] {
   .room-stream .message-wrapper .message-area .chat-area .chat-list .user-message {
     margin: 0 10px 8px 10px;
   }
+  .room-stream .message-wrapper .message-area .chat-area .chat-list .user-message.rank2 .user-name {
+    color: #4169e1;
+  }
+  .room-stream .message-wrapper .message-area .chat-area .chat-list .user-message.rank5 .user-name {
+    color: #9e1b9e;
+  }
   .room-stream .message-wrapper .message-area .chat-area .chat-list .user-message.admin {
     padding: 10px;
     border-radius: 4px;
@@ -12818,6 +12838,7 @@ input[type=button] {
   }
   .room-stream .message-wrapper .message-area .chat-area .chat-list .user-message .user-name {
     color: #666666;
+    margin-right: 14px;
   }
   .room-stream .message-wrapper .message-area .chat-area .send-chat {
     background: #fff;
@@ -13375,6 +13396,12 @@ input[type=button] {
     position: relative;
     margin: 0 10px 8px 10px;
   }
+  .movie-detail .message-wrapper .message-area .chat-area .chat-list .user-message.rank2 .user-name {
+    color: #4169e1;
+  }
+  .movie-detail .message-wrapper .message-area .chat-area .chat-list .user-message.rank5 .user-name {
+    color: #9e1b9e;
+  }
   .movie-detail .message-wrapper .message-area .chat-area .chat-list .user-message .user-profile {
     width: 20px;
     height: 20px;
@@ -13388,6 +13415,7 @@ input[type=button] {
   }
   .movie-detail .message-wrapper .message-area .chat-area .chat-list .user-message .user-name {
     color: #666666;
+    margin-right: 14px;
   }
   .movie-detail .message-wrapper .message-area .chat-area .chat-list .user-message .delete {
     position: absolute;

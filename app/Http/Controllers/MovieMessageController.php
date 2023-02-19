@@ -21,7 +21,8 @@ class MovieMessageController extends Controller
 //        $user = User::where('api_token', $request->input('api_token'))->first();
 
         $movieId = $request->input('movie_id');
-        $messages = MovieMessage::with('user:id,image,name,profile')->where('movie_id', $movieId)->orderBy('created_at', 'desc')->get();
+        $messages = MovieMessage::with(['user:id,image,name,profile', 'user.user_data'])
+            ->where('movie_id', $movieId)->orderBy('created_at', 'desc')->get();
         foreach ($messages as $message) {
             $message->user->image_path = $message->user->getImagePath();
         }
