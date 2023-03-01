@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\EventRanking;
+use App\Models\Message;
 use App\Models\Movie;
 use App\Models\Room;
 use App\Models\User;
@@ -265,6 +266,64 @@ class EventRankingController extends Controller
             'displayStartDate' => $displayStartDate,
             'displayEndDate' => $displayEndDate,
             'users' => $users,
+        ]);
+    }
+
+    /*
+     * 自分のコメント、ゲストコメントは対象外とする
+     */
+    public function event11() {
+
+        $userIds = [];
+        $rooms = [];
+        $messages = Message::join('rooms', 'messages.room_id', '=', 'rooms.id')
+            ->select(
+                'messages.room_id AS room_id',
+                DB::raw('COUNT(messages.id) AS comment_count'),
+            )
+            ->where('rooms.published_at', '>=', config('services.event11.start_date'))
+            ->where('rooms.finished_at', '<=', config('services.event11.end_date'))
+            ->where('messages.created_at', '>=', config('services.event11.start_date'))
+            ->where('messages.created_at', '<=', config('services.event11.end_date'))
+            ->where('messages.user_id', '<>', config('services.guest_user_id'))
+            ->whereRaw('messages.user_id <> rooms.user_id')
+            ->groupBy('room_id')
+            ->orderBy('comment_count', 'desc')
+            ->orderBy('rooms.published_at', 'desc')
+            ->get();
+        foreach ($messages as $message) {
+            $room = $message->room;
+            $room->comment_count = $message->comment_count;
+            if (in_array($room->user_id, $userIds)) {
+                // 何もしない
+            } else {
+                $userIds[] = $room->user_id;
+                $rooms[] = $room;
+            }
+        }
+
+        $week = [
+            '日', //0
+            '月', //1
+            '火', //2
+            '水', //3
+            '木', //4
+            '金', //5
+            '土', //6
+        ];
+
+        $displayStartDate = date('Y/n/j', strtotime(config('services.event11.start_date')));
+        $startWeek = $week[date('w', strtotime(config('services.event11.start_date')))];
+        $displayStartDate .= "({$startWeek})";
+
+        $displayEndDate = date('Y/n/j', strtotime(config('services.event11.end_date')));
+        $endWeek = $week[date('w', strtotime(config('services.event11.end_date')))];
+        $displayEndDate .= "({$endWeek})" . " " . date('H:i:s', strtotime(config('services.event11.end_date')));
+
+        return view('event.event11', [
+            'displayStartDate' => $displayStartDate,
+            'displayEndDate' => $displayEndDate,
+            'rooms' => $rooms,
         ]);
     }
 
