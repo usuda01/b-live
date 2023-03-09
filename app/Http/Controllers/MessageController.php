@@ -68,8 +68,15 @@ class MessageController extends Controller
 
         $message = new Message();
         if (Auth::guard('api')->check()) {
+            // ログインユーザーのメッセージ
             $message->user_id = Auth::guard('api')->id();
+
+            // コメント数を加算
+            $user = User::where('id', Auth::guard('api')->id())->first();
+            $user->user_data->comment_count ++;
+            $user->push();
         } else {
+            // ゲストメッセージ
             $message->user_id = config('services.guest_user_id');
         }
         $productId = $request->input('data.product_id');
