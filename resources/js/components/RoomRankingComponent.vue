@@ -45,15 +45,21 @@
             <span v-if="targetRank==1">D</span>
             <span>ランクの動画はありません。</span>
         </div>
-        <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+        <div class="vue-infinite-loading">
+            <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+        </div>
     </div>
 </template>
 
 
 <script>
-    import InfiniteLoading from 'vue-infinite-loading';
+    import InfiniteLoading from "v3-infinite-loading";
+    import "v3-infinite-loading/lib/style.css";
 
     export default {
+        components: {
+            'infinite-loading': InfiniteLoading,
+        },
         props: {
             targetMonth: Number,
             targetRank: Number,

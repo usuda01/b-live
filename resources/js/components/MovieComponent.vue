@@ -9,7 +9,7 @@
             </div>
 
             <video v-on:play="onPlay" :poster="movie.image_path" controls playsinline>
-                <source v-bind:src="'/storage/movies/'+this.movie.path"></source>
+                <source v-bind:src="'/storage/movies/'+this.movie.path">
             </video>
 
             <div class="video-footer">
@@ -31,7 +31,7 @@
         </ul>
 
         <div class="video-info" v-bind:class="{'active': activeTab === 1}">
-            <div class="date">{{ movie.created_at | moment }}</div>
+            <div class="date">{{ moment(movie.created_at, 'YYYY/MM/DD') }}</div>
             <div class="movie-title">{{ movie.name }}</div>
             <div class="headline">
                 <a v-if="isLoggedIn===false" class="good js-modal-open" data-target="modal01" href="#"><i class="far fa-heart"></i></a>
@@ -55,7 +55,9 @@
                             </div>
                         </div>
                     </div><!--// .movie-content -->
-                    <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+                    <div class="vue-infinite-loading">
+                        <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+                    </div>
                 </div><!--// .movie-wrapper -->
             </div>
         </div>
@@ -101,10 +103,14 @@
 </template>
 
 <script>
-    import InfiniteLoading from 'vue-infinite-loading';
+    import InfiniteLoading from "v3-infinite-loading";
+    import "v3-infinite-loading/lib/style.css";
     import moment from 'moment';
 
     export default {
+        components: {
+            'infinite-loading': InfiniteLoading,
+        },
         props: {
             movie: Object,
             user: Object
@@ -146,11 +152,6 @@
                 showingUserInfo: false,
             }
         },
-        filters: {
-            moment: function (date) {
-                return moment(date).format('YYYY/MM/DD');
-            }
-        },
         mounted () {
             this.getMovieGoods();
             this.messageData.movie_id = this.movie.id;
@@ -174,7 +175,7 @@
                 })
             },
             closeMessageModal(message) {
-                this.$set(message, 'showingMessageModal', false);
+                message.showingMessageModal = false;
             },
             closeUserInfo() {
                 this.showingUserInfo = false;
@@ -261,6 +262,9 @@
                     $state.complete();
                 })
             },
+            moment(date, format) {
+                return moment(date).format(format);
+            },
             onPlay() {
                 const url = '/api/movie/play/';
                 const params = {
@@ -305,7 +309,7 @@
                 this.showingUserInfo = true;
             },
             showMessageModal(message) {
-                this.$set(message, 'showingMessageModal', true);
+                message.showingMessageModal = true;
             },
             tabChange(num) {
                 this.activeTab = num

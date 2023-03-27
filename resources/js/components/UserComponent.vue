@@ -32,7 +32,9 @@
                         </div>
                     </div>
                 </div><!--// .movie-content -->
-                <infinite-loading :identifier="1" @infinite="tab2InfiniteHandler"></infinite-loading>
+                <div class="vue-infinite-loading">
+                    <infinite-loading :identifier="1" @infinite="tab2InfiniteHandler"></infinite-loading>
+                </div>
             </div>
 
             <div class="room-wrapper" v-else-if="activeTab === 3">
@@ -57,7 +59,9 @@
                         </div>
                     </div>
                 </div>
-                <infinite-loading :identifier="2" @infinite="tab3InfiniteHandler"></infinite-loading>
+                <div class="vue-infinite-loading">
+                    <infinite-loading :identifier="2" @infinite="tab3InfiniteHandler"></infinite-loading>
+                </div>
             </div>
 
             <div class="supporter" v-else-if="activeTab === 4">
@@ -77,9 +81,13 @@
 </template>
 
 <script>
-    import InfiniteLoading from 'vue-infinite-loading';
+    import InfiniteLoading from "v3-infinite-loading";
+    import "v3-infinite-loading/lib/style.css";
 
     export default {
+        components: {
+            'infinite-loading': InfiniteLoading,
+        },
         props: {
             isWebView: Boolean,
             liveRooms: Array,

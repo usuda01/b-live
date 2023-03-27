@@ -1,53 +1,30 @@
 <template>
     <div class="carousel-3d">
-        <swiper class="swiper" :options="swiperOption">
-            <swiper-slide><a href="/event7" style="background-image: url('/images/event7/fv.jpg');"></a></swiper-slide>
-            <swiper-slide><a href="/event8" style="background-image: url('/images/event8/fv.jpg');"></a></swiper-slide>
-            <swiper-slide><a href="/event9" style="background-image: url('/images/event9/fv.jpg');"></a></swiper-slide>
-            <swiper-slide><a href="/event10" style="background-image: url('/images/event10/fv.jpg');"></a></swiper-slide>
-            <swiper-slide><a href="/event11" style="background-image: url('/images/event11/fv.jpg');"></a></swiper-slide>
-            <div class="swiper-pagination" slot="pagination"></div>
-            <div class="swiper-button-prev" slot="button-prev"></div>
-            <div class="swiper-button-next" slot="button-next"></div>
-        </swiper>
+        <Carousel :items-to-show="1.2" :model-value="2">
+            <Slide v-for="slide in slides" :key="slide">
+                <div class="carousel__item"><a :href="'/event' + slide" v-bind:style="{ backgroundImage: 'url(/images/event' + slide + '/fv.jpg)' }"></a></div>
+            </Slide>
+            <template #addons>
+                <Navigation />
+            </template>
+        </Carousel>
     </div>
 </template>
 
 <script>
-    import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
-    import 'swiper/css/swiper.css'
+    import 'vue3-carousel/dist/carousel.css'
+    import { Carousel, Slide, Navigation } from 'vue3-carousel'
 
     export default {
+        name: 'App',
         components: {
-            Swiper,
-            SwiperSlide
-        },
-        directives: {
-            swiper: directive
+            Carousel,
+            Slide,
+            Navigation,
         },
         data () {
             return {
-                swiperOption: {
-                    centeredSlides: true,
-                    effect: 'coverflow',
-                    grabCursor: true,
-                    initialSlide: 4,
-                    slidesPerView: 'auto',
-                    coverflowEffect: {
-                        rotate: 50,
-                        stretch: 0,
-                        depth: 100,
-                        modifier: 1,
-                        slideShadows : true
-                    },
-                    pagination: {
-                        el: '.swiper-pagination'
-                    },
-                    navigation: {
-                      nextEl: '.swiper-button-next',
-                      prevEl: '.swiper-button-prev'
-                    }
-                }
+                slides : [9, 10, 11],
             }
         }
     }

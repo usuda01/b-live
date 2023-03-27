@@ -359,6 +359,11 @@
         }
     }
 
+    .vue-infinite-loading {
+        text-align: center;
+        padding: 10px 0;
+    }
+
     .footer-menu {
         display: none;
     }
@@ -820,18 +825,23 @@
             width: calc(100% - 280px);
             margin-right: 20px;
             .carousel-3d {
-                width: 100%;
-                height: 230px;
-                margin: 46px 0;
-                .swiper-container {
+                width: 900px;
+                max-width: 100%;
+                margin: 46px auto;
+                .carousel__viewport {
                     z-index: 0;
-                    .swiper-slide {
-                        width: 720px;
-                        a {
-                            display: block;
-                            width: 100%;
-                            height: 100%;
-                            background-size: cover;
+                    .carousel__slide {
+                        .carousel__item {
+                            width: 720px;
+                            height: 230px;
+                            a {
+                                display: block;
+                                width: 100%;
+                                height: 100%;
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                                background-position: center;
+                            }
                         }
                     }
                 }

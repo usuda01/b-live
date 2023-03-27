@@ -1,23 +1,37 @@
 require('./bootstrap');
 
-import Vue from 'vue'
-window.Vue = Vue;
+import { createApp } from 'vue'
 
-Vue.component('carousel-component', require('./components/CarouselComponent.vue').default);
-Vue.component('game-select-component', require('./components/GameSelectComponent.vue').default);
-Vue.component('group-component', require('./components/GroupComponent.vue').default);
-Vue.component('login-component', require('./components/LoginComponent.vue').default);
-Vue.component('follow-component', require('./components/FollowComponent.vue').default);
-Vue.component('follower-component', require('./components/FollowerComponent.vue').default);
-Vue.component('movie-component', require('./components/MovieComponent.vue').default);
-Vue.component('movie-search-component', require('./components/MovieSearchComponent.vue').default);
-Vue.component('room-component', require('./components/RoomComponent.vue').default);
-Vue.component('room-message-component', require('./components/RoomMessageComponent.vue').default);
-Vue.component('room-message-viewer-component', require('./components/RoomMessageViewerComponent.vue').default);
-Vue.component('room-ranking-component', require('./components/RoomRankingComponent.vue').default);
-Vue.component('search-component', require('./components/SearchComponent.vue').default);
-Vue.component('user-component', require('./components/UserComponent.vue').default);
+import CarouselComponent from './components/CarouselComponent'
+import GameSelectComponent from './components/GameSelectComponent'
+import GroupComponent from './components/GroupComponent'
+import LoginComponent from './components/LoginComponent'
+import FollowComponent from './components/FollowComponent'
+import FollowerComponent from './components/FollowerComponent'
+import MovieComponent from './components/MovieComponent'
+import MovieSearchComponent from './components/MovieSearchComponent'
+import RoomComponent from './components/RoomComponent'
+import RoomMessageComponent from './components/RoomMessageComponent'
+import RoomMessageViewerComponent from './components/RoomMessageViewerComponent'
+import RoomRankingComponent from './components/RoomRankingComponent'
+import SearchComponent from './components/SearchComponent'
+import UserComponent from './components/UserComponent'
 
-const app = new Vue({
-    el: '#app',
-});
+createApp({
+    components: {
+        'carousel-component': CarouselComponent,
+        'game-select-component': GameSelectComponent,
+        'group-component': GroupComponent,
+        'login-component': LoginComponent,
+        'follow-component': FollowComponent,
+        'follower-component': FollowerComponent,
+        'movie-component': MovieComponent,
+        'movie-search-component': MovieSearchComponent,
+        'room-component': RoomComponent,
+        'room-message-component': RoomMessageComponent,
+        'room-message-viewer-component': RoomMessageViewerComponent,
+        'room-ranking-component': RoomRankingComponent,
+        'search-component': SearchComponent,
+        'user-component': UserComponent,
+    },
+}).mount('#app')

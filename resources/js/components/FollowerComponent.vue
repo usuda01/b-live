@@ -8,14 +8,20 @@
                 <a v-else-if="follower.is_follow === false" class="follow" v-on:click.prevent="follow(follower)" href="#"><span>フォロー</span></a>
             </div>
         </div>
-        <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+        <div class="vue-infinite-loading">
+            <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+        </div>
     </div>
 </template>
 
 <script>
-    import InfiniteLoading from 'vue-infinite-loading';
+    import InfiniteLoading from "v3-infinite-loading";
+    import "v3-infinite-loading/lib/style.css";
 
     export default {
+        components: {
+            'infinite-loading': InfiniteLoading,
+        },
         props: {
             //followers: Array,
         },

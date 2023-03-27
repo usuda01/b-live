@@ -25,7 +25,9 @@
                     </div>
                 </div>
             </div><!--// .movie-content -->
-            <infinite-loading :identifier="1" @infinite="tab1InfiniteHandler"></infinite-loading>
+            <div class="vue-infinite-loading">
+                <infinite-loading :identifier="1" @infinite="tab1InfiniteHandler"></infinite-loading>
+            </div>
         </div><!--// .movie-wrapper -->
 
         <div v-else-if="activeTab === 2" class="room-wrapper" v-bind:class="{'active': activeTab === 2}">
@@ -44,7 +46,9 @@
                     </div>
                 </div>
             </div><!--// .room-content -->
-            <infinite-loading :identifier="2" @infinite="tab2InfiniteHandler"></infinite-loading>
+            <div class="vue-infinite-loading">
+                <infinite-loading :identifier="2" @infinite="tab2InfiniteHandler"></infinite-loading>
+            </div>
         </div><!--// .room-wrapper -->
 
         <div v-else-if="activeTab === 3" class="user-wrapper" v-bind:class="{'active': activeTab === 3}">
@@ -59,15 +63,21 @@
                     </div>
                 </div>
             </div><!-- .user-content -->
-            <infinite-loading :identifier="3" @infinite="tab3InfiniteHandler"></infinite-loading>
+            <div class="vue-infinite-loading">
+                <infinite-loading :identifier="3" @infinite="tab3InfiniteHandler"></infinite-loading>
+            </div>
         </div><!--// .user-wrapper -->
     </div>
 </template>
 
 <script>
-    import InfiniteLoading from 'vue-infinite-loading';
+    import InfiniteLoading from "v3-infinite-loading";
+    import "v3-infinite-loading/lib/style.css";
 
     export default {
+            components: {
+            'infinite-loading': InfiniteLoading,
+        },
         props: {
             q: String,
         },

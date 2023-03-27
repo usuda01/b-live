@@ -64,7 +64,6 @@
 
 
 <script>
-    import moment from 'moment';
 
     export default {
         props: {
@@ -88,11 +87,6 @@
                 },
                 showingUserInfo: false,
                 showingUserFlagModal: false,
-            }
-        },
-        filters: {
-            moment: function (date) {
-                return moment(date).format('MM/DD HH:mm');
             }
         },
         mounted () {

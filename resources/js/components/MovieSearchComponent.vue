@@ -24,7 +24,9 @@
                     </div>
                 </div>
             </div><!--// .movie-content -->
-            <infinite-loading :identifier="1" @infinite="tab1InfiniteHandler"></infinite-loading>
+            <div class="vue-infinite-loading">
+                <infinite-loading :identifier="1" @infinite="tab1InfiniteHandler"></infinite-loading>
+            </div>
         </div>
 
         <div class="movie-wrapper" v-else-if="activeTab === 2">
@@ -46,16 +48,22 @@
                     </div>
                 </div>
             </div><!--// .movie-content -->
-            <infinite-loading :identifier="2" @infinite="tab2InfiniteHandler"></infinite-loading>
+            <div class="vue-infinite-loading">
+                <infinite-loading :identifier="2" @infinite="tab2InfiniteHandler"></infinite-loading>
+            </div>
         </div>
 
     </div>
 </template>
 
 <script>
-    import InfiniteLoading from 'vue-infinite-loading';
+    import InfiniteLoading from "v3-infinite-loading";
+    import "v3-infinite-loading/lib/style.css";
 
     export default {
+        components: {
+            'infinite-loading': InfiniteLoading,
+        },
         props: {
             game: Object,
         },

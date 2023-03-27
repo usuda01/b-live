@@ -1,13 +1,13 @@
 <template>
     <div class="game-select">
         <v-select :options="games" v-model="selected" label="name">
-            <template slot="option" slot-scope="option">
+            <template v-slot:option="option">
                 <div class="d-center">
                     <img :src='"/images/games/"+option.id+".jpg"' /> 
                     {{ option.name }}
                 </div>
             </template>
-            <template slot="selected-option" slot-scope="option">
+            <template v-slot:selected-option="option">
                 <div class="selected d-center">
                     <img :src='"/images/games/"+option.id+".jpg"' /> 
                     {{ option.name }}
@@ -20,9 +20,11 @@
 <script>
     import vSelect from 'vue-select';
     import 'vue-select/dist/vue-select.css';
-    Vue.component("v-select", vSelect);
 
     export default {
+        components: {
+            'v-select': vSelect,
+        },
         props: {
             gameId: Number,
         },
