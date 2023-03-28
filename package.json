@@ -31,6 +31,6 @@
         "v3-infinite-loading": "^1.2.2",
         "vue": "^3.2.36",
         "vue-select": "^4.0.0-beta.6",
-        "vue3-carousel": "^0.2.12"
+        "vue3-carousel": "^0.2.14"
     }
 }
