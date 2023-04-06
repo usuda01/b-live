@@ -83,6 +83,8 @@ class RoomController extends Controller
     // for Xcode
     // webview
     public function message($roomId) {
+        $isApp = true; // アプリからの接続かどうか
+
         $room = Room::with('user')->where('id', $roomId)->first();
         if (!$room) {
             abort(404);
@@ -104,6 +106,7 @@ class RoomController extends Controller
         }
         $room->is_expired = $isExpired;
         return view('room.message', [
+            'isApp' => $isApp,
             'room' => $room,
             'user' => $user,
         ]);
@@ -139,6 +142,8 @@ class RoomController extends Controller
 
     // for コメントビューワー
     public function messageViewer($roomId) {
+        $isApp = false; // アプリからの接続かどうか
+
         $room = Room::with('user')->where('id', $roomId)->first();
         if (!$room) {
             abort(404);
@@ -159,12 +164,15 @@ class RoomController extends Controller
         }
         $room->is_expired = $isExpired;
         return view('room.message_viewer', [
+            'isApp' => $isApp,
             'room' => $room,
             'user' => $user,
         ]);
     }
 
     public function stream($roomId) {
+        $isApp = false; // アプリからの接続かどうか
+
         $room = Room::with('user')->where('id', $roomId)->first();
         if (!$room) {
             abort(404);
@@ -191,6 +199,7 @@ class RoomController extends Controller
         $room->wowza;
 
         return view('room.stream', [
+            'isApp' => $isApp,
             'room' => $room,
             'user' => $user,
         ]);

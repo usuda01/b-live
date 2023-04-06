@@ -11,7 +11,6 @@ import FollowerComponent from './components/FollowerComponent'
 import MovieComponent from './components/MovieComponent'
 import MovieSearchComponent from './components/MovieSearchComponent'
 import RoomComponent from './components/RoomComponent'
-import RoomMessageComponent from './components/RoomMessageComponent'
 import RoomMessageViewerComponent from './components/RoomMessageViewerComponent'
 import RoomRankingComponent from './components/RoomRankingComponent'
 import SearchComponent from './components/SearchComponent'
@@ -28,7 +27,6 @@ createApp({
         'movie-component': MovieComponent,
         'movie-search-component': MovieSearchComponent,
         'room-component': RoomComponent,
-        'room-message-component': RoomMessageComponent,
         'room-message-viewer-component': RoomMessageViewerComponent,
         'room-ranking-component': RoomRankingComponent,
         'search-component': SearchComponent,

@@ -1,5 +1,5 @@
 <template>
-    <div class="room-stream webview">
+    <div class="room-stream" :class="{'webview': isApp === true}">
         <input type="hidden" id="room_id" name="room_id" :value="room.id">
 
         <div class="message-wrapper" v-bind:class="{'active': activeTab === 2}">
@@ -68,6 +68,7 @@
     export default {
         props: {
             adminUserId: Number,
+            isApp: Boolean,
             room: Object,
             user: Object
         },

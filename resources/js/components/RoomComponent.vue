@@ -1,5 +1,5 @@
 <template>
-    <div class="room-stream">
+    <div class="room-stream" :class="{'webview': isApp === true}">
         <input type="hidden" id="room_id" name="room_id" :value="room.id">
         <div class="main-area">
             <div class="bar">
@@ -10,8 +10,10 @@
                 <span class="tag" v-if="room.status == 1">LIVE</span>
             </div>
 
-            <div v-if="room.status === 2" class="expired"><img v-bind:src="room.image_path"></div>
-            <video v-if="room.status === 1" id="main-video" class="main-video" controls muted autoplay playsinline></video>
+            <template v-if="isApp === false">
+                <div v-if="room.status === 2" class="expired"><img v-bind:src="room.image_path"></div>
+                <video v-if="room.status === 1" id="main-video" class="main-video" controls muted autoplay playsinline></video>
+            </template>
 
             <div class="video-footer">
                 <div class="left-content">
@@ -23,9 +25,17 @@
                     <div v-else-if="room.status === 2" class="video-time">{{ videoTime }}</div>
                 </div>
                 <div class="right-content">
-                    <div class="share-content"><a v-bind:href="'http://twitter.com/intent/tweet?text=' + encodeURIComponent(room.name + '\n' + locationUrl + '\n' + snsTags + '\n@BLIVE77191685 にて')" target="_blank"><img src="/images/btn-share-twitter.png"></a></div>
+                    <template v-if="isApp === false">
+                        <div class="share-content"><a v-bind:href="'http://twitter.com/intent/tweet?text=' + encodeURIComponent(room.name + '\n' + locationUrl + '\n' + snsTags + '\n@BLIVE77191685 にて')" target="_blank"><img src="/images/btn-share-twitter.png"></a></div>
+                    </template>
                     <div class="flag-content">
-                        <a href="#" class="js-modal-open" data-target="modal03"><img src="/images/btn-flag.png"></a>
+                        <template v-if="isApp === true">
+                            <a v-if="isLoggedIn" href="#" class="js-modal-open" data-target="modal03"><img src="/images/btn-flag.png"></a>
+                            <a v-else href="jsalert://"><img src="/images/btn-flag.png"></a>
+                        </template>
+                        <template v-else-if="isApp === false">
+                            <a href="#" class="js-modal-open" data-target="modal03"><img src="/images/btn-flag.png"></a>
+                        </template>
                     </div>
                 </div>
             </div>
@@ -56,16 +66,23 @@
         <div class="message-wrapper" v-bind:class="{'active': activeTab === 2}">
             <div class="message-area">
                 <div class="title-area">
-                    <div class="title">
-                        <a class="mic" v-on:click.prevent="toggleSpeak"><img v-if="isSpeak === false" src="/images/btn-mic-off.png"><img v-if="isSpeak === true" src="/images/btn-mic-on.png"></a><span>チャット</span>
+                    <template v-if="isApp === true">
+                        <div class="title">チャット</div>
+                    </template>
+                    <template v-else-if="isApp === false">
+                        <div class="title">
+                            <a class="mic" v-on:click.prevent="toggleSpeak"><img v-if="isSpeak === false" src="/images/btn-mic-off.png"><img v-if="isSpeak === true" src="/images/btn-mic-on.png"></a><span>チャット</span>
+                        </div>
+                        <button class="message-menu" v-on:click="toggleMenu"><i class="fas fa-ellipsis-v"></i></button>
+                    </template>
+                </div>
+                <template if="isApp === false">
+                    <div class="menu-list" v-if="showMenu === true">
+                        <ul>
+                            <li><a href="#" v-on:click.prevent="linkToOtherWindow('/room-message-viewer/' + room.id)"><i class="fas fa-external-link-alt"></i><span>チャットをポップアウト</span></a></li>
+                        </ul>
                     </div>
-                    <button class="message-menu" v-on:click="toggleMenu"><i class="fas fa-ellipsis-v"></i></button>
-                </div>
-                <div class="menu-list" v-if="showMenu === true">
-                    <ul>
-                        <li><a href="#" v-on:click.prevent="linkToOtherWindow('/room-message-viewer/' + room.id)"><i class="fas fa-external-link-alt"></i><span>チャットをポップアウト</span></a></li>
-                    </ul>
-                </div>
+                </template>
                 <div class="chat-area">
                     <div v-if="showingUserInfo" class="user-detail">
                         <a v-on:click.prevent="closeUserInfo" href="#" class="close"><img src="/images/btn-close.png"></a>
@@ -159,7 +176,8 @@
                     <div class="gift-error" v-if="isGiftError">{{ giftErrorMessage}}</div>
                     <div class="my-coin">
                         <div class="coin-info"><img src="/images/icon-coin.png"><span>所持コイン：{{ this.user.user_data.point }}</span></div>
-                        <div class="charge"><a v-on:click="showChargeWindow" class="js-modal-open" data-target="modal06" href="#">チャージする</a></div>
+                        <div class="charge" v-if="isApp === true"><a v-on:click="showChargeWindow" href="/xcode-charge">チャージする</a></div>
+                        <div class="charge" v-else><a v-on:click="showChargeWindow" class="js-modal-open" data-target="modal06" href="#">チャージする</a></div>
                     </div>
                     <form class="send-gift-chat" @submit.prevent>
                         <input type="hidden" v-model="giftMessageData.room_id">
@@ -239,12 +257,13 @@
     export default {
         props: {
             adminUserId: Number,
+            isApp: Boolean,
             room: Object,
             user: Object
         },
         computed: {
             snsTags: function () {
-                let result = '#BLIVE配信 #ゲーム実況 #ゲーム配信';
+                let result = '#BLIVE #ゲーム実況 #ゲーム配信';
                 if (this.room.game) {
                     let tagsArray = this.room.game.sns_tags.split(',');
                     let tagsJoin = '';
@@ -300,8 +319,10 @@
         },
         mounted () {
             let self = this;
-            if (this.room.status === 1) {
-                this.videoPlay();
+            if (this.isApp === false) {
+                if (this.room.status === 1) {
+                    this.videoPlay();
+                }
             }
             this.createDescriptionLink();
             this.getVideoTime();
@@ -396,7 +417,11 @@
             follow() {
                 if (!Object.keys(this.user).length) {
                     // 未ログイン
-                    alert('ログインしてください');
+                    if (this.isApp === true) {
+                        location.href = 'jsalert://';
+                    } else {
+                        alert('ログインしてください');
+                    }
                     return false;
                 }
                 const url = '/api/followers/follow';
@@ -412,7 +437,11 @@
             followCancel() {
                 if (!Object.keys(this.user).length) {
                     // 未ログイン
-                    alert('ログインしてください');
+                    if (this.isApp === true) {
+                        location.href = 'jsalert://';
+                    } else {
+                        alert('ログインしてください');
+                    }
                     return false;
                 }
                 const url = '/api/followers/follow-cancel';
@@ -441,8 +470,10 @@
                     .then((response) => {
                         this.messages = response.data;
                         if (response.data.length > 0) {
-                            if (this.isSpeak === true) {
-                                this.speakMessage(response.data[0].content);
+                            if (this.isApp == false) {
+                                if (this.isSpeak === true) {
+                                    this.speakMessage(response.data[0].content);
+                                }
                             }
                         }
                     });
@@ -502,6 +533,15 @@
                 this.checkBlockUser(user.id);
             },
             showUserFlagModal(user) {
+                if (this.isLoggedIn == false) {
+                    // 未ログイン
+                    if (this.isApp === true) {
+                        location.href = 'jsalert://';
+                    } else {
+                        alert('ログインしてください');
+                    }
+                    return;
+                }
                 this.showingUserFlagModal = true;
             },
             hideUserFlagModal() {
@@ -531,6 +571,10 @@
             },
             block(userId) {
                 if (this.isLoggedIn == false) {
+                    // 未ログイン
+                    if (this.isApp === true) {
+                        location.href = 'jsalert://';
+                    }
                     return;
                 }
                 const url = '/api/block/block';
@@ -546,6 +590,10 @@
             },
             unBlock(userId) {
                 if (this.isLoggedIn == false) {
+                    // 未ログイン
+                    if (this.isApp === true) {
+                        location.href = 'jsalert://';
+                    }
                     return;
                 }
                 const url = '/api/block/un-block';

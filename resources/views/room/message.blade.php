@@ -2,11 +2,12 @@
 
 
 @section('content')
-    <room-message-component
+    <room-component
         :admin-user-id="{{ Config::get('services.admin_user_id') }}"
+        :is-app="{{ ($isApp) ? 'true' : 'false' }}"
         :room="{{ $room->toJson() }}"
         :user="{{ ($user) ? $user->toJson() : "{}"}}">
-    </room-message-component>
+    </room-component>
 @endsection
 
 

@@ -3,6 +3,7 @@
 @section('content')
     <room-component
         :admin-user-id="{{ Config::get('services.admin_user_id') }}"
+        :is-app="{{ ($isApp) ? 'true' : 'false' }}"
         :room="{{ $room->toJson() }}"
         :user="{{ ($user) ? $user->toJson() : "{}" }}"
     >
