@@ -76,7 +76,7 @@
                         <button class="message-menu" v-on:click="toggleMenu"><i class="fas fa-ellipsis-v"></i></button>
                     </template>
                 </div>
-                <template if="isApp === false">
+                <template v-if="isApp === false">
                     <div class="menu-list" v-if="showMenu === true">
                         <ul>
                             <li><a href="#" v-on:click.prevent="linkToOtherWindow('/room-message-viewer/' + room.id)"><i class="fas fa-external-link-alt"></i><span>チャットをポップアウト</span></a></li>
