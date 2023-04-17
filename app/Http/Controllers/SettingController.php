@@ -510,7 +510,7 @@ class SettingController extends Controller
         $user = Auth::user();
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|max:32',
+            'name' => 'required|max:64',
             'description' => 'max:1000',
         ]);
 
