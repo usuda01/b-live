@@ -1171,6 +1171,8 @@
      */
     .room-stream {
         .main-area {
+            position: sticky;
+            top: -32px;
             .bar {
                 display: flex;
                 margin: 10px 10px 6px 10px;
@@ -1186,10 +1188,13 @@
                 }
                 .user-name {
                     margin-right: 8px;
+                    white-space: nowrap;
+                    overflow: hidden;
                 }
                 .user-rank {
                     display: flex;
                     align-items: center;
+                    white-space: nowrap;
                     &:before {
                         content: '';
                         display: block;
