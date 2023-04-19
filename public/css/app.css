@@ -12717,6 +12717,11 @@ input[type=button] {
     /* カード情報入力 */
     /* for Xcode */
   }
+  .room-stream .main-area {
+    position: -webkit-sticky;
+    position: sticky;
+    top: -32px;
+  }
   .room-stream .main-area .bar {
     display: flex;
     margin: 10px 10px 6px 10px;
@@ -12733,10 +12738,13 @@ input[type=button] {
   }
   .room-stream .main-area .bar .user-name {
     margin-right: 8px;
+    white-space: nowrap;
+    overflow: hidden;
   }
   .room-stream .main-area .bar .user-rank {
     display: flex;
     align-items: center;
+    white-space: nowrap;
   }
   .room-stream .main-area .bar .user-rank:before {
     content: "";
