@@ -12,7 +12,14 @@
 
             <template v-if="isApp === false">
                 <div v-if="room.status === 2" class="expired"><img v-bind:src="room.image_path"></div>
-                <video v-if="room.status === 1" id="main-video" class="main-video" controls muted autoplay playsinline></video>
+                <div v-if="room.status === 1" class="video-container">
+                    <video id="main-video" class="main-video" muted autoplay playsinline></video>
+                    <div class="controls">
+                        <button v-on:click="toggleMute"><i v-if="isMute === true" class="fas fa-volume-mute"></i><i v-if="isMute === false" class="fas fa-volume-up"></i></button>
+                        <button v-on:click="togglePiP"><i class="fas fa-compress-alt"></i></button>
+                        <button v-on:click="toggleFullScreen"><i class="fas fa-expand"></i></button>
+                    </div>
+                </div>
             </template>
 
             <div class="video-footer">
@@ -280,6 +287,7 @@
                 activeTab: 2,
                 roomDescription: '',
                 hls: new Hls(),
+                isMute: true, // 動画音声
                 isLoggedIn: Object.keys(this.user).length > 0,
                 isBlockUser: false,
                 isFlag: false,
@@ -719,9 +727,44 @@
                     video.src = videoUrl;
                     //video.addEventListener("loadedmetadata", () => {
                     //video.addEventListener("canplaythrough", () => {
-                    video.addEventListener("canplay", () => {
+                    video.addEventListener('canplay', () => {
                       video.play();
                     });
+                }
+            },
+            toggleMute() {
+                const video = document.getElementById('main-video');
+                video.muted = !video.muted
+                this.isMute = video.muted;
+            },
+            togglePiP() {
+                const video = document.getElementById('main-video');
+                if ('pictureInPictureEnabled' in document) {
+                    video.requestPictureInPicture();
+                } else if ('msPictureInPictureEnabled' in document) {
+                    video.msRequestPictureInPicture();
+                } else if ('mozPictureInPictureEnabled' in document) {
+                    video.mozRequestPictureInPicture();
+                } else if ('webkitPictureInPictureEnabled' in document) {
+                    video.webkitRequestPictureInPicture();
+                }
+            },
+            toggleFullScreen() {
+                const video = document.getElementById('main-video');
+                if (video.requestFullscreen) {
+                    video.requestFullscreen();
+                } else if (video.mozRequestFullScreen) {
+                    /* Firefox */
+                    video.mozRequestFullScreen();
+                } else if (video.webkitRequestFullscreen) {
+                    /* Chrome, Safari and Opera */
+                    video.webkitRequestFullscreen();
+                } else if (video.msRequestFullscreen) {
+                    /* IE/Edge */
+                    video.msRequestFullscreen();
+                } else if (video.webkitEnterFullscreen) {
+                    /* iOS */
+                    video.webkitEnterFullscreen();
                 }
             },
         }

@@ -24,6 +24,8 @@ services:
         container_name: db
         image: mysql:5.7
         platform: linux/x86_64 # 必要に応じて変えるか削除する
+        env_file:
+            - ../.env
         environment:
             MYSQL_DATABASE: ${DB_DATABASE}
             MYSQL_ROOT_PASSWORD: /Vx9kRq*

@@ -39,7 +39,7 @@ class HomeController extends Controller
         $popularMovies = Movie::where('is_publish', 1)
             ->orderBy('views', 'desc')
             ->orderBy('id', 'desc')
-            ->limit(16)->get();
+            ->limit(12)->get();
 
         // 投稿動画の多いタイトル
         $mainGameMovies = Movie::select(
