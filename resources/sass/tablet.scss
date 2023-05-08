@@ -1233,6 +1233,7 @@
                 position: relative;
                 background: #000;
                 display: flex;
+                transition: 0.5s;
                 .main-video {
                     width: 100%;
                 }
@@ -1374,6 +1375,7 @@
                 display: block;
             }
             position: relative;
+            transition: 0.5s;
             .message-area {
                 background: #f9f9f9;
                 .title-area {
@@ -1838,6 +1840,42 @@
                         .btn-gift {
                         }
                     }
+                }
+            }
+        }
+        &.rotate {
+            .main-area {
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 2;
+                .video-container {
+                    top: 0;
+                    left: 0;
+                    position: absolute;
+                    transform: rotate(90deg);
+                    transform-origin: bottom left;
+                    width: 100dvh;
+                    height: 100vw;
+                    margin-top: -100vw;
+                    object-fit: cover;
+                    /* z-index: 4; */
+                    visibility: visible;
+                }
+            }
+            .message-wrapper {
+                display: none;
+                top: 0;
+                left: 0;
+                position: absolute;
+                transform: rotate(90deg);
+                transform-origin: bottom left;
+                width: 40vh;
+                height: 100vw;
+                margin-top: -100vw;
+                z-index: 3;
+                .message-area {
+                    background: transparent;
                 }
             }
         }

@@ -1,5 +1,5 @@
 <template>
-    <div class="room-stream" :class="{'webview': isApp === true}">
+    <div class="room-stream" :class="{'webview': isApp === true, 'rotate': isRotate === true}">
         <input type="hidden" id="room_id" name="room_id" :value="room.id">
         <div class="main-area">
             <div class="bar">
@@ -16,6 +16,7 @@
                     <video id="main-video" class="main-video" muted autoplay playsinline></video>
                     <div class="controls">
                         <button v-on:click="toggleMute"><i v-if="isMute === true" class="fas fa-volume-mute"></i><i v-if="isMute === false" class="fas fa-volume-up"></i></button>
+                        <button v-on:click="toggleRotate"><i class="fas fa-sync-alt"></i></button>
                         <button v-on:click="togglePiP"><i class="fas fa-compress-alt"></i></button>
                         <button v-on:click="toggleFullScreen"><i class="fas fa-expand"></i></button>
                     </div>
@@ -288,6 +289,7 @@
                 roomDescription: '',
                 hls: new Hls(),
                 isMute: true, // 動画音声
+                isRotate: false, // 横回転
                 isLoggedIn: Object.keys(this.user).length > 0,
                 isBlockUser: false,
                 isFlag: false,
@@ -736,6 +738,9 @@
                 const video = document.getElementById('main-video');
                 video.muted = !video.muted
                 this.isMute = video.muted;
+            },
+            toggleRotate() {
+                this.isRotate = !this.isRotate;
             },
             togglePiP() {
                 const video = document.getElementById('main-video');
