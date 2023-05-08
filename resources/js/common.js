@@ -1,3 +1,15 @@
+// アドレスバーの高さを取得する関数
+function getAddressBarHeight() {
+    const addressBarHeight = window.outerHeight - window.innerHeight;
+    document.documentElement.style.setProperty('--address-bar-height', `${addressBarHeight}px`);
+}
+
+// 初期化時にアドレスバーの高さを設定する
+getAddressBarHeight();
+
+// アドレスバーの高さが変わった時に、ビデオの高さを再設定する
+window.addEventListener('resize', getAddressBarHeight);
+
 $(function() {
     // ドロワーメニュー
     $('#toggle-slidebar, .drawer-bg, #drawer-menu__close-btn').click(function() {
