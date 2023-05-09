@@ -1,5 +1,5 @@
 <template>
-    <div class="room-stream" :class="{'webview': isApp === true, 'rotate': isRotate === true}">
+    <div class="room-stream" :class="{'webview': isApp === true, 'rotate': isRotate === true, 'controller-active': isControllerClassActive === true}">
         <input type="hidden" id="room_id" name="room_id" :value="room.id">
         <div class="main-area">
             <div class="bar">
@@ -12,7 +12,7 @@
 
             <template v-if="isApp === false">
                 <div v-if="room.status === 2" class="expired"><img v-bind:src="room.image_path"></div>
-                <div v-if="room.status === 1" class="video-container">
+                <div v-if="room.status === 1" class="video-container" v-on:click="toggleControllerClass">
                     <video id="main-video" class="main-video" muted autoplay playsinline></video>
                     <div class="controls">
                         <button v-on:click="toggleMute"><i v-if="isMute === true" class="fas fa-volume-mute"></i><i v-if="isMute === false" class="fas fa-volume-up"></i></button>
@@ -290,6 +290,7 @@
                 hls: new Hls(),
                 isMute: true, // 動画音声
                 isRotate: false, // 横回転
+                isControllerClassActive: false, // 動画の上に被せるコントローラーのクラス名制御用
                 isLoggedIn: Object.keys(this.user).length > 0,
                 isBlockUser: false,
                 isFlag: false,
@@ -733,6 +734,9 @@
                       video.play();
                     });
                 }
+            },
+            toggleControllerClass() {
+                this.isControllerClassActive = !this.isControllerClassActive;
             },
             toggleMute() {
                 const video = document.getElementById('main-video');
