@@ -1258,11 +1258,6 @@
                         }
                     }
                 }
-                &:hover {
-                    .controls {
-                        opacity: 1;
-                    }
-                }
             }
             .video-footer {
                 font-size: 1.2rem;
@@ -1861,22 +1856,48 @@
                     object-fit: cover;
                     /* z-index: 4; */
                     visibility: visible;
+                    .main-video {
+
+                    }
+                    .controls {
+                        bottom: 20px;
+                        justify-content: flex-start;
+                        button {
+                            margin-left: 10px;
+                        }
+                    }
                 }
             }
             .message-wrapper {
                 display: none;
-                top: 0;
+                bottom: 0;
                 left: 0;
                 position: absolute;
                 transform: rotate(90deg);
                 transform-origin: bottom left;
-                width: 40vh;
+                width: 30vh;
                 height: 100vw;
-                margin-top: -100vw;
+                margin-bottom: 30vh;
                 z-index: 3;
                 .message-area {
-                    background: transparent;
+                    .chat-area {
+                        display: flex;
+                        flex-direction: column;
+                        height: 100%;
+                    }
                 }
+            }
+        }
+        &.controller-active {
+            .main-area {
+                .video-container {
+                    .controls {
+                        opacity: 1;
+                    }
+                }
+            }
+            .message-wrapper {
+                display: block;
             }
         }
     }
