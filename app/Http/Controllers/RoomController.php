@@ -3,8 +3,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Log;
 use App\Models\Room;
+use App\Models\UserViewTime;
+use App\Models\UserViewTimeLog;
+use Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class RoomController extends Controller
 {
@@ -78,6 +82,41 @@ class RoomController extends Controller
         return response()->json([
             'views' => $views,
         ]);
+    }
+
+    /*
+     * 視聴時間の記録
+     */
+    public function storeViewTime(Request $request) {
+        $viewerUserId = $request->input('viewer_user_id');
+        $viewedUserId = $request->input('viewed_user_id');
+        $duration = $request->input('duration');
+
+        $userViewTimeLog = new UserViewTimeLog();
+        $userViewTimeLog->viewer_user_id = $viewerUserId;
+        $userViewTimeLog->viewed_user_id = $viewedUserId;
+        $userViewTimeLog->view_time = Helper::secToStr($duration);
+        $userViewTimeLog->save();
+
+        // insert or update
+        $userViewTime = UserViewTime::where('viewer_user_id', $viewerUserId)
+            ->where('viewed_user_id', $viewedUserId)
+            ->first();
+        if (!$userViewTime) {
+            // insert
+            $userViewTime = new UserViewTime();
+            $userViewTime->viewer_user_id = $viewerUserId;
+            $userViewTime->viewed_user_id = $viewedUserId;
+            $userViewTime->view_time = Helper::secToStr($duration);
+            $userViewTime->save();
+        } else {
+            // update
+            $timeToAdd = Helper::secToStr($duration);
+            UserViewTime::where('id', $userViewTime->id)
+                ->update([
+                    'view_time' => DB::raw("SEC_TO_TIME(TIME_TO_SEC(view_time) + TIME_TO_SEC('$timeToAdd'))")
+                ]);
+        }
     }
 
     // for Xcode

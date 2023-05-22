@@ -349,6 +349,11 @@
                     this.canSendGift = false;
                 }
             }
+
+            // 視聴時間を計測する
+            if (this.room.status === 1) {
+                this.addViewTimeEvent();
+            }
         },
         methods: {
             connectChannel() {
@@ -775,6 +780,28 @@
                     /* iOS */
                     video.webkitEnterFullscreen();
                 }
+            },
+            addViewTimeEvent() {
+                if (this.isLoggedIn == false) {
+                    return;
+                }
+                let startTime = new Date();
+                window.addEventListener('beforeunload', () => {
+                    let endTime = new Date();
+                    let duration = parseInt((endTime - startTime) / 1000);
+
+                    // サーバーに送信する
+                    const url = '/api/room/store-view-time';
+                    const params = {
+                        duration: duration,
+                        viewer_user_id: this.user.id,
+                        viewed_user_id: this.room.user_id
+                    };
+                    axios.post(url, params)
+                        .then((response) => {
+
+                        });
+                });
             },
         }
     }
