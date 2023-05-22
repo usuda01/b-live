@@ -2,6 +2,7 @@
 /public/hot
 /public/css/app.css
 /public/js/app.js
+/public/js/common.js
 /public/storage
 /storage/*.key
 /vendor
