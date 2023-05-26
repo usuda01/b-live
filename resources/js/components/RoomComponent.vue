@@ -785,23 +785,24 @@
                 if (this.isLoggedIn == false) {
                     return;
                 }
-                let startTime = new Date();
-                window.addEventListener('beforeunload', () => {
-                    let endTime = new Date();
-                    let duration = parseInt((endTime - startTime) / 1000);
+                let intervalTime = 30000; // ミリ秒
+                setInterval(() => {
+                    this.storeViewTime(intervalTime);
+                }, intervalTime);
+            },
+            storeViewTime(intervalTime) {
+                let duration = parseInt(intervalTime / 1000);
 
-                    // サーバーに送信する
-                    const url = '/api/room/store-view-time';
-                    const params = {
-                        duration: duration,
-                        viewer_user_id: this.user.id,
-                        viewed_user_id: this.room.user_id
-                    };
-                    axios.post(url, params)
-                        .then((response) => {
-
-                        });
-                });
+                // サーバーに送信する
+                const url = '/api/room/store-view-time';
+                const params = {
+                    duration: duration,
+                    viewer_user_id: this.user.id,
+                    viewed_user_id: this.room.user_id
+                };
+                axios.post(url, params)
+                    .then((response) => {
+                    });
             },
         }
     }
