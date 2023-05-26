@@ -46,7 +46,6 @@ class UpdateMovieViews extends Command
     public function handle()
     {
         // データが肥大化してしまうので、3ヶ月前のログは削除する
-        // ここに削除処理
         $movieViewLogs = MovieViewLog::where('created_at', '<', date('Y-m-d H:i:s', strtotime('-3 month')))->delete();
 
         // 過去1日のログを集計し、カウントアップ

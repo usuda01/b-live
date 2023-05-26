@@ -48,6 +48,9 @@ class Kernel extends ConsoleKernel
         $schedule->command('command:update-movie-views')
             ->everyMinute();
 
+        $schedule->command('command:delete-user-view-times')
+            ->monthlyOn(1, '00:30');
+
         // イベント中
 /*
         $schedule->command('command:update-event-ranking')
