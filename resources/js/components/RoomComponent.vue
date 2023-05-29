@@ -50,9 +50,10 @@
         </div><!--// .main-area -->
 
         <ul class="tabs">
-            <li v-on:click="tabChange(1)" v-bind:class="{'active': activeTab === 1}">動画情報</li>
+            <li v-on:click="tabChange(1)" v-bind:class="{'active': activeTab === 1, 'tab-movie': true}">動画情報</li>
             <li v-on:click="tabChange(2)" v-bind:class="{'active': activeTab === 2}">チャット</li>
             <li v-on:click="tabChange(3)" v-bind:class="{'active': activeTab === 3}">サポーター</li>
+            <li v-on:click="tabChange(4)" v-bind:class="{'active': activeTab === 4}">リスナー</li>
         </ul>
 
         <div class="video-info" v-bind:class="{'active': activeTab === 1}">
@@ -79,7 +80,7 @@
                     </template>
                     <template v-else-if="isApp === false">
                         <div class="title">
-                            <a class="mic" v-on:click.prevent="toggleSpeak"><img v-if="isSpeak === false" src="/images/btn-mic-off.png"><img v-if="isSpeak === true" src="/images/btn-mic-on.png"></a><span>チャット</span>
+                            <a class="mic" v-on:click.prevent="toggleSpeak"><img v-if="isSpeak === false" src="/images/btn-mic-off.png"><img v-if="isSpeak === true" src="/images/btn-mic-on.png"></a><span>読み上げ</span>
                         </div>
                         <button class="message-menu" v-on:click="toggleMenu"><i class="fas fa-ellipsis-v"></i></button>
                     </template>
@@ -149,6 +150,17 @@
                 <div v-else-if="supporter.product_id === '6'" class="user-message payment purchase6"><a v-on:click.prevent="showUserInfo(supporter.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + supporter.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(supporter.user)" href="#" class="user-name">{{ supporter.user.name }}</a><span class="amount">&yen;{{ supporter.point }}</span><span class="message">{{ supporter.message.content }}</span></div>
             </div>
         </div><!--// .supporter -->
+
+        <div class="listener" v-bind:class="{'active': activeTab === 4}">
+            <div class="title">今月のリスナー</div>
+            <div v-for="listener in listeners" :key="listener.id" class="listener-box">
+                <a class="user-profile" v-bind:href="'/user/' + listener.id" v-bind:style="{ backgroundImage: 'url(' + listener.user_image_path + ')' }"></a>
+                <div class="user-right">
+                    <div class="user-name"><a v-bind:href="'/user/' + listener.id">{{ listener.user_name }}</a></div>
+                    <div class="view-time">{{ listener.view_time }}</div>
+                </div>
+            </div>
+        </div><!--// .listener -->
 
         <!-- コンテンツ通報モーダル -->
         <div id="modal03" class="modal js-modal modal03">
@@ -267,7 +279,8 @@
             adminUserId: Number,
             isApp: Boolean,
             room: Object,
-            user: Object
+            listeners: Array,
+            user: Object,
         },
         computed: {
             snsTags: function () {
@@ -783,6 +796,10 @@
             },
             addViewTimeEvent() {
                 if (this.isLoggedIn == false) {
+                    return;
+                }
+                // 自分の動画に対しては記録しない
+                if (this.user.id === this.room.user_id) {
                     return;
                 }
                 let intervalTime = 30000; // ミリ秒

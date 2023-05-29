@@ -5,6 +5,7 @@ use App\Models\Message;
 use App\Models\Payment;
 use App\Models\Room;
 use App\Models\User;
+use App\Models\UserViewTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -53,10 +54,27 @@ class UserController extends Controller
         }
         $supporters = json_encode($supporters);
 
+        // リスナー
+        $listeners = [];
+        $userViewTimes = UserViewTime::where('viewed_user_id', $userId)
+            ->orderBy('view_time', 'desc')
+            ->get();
+        foreach ($userViewTimes as $userViewTime) {
+            $listener = User::where('id', $userViewTime->viewer_user_id)->first();
+            $listeners[] = [
+                'id' => $listener->id,
+                'user_name' => $listener->name,
+                'user_image_path' => $listener->getImagePath(),
+                'view_time' => $userViewTime->view_time,
+            ];
+        }
+        $listeners = json_encode($listeners);
+
         return view('user.detail', [
             'liveRooms' => $liveRooms,
             'targetUser' => $targetUser,
             'supporters' => $supporters,
+            'listeners' => $listeners,
             'user' => $user,
         ]);
     }

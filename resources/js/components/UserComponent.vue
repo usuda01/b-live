@@ -9,6 +9,7 @@
             <li v-on:click="tabChange(2)" v-bind:class="{'active': activeTab === 2}">ショート動画</li>
             <li v-on:click="tabChange(3)" v-bind:class="{'active': activeTab === 3}">配信履歴</li>
             <li v-on:click="tabChange(4)" v-bind:class="{'active': activeTab === 4}">サポーター</li>
+            <li v-on:click="tabChange(5)" v-bind:class="{'active': activeTab === 5}">リスナー</li>
         </ul>
 
         <div>
@@ -76,6 +77,17 @@
                     </div>
                 </div>
             </div>
+
+            <div class="listener" v-else-if="activeTab === 5">
+                <div class="title">今月のリスナー</div>
+                <div v-for="listener in listeners" :key="listener.id" class="listener-box">
+                    <a class="user-profile" v-bind:href="'/user/' + listener.id" v-bind:style="{ backgroundImage: 'url(' + listener.user_image_path + ')' }"></a>
+                    <div class="user-right">
+                        <div class="user-name"><a v-bind:href="'/user/' + listener.id">{{ listener.user_name }}</a></div>
+                        <div class="view-time">{{ listener.view_time }}</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -93,6 +105,7 @@
             liveRooms: Array,
             targetUser: Object,
             supporters: Array,
+            listeners: Array,
             user: Object
         },
         data () {

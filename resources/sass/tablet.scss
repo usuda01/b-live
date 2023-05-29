@@ -1571,10 +1571,10 @@
         }
         .supporter {
             display: none;
-            padding: 20px 0;
             &.active {
                 display: block;
             }
+            padding: 20px 0;
             .user-message {
                 margin: 0 10px 8px 10px;
                 &.payment {
@@ -1623,6 +1623,50 @@
                 }
                 .user-name {
                     color: #666666;
+                }
+            }
+        }
+        .listener {
+            display: none;
+            padding: 0 0 20px 0;
+            &.active {
+                display: block;
+            }
+            .title {
+                font-size: 1.6rem;
+                text-align: center;
+                line-height: 42px;
+                height: 42px;
+                margin-bottom: 10px;
+            }
+            .listener-box {
+                display: flex;
+                align-items: center;
+                margin: 0 10px 20px 10px;
+                .user-profile {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background-position: center;
+                    display: inline-block;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    margin: 0 14px 0 0;
+                    border: solid 1px #000;
+                }
+                .user-right {
+                    display: flex;
+                    align-items: center;
+                    width: calc(100% - 54px);
+                    line-height: 40px;
+                    border-bottom: 1px solid #ccc;
+                }
+                .user-name {
+                    padding-right: 10px;
+                }
+                .view-time {
+                    font-size: 1.6rem;
+                    margin-left: auto;
                 }
             }
         }
@@ -2489,6 +2533,45 @@
                             width: 24px;
                             margin-right: 10px;
                         }
+                    }
+                }
+            }
+            .listener {
+                .title {
+                    font-size: 1.6rem;
+                    text-align: center;
+                    line-height: 42px;
+                    height: 42px;
+                    margin-bottom: 10px;
+                }
+                .listener-box {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 20px;
+                    .user-profile {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        background-position: center;
+                        display: inline-block;
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        margin: 0 14px 0 0;
+                        border: solid 1px #000;
+                    }
+                    .user-right {
+                        display: flex;
+                        align-items: center;
+                        width: calc(100% - 54px);
+                        line-height: 40px;
+                        border-bottom: 1px solid #ccc;
+                    }
+                    .user-name {
+                        padding-right: 10px;
+                    }
+                    .view-time {
+                        font-size: 1.6rem;
+                        margin-left: auto;
                     }
                 }
             }

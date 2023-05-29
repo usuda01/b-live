@@ -157,7 +157,7 @@
                         @endif
                             <div class="user-profile"><a style="background-image:url({{ $connectionUser->getImagePath() }})" href="/user/{{ $connectionUser->id }}"></a></div>
                             <div class="user-name"><a href="/user/{{ $connectionUser->id }}">{{ $connectionUser->name }}</a></div>
-                            <div class="follower-count">{{ $connectionUser->max_view }}</div>
+                            <div class="follower-count">{{ $connectionUser->max_view }}人</div>
                         </div>
                     @endforeach
                 </div>
@@ -198,7 +198,7 @@
                         @endif
                             <div class="user-profile"><a style="background-image:url({{ $followerUser->getImagePath() }})" href="/user/{{ $followerUser->id }}"></a></div>
                             <div class="user-name"><a href="/user/{{ $followerUser->id }}">{{ $followerUser->name }}</a></div>
-                            <div class="follower-count">{{ $followerUser->followers->count() }}</div>
+                            <div class="follower-count">{{ $followerUser->followers->count() }}人</div>
                         </div>
                     @endforeach
                 </div>

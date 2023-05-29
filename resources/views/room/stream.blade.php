@@ -5,6 +5,7 @@
         :admin-user-id="{{ Config::get('services.admin_user_id') }}"
         :is-app="{{ ($isApp) ? 'true' : 'false' }}"
         :room="{{ $room->toJson() }}"
+        :listeners="{{ $listeners }}"
         :user="{{ ($user) ? $user->toJson() : "{}" }}"
     >
     </room-component>

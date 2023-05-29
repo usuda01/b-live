@@ -19,6 +19,7 @@
                 :live-rooms="{{ ($liveRooms) ? $liveRooms->toJson() : "{}" }}"
                 :target-user="{{ $targetUser->toJson() }}"
                 :supporters="{{ $supporters }}"
+                :listeners="{{ $listeners }}"
                 :user="{{ ($user) ? $user->toJson() : "{}" }}"
             >
             </user-component>
