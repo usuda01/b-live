@@ -2,18 +2,17 @@
 
 namespace App\Console\Commands;
 
-use App\Models\UserViewTime;
-use App\Models\UserViewTimeLog;
+use App\Models\User;
 use Illuminate\Console\Command;
 
-class DeleteUserViewTimes extends Command
+class AdjustUserListenerLevel extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'command:delete-user-view-times';
+    protected $signature = 'command:adjust-user-listener-level';
 
     /**
      * The console command description.
@@ -40,12 +39,19 @@ class DeleteUserViewTimes extends Command
     public function handle()
     {
         /*
-         * 毎月1日の0時に呼ばれる
-         * データが肥大化してしまうので、1ヶ月前のログは削除する
+         * 毎月1日に呼ばれる
+         * 毎月視聴レベルを10下げる
+         * user_view_times の値を10時間下げることで実現する
          */
-        $oneMonthAgo = date('Y-m-d H:i:s', strtotime('-1 month'));
-        UserViewTimeLog::where('created_at', '<', $oneMonthAgo)->delete();
-        UserViewTime::where('created_at', '<', $oneMonthAgo)->delete();
+
+        $users = User::whereHas('user_data', function ($query) {
+            $query->where('listener_level', '>', 10);
+        })->get();
+
+        foreach ($users as $user) {
+            $user->user_data()->decrement('listener_level', 10);
+        }
+
         return 0;
     }
 }

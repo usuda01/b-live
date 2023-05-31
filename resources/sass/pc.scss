@@ -1226,7 +1226,24 @@
             }
         }
         .tabs {
-            display: none;
+            position: fixed;
+            right: 0;
+            top: 50px;
+            width: 340px;
+            display: flex;
+            line-height: 42px;
+            height: 42px;
+            border-bottom: solid 1px #ccc;
+            li {
+                flex: 1;
+                text-align: center;
+            }
+            .tab-movie {
+                display: none;
+            }
+            .active {
+                border-bottom: 2px solid $base-color;
+            }
         }
         .video-info {
             width: 100%;
@@ -1284,10 +1301,14 @@
             }
         }
         .message-wrapper {
+            display: none;
+            &.active {
+                display: block;
+            }
             position: fixed;
             right: 0;
-            top: 50px;
-            height: calc(100vh - 50px);
+            top: 92px;
+            height: calc(100vh - 92px);
             border: solid 1px #ccc;
             border-top: none;
             border-right: 0;
@@ -1547,6 +1568,119 @@
         }
         .supporter {
             display: none;
+            &.active {
+                display: block;
+            }
+            position: fixed;
+            right: 0;
+            top: 92px;
+            width: 341px;
+            height: calc(100vh - 92px);
+            border: solid 1px #ccc;
+            border-top: none;
+            border-right: 0;
+            padding: 20px 0;
+            .user-message {
+                margin: 0 10px 8px 10px;
+                &.payment {
+                    padding: 10px;
+                    border-radius: 4px;
+                    .user-name {
+                        color: #000;
+                        margin-right: 14px;
+                    }
+                    .amount {
+                        font-weight: 600;
+                    }
+                    .message {
+                        display: block;
+                        margin-top: 10px;
+                    }
+                    &.purchase1 {
+                        background: $purchase1-color;
+                    }
+                    &.purchase2 {
+                        background: $purchase2-color;
+                    }
+                    &.purchase3 {
+                        background: $purchase3-color;
+                    }
+                    &.purchase4 {
+                        background: $purchase4-color;
+                    }
+                    &.purchase5 {
+                        background: $purchase5-color;
+                    }
+                    &.purchase6 {
+                        background: $purchase6-color;
+                    }
+                }
+                .user-profile {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    background-position: center;
+                    display: inline-block;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    vertical-align: top;
+                    margin-right: 10px;
+                }
+                .user-name {
+                    color: #666666;
+                }
+            }
+        }
+        .listener {
+            display: none;
+            &.active {
+                display: block;
+            }
+            position: fixed;
+            right: 0;
+            top: 92px;
+            width: 341px;
+            height: calc(100vh - 92px);
+            border: solid 1px #ccc;
+            border-top: none;
+            border-right: 0;
+            .title {
+                font-size: 1.6rem;
+                text-align: center;
+                line-height: 42px;
+                height: 42px;
+                margin-bottom: 10px;
+            }
+            .listener-box {
+                display: flex;
+                align-items: center;
+                margin: 0 10px 20px 10px;
+                .user-profile {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background-position: center;
+                    display: inline-block;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    margin: 0 14px 0 0;
+                    border: solid 1px #000;
+                }
+                .user-right {
+                    display: flex;
+                    align-items: center;
+                    width: calc(100% - 54px);
+                    line-height: 40px;
+                    border-bottom: 1px solid #ccc;
+                }
+                .user-name {
+                    padding-right: 10px;
+                }
+                .view-time {
+                    font-size: 1.6rem;
+                    margin-left: auto;
+                }
+            }
         }
         /* ギフトメッセージ */
         .modal05 {
@@ -1736,9 +1870,12 @@
         }
         &.webview {
             /*margin-top: -50px;*/
+            .tabs {
+                top: 0px;
+            }
             .message-wrapper {
-                top: 0;
-                height: 100vh;
+                top: 42px;
+                height: calc(100vh - 42px);
                 .chat-area {
                     .send-chat {
                         .send-footer {
@@ -1757,6 +1894,12 @@
                         }
                     }
                 }
+            }
+            .supporter {
+                top: 42px;
+            }
+            .listener {
+                top: 42px;
             }
         }
     }
@@ -2378,6 +2521,43 @@
                             width: 26px;
                             margin-right: 10px;
                         }
+                    }
+                }
+            }
+            .listener {
+                .title {
+                    font-size: 1.6rem;
+                    line-height: 42px;
+                    height: 42px;
+                    margin-bottom: 10px;
+                }
+                .listener-box {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 20px;
+                    .user-profile {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        background-position: center;
+                        display: inline-block;
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        margin: 0 30px 0 0;
+                        border: solid 1px #000;
+                    }
+                    .user-right {
+                        display: flex;
+                        align-items: center;
+                        width: calc(100% - 70px);
+                        line-height: 40px;
+                        border-bottom: 1px solid #ccc;
+                    }
+                    .user-name {
+                    }
+                    .view-time {
+                        font-size: 1.6rem;
+                        margin-left: auto;
                     }
                 }
             }

@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Log;
 use App\Models\Room;
+use App\Models\User;
 use App\Models\UserViewTime;
 use App\Models\UserViewTimeLog;
 use Helper;
@@ -144,9 +145,27 @@ class RoomController extends Controller
             $isExpired = true;
         }
         $room->is_expired = $isExpired;
+
+        // リスナー
+        $listeners = [];
+        $userViewTimes = UserViewTime::where('viewed_user_id', $room->user->id)
+            ->orderBy('view_time', 'desc')
+            ->get();
+        foreach ($userViewTimes as $userViewTime) {
+            $listener = User::where('id', $userViewTime->viewer_user_id)->first();
+            $listeners[] = [
+                'id' => $listener->id,
+                'user_name' => $listener->name,
+                'user_image_path' => $listener->getImagePath(),
+                'view_time' => $userViewTime->view_time,
+            ];
+        }
+        $listeners = json_encode($listeners);
+
         return view('room.message', [
             'isApp' => $isApp,
             'room' => $room,
+            'listeners' => $listeners,
             'user' => $user,
         ]);
     }
@@ -237,9 +256,26 @@ class RoomController extends Controller
         // これを呼んでおかないとVue側でリレーションしてくれない
         $room->wowza;
 
+        // リスナー
+        $listeners = [];
+        $userViewTimes = UserViewTime::where('viewed_user_id', $room->user->id)
+            ->orderBy('view_time', 'desc')
+            ->get();
+        foreach ($userViewTimes as $userViewTime) {
+            $listener = User::where('id', $userViewTime->viewer_user_id)->first();
+            $listeners[] = [
+                'id' => $listener->id,
+                'user_name' => $listener->name,
+                'user_image_path' => $listener->getImagePath(),
+                'view_time' => $userViewTime->view_time,
+            ];
+        }
+        $listeners = json_encode($listeners);
+
         return view('room.stream', [
             'isApp' => $isApp,
             'room' => $room,
+            'listeners' => $listeners,
             'user' => $user,
         ]);
     }

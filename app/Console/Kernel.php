@@ -30,6 +30,9 @@ class Kernel extends ConsoleKernel
         $schedule->command('command:update-user-rank')
             ->daily();
 
+        $schedule->command('command:update-user-listener-level')
+            ->daily();
+
         $schedule->command('command:update-room-ranking')
             ->monthlyOn(1, '00:00');
 
@@ -49,7 +52,10 @@ class Kernel extends ConsoleKernel
             ->everyMinute();
 
         $schedule->command('command:delete-user-view-times')
-            ->monthlyOn(1, '00:30');
+            ->monthlyOn(1, '00:00');
+
+        $schedule->command('command:delete-user-view-times')
+            ->monthlyOn(1, '00:00');
 
         // イベント中
 /*
