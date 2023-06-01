@@ -54,7 +54,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('command:delete-user-view-times')
             ->monthlyOn(1, '00:00');
 
-        $schedule->command('command:delete-user-view-times')
+        $schedule->command('command:adjust-user-listener-level')
             ->monthlyOn(1, '00:00');
 
         // イベント中
