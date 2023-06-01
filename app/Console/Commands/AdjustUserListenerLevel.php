@@ -41,7 +41,6 @@ class AdjustUserListenerLevel extends Command
         /*
          * 毎月1日に呼ばれる
          * 毎月視聴レベルを10下げる
-         * user_view_times の値を10時間下げることで実現する
          */
 
         $users = User::whereHas('user_data', function ($query) {

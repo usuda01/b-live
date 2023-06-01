@@ -1502,6 +1502,14 @@
                                 color: #666666;
                                 vertical-align: top;
                                 margin-right: 14px;
+                                .user-level {
+                                    border-radius: 4px;
+                                    border: 1px solid $base-color;
+                                    padding: 0 4px;
+                                    margin-right: 4px;
+                                    color: $base-color;
+                                    font-size: 1.2rem;
+                                }
                             }
                             .message {
                                 vertical-align: top;

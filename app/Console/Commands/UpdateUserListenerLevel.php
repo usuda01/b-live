@@ -3,8 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Models\User;
-use App\Models\UserData;
-use App\Models\UserViewTime;
 use App\Models\UserViewTimeLog;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;

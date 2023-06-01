@@ -42,10 +42,13 @@ class DeleteUserViewTimes extends Command
         /*
          * 毎月1日の0時に呼ばれる
          * データが肥大化してしまうので、1ヶ月前のログは削除する
+         * 全てのレコードの視聴時間をリセットする
          */
         $oneMonthAgo = date('Y-m-d H:i:s', strtotime('-1 month'));
         UserViewTimeLog::where('created_at', '<', $oneMonthAgo)->delete();
         UserViewTime::where('created_at', '<', $oneMonthAgo)->delete();
+
+        UserViewTime::query()->update(['view_time' => '00:00:00']);
         return 0;
     }
 }

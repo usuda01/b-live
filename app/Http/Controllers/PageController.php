@@ -53,6 +53,12 @@ class PageController extends Controller
         return view('page.privacy');
     }
 
+    // レベルについて
+    public function level()
+    {
+        return view('page.level');
+    }
+
     // ランキングについて
     public function ranking()
     {
