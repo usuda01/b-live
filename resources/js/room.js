@@ -6,21 +6,6 @@ $(function() {
     player.play();
 */
 
-    getViewCount();
-    setInterval(function() {
-        getViewCount();
-    }, 30000);
-
-    function getViewCount() {
-        const url = '/room/count-views';
-        const params = { data: { room_id: $('#room_id').val() } };
-        axios.post(url, params)
-            .then((response) => {
-                // 成功したら視聴数の表示を更新
-                $('#view-count').html(response.data.views);
-            });
-    }
-
     if (window.Laravel.apiToken != null) {
         // 課金処理
         var stripe = Stripe(process.env.MIX_STRIPE_PUBLISHABLE_KEY);
@@ -83,7 +68,7 @@ $(function() {
                 dataType: 'json',
                 success : function(data, dataType) {
                     if (data.result == 'OK') {
-                        location.reload()
+                        location.reload();
                     } else {
                         cardSubmit.style.display = 'none';
                     }
