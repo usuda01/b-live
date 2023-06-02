@@ -11,7 +11,7 @@
                 @endif
                 <div class="user-profile" style="background-image:url({{ $targetUser->getImagePath() }})"></div>
                 <div class="user-about">
-                    <div class="user-name">{{ $targetUser->name }}</div>
+                    <div class="user-name"><span class="user-level">Lv{{ $targetUser->user_data->listener_level }}</span>{{ $targetUser->name }}</div>
                 </div>
             </div>
             <user-component
