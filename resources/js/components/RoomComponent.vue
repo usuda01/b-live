@@ -27,7 +27,7 @@
                 <div class="left-content">
                     <div class="view-content">
                         <img src="/images/icon-views.png" class="icon-views">
-                        <span class="view-count-wrapper"><span class="view-count" id="view-count">0</span><span>人が視聴中</span></span>
+                        <span class="view-count-wrapper"><span class="view-count">{{ this.viewCount }}</span><span>人が視聴中</span></span>
                     </div>
                     <div v-if="room.status === 1" class="video-time">{{ videoTime }}</div>
                     <div v-else-if="room.status === 2" class="video-time">{{ videoTime }}</div>
@@ -339,6 +339,7 @@
                 },
                 chargeAmount: 0,
                 videoTime: '',
+                viewCount: 0,
             }
         },
         mounted () {
@@ -362,6 +363,9 @@
                     this.canSendGift = false;
                 }
             }
+
+            // 同時視聴者数の取得
+            this.addViewCountEvent();
 
             // 視聴時間を計測する
             if (this.room.status === 1) {
@@ -793,6 +797,33 @@
                     /* iOS */
                     video.webkitEnterFullscreen();
                 }
+            },
+            addViewCountEvent() {
+                this.getViewCount();
+                let intervalTime = 30000; // ミリ秒
+                setInterval(() => {
+                    this.getViewCount(intervalTime);
+                }, intervalTime);
+            },
+            getViewCount() {
+                const url = '/room/count-views';
+                const params = {
+                    data: { room_id: this.room.id }
+                };
+                axios.post(url, params)
+                    .then((response) => {
+                        // 成功したら視聴数の表示を更新
+                        this.viewCount = response.data.views;
+
+                        // 配信が終了した場合はリロードして終了画面にする
+                        console.log(this.room.status);
+                        console.log(response.data.status);
+                        if (this.room.status === 1) {
+                            if (response.data.status == 2) {
+                                location.reload();
+                            }
+                        }
+                    });
             },
             addViewTimeEvent() {
                 if (this.isLoggedIn == false) {

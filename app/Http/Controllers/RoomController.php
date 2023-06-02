@@ -82,6 +82,7 @@ class RoomController extends Controller
 
         return response()->json([
             'views' => $views,
+            'status' => $room->status,
         ]);
     }
 

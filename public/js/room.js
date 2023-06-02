@@ -10,24 +10,6 @@ $(function () {
       });
       player.play();
   */
-  getViewCount();
-  setInterval(function () {
-    getViewCount();
-  }, 30000);
-
-  function getViewCount() {
-    var url = '/room/count-views';
-    var params = {
-      data: {
-        room_id: $('#room_id').val()
-      }
-    };
-    axios.post(url, params).then(function (response) {
-      // 成功したら視聴数の表示を更新
-      $('#view-count').html(response.data.views);
-    });
-  }
-
   if (window.Laravel.apiToken != null) {
     var stripeTokenHandler = function stripeTokenHandler(token) {
       $.ajax({
