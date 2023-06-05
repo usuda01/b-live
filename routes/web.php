@@ -185,6 +185,7 @@ Route::prefix('setting')->group(function () {
 Route::get('page/benefits', [PageController::class, 'benefits']);
 Route::get('page/company', [PageController::class, 'company']);
 Route::get('page/liver', [PageController::class, 'liver']);
+Route::get('page/listener', [PageController::class, 'listener']);
 Route::get('page/notice', [PageController::class, 'notice']);
 Route::get('page/notice/{id}', [PageController::class, 'noticeDetail']);
 Route::get('page/howto', [PageController::class, 'howto']);

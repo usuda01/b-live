@@ -2,7 +2,7 @@
 @section('title', '配信方法' . ' - ')
 @section('content')
     <div class="page-content">
-        @include('parts.page_menu')
+        @include('parts.liver_menu')
         <div class="main-content">
             <h2>配信方法</h2>
             <div class="box howto">

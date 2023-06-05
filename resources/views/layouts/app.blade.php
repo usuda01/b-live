@@ -57,10 +57,10 @@
         </div>
         <ul class="drawer-menu__list">
             <li><a href="/page/notice"><img src="/images/icon-menu05.png"><span>お知らせ</span></a></li>
-            <li><a href="/page/benefits"><img src="/images/icon-menu03.png"><span>配信者特典</span></a></li>
             <li><a href="/page/ranking"><img src="/images/icon-menu07.png"><span>ランキングについて</span></a></li>
+            <li><a href="/page/level"><img src="/images/icon-menu04.png"><span>レベルについて</span></a></li>
             <li><a href="/page/liver"><img src="/images/icon-menu04.png"><span>配信者の方へ</span></a></li>
-            <li><a href="/page/howto"><img src="/images/icon-menu02.png"><span>配信方法</span></a></li>
+            <li><a href="/page/listener"><img src="/images/icon-menu04.png"><span>リスナーの方へ</span></a></li>
             <li><a href="/page/terms"><img src="/images/icon-menu04.png"><span>利用規約</span></a></li>
             <li><a href="/page/company"><img src="/images/icon-menu08.jpg"><span>運営者</span></a></li>
             <li><a href="/column/column.html"><img src="/images/icon-menu09.png"><span>コラム</span></a></li>
