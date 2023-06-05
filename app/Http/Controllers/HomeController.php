@@ -156,6 +156,21 @@ class HomeController extends Controller
             array_multisort($sortKey, SORT_DESC, $followerUsers);
         }
 
+        // 視聴レベルランキング
+        $levelUsers = User::select(
+            'users.id as user_id',
+            'users.name as name',
+            'user_datas.listener_level as listener_level',
+        )
+            ->leftJoin('user_datas', 'users.id', '=', 'user_datas.user_id')
+            ->orderBy('listener_level', 'desc')
+            ->limit(10)
+            ->get();
+        foreach ($levelUsers as $levelUser) {
+            $user = User::where('id', $levelUser->user_id)->first();
+            $levelUser->user_image_path = $user->getImagePath();
+        }
+
         // 新着ユーザー
         $newUsers = User::orderBy('created_at', 'desc')->limit(10)->get();
 
@@ -173,6 +188,7 @@ class HomeController extends Controller
             'groups' => $groups,
             'mainGames' => $mainGames,
             'movies' => $movies,
+            'levelUsers' => $levelUsers,
             'officialUsers' => $officialUsers,
             'frequentUsers' => $frequentUsers,
             'followerUsers' => $followerUsers,

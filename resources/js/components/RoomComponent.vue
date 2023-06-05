@@ -816,8 +816,6 @@
                         this.viewCount = response.data.views;
 
                         // 配信が終了した場合はリロードして終了画面にする
-                        console.log(this.room.status);
-                        console.log(response.data.status);
                         if (this.room.status === 1) {
                             if (response.data.status == 2) {
                                 location.reload();

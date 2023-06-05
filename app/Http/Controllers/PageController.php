@@ -11,6 +11,12 @@ class PageController extends Controller
         return view('page.liver');
     }
 
+    // リスナーの方へ
+    public function listener()
+    {
+        return view('page.listener');
+    }
+
     // 運営会社
     public function company()
     {

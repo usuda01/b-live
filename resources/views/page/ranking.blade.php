@@ -2,7 +2,7 @@
 @section('title', 'ランキングについて - ')
 @section('content')
     <div class="page-content">
-        @include('parts.page_menu')
+        @include('parts.liver_menu')
         <div class="main-content">
             <h2>ランキングについて</h2>
             <div class="box">

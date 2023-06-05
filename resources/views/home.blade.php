@@ -226,6 +226,27 @@
             </div>
 
             <div class="user-content frequent">
+                <h2 class="main-title">視聴レベルランキング</h2>
+                <div class="user-box">
+                    @foreach ($levelUsers as $levelUser)
+                        @if ($loop->index==0)
+                            <div class="user-info rank1">
+                        @elseif ($loop->index==1)
+                            <div class="user-info rank2">
+                        @elseif ($loop->index==2)
+                            <div class="user-info rank3">
+                        @else
+                            <div class="user-info">
+                        @endif
+                            <div class="user-profile"><a style="background-image:url({{ $levelUser->getImagePath() }})" href="/user/{{ $levelUser->id }}"></a></div>
+                            <div class="user-name"><a href="/user/{{ $levelUser->id }}">{{ $levelUser->name }}</a></div>
+                            <div class="user-level">Lv{{ $levelUser->listener_level }}</div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="user-content frequent">
                 <h2 class="main-title">新着ユーザー</h2>
                 <div class="user-box">
                     @foreach ($newUsers as $newUser)
