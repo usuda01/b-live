@@ -240,7 +240,7 @@
                         @endif
                             <div class="user-profile"><a style="background-image:url({{ $levelUser->user_image_path }})" href="/user/{{ $levelUser->user_id }}"></a></div>
                             <div class="user-name"><a href="/user/{{ $levelUser->id }}">{{ $levelUser->name }}</a></div>
-                            <div class="user-level">Lv{{ $levelUser->listener_level }}</div>
+                            <div class="user-level"><span>Lv{{ $levelUser->listener_level }}</span></div>
                         </div>
                     @endforeach
                 </div>
