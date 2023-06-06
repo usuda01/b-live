@@ -943,6 +943,16 @@
                         text-align: center;
                         color: #999;
                     }
+                    .user-level {
+                        text-align: center;
+                        margin-top: 6px;
+                        span {
+                            border-radius: 4px;
+                            border: 1px solid $base-color;
+                            padding: 0 4px;
+                            color: $base-color;
+                        }
+                    }
                 }
                 &.frequent {
                     .main-title {
