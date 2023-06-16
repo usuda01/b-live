@@ -40,15 +40,15 @@ class AdjustUserListenerLevel extends Command
     {
         /*
          * 毎月1日に呼ばれる
-         * 毎月視聴レベルを10下げる
+         * 毎月視聴レベルを3下げる
          */
 
         $users = User::whereHas('user_data', function ($query) {
-            $query->where('listener_level', '>', 10);
+            $query->where('listener_level', '>', 3);
         })->get();
 
         foreach ($users as $user) {
-            $user->user_data()->decrement('listener_level', 10);
+            $user->user_data()->decrement('listener_level', 3);
         }
 
         return 0;
