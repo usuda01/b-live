@@ -1,0 +1,169 @@
+.event-event12 {
+    max-width: 720px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+    background: #ffeaff;
+    .fv {
+        margin-bottom: 35px;
+        img {
+            width: 100%;
+        }
+    }
+    .event-end {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+        text-align: center;
+        font-weight: bold;
+        color: #ff0000;
+    }
+    .ranking {
+        .margin-bottom: 35px;
+        .title {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .ranking-header {
+            display: flex;
+            margin: 0 15px;
+            .rank {
+                font-weight: 600;
+            }
+            .times {
+                margin-left: auto;
+                font-weight: 600;
+            }
+        }
+        .user-box {
+            .rank-inner {
+                display: flex;
+                align-items: center;
+                margin: 20px 15px;
+                .rank {
+                    width: 2em;
+                }
+                .user-profile {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background-position: center;
+                    display: inline-block;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    margin: 0 20px 0 0;
+                    border: solid 1px #000;
+                }
+                .user-name {
+                    flex: 1;
+                    margin-right: 10px;
+                }
+                .total-time {
+                    margin-left: auto;
+                }
+            }
+            &:nth-child(1),
+            &:nth-child(2),
+            &:nth-child(3)
+            {
+                .user-profile {
+                    position: relative;
+                }
+                .user-profile::before {
+                    font-family: "Font Awesome 5 Free";
+                    content: '\f521';
+                    font-weight: 900;
+                    position: absolute;
+                    top: -16px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    -webkit-transform: translateX(-50%);
+                    -ms-transform: translateX(-50%);
+                }
+            }
+            &:nth-child(1) {
+                .user-profile {
+                    border: solid 2px #e9ba31;
+                }
+                .user-profile::before {
+                    color: #e9ba31;
+                }
+            }
+            &:nth-child(2) {
+                .user-profile {
+                    border: solid 2px #9fa0a0;
+                }
+                .user-profile::before {
+                    color: #9fa0a0;
+                }
+            }
+            &:nth-child(3) {
+                .user-profile {
+                    border: solid 2px #ba6e40;
+                }
+                .user-profile::before {
+                    color: #ba6e40;
+                }
+            }
+        }
+    }
+    .event-detail {
+        margin-bottom: 35px;
+        .title {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .detail {
+            margin: 0 15px;
+            background: #fff;
+            padding: 20px;
+            font-weight: bold;
+            border-radius: 6px;
+            .twitter {
+                color: #00acee;
+            }
+            div {
+                margin-bottom: 14px;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+    .event-caution {
+        margin-bottom: 35px;
+        .title {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .note {
+            margin: 0 15px;
+            background: #fff;
+            padding: 20px;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            .twitter {
+                color: #00acee;
+            }
+            li {
+                margin-bottom: 4px;
+            }
+        }
+    }
+    .to-top {
+        text-align: center;
+        a {
+            display: inline-block;
+            color: #fff;
+            background: #9e1b9e;
+            border-radius: 4px;
+            padding: 4px 24px;
+            font-size: 1.6rem;
+            font-weight: bold;
+        }
+    }
+}
