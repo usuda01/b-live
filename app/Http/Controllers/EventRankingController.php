@@ -7,6 +7,7 @@ use App\Models\Message;
 use App\Models\Movie;
 use App\Models\Room;
 use App\Models\User;
+use App\Models\UserViewTimeLog;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 
@@ -327,4 +328,51 @@ class EventRankingController extends Controller
         ]);
     }
 
+    public function event12() {
+
+        // イベントに参加しないユーザー
+        $disableUserIds = [];
+
+        // リスナー
+        $users = []; // ランキングに表示するユーザー
+        $userViewTimeLogs = UserViewTimeLog::whereNotIn('viewer_user_id', $disableUserIds)
+            ->select(
+                'viewer_user_id',
+                DB::raw('SEC_TO_TIME(SUM(TIME_TO_SEC(view_time))) as total_view_time'),
+            )
+            ->where('created_at', '>=', config('services.event12.start_date'))
+            ->where('created_at', '<=', config('services.event12.end_date'))
+            ->groupBy('viewer_user_id')
+            ->orderBy('total_view_time', 'desc')
+            ->get();
+        foreach ($userViewTimeLogs as $userViewTimeLog) {
+            $user = User::where('id', $userViewTimeLog->viewer_user_id)->first();
+            $user->total_view_time = $userViewTimeLog->total_view_time;
+            $users[] = $user;
+        }
+
+        $week = [
+            '日', //0
+            '月', //1
+            '火', //2
+            '水', //3
+            '木', //4
+            '金', //5
+            '土', //6
+        ];
+
+        $displayStartDate = date('Y/n/j', strtotime(config('services.event12.start_date')));
+        $startWeek = $week[date('w', strtotime(config('services.event12.start_date')))];
+        $displayStartDate .= "({$startWeek})";
+
+        $displayEndDate = date('Y/n/j', strtotime(config('services.event12.end_date')));
+        $endWeek = $week[date('w', strtotime(config('services.event12.end_date')))];
+        $displayEndDate .= "({$endWeek})" . " " . date('H:i:s', strtotime(config('services.event12.end_date')));
+
+        return view('event.event12', [
+            'displayStartDate' => $displayStartDate,
+            'displayEndDate' => $displayEndDate,
+            'users' => $users,
+        ]);
+    }
 }

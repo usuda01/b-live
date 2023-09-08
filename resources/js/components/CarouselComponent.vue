@@ -24,7 +24,7 @@
         },
         data () {
             return {
-                slides : [9, 10, 11],
+                slides : [10, 11, 12],
             }
         }
     }
