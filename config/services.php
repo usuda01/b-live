@@ -114,6 +114,8 @@ return [
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
     ],
 
+    'store_interval_time' => env('STORE_INTERVAL_TIME'),
+
     'max_liver' => env('MAX_LIVER'),
 
     'max_movie_upload' => env('MAX_MOVIE_UPLOAD'),
