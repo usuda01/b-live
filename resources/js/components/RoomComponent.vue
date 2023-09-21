@@ -281,6 +281,7 @@
             room: Object,
             listeners: Array,
             user: Object,
+            storeIntervalTime: Number,
         },
         computed: {
             snsTags: function () {
@@ -831,7 +832,7 @@
                 if (this.user.id === this.room.user_id) {
                     return;
                 }
-                let intervalTime = 30000; // ミリ秒
+                let intervalTime = this.storeIntervalTime * 1000; // ミリ秒
                 setInterval(() => {
                     this.storeViewTime(intervalTime);
                 }, intervalTime);

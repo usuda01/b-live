@@ -94,6 +94,17 @@ class RoomController extends Controller
         $viewedUserId = $request->input('viewed_user_id');
         $duration = $request->input('duration');
 
+        /*
+         * 重複カウントを防ぐため、
+         * durationの時間内にLogがあったら処理を中断する
+         */
+        $userViewTimeLog = UserViewTimeLog::where('viewer_user_id', $viewerUserId)
+            ->where('created_at', '>', date('Y-m-d H:i:s', strtotime('-' . ($duration - 2) . 'second')))
+            ->first();
+        if ($userViewTimeLog) {
+            return;
+        }
+
         $userViewTimeLog = new UserViewTimeLog();
         $userViewTimeLog->viewer_user_id = $viewerUserId;
         $userViewTimeLog->viewed_user_id = $viewedUserId;
