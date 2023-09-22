@@ -7,7 +7,9 @@
         :is-app="{{ ($isApp) ? 'true' : 'false' }}"
         :room="{{ $room->toJson() }}"
         :listeners="{{ $listeners }}"
-        :user="{{ ($user) ? $user->toJson() : "{}"}}">
+        :user="{{ ($user) ? $user->toJson() : "{}" }}"
+        :store-interval-time="{{ Config::get('services.store_interval_time') }}"
+    >
     </room-component>
 @endsection
 
