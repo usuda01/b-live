@@ -2,10 +2,7 @@
     <div class="carousel-3d">
         <Carousel :items-to-show="1.2" :model-value="2">
             <Slide v-for="slide in slides" :key="slide">
-                <div class="carousel__item"><a :href="'/event' + slide" v-bind:style="{ backgroundImage: 'url(/images/event' + slide + '/fv.jpg)' }"></a></div>
-            </Slide>
-            <Slide>
-                <div class="carousel__item"><a :href="'/page/howto'" v-bind:style="{ backgroundImage: 'url(/images/bnr-howto.jpg)' }"></a></div>
+                <div class="carousel__item"><a :href="slide.url" v-bind:style="{ backgroundImage: 'url(' + slide.image + ')' }"></a></div>
             </Slide>
             <template #addons>
                 <Navigation />
@@ -27,7 +24,20 @@
         },
         data () {
             return {
-                slides : [11, 12],
+                slides : [
+                    {
+                        image: '/images/event11/fv.jpg',
+                        url: '/event11'
+                    },
+                    {
+                        image: '/images/event12/fv.jpg',
+                        url: '/event12'
+                    },
+                    {
+                        image: '/images/bnr-howto.jpg',
+                        url: '/page/howto'
+                    }
+                ],
             }
         }
     }
