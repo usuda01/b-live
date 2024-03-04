@@ -4,6 +4,9 @@
             <Slide v-for="slide in slides" :key="slide">
                 <div class="carousel__item"><a :href="'/event' + slide" v-bind:style="{ backgroundImage: 'url(/images/event' + slide + '/fv.jpg)' }"></a></div>
             </Slide>
+            <Slide>
+                <div class="carousel__item"><a :href="'/page/howto'" v-bind:style="{ backgroundImage: 'url(/images/bnr-howto.jpg)' }"></a></div>
+            </Slide>
             <template #addons>
                 <Navigation />
             </template>
@@ -24,7 +27,7 @@
         },
         data () {
             return {
-                slides : [10, 11, 12],
+                slides : [11, 12],
             }
         }
     }
