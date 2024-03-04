@@ -12,7 +12,7 @@
                 <p>③ 動画タイトルを入力してください。サムネイルは任意です</p>
                 <p>④ 表示されているストリームサーバー、ストリームキーを、ご利用の配信ソフトウェアに設定</p>
                 <h4>B-LIVE側の表示</h4>
-                <p><img src="/images/page-howto01.jpg" class="capture"></p>
+                <p><img src="/images/page-howto01.jpg" class="capture capture01"></p>
                 <h4>OBSの設定</h4>
                 <p>サーバー、ストリームキーの設定</p>
                 <p><img src="/images/page-howto02.jpg" class="capture"></p>
@@ -25,7 +25,7 @@
                 <p><img src="/images/page-howto05.png" class="capture"></p>
                 <p>⑤ 配信ソフトウェアで配信を開始した後、「<span class="color">配信開始</span>」ボタンを押すことで開始されます</p>
                 <p>⑥ 配信終了時は、「配信終了」ボタンを押してください</p>
-                <p><img src="/images/page-howto03.jpg" class="capture"></p>
+                <p><img src="/images/page-howto03.jpg" class="capture capture05"></p>
 
 
                 <h3>チャットをポップアウトできます</h3>
