@@ -39,7 +39,7 @@ class UpdateEventRanking extends Command
      */
     public function handle()
     {
-        if (config('services.event9.is_active') == false) {
+        if (config('services.event13.is_active') == false) {
             return;
         }
         $rooms = Room::where(function($query) {
@@ -47,8 +47,8 @@ class UpdateEventRanking extends Command
                 ->orWhere('rooms.status', 2);
             })
             ->where(function($query) {
-                $query->where('published_at', '>=', config('services.event9.start_date'))
-                    ->where('published_at', '<=', config('services.event9.end_date'));
+                $query->where('published_at', '>=', config('services.event13.start_date'))
+                    ->where('published_at', '<=', config('services.event13.end_date'));
             });
 
         $rooms = $rooms->get();
