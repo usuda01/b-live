@@ -26,16 +26,16 @@
             return {
                 slides : [
                     {
-                        image: '/images/event11/fv.jpg',
-                        url: '/event11'
-                    },
-                    {
                         image: '/images/event12/fv.jpg',
                         url: '/event12'
                     },
                     {
                         image: '/images/bnr-howto.jpg',
                         url: '/page/howto'
+                    },
+                    {
+                        image: '/images/event13/fv.jpg',
+                        url: '/event13'
                     }
                 ],
             }

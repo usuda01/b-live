@@ -126,6 +126,7 @@ Route::get('event9', [EventRankingController::class, 'event9']);
 Route::get('event10', [EventRankingController::class, 'event10']);
 Route::get('event11', [EventRankingController::class, 'event11']);
 Route::get('event12', [EventRankingController::class, 'event12']);
+Route::get('event13', [EventRankingController::class, 'event13']);
 
 // 認証
 Route::middleware('auth')->group(function () {
