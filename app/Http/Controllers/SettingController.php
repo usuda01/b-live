@@ -464,6 +464,7 @@ class SettingController extends Controller
     public function stream($roomId = null) {
         /*
          * 新規作成、更新の場合がある
+         * 新規作成の場合、入力の手間を省くため、前の情報を引き継ぐ
          */
         $user = Auth::user();
 
@@ -482,14 +483,26 @@ class SettingController extends Controller
         }
 
         if (!$roomId) {
-            // ライブ配信中にアクセスしたらリダイレクト
+            // 新規
+
+            // ライブ配信中にアクセスしたら更新ページへリダイレクト
             $liveRoom = Room::where('user_id', $user->id)->where('status', 1)->first();
             if ($liveRoom) {
                 return redirect('setting/stream/' . $liveRoom->id);
             }
 
             $room = new Room();
+
+            // 前回の内容を引き継ぐ
+            $lastRoom  = Room::where('user_id', $user->id)->orderBy('id', 'desc')->first();
+            if ($lastRoom) {
+                $room->game_id = $lastRoom->game_id;
+                $room->name = $lastRoom->name;
+                $room->description = $lastRoom->description;
+            }
+
         } else {
+            // 更新
             $room = Room::where('id', $roomId)->first();
         }
         $liveRooms = Room::where('status', 1)->get();
