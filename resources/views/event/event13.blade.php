@@ -11,7 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="keywords" content="B-LIVE,ライブ配信,配信,ゲーム,ゲーム実況,ゲーム配信">
-    <meta name="description" content="配信して同説数１位を目指そう！">
+    <meta name="description" content="配信して同説数上位を目指そう！">
     <meta property="og:title" content="アマギフ獲得イベント｜B-LIVE" />
     <meta property="og:description" content="配信して同接数１位を目指そう！" />
     <meta property="og:url" content="{{ Request::url() }}" />
@@ -20,12 +20,12 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="アマギフ獲得イベント｜B-LIVE" />
     <meta property="twitter:image" content="{{ Request::getSchemeAndHttpHost() }}/images/event13/ogp-event.png" />
-    <meta name="twitter:description" content="配信して同接数１位を目指そう！" />
+    <meta name="twitter:description" content="配信して同接数上位を目指そう！" />
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
     <link href="{{ mix('css/fonts.css') }}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}?param=62" rel="stylesheet">
     <link href="{{ mix('css/all.css') }}?param=62" rel="stylesheet">
-    <title>イベント第１３弾！配信して同接数１位を目指そう！｜B-LIVE</title>
+    <title>イベント第１３弾！配信して同接数上位を目指そう！｜B-LIVE</title>
     {{-- socket io --}}
     <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
 </head>
@@ -55,16 +55,30 @@
             @if (Config::get('services.event13.start_date') < date('Y-m-d H:i:s'))
                 <div class="ranking">
                     <h2 class="title">現在のランキング</h2>
-                    <div class="ranking-header"><span class="rank">順位</span><span class="views">同接数</span></div>
-                    <ul>
                     @foreach ($rooms as $room)
-                        <li class="@if ($loop->first) first @endif">
-                            <div class="rank-inner">
-                                <span class="rank">{{ $loop->index+1 }}</span><span class="views">{{ $room->max_view }}</span><a class="name" href="/room/{{ $room->id}}">{{ $room->room_name }}</a>
+                        <div class="room-box">
+                            <div class="room-rank">{{ $loop->index + 1 }}位</div>
+                                @if ($room->game)
+                                    <div class="game-title">{{ $room->game->name }}</div>
+                                @endif
+                                <div class="room-image">
+                                <a href="/room/{{ $room->id }}" style="background-image: url({{ $room->getImagePath() }})"></a>
                             </div>
-                        </li>
+                            <div class="room-info">
+                                <div class="room-name">
+                                    <a href="/room/{{ $room->id }}">{{ $room->name }}</a>
+                                </div>
+                                <div class="user-info">
+                                    <a class="user-profile" href="/user/{{ $room->user->id }}" style="background-image: url({{ $room->user->getImagePath() }})"></a>
+                                    <a class="user-name" href="/user/{{ $room->user->id }}">{{ $room->user->name }}</a>
+                                </div>
+                                <div class="count">
+                                    <span class="text">最大同接数</span>
+                                    <span class="number">{{ $room->max_view }}</span>
+                                </div>
+                            </div>                        
+                        </div>
                     @endforeach
-                    </ul>
                 </div>
             @endif
 

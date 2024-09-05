@@ -377,9 +377,21 @@ class EventRankingController extends Controller
     }
 
     public function event13() {
-        $rooms = EventRanking::join('rooms', 'event_rankings.room_id', '=', 'rooms.id')
-            ->orderBy('event_rankings.max_view', 'desc')
-            ->orderBy('rooms.created_at', 'asc')->get();
+
+        $userIds = [];
+        $rooms = [];
+        $eventRankings = EventRanking::orderBy('max_view', 'desc')
+            ->orderBy('created_at', 'asc')
+            ->get();
+        foreach ($eventRankings as $eventRanking) {
+            if (in_array($eventRanking->user_id, $userIds)) {
+                // 何もしない
+            } else {
+                $userIds[] = $eventRanking->user_id;
+                $room = Room::where('id', $eventRanking->room_id)->first();
+                $rooms[] = $room;
+            }
+        }
 
         $week = [
             '日', //0
@@ -400,9 +412,9 @@ class EventRankingController extends Controller
         $displayEndDate .= "({$endWeek})" . " " . date('H:i:s', strtotime(config('services.event13.end_date')));
 
         return view('event.event13', [
-            'rooms' => $rooms,
             'displayStartDate' => $displayStartDate,
             'displayEndDate' => $displayEndDate,
+            'rooms' => $rooms,
         ]);
     }
 }
