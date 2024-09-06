@@ -57,7 +57,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('command:adjust-user-listener-level')
             ->monthlyOn(1, '00:00');
 
-        // イベント中
+        // 負荷を減らすため、イベント中以外はコメントアウトする
         $schedule->command('command:update-event-ranking')
             ->everyMinute();
     }
