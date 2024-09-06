@@ -42,6 +42,15 @@ class UpdateEventRanking extends Command
         if (config('services.event13.is_active') == false) {
             return;
         }
+
+        // イベント期間外
+        if (
+            date('Y-m-d H:i:s') < config('services.event13.start_date')
+            || date('Y-m-d H:i:s') > config('services.event13.end_date')
+        ) {
+            return;
+        }
+
         $rooms = Room::where(function($query) {
             $query->where('rooms.status', 1)
                 ->orWhere('rooms.status', 2);
