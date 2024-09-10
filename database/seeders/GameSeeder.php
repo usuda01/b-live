@@ -42,6 +42,9 @@ class GameSeeder extends Seeder
             ['id' => 25, 'name' => 'スプラトゥーン3', 'sns_tags' => 'スプラ3,スプラトゥーン3,スプラトゥーン', 'sales_agency' => '任天堂'],
             ['id' => 26, 'name' => 'ELDEN RING', 'sns_tags' => 'ELDENRING,エルデンリング', 'sales_agency' => 'FromSoftware'],
             ['id' => 27, 'name' => '原神', 'sns_tags' => '原神', 'sales_agency' => 'miHoYo'],
+            ['id' => 28, 'name' => '雑談', 'sns_tags' => '雑談,雑談配信', 'sales_agency' => ''],
+            ['id' => 29, 'name' => 'パルワールド', 'sns_tags' => 'パルワールド,Palworld', 'sales_agency' => 'Pocketpair'],
+            ['id' => 30, 'name' => 'Rust', 'sns_tags' => 'Rust,rust', 'sales_agency' => 'Facepunch Studios'],
         ]);
     }
 }
