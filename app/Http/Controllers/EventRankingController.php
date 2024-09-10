@@ -378,9 +378,14 @@ class EventRankingController extends Controller
 
     public function event13() {
 
+        // イベントに参加しないユーザー
+        // ルチル
+        $disableUserIds = [1358];
+
         $userIds = [];
         $rooms = [];
-        $eventRankings = EventRanking::orderBy('max_view', 'desc')
+        $eventRankings = EventRanking::whereNotIn('user_id', $disableUserIds)
+            ->orderBy('max_view', 'desc')
             ->orderBy('created_at', 'asc')
             ->get();
         foreach ($eventRankings as $eventRanking) {
