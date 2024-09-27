@@ -58,8 +58,10 @@ class Kernel extends ConsoleKernel
             ->monthlyOn(1, '00:00');
 
         // 負荷を減らすため、イベント中以外はコメントアウトする
+/*
         $schedule->command('command:update-event-ranking')
             ->everyMinute();
+*/
     }
 
     /**
