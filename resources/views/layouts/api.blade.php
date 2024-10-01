@@ -10,17 +10,17 @@
     <meta name="google-site-verification" content="P5MZYRt5GLFguKhLczvQkpUCRLTIkm1LyOF93FHd4bM" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="keywords" content="B-LIVE,ライブ配信,稼ぐ,芸人,ラジオ,ゲーム配信">
-    <meta name="description" content="B-LIVE（ビーライブ）は、お笑い芸人を中心としたライブ配信プラットフォームです！お気に入りの配信者を見つけて、ラジオ感覚で楽しもう！">
+    <meta name="keywords" content="B-LIVE,ライブ配信,配信,ゲーム,ゲーム実況,ゲーム配信">
+    <meta name="description" content="B-LIVE（ビーライブ）は、ゲームのライブ配信プラットフォームです！お気に入りの配信者を見つけて、一緒に盛り上がろう！">
     <meta property="og:title" content="B-LIVE ライブ配信" />
-    <meta property="og:description" content="B-LIVE（ビーライブ）は、お笑い芸人を中心としたライブ配信プラットフォームです！お気に入りの配信者を見つけて、ラジオ感覚で楽しもう！" />
+    <meta property="og:description" content="B-LIVE（ビーライブ）は、ゲームのライブ配信プラットフォームです！お気に入りの配信者を見つけて、一緒に盛り上がろう！" />
     <meta property="og:url" content="{{ Request::url() }}" />
     <meta property="og:image" content="{{ Request::getSchemeAndHttpHost() }}/images/ogp.png" />
     <meta property="og:type" content="website" />
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
-    <link href="{{ mix('css/fonts.css') }}?param=74" rel="stylesheet">
-    <link href="{{ mix('css/app.css') }}?param=74" rel="stylesheet">
-    <link href="{{ mix('css/all.css') }}?param=74" rel="stylesheet">
+    <link href="{{ mix('css/fonts.css') }}?param=78" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}?param=78" rel="stylesheet">
+    <link href="{{ mix('css/all.css') }}?param=78" rel="stylesheet">
     @if (Request::is('/'))
         <title>B-LIVE｜ゲームのライブ配信、ショート動画サイト</title>
     @else
@@ -92,9 +92,9 @@
             'apiToken' => \Auth::user()->api_token ?? null
         ]) !!};
     </script>
-    <script src="{{ mix('js/app.js') }}?param=74"></script>
-    <script src="{{ mix('js/all.js') }}?param=74"></script>
-    <script src="{{ mix('js/common.js') }}?param=74"></script>
+    <script src="{{ mix('js/app.js') }}?param=78"></script>
+    <script src="{{ mix('js/all.js') }}?param=78"></script>
+    <script src="{{ mix('js/common.js') }}?param=78"></script>
     @stack('scripts')
 </body>
 </html>
