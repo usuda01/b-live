@@ -91,7 +91,7 @@
                     </div>
                     <div>
                         <p>▼参加方法</p>
-                        <p>① <a class="twitter" href="https://twitter.com/BLIVE77191685/status/1700045162855235666" target="_blank">この投稿</a>をリポスト＆フォロー</p>
+                        <p>① <a class="twitter" href="https://x.com/BLIVE77191685/status/1840990266217615380" target="_blank">この投稿</a>をリポスト＆フォロー</p>
                         <p>② B-LIVEにてアカウント作成</p>
                         <p>③ ライブ配信を視聴</p>
                     </div>
@@ -102,7 +102,7 @@
                 <h2 class="title">注意事項</h2>
                 <ul class="note">
                     <li>※サーバーの負荷などにより途中でサイトが落ちたり、配信が出来ない状態になってしまった場合、イベントを終了とし、その時点でのランキングで集計します。</li>
-                    <li>※イベント終了後、 B-LIVEの公式X（<a class="twitter" href="https://twitter.com/BLIVE77191685">@BLIVE77191685</a>）からDMを送ります。連絡をとれるようにしておいて下さい。</li>
+                    <li>※イベント終了後、 B-LIVEの公式X（<a class="twitter" href="https://x.com/BLIVE77191685">@BLIVE77191685</a>）からDMを送ります。連絡をとれるようにしておいて下さい。</li>
                     <li>※メールアドレスでのギフトコード発送となります。</li>
                     <li>※配信終了後のページを閲覧しても試聴時間は加算されません。</li>
                 </ul>
