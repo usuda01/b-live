@@ -8,7 +8,7 @@
             <div class="box notice-detail">
                 <div class="section">
                     <h3>第１４弾 アマゾンギフト券１万円獲得イベント開催！</h3>
-                    <div class="date">2023.09.08</div>
+                    <div class="date">2024.10.01</div>
                     <div>
                         <div>アマゾンギフト券総額１万円獲得イベントを開催いたします。詳細は<a href="/event14">こちらから</a></div>
                     </div>
