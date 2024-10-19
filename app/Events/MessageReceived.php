@@ -35,4 +35,23 @@ class MessageReceived implements ShouldBroadcastNow
     {
         return new Channel('message.received.'.$this->message->room_id);
     }
+
+    /**
+     * ブロードキャストするデータを取得
+     *
+     * @return array
+     */
+    public function broadcastWith()
+    {
+        return [
+            'message' => [
+                'id' => $this->message->id,
+                'user_id' => $this->message->user_id,
+                'room_id' => $this->message->room_id,
+                'content' => $this->message->content,
+                'created_at' => $this->message->created_at,
+                'user_name' => $this->message->user->name
+            ]
+        ];
+    }
 }
