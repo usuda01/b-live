@@ -15,10 +15,23 @@
                 <div v-if="room.status === 1" class="video-container" v-on:click="toggleControllerClass">
                     <video id="main-video" class="main-video" muted autoplay playsinline></video>
                     <div class="controls">
-                        <button v-on:click="toggleMute"><i v-if="isMute === true" class="fas fa-volume-mute"></i><i v-if="isMute === false" class="fas fa-volume-up"></i></button>
-                        <button v-on:click="toggleRotate"><i class="fas fa-sync-alt"></i></button>
-                        <button v-on:click="togglePiP"><i class="fas fa-compress-alt"></i></button>
-                        <button v-on:click="toggleFullScreen"><i class="fas fa-expand"></i></button>
+                        <button class="btn-control" v-on:click="toggleMute"><i v-if="isMute === true" class="fas fa-volume-mute"></i><i v-if="isMute === false" class="fas fa-volume-up"></i></button>
+                        <button class="btn-control" v-on:click="toggleRotate"><i class="fas fa-sync-alt"></i></button>
+                        <button class="btn-control" v-on:click="togglePiP"><i class="fas fa-compress-alt"></i></button>
+                        <button class="btn-control" v-on:click="toggleFullScreen"><i class="fas fa-expand"></i></button>
+                        <button class="btn-control" v-on:click="toggleVideoMenu"><i class="fas fa-cog"></i></button>
+
+                        <!-- ビットレート選択メニュー -->
+                        <div v-if="showVideoMenu" class="video-menu">
+                            <button
+                                v-for="level in availableLevels"
+                                :key="level.id"
+                                @click="changeBitrate(level.id); toggleVideoMenu()"
+                                class="btn-bitrate"
+                            >
+                            {{ level.label }}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </template>
@@ -299,6 +312,7 @@
         },
         data () {
             return {
+                availableLevels: [], // 選択可能なビットレートレベル
                 activeTab: 2,
                 roomDescription: '',
                 hls: new Hls(),
@@ -329,6 +343,7 @@
                 showingUserInfo: false,
                 showingUserFlagModal: false,
                 showMenu: false, // チャットメニュー表示
+                showVideoMenu: false, // ビデオメニュー表示
                 canSendGift: true, // ギフトメッセージを送れるか
                 isGiftError: false,
                 giftErrorMessage: '',
@@ -748,6 +763,13 @@
                     this.hls = new Hls(config);
                     this.hls.loadSource(videoUrl);
                     this.hls.attachMedia(video);
+                    this.hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                        // ビットレートレベルを取得
+                        this.availableLevels = this.hls.levels.map((level, index) => ({
+                            id: index,
+                            label: `${level.height}p (${Math.round(level.bitrate / 1000)} kbps)`
+                        }));
+                    });
                     video.play();
                 } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
                     video.src = videoUrl;
@@ -757,6 +779,9 @@
                       video.play();
                     });
                 }
+            },
+            changeBitrate(level) {
+                this.hls.currentLevel = level;
             },
             toggleControllerClass() {
                 this.isControllerClassActive = !this.isControllerClassActive;
@@ -798,6 +823,9 @@
                     /* iOS */
                     video.webkitEnterFullscreen();
                 }
+            },
+            toggleVideoMenu() {
+                this.showVideoMenu = !this.showVideoMenu;
             },
             addViewCountEvent() {
                 this.getViewCount();
