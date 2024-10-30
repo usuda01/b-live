@@ -9,6 +9,10 @@
                 <div class="section">
                     <h3>お知らせ一覧</h3>
                     <div class="row">
+                         <div class="date">2024.10.30</div>
+                         <div class="description"><a href="/page/notice/46">画質調整機能を実装しました！</a></div>
+                    </div>
+                    <div class="row">
                          <div class="date">2024.10.01</div>
                          <div class="description"><a href="/page/notice/45">アマゾンギフト券総額１万円獲得イベント開催！</a></div>
                     </div>
