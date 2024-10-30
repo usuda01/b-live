@@ -15,19 +15,19 @@
                 <div v-if="room.status === 1" class="video-container" v-on:click="toggleControllerClass">
                     <video id="main-video" class="main-video" muted autoplay playsinline></video>
                     <div class="controls">
-                        <button v-on:click="toggleMute"><i v-if="isMute === true" class="fas fa-volume-mute"></i><i v-if="isMute === false" class="fas fa-volume-up"></i></button>
-                        <button v-on:click="toggleRotate"><i class="fas fa-sync-alt"></i></button>
-                        <button v-on:click="togglePiP"><i class="fas fa-compress-alt"></i></button>
-                        <button v-on:click="toggleFullScreen"><i class="fas fa-expand"></i></button>
-                        <button v-on:click="toggleVideoMenu"><i class="fas fa-cog"></i></button>
+                        <button class="btn-control" v-on:click="toggleMute"><i v-if="isMute === true" class="fas fa-volume-mute"></i><i v-if="isMute === false" class="fas fa-volume-up"></i></button>
+                        <button class="btn-control" v-on:click="toggleRotate"><i class="fas fa-sync-alt"></i></button>
+                        <button class="btn-control" v-on:click="togglePiP"><i class="fas fa-compress-alt"></i></button>
+                        <button class="btn-control" v-on:click="toggleFullScreen"><i class="fas fa-expand"></i></button>
+                        <button class="btn-control" v-on:click="toggleVideoMenu"><i class="fas fa-cog"></i></button>
 
                         <!-- ビットレート選択メニュー -->
-                        <div v-if="showVideoMenu">
+                        <div v-if="showVideoMenu" class="video-menu">
                             <button
                                 v-for="level in availableLevels"
                                 :key="level.id"
                                 @click="changeBitrate(level.id); toggleVideoMenu()"
-                                class="btn"
+                                class="btn-bitrate"
                             >
                             {{ level.label }}
                             </button>
