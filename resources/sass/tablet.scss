@@ -1255,7 +1255,7 @@
                     justify-content: flex-end;
                     opacity: 0.2;
                     transition: opacity 0.4s;
-                    button {
+                    .btn-control {
                         margin-right: 10px;
                         background: transparent;
                         color: #fff;
@@ -1265,6 +1265,23 @@
                         cursor: pointer;
                         i {
                             font-size: 20px;
+                        }
+                    }
+                    .video-menu {
+                        position: absolute;
+                        bottom: 40px;
+                        right: 10px;
+                        background-color: rgba(0, 0, 0, 0.8);
+                        padding: 10px;
+                        border-radius: 4px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px 0;
+                        .btn-bitrate {
+                            background: transparent;
+                            color: #fff;
+                            border: none;
+                            cursor: pointer;
                         }
                     }
                 }
@@ -1924,8 +1941,12 @@
                     .controls {
                         bottom: 20px;
                         justify-content: flex-start;
-                        button {
+                        .btn-control {
                             margin-left: 10px;
+                        }
+                        .video-menu {
+                            right: auto;
+                            left: 10px;
                         }
                     }
                 }
