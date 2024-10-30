@@ -476,7 +476,7 @@ class SettingController extends Controller
                 'user_id' => $user->id,
                 'server_url' => 'rtmps://5f1ee0e19125e.streamlock.net/blive',
                 'stream_key' => $streamKey,
-                'hls_url' => 'https://5f1ee0e19125e.streamlock.net/blive/' . $streamKey . '/playlist.m3u8',
+                'hls_url' => 'https://5f1ee0e19125e.streamlock.net/blive/ngrp:' . $streamKey . '_all/playlist.m3u8',
                 'started_at' => date('Y-m-d H:i:s'),
                 'status' => 1,
             ]);
