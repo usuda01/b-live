@@ -158,6 +158,19 @@ class UserSeeder extends Seeder
                 'status' => 2,
                 'image' => 'XoJ7BGgomAkerE70ygdBvypeyVW02WP8xNC3TBi4.jpeg'
             ],
+            [
+                'id' => 12,
+                'name' => 'B-LIVE 中の人',
+                'email' => 'hiroshi0104@gmail.com',
+                'password' => '1',
+                'profile' => "B-LIVEの管理人です。\nデザイン〜開発まで全てやってます。\n不具合、ご要望などあれば\nhttps://mobile.twitter.com/birthdadan\nまでお願いします",
+                'twitter_url' => 'https://twitter.com/birthdadan',
+                'api_token' => 'RMAz0SmET87ONVM6QH3MnH1xDwF57W9aUcKsbRCS1mkOtxFneji5lhsw7HFC0WS5OIiUMLZszM5zjcF9',
+                'twitter_id' => '134083492',
+                'apple_id' => null,
+                'status' => 2,
+                'image' => 'ZnxG4sKW8LaiivLplIx2nI5UEl96TVf9dNjkNWhV.jpeg'
+            ],
         ]);
     }
 }
