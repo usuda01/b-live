@@ -176,6 +176,7 @@ return [
         'host' => env('WOWZA_HOST'),
         'username' => env('WOWZA_USERNAME'),
         'password' => env('WOWZA_PASSWORD'),
+        'ssl_host_name' => env('WOWZA_SSL_HOST_NAME'),
     ],
 
 ];
