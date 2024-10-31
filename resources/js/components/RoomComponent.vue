@@ -295,6 +295,7 @@
             listeners: Array,
             user: Object,
             storeIntervalTime: Number,
+            wowzaSslHostName: String,
         },
         computed: {
             snsTags: function () {
@@ -335,6 +336,7 @@
                 },
                 messages: [],
                 supporters: [],
+                selectedLevelUrl: '',
                 selectedUser: {
                     id: '',
                     name: '',
@@ -749,7 +751,8 @@
             },
             videoPlay() {
                 const video = document.getElementById('main-video');
-                const videoUrl = this.room.wowza.hls_url;
+                const hlsUrl = this.room.wowza.hls_url;
+
                 if (Hls.isSupported()) {
                     var config = {
                         enableWorker: true,
@@ -761,10 +764,10 @@
                         highBufferWatchdogPeriod: 1
                     };
                     this.hls = new Hls(config);
-                    this.hls.loadSource(videoUrl);
+                    this.hls.loadSource(hlsUrl);
                     this.hls.attachMedia(video);
                     this.hls.on(Hls.Events.MANIFEST_PARSED, () => {
-                        // ビットレートレベルを取得
+                        // 利用可能なビットレートレベルを取得
                         this.availableLevels = this.hls.levels.map((level, index) => ({
                             id: index,
                             label: `${level.height}p (${Math.round(level.bitrate / 1000)} kbps)`
@@ -772,16 +775,34 @@
                     });
                     video.play();
                 } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-                    video.src = videoUrl;
-                    //video.addEventListener("loadedmetadata", () => {
-                    //video.addEventListener("canplaythrough", () => {
+                    // iPhone Safari
+                    // ビットレートごとのURLリストを固定値で設定する
+                    this.availableLevels = [
+                        { id: 0, label: 'ソース', url: hlsUrl.replace('ngrp:' + this.room.wowza.stream_key + '_all', this.room.wowza.stream_key + '_source') },
+                        { id: 1, label: '360p', url: hlsUrl.replace('ngrp:' + this.room.wowza.stream_key + '_all', this.room.wowza.stream_key + '_360p') },
+                        { id: 2, label: '160p', url: hlsUrl.replace('ngrp:' + this.room.wowza.stream_key + '_all', this.room.wowza.stream_key + '_160p') },
+                    ];
+                    // video.addEventListener("loadedmetadata", () => {
+                    // video.addEventListener("canplaythrough", () => {
+                    video.src = this.selectedLevelUrl || hlsUrl;
                     video.addEventListener('canplay', () => {
-                      video.play();
+                        video.play();
                     });
                 }
             },
-            changeBitrate(level) {
-                this.hls.currentLevel = level;
+            changeBitrate(levelId) {
+                const video = document.getElementById('main-video');
+
+                if (Hls.isSupported() && this.hls) {
+                    this.hls.nextLevel = levelId;
+                } else {
+                    // iPhone Safari
+                    this.selectedLevelUrl = this.availableLevels.find(level => level.id === levelId).url;
+                    video.pause();
+                    video.src = this.selectedLevelUrl;
+                    video.load();
+                    video.play();
+                }
             },
             toggleControllerClass() {
                 this.isControllerClassActive = !this.isControllerClassActive;
