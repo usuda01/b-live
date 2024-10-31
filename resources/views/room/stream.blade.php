@@ -8,6 +8,7 @@
         :listeners="{{ $listeners }}"
         :user="{{ ($user) ? $user->toJson() : "{}" }}"
         :store-interval-time="{{ Config::get('services.store_interval_time') }}"
+        :wowza-ssl-host-name="'{{ Config::get('services.wowza.ssl_host_name') }}'"
     >
     </room-component>
 @endsection
