@@ -30,12 +30,12 @@
                         url: '/event13'
                     },
                     {
-                        image: '/images/bnr-howto.jpg',
-                        url: '/page/howto'
-                    },
-                    {
                         image: '/images/event14/fv.jpg',
                         url: '/event14'
+                    },
+                    {
+                        image: '/images/bnr-howto.jpg',
+                        url: '/page/howto'
                     },
                 ],
             }
