@@ -15,11 +15,11 @@
                 <div v-if="room.status === 1" class="video-container" v-on:click="toggleControllerClass">
                     <video id="main-video" class="main-video" muted autoplay playsinline></video>
                     <div class="controls">
-                        <button class="btn-control" v-on:click="toggleMute"><i v-if="isMute === true" class="fas fa-volume-mute"></i><i v-if="isMute === false" class="fas fa-volume-up"></i></button>
-                        <button class="btn-control" v-on:click="toggleRotate"><i class="fas fa-sync-alt"></i></button>
-                        <button class="btn-control" v-on:click="togglePiP"><i class="fas fa-compress-alt"></i></button>
-                        <button class="btn-control" v-on:click="toggleFullScreen"><i class="fas fa-expand"></i></button>
-                        <button class="btn-control" v-on:click="toggleVideoMenu"><i class="fas fa-cog"></i></button>
+                        <button class="btn-control" v-on:click.stop="toggleMute"><i v-if="isMute === true" class="fas fa-volume-mute"></i><i v-if="isMute === false" class="fas fa-volume-up"></i></button>
+                        <button class="btn-control" v-on:click.stop="toggleRotate"><i class="fas fa-sync-alt"></i></button>
+                        <button class="btn-control" v-on:click.stop="togglePiP"><i class="fas fa-compress-alt"></i></button>
+                        <button class="btn-control" v-on:click.stop="toggleFullScreen"><i class="fas fa-expand"></i></button>
+                        <button class="btn-control" v-on:click.stop="toggleVideoMenu"><i class="fas fa-cog"></i></button>
 
                         <!-- ビットレート選択メニュー -->
                         <div v-if="showVideoMenu" class="video-menu">
@@ -811,9 +811,12 @@
                 const video = document.getElementById('main-video');
                 video.muted = !video.muted
                 this.isMute = video.muted;
+
+                this.isControllerClassActive = true;
             },
             toggleRotate() {
                 this.isRotate = !this.isRotate;
+                this.isControllerClassActive = true;
             },
             togglePiP() {
                 const video = document.getElementById('main-video');
@@ -826,6 +829,8 @@
                 } else if ('webkitPictureInPictureEnabled' in document) {
                     video.webkitRequestPictureInPicture();
                 }
+
+                this.isControllerClassActive = true;
             },
             toggleFullScreen() {
                 const video = document.getElementById('main-video');
@@ -844,9 +849,12 @@
                     /* iOS */
                     video.webkitEnterFullscreen();
                 }
+
+                this.isControllerClassActive = true;
             },
             toggleVideoMenu() {
                 this.showVideoMenu = !this.showVideoMenu;
+                this.isControllerClassActive = true;
             },
             addViewCountEvent() {
                 this.getViewCount();
