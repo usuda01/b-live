@@ -415,7 +415,9 @@
                 var mins = s % 60;
                 var hrs = (s - mins) / 60;
 
-                return pad(hrs) + ':' + pad(mins) + ':' + pad(secs);
+                const hrsPad = hrs >= 100 ? 3 : 2;
+
+                return pad(hrs, hrsPad) + ':' + pad(mins) + ':' + pad(secs);
             },
             getVideoTime() {
                 let self = this;
