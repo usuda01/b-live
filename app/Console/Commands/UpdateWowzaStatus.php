@@ -40,15 +40,20 @@ class UpdateWowzaStatus extends Command
     public function handle()
     {
         /*
-         * 4時間以上配信したのものはストップさせて、テーブルを更新
+         * 最大配信時間以上配信したのものはストップさせて、テーブルを更新
          */
         $wowzas = Wowza::where('status', 1)->get();
         if ($wowzas->isEmpty()) {
             return;
         }
         foreach ($wowzas as $wowza) {
-            if (strtotime($wowza->started_at) <= strtotime('-4 hour')) {
-                $this->info(date('Y-m-d H:i:s').' [command:update-wowza-status] 配信時間が上限を超えました wowza_id:'.$wowza->id.' started_at:'.strtotime($wowza->started_at).' strtotime:'.strtotime('-4 hour'));
+            if (strtotime($wowza->started_at) <= strtotime('-' . config('services.max_stream_time') . ' hour')) {
+                $this->info(
+                    date('Y-m-d H:i:s') . ' [command:update-wowza-status] 配信時間が上限を超えました'
+                    . ' wowza_id:' . $wowza->id
+                    . ' started_at:' . strtotime($wowza->started_at)
+                    . ' strtotime:' . strtotime('-' . config('services.max_stream_time') . ' hour')
+                );
                 $rooms = Room::where('wowza_id', $wowza->id)->where('status', 1)->get();
                 foreach ($rooms as $room) {
                     $room->finish();
