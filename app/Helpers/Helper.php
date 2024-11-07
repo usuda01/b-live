@@ -20,7 +20,7 @@ class Helper
     /**
      * 秒数をTime型に変換
      *
-     * @param int $seconds
+     * @param int $sec
      * @return string
      */
     public static function secToStr($sec) {
@@ -35,6 +35,17 @@ class Helper
             $hms = sprintf('%02d', $hours) . ':' . sprintf('%02d', $minutes) .':'. sprintf('%02d', $seconds);
         }
         return $hms;
+    }
+
+    /**
+     * Time型を秒数に変換
+     *
+     * @param string $time
+     * @return int
+     */
+    public static function timeToSeconds($time) {
+        list($hours, $minutes, $seconds) = explode(':', $time);
+        return $hours * 3600 + $minutes * 60 + $seconds;
     }
 
     /**
