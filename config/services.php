@@ -130,6 +130,8 @@ return [
 
     'max_liver' => env('MAX_LIVER'),
 
+    'max_stream_time' => env('MAX_STREAM_TIME'),
+
     'max_movie_upload' => env('MAX_MOVIE_UPLOAD'),
 
     'max_movie_upload_seconds' => env('MAX_MOVIE_UPLOAD_SECONDS'),

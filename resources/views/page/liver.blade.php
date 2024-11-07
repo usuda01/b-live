@@ -12,7 +12,7 @@
                 </div>
                 <div class="section">
                     <h3>2. 配信時間について</h3>
-                    <p>１回の配信につき、4時間まで可能といたします。</p>
+                    <p>１回の配信につき、{{ config('services.max_stream_time') }}時間まで可能といたします。</p>
                     <p>配信時間を過ぎた場合、配信が自動的に終了します。</p>
                 </div>
                 <div class="section">

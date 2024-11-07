@@ -132,7 +132,24 @@ class Room extends Model
     public function finish() {
         $this->status = 2;
         $this->finished_at = date('Y-m-d H:i:s');
-        $this->stream_time = Helper::timeDiff($this->published_at, $this->finished_at);
+
+        $stream_time = Helper::timeDiff($this->published_at, $this->finished_at);
+
+        /*
+         * TIME型の上限を超えないように調整
+         */
+        // TIME型の上限値
+        $max_time = '838:59:59';
+
+        $stream_time_seconds = Helper::timeToSeconds($stream_time);
+        $max_time_seconds = Helper::timeToSeconds($max_time);
+
+        if ($stream_time_seconds > $max_time_seconds) {
+            $this->stream_time = $max_time;
+        } else {
+            $this->stream_time = $stream_time;
+        }
+
         $this->wowza->status = 2;
 
         // wowzaのlivestreamを止める

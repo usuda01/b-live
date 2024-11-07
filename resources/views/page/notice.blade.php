@@ -9,6 +9,10 @@
                 <div class="section">
                     <h3>お知らせ一覧</h3>
                     <div class="row">
+                         <div class="date">2024.11.07</div>
+                         <div class="description"><a href="/page/notice/47">最大配信時間を伸ばしました！</a></div>
+                    </div>
+                    <div class="row">
                          <div class="date">2024.10.30</div>
                          <div class="description"><a href="/page/notice/46">画質調整機能を実装しました！</a></div>
                     </div>
