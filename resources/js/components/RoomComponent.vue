@@ -17,7 +17,7 @@
                     <div class="controls">
                         <button class="btn-control" v-on:click.stop="toggleMute"><i v-if="isMute === true" class="fas fa-volume-mute"></i><i v-if="isMute === false" class="fas fa-volume-up"></i></button>
                         <button class="btn-control" v-on:click.stop="toggleRotate"><i class="fas fa-sync-alt"></i></button>
-                        <button class="btn-control" v-on:click.stop="togglePiP"><i class="fas fa-compress-alt"></i></button>
+                        <button class="btn-control" v-on:click.stop="togglePiP"><img src="/images/icon-pip.svg"></button>
                         <button class="btn-control" v-on:click.stop="toggleFullScreen"><i class="fas fa-expand"></i></button>
                         <button class="btn-control" v-on:click.stop="toggleVideoMenu"><i class="fas fa-cog"></i></button>
 

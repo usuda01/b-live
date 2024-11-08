@@ -1189,6 +1189,11 @@
                         i {
                             font-size: 20px;
                         }
+                        img {
+                            width: 20px;
+                            height: 20px;
+                            filter: drop-shadow(2px 2px 1px #000);
+                        }
                     }
                     .video-menu {
                         position: absolute;
