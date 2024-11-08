@@ -3891,7 +3891,26 @@
              * 配信方法
              */
             .howto {
+                h3 {
+
+                }
                 h4 {
+                    font-size: 1.6rem;
+                    font-weight: 600;
+                    padding: 0 0 5px;
+                    border-bottom: 2px solid $base-color;
+                    margin-bottom: 20px;
+                }
+                .section {
+                    margin-bottom: 60px;
+                }
+                .midashi {
+                    font-weight: 600;
+                    margin-bottom: 20px;
+                }
+                .sub-midashi {
+                    padding: 2px 0 2px 8px;
+                    border-left: 3px solid $base-color;
                     margin-bottom: 20px;
                 }
                 .title {
@@ -3902,7 +3921,9 @@
                 }
                 .capture {
                     margin-bottom: 30px;
-                    width: 100%;
+                    img {
+                        width: 100%;
+                    }
                 }
             }
 
