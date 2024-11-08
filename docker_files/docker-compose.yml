@@ -57,6 +57,18 @@ services:
         volumes:
             - ./docker/redis/data:/data
 
+    cron:
+        image: cron:7.3
+        build:
+            context: .
+            dockerfile: ./docker/cron/Dockerfile
+        volumes:
+            - ../:/var/www/html
+        env_file:
+            - ../.env
+        depends_on:
+            - php
+
     phpmyadmin:
         container_name: phpmyadmin
         image: phpmyadmin/phpmyadmin
