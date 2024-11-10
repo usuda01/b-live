@@ -16,6 +16,9 @@
                     <video id="main-video" class="main-video" muted autoplay playsinline></video>
                     <div class="controls">
                         <button class="btn-control" v-on:click.stop="toggleMute"><i v-if="isMute === true" class="fas fa-volume-mute"></i><i v-if="isMute === false" class="fas fa-volume-up"></i></button>
+                        <template v-if="isRotate === true">
+                            <button class="btn-control tb_only" v-on:click.stop="toggleRotateMessage"><i v-if="showRotateMessage === true" class="far fa-comment-dots"></i><i v-if="showRotateMessage === false" class="fas fa-comment-slash"></i></button>
+                        </template>
                         <button class="btn-control" v-on:click.stop="toggleRotate"><i class="fas fa-sync-alt"></i></button>
                         <button class="btn-control" v-on:click.stop="togglePiP"><img src="/images/icon-pip.svg"></button>
                         <button class="btn-control" v-on:click.stop="toggleFullScreen"><i class="fas fa-expand"></i></button>
@@ -85,7 +88,7 @@
             </div>
         </div>
 
-        <div class="message-wrapper" v-bind:class="{'active': activeTab === 2}">
+        <div class="message-wrapper" v-bind:class="{'active': activeTab === 2, 'show': showRotateMessage === true}">
             <div class="message-area">
                 <div class="title-area">
                     <template v-if="isApp === true">
@@ -346,6 +349,7 @@
                 showingUserFlagModal: false,
                 showMenu: false, // チャットメニュー表示
                 showVideoMenu: false, // ビデオメニュー表示
+                showRotateMessage: true, // 横にした時のメッセージ表示
                 canSendGift: true, // ギフトメッセージを送れるか
                 isGiftError: false,
                 giftErrorMessage: '',
@@ -814,6 +818,10 @@
                 video.muted = !video.muted
                 this.isMute = video.muted;
 
+                this.isControllerClassActive = true;
+            },
+            toggleRotateMessage() {
+                this.showRotateMessage = !this.showRotateMessage;
                 this.isControllerClassActive = true;
             },
             toggleRotate() {
