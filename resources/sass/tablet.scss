@@ -1967,6 +1967,9 @@
                 height: 100vw;
                 margin-bottom: 30vh;
                 z-index: 3;
+                &.show {
+                    display: block;
+                }
                 .message-area {
                     .chat-area {
                         display: flex;
@@ -1983,9 +1986,6 @@
                         opacity: 1;
                     }
                 }
-            }
-            .message-wrapper {
-                display: block;
             }
         }
     }
