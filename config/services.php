@@ -18,6 +18,8 @@ return [
 
     'guest_user_id' => env('GUEST_USER_ID'),
 
+    'system_user_id' => env('SYSTEM_USER_ID'),
+
     'event' => [
         'is_active' => env('IS_EVENT_ACTIVE'),
         'start_date' => env('EVENT_START_DATE'),
