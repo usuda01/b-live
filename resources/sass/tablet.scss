@@ -3893,6 +3893,20 @@
             }
 
             /*
+             * 配信者特典
+             */
+            .benefits {
+                line-height: 1.75;
+                h4 {
+                    font-size: 1.6rem;
+                    font-weight: 600;
+                    padding: 0 0 5px;
+                    border-bottom: 2px solid $base-color;
+                    margin-bottom: 20px;
+                }
+            }
+
+            /*
              * 配信方法
              */
             .howto {
