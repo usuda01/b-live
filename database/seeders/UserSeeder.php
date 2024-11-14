@@ -171,6 +171,19 @@ class UserSeeder extends Seeder
                 'status' => 2,
                 'image' => 'ZnxG4sKW8LaiivLplIx2nI5UEl96TVf9dNjkNWhV.jpeg'
             ],
+            [
+                'id' => 13,
+                'name' => 'システム',
+                'email' => 'runyanya@boxfi.uk',
+                'password' => '1',
+                'profile' => null,
+                'twitter_url' => null,
+                'api_token' => '5IjFlDYYLjaPYutLpgmGAakhYIypgkGtZm9BGmoYUwbvJLJ8XXLSuyIYgNKjQZ747Ks64Ge5sP7wc6Ed',
+                'twitter_id' => '1856978140507377666',
+                'apple_id' => null,
+                'status' => 2,
+                'image' => 'EoeRWAi5i1NV0ZhRHObOtNOpgwBDH5WJfc0XZWuJ.png'
+            ],
         ]);
     }
 }
