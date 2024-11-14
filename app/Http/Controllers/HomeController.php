@@ -115,6 +115,7 @@ class HomeController extends Controller
             ->leftJoin('payments', 'messages.id', '=', 'payments.message_id')
             ->where('payments.created_at', '>=', date('Y-m-01 00:00:00'))
             ->where('payments.created_at', '<', date('Y-m-01 00:00:00', strtotime('+1 months')))
+            ->whereNull('payments.is_system')
             ->groupBy('user_id')
             ->orderBy('sum_price', 'desc')
             ->limit(10)->get();
@@ -131,6 +132,7 @@ class HomeController extends Controller
             DB::raw('SUM(price) as sum_price'),
         )
         ->where('created_at', '>=', date('Y-m-01 00:00:00'))
+        ->whereNull('is_system')
         ->groupBy('user_id')
         ->orderBy('sum_price', 'desc')->limit(10)->get();
         $paymentUsers = [];
