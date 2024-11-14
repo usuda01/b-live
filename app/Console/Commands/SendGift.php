@@ -66,6 +66,7 @@ class SendGift extends Command
                 $message->save();
 
                 $payment = new Payment();
+                $payment->is_system = 1;
                 $payment->user_id = $systemUserId;
                 $payment->message_id = $message->id;
                 $payment->product_id = $productId;
