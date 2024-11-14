@@ -28,6 +28,7 @@ class UserController extends Controller
         // サポーター
         $payments = Payment::where('payments.created_at', '>=', date('Y-m-01 00:00:00'));
         $payments = $payments
+            ->whereNull('payments.is_system')
             ->join('messages', function($join) {
                 $join->on('payments.message_id', '=', 'messages.id');
             })
@@ -99,6 +100,7 @@ class UserController extends Controller
     public function getRoomSupporters(Request $request) {
         $roomId = $request->input('room_id');
         $payments = Payment::with(['user', 'message'])
+            ->whereNull('is_system')
             ->whereHas('message', function($query) use($roomId) {
                 $query->where('room_id', $roomId);
             })
