@@ -30,7 +30,7 @@
                         url: '/event14'
                     },
                     {
-                        image: '/images/bnr-honno-kimochi.jpg',
+                        image: '/images/bnr-honno-kimochi.gif',
                         url: '/page/benefits'
                     },
                     {
