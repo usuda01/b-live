@@ -46,9 +46,17 @@ class SendGift extends Command
      */
     public function handle()
     {
-        $rooms = Room::where('status', 1)->get();
+        $rooms = Room::with('game')->where('status', 1)->get();
 
         foreach ($rooms as $room) {
+
+            // 任天堂のタイトルには適用しない
+            if ($room->game) {
+                if ($room->game->sales_agency == '任天堂') {
+                    continue;
+                }
+            }
+
             $now = now();
 
             $interval = config('services.gift_interval_time');
