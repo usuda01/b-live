@@ -161,6 +161,7 @@ class RoomController extends Controller
         // リスナー
         $listeners = [];
         $userViewTimes = UserViewTime::where('viewed_user_id', $room->user->id)
+            ->where('created_at', '>=', date('Y-m-01 00:00:00'))
             ->orderBy('view_time', 'desc')
             ->get();
         foreach ($userViewTimes as $userViewTime) {
@@ -271,6 +272,7 @@ class RoomController extends Controller
         // リスナー
         $listeners = [];
         $userViewTimes = UserViewTime::where('viewed_user_id', $room->user->id)
+            ->where('created_at', '>=', date('Y-m-01 00:00:00'))
             ->orderBy('view_time', 'desc')
             ->get();
         foreach ($userViewTimes as $userViewTime) {
