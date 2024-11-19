@@ -27,6 +27,10 @@ class Kernel extends ConsoleKernel
         $schedule->command('command:delete-rooms')
             ->daily();
 
+        $schedule->command('command:send-gift')
+            ->everyMinute()
+            ->appendOutputTo(storage_path('logs/cron.log'));
+
         $schedule->command('command:update-user-rank')
             ->daily();
 

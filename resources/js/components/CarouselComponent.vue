@@ -1,6 +1,6 @@
 <template>
     <div class="carousel-3d">
-        <Carousel :items-to-show="1.2" :model-value="2">
+        <Carousel :items-to-show="1.2" :model-value="1">
             <Slide v-for="slide in slides" :key="slide">
                 <div class="carousel__item"><a :href="slide.url" v-bind:style="{ backgroundImage: 'url(' + slide.image + ')' }"></a></div>
             </Slide>
@@ -26,12 +26,12 @@
             return {
                 slides : [
                     {
-                        image: '/images/event13/fv.jpg',
-                        url: '/event13'
-                    },
-                    {
                         image: '/images/event14/fv.jpg',
                         url: '/event14'
+                    },
+                    {
+                        image: '/images/bnr-honno-kimochi.gif',
+                        url: '/page/benefits'
                     },
                     {
                         image: '/images/bnr-howto.jpg',
