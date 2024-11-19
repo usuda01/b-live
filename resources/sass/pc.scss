@@ -1518,6 +1518,9 @@
                                 &.purchase6 {
                                     background: $purchase6-color;
                                 }
+                                &.purchase7 {
+                                    background: $purchase7-color;
+                                }
                             }
                             .user-profile {
                                 width: 20px;
@@ -1653,6 +1656,9 @@
                     }
                     &.purchase6 {
                         background: $purchase6-color;
+                    }
+                    &.purchase7 {
+                        background: $purchase7-color;
                     }
                 }
                 .user-profile {
