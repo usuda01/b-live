@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\ProcessSendMailLiveStarted;
 use App\Mail\LiveStarted;
+use App\Mail\PaymentRequested;
 use App\Models\Group;
 use App\Models\Movie;
 use App\Models\PointRequest;
@@ -84,6 +85,9 @@ class SettingController extends Controller
         $pointRequest->save();
         $user->user_data->point -= $requestPoint;
         $user->push();
+
+        // 通知
+        \Mail::to('hiroshi0104@gmail.com')->send(new PaymentRequested($pointRequest));
 
         return redirect('setting/coin');
     }
