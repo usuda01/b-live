@@ -34,7 +34,7 @@
                         <button class="btn-control" v-on:click.stop="toggleRotate"><i class="fas fa-sync-alt"></i></button>
                         <button class="btn-control" v-on:click.stop="togglePiP"><img src="/images/icon-pip.svg"></button>
                         <button class="btn-control" v-on:click.stop="toggleFullScreen"><i class="fas fa-expand"></i></button>
-                        <button class="btn-control" v-on:click.stop="toggleVideoMenu"><i class="fas fa-cog"></i></button>
+                        <button class="btn-control btn-gear" v-on:click.stop="toggleVideoMenu"><i class="fas fa-cog"></i></button>
 
                         <!-- ビットレート選択メニュー -->
                         <div v-if="showVideoMenu" class="video-menu">
