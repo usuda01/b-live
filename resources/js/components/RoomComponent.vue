@@ -15,7 +15,19 @@
                 <div v-if="room.status === 1" class="video-container" v-on:click="toggleControllerClass">
                     <video id="main-video" class="main-video" muted autoplay playsinline></video>
                     <div class="controls">
-                        <button class="btn-control" v-on:click.stop="toggleMute"><i v-if="isMute === true" class="fas fa-volume-mute"></i><i v-if="isMute === false" class="fas fa-volume-up"></i></button>
+                        <button class="btn-control" v-on:click.stop="toggleMute">
+                            <i v-if="isMute === true" class="fas fa-volume-mute"></i>
+                            <i v-if="isMute === false" class="fas fa-volume-up"></i>
+                        </button>
+                        <input
+                            class="volume-slider"
+                            type="range"
+                            min="0"
+                            max="1"
+                            step="0.01"
+                            v-model="volumeLevel"
+                            @input="changeVolume"
+                        >
                         <template v-if="isRotate === true">
                             <button class="btn-control tb_only" v-on:click.stop="toggleRotateMessage"><i v-if="showRotateMessage === true" class="far fa-comment-dots"></i><i v-if="showRotateMessage === false" class="fas fa-comment-slash"></i></button>
                         </template>
@@ -362,6 +374,7 @@
                     content: ''
                 },
                 chargeAmount: 0,
+                volumeLevel: 1, // 初期音量（最大）
                 videoTime: '',
                 viewCount: 0,
             }
@@ -797,6 +810,10 @@
                         video.play();
                     });
                 }
+            },
+            changeVolume() {
+                const video = document.getElementById('main-video');
+                video.volume = this.volumeLevel;
             },
             changeBitrate(levelId) {
                 const video = document.getElementById('main-video');
