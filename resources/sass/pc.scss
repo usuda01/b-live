@@ -1185,10 +1185,10 @@
                         font-weight: bolder;
                         text-shadow: 2px 1px 2px #000;
                         border: none;
+                        cursor: pointer;
                         &.btn-gear {
                             margin-right: 10px;
                         }
-                        cursor: pointer;
                         i {
                             font-size: 20px;
                         }
