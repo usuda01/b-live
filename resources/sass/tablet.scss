@@ -1255,14 +1255,17 @@
                     justify-content: flex-end;
                     opacity: 0.2;
                     transition: opacity 0.4s;
+                    gap: 0 10px;
                     .btn-control {
-                        margin-right: 10px;
                         background: transparent;
                         color: #fff;
                         font-weight: bolder;
                         text-shadow: 2px 1px 2px #000;
                         border: none;
                         cursor: pointer;
+                        &.btn-gear {
+                            margin-right: 10px;
+                        }
                         i {
                             font-size: 20px;
                         }
@@ -1271,6 +1274,9 @@
                             height: 20px;
                             filter: drop-shadow(2px 2px 1px #000);
                         }
+                    }
+                    .volume-slider {
+                        display: none;
                     }
                     .video-menu {
                         position: absolute;
