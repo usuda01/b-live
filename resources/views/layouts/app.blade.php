@@ -75,6 +75,9 @@
         </div>
         <ul class="notice-menu__list">
             <li><a href="{{ route('line') }}"><img src="/images/icon-line.png"><span>LINE連携しよう！</span></a></li>
+            @foreach ($globalNotifications as $globalNotification)
+                <li>{!! $globalNotification->title !!}</li>
+            @endforeach
         </ul>
     </div><!--// .notice-menu -->
 
