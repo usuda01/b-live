@@ -121,7 +121,10 @@
                 <a href="#"><img src="/images/btn-search02.png"></a>
             </div>
             <div id="toggle-notice" class="site-header__notice">
-                <a href="#"><i class="fas fa-bell"></i></a>
+                <a href="#">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">！</span>
+                </a>
             </div>
             @if (Auth::check())
                 <div class="site-header__account-loggedin">
