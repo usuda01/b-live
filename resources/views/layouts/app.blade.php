@@ -74,9 +74,10 @@
             <a href="#" id="notice-menu__close-btn"><img src="/images/btn-sidebar-close.png"></a>
         </div>
         <ul class="notice-menu__list">
-            <li><a href="{{ route('line') }}"><img src="/images/icon-line.png"><span>LINE連携しよう！</span></a></li>
             @foreach ($globalNotifications as $globalNotification)
-                <li>{!! $globalNotification->title !!}</li>
+                <li class="unread">
+                    {!! $globalNotification->title !!}
+                </li>
             @endforeach
         </ul>
     </div><!--// .notice-menu -->

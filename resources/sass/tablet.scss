@@ -265,18 +265,15 @@
             text-align: right;
         }
         .notice-menu__list {
-            a {
-                display: block;
-                padding: 0 20px;
-                line-height: 50px;
-            }
-            img {
-                width: 20px;
-                margin-right: 11px;
-                vertical-align: middle;
-            }
-            span {
-                vertical-align: middle;
+            li {
+                padding: 10px 20px;
+                border-bottom: 1px solid #ccc;
+                &.unread {
+                    background: #edbded;
+                }
+                a {
+                    display: block;
+                }
             }
         }
     }
