@@ -33,6 +33,8 @@ class AppServiceProvider extends ServiceProvider
                     ->orderBy('created_at', 'desc')
                     ->get();
                 $view->with('globalNotifications', $globalNotifications);
+            } else {
+                $view->with('globalNotifications', []);
             }
         });
     }
