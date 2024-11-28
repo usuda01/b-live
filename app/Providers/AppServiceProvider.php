@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Notification;
 
@@ -32,10 +33,12 @@ class AppServiceProvider extends ServiceProvider
                 $globalNotifications = Notification::where('receiver_id', Auth::id())
                     ->orderBy('created_at', 'desc')
                     ->get();
-                $view->with('globalNotifications', $globalNotifications);
             } else {
-                $view->with('globalNotifications', []);
+                // 空のコレクションを設定
+                $globalNotifications = collect(); 
             }
+
+            $view->with('globalNotifications', $globalNotifications);
         });
     }
 }

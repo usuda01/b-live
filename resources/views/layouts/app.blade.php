@@ -73,9 +73,12 @@
         <div class="notice-menu_close">
             <a href="#" id="notice-menu__close-btn"><img src="/images/btn-sidebar-close.png"></a>
         </div>
-        <ul class="notice-menu__list">
+        <ul id="notice-menu__list" class="notice-menu__list">
             @foreach ($globalNotifications as $globalNotification)
-                <li class="unread">
+                <li
+                    class="{{ $globalNotification->is_read == 0 ? 'unread' : '' }}"
+                    data-id="{{ $globalNotification->id }}"
+                >
                     {!! $globalNotification->title !!}
                 </li>
             @endforeach
@@ -127,7 +130,9 @@
             <div id="toggle-notice" class="site-header__notice">
                 <a href="#">
                     <i class="fas fa-bell"></i>
-                    <span class="badge">！</span>
+                    @if ($globalNotifications->where('is_read', 0)->isNotEmpty())
+                        <span class="badge">！</span>
+                    @endif
                 </a>
             </div>
             @if (Auth::check())
