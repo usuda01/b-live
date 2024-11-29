@@ -22,6 +22,8 @@ return [
 
     'gift_interval_time' => env('GIFT_INTERVAL_TIME'),
 
+    'point_conversion_rate' => env('POINT_CONVERSION_RATE'),
+
     'event' => [
         'is_active' => env('IS_EVENT_ACTIVE'),
         'start_date' => env('EVENT_START_DATE'),

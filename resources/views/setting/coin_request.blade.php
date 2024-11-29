@@ -25,7 +25,7 @@
                             <div class="coin"><img src="/images/icon-coin.png"><div class="point">{{ $user->user_data->point }} コイン</div></div>
                         </li>
                         <li>
-                            <label class="label">申請コイン（換金率30%）</label>
+                            <label class="label">申請コイン（換金率{{ config('services.point_conversion_rate') }}%）</label>
                             <input type="text" name="request_point" value="{{ old('request_point') }}" placeholder="{{ $user->user_data->point }}">
                         </li>
                     </ul>
