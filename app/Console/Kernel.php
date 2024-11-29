@@ -37,6 +37,10 @@ class Kernel extends ConsoleKernel
         $schedule->command('command:update-user-listener-level')
             ->daily();
 
+        // 毎日おしらせのクリーニングを実行
+        $schedule->command('command:clean-old-notifications')
+            ->daily();
+
         $schedule->command('command:update-room-ranking')
             ->monthlyOn(1, '00:00');
 
