@@ -74,6 +74,8 @@ services:
         image: phpmyadmin/phpmyadmin
         environment:
             - PMA_HOST=db
+            - PMA_USER=${DB_USERNAME}
+            - PMA_PASSWORD=${DB_PASSWORD}
         ports:
             - 8000:80
         volumes:
