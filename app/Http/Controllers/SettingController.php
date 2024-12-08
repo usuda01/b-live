@@ -51,7 +51,7 @@ class SettingController extends Controller
         $accountType = $request->input('account_type');
         $accountNumber = $request->input('account_number');
         $accountName = $request->input('account_name');
-        $amount = floor($requestPoint * 0.3);
+        $amount = floor($requestPoint * config('services.point_conversion_rate') / 100);
         $validator = Validator::make($request->all(), [
             'request_point' => 'required|integer',
             'bank_name' => 'required|max:64',

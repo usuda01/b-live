@@ -31,9 +31,9 @@
         <meta property="twitter:image" content="{{ Request::getSchemeAndHttpHost() }}/images/ogp.png" />
     @endif
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
-    <link href="{{ mix('css/fonts.css') }}?param=83" rel="stylesheet">
-    <link href="{{ mix('css/app.css') }}?param=83" rel="stylesheet">
-    <link href="{{ mix('css/all.css') }}?param=83" rel="stylesheet">
+    <link href="{{ mix('css/fonts.css') }}?param=84" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}?param=84" rel="stylesheet">
+    <link href="{{ mix('css/all.css') }}?param=84" rel="stylesheet">
     @if (Request::is('/'))
         <title>B-LIVE｜ゲームのライブ配信、ショート動画サイト</title>
     @else
@@ -73,8 +73,15 @@
         <div class="notice-menu_close">
             <a href="#" id="notice-menu__close-btn"><img src="/images/btn-sidebar-close.png"></a>
         </div>
-        <ul class="notice-menu__list">
-            <li><a href="{{ route('line') }}"><img src="/images/icon-line.png"><span>LINE連携しよう！</span></a></li>
+        <ul id="notice-menu__list" class="notice-menu__list">
+            @foreach ($globalNotifications as $globalNotification)
+                <li
+                    class="{{ $globalNotification->is_read == 0 ? 'unread' : '' }}"
+                    data-id="{{ $globalNotification->id }}"
+                >
+                    {!! $globalNotification->title !!}
+                </li>
+            @endforeach
         </ul>
     </div><!--// .notice-menu -->
 
@@ -121,7 +128,12 @@
                 <a href="#"><img src="/images/btn-search02.png"></a>
             </div>
             <div id="toggle-notice" class="site-header__notice">
-                <a href="#"><i class="fas fa-bell"></i></a>
+                <a href="#">
+                    <i class="fas fa-bell"></i>
+                    @if ($globalNotifications->where('is_read', 0)->isNotEmpty())
+                        <span class="badge">！</span>
+                    @endif
+                </a>
             </div>
             @if (Auth::check())
                 <div class="site-header__account-loggedin">
@@ -238,9 +250,9 @@
             'apiToken' => \Auth::user()->api_token ?? null
         ]) !!};
     </script>
-    <script src="{{ mix('js/app.js') }}?param=83"></script>
-    <script src="{{ mix('js/all.js') }}?param=83"></script>
-    <script src="{{ mix('js/common.js') }}?param=83"></script>
+    <script src="{{ mix('js/app.js') }}?param=84"></script>
+    <script src="{{ mix('js/all.js') }}?param=84"></script>
+    <script src="{{ mix('js/common.js') }}?param=84"></script>
     @stack('scripts')
 </body>
 </html>

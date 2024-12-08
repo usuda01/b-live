@@ -52,6 +52,37 @@ $(function() {
         return false;
     });
 
+    // お知らせのクリックイベント
+    $('#notice-menu__list').on('click', 'li', function (e) {
+        const $notificationItem = $(this);
+        const notificationId = $notificationItem.data('id');
+
+        if (!notificationId) {
+            console.error('Notification ID is missing.');
+            return;
+        }
+
+        $.ajax({
+            url: `/api/notifications/mark-as-read`,
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                'Authorization': `Bearer ${window.Laravel.apiToken}`
+            },
+            data: {
+                notification_id: notificationId // データとしてIDを送信
+            },
+            success: function (response) {
+                if (response.message === 'Notification marked as read.') {
+
+                }
+            },
+            error: function (xhr) {
+                console.error('Error marking notification as read:', xhr.responseText);
+            }
+        });
+    });
+
     // LINE通知の広告非表示
     $('#line-connect #line-connect-btn-close').click(function() {
         $('#line-connect').hide();
