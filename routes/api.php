@@ -6,6 +6,7 @@ use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MovieMessageController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
@@ -50,6 +51,7 @@ Route::group(['middleware' => ['api']], function () {
         Route::post('followers/follow-cancel', [FollowerController::class, 'followCancel']);
         Route::post('movie/good', [MovieController::class, 'good']);
         Route::post('movie/good-cancel', [MovieController::class, 'goodCancel']);
+        Route::post('notifications/mark-as-read', [NotificationController::class, 'markAsRead']);
         Route::post('room/store-view-time', [RoomController::class, 'storeViewTime']);
         Route::post('payment', [PaymentController::class, 'store']);
 

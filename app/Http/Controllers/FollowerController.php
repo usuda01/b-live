@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Follower;
+use App\Models\Notification;
 use App\Models\User;
 use Helper;
 use Illuminate\Http\Request;
@@ -115,6 +116,14 @@ class FollowerController extends Controller
         $follower = Follower::create([
             'follow_id' => $followId,
             'follower_id' => $followerId,
+        ]);
+
+        // お知らせに追加
+        $notification = Notification::create([
+            'type' => 'user_action',
+            'sender_id' => $follower->followerUser->id,
+            'receiver_id' => $follower->followUser->id,
+            'title' => "<a href=\"/user/{$follower->followerUser->id}\">{$follower->followerUser->name}さんにフォローされました。</a>",
         ]);
 
         /*
