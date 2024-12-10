@@ -507,7 +507,13 @@ class SettingController extends Controller
 
         } else {
             // 更新
-            $room = Room::where('id', $roomId)->first();
+            $room = Room::where('id', $roomId)
+                ->where('user_id', $user->id)
+                ->first();
+
+            if (!$room) {
+                abort(403, 'Access denied');
+            }
         }
         $liveRooms = Room::where('status', 1)->get();
         if ($liveRooms->count() >= config('services.max_liver') && $roomId == null) {
