@@ -2023,6 +2023,17 @@
                     background: transparent;
                     .chat-area {
                         height: 100vh;
+                        .chat-list {
+                            .user-message {
+                                background:rgba(150, 150, 150, 0.6);
+                                color: #fff;
+                                padding: 4px;
+                                border-radius: 4px;
+                                .user-name {
+                                    color: #000;
+                                }
+                            }
+                        }
                     }
                 }
             }
