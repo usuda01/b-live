@@ -8,6 +8,7 @@
         "php": "^7.3|^8.0",
         "doctrine/dbal": "^3.3",
         "fideloper/proxy": "^4.4",
+        "firebase/php-jwt": "^6.0",
         "fruitcake/laravel-cors": "^2.0",
         "genealabs/laravel-sign-in-with-apple": "0.5.*",
         "genealabs/laravel-socialiter": "0.3.5",

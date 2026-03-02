@@ -159,6 +159,10 @@ return [
         'redirect' => env('TWITTER_CALLBACK_URL', ''),
     ],
 
+    'apple_app' => [
+        'bundle_id' => env('APPLE_APP_BUNDLE_ID'),
+    ],
+
     'sign_in_with_apple' => [
         'login' => env("SIGN_IN_WITH_APPLE_LOGIN"),
         'redirect' => env("SIGN_IN_WITH_APPLE_REDIRECT"),

@@ -10,6 +10,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Apple Sign In (iOS)
+Route::post('auth/apple-signin', [AuthController::class, 'appleSignin']);
 
 Route::group(['middleware' => ['api']], function () {
     Route::get('followers/{follow_id}', [FollowerController::class, 'getFollowers'])->where('follow_id', '[0-9]+');
