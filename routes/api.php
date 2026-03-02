@@ -11,6 +11,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\StreamController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -64,6 +65,9 @@ Route::group(['middleware' => ['api']], function () {
 
         // for Xcode
         Route::post('user/register-device-token', [UserController::class, 'registerDeviceToken']);
+
+        // 配信設定
+        Route::get('stream/config', [StreamController::class, 'config']);
     });
 });
 
