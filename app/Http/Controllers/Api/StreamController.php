@@ -9,6 +9,7 @@ use App\Models\Wowza;
 use Helper;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class StreamController extends Controller
@@ -46,6 +47,7 @@ class StreamController extends Controller
             'description' => 'max:1000',
             'game_id' => 'nullable|integer',
             'stream_alert' => 'nullable|boolean',
+            'image' => 'nullable|string', // Base64エンコードされた画像
         ]);
 
         // 既に配信中の場合はそのRoomを返す
@@ -83,6 +85,25 @@ class StreamController extends Controller
         $room->published_at = date('Y-m-d H:i:s');
         $room->status = 1;
         $room->wowza_id = $wowza->id;
+
+        // サムネイル画像の保存（Base64）
+        if ($request->input('image')) {
+            $imageData = $request->input('image');
+            // data:image/jpeg;base64, のプレフィックスを除去
+            if (preg_match('/^data:image\/(\w+);base64,/', $imageData, $matches)) {
+                $extension = $matches[1];
+                $imageData = substr($imageData, strpos($imageData, ',') + 1);
+            } else {
+                $extension = 'jpg';
+            }
+            $imageData = base64_decode($imageData);
+            if ($imageData) {
+                $fileName = Str::random(32) . '.' . $extension;
+                Storage::disk('public')->put('rooms/' . $fileName, $imageData);
+                $room->image = $fileName;
+            }
+        }
+
         $room->save();
 
         // Wowzaのステータスを更新
