@@ -12,6 +12,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\StreamController;
+use App\Http\Controllers\Api\FacebookAuthController;
 use App\Http\Controllers\Api\LineAuthController;
 use App\Http\Controllers\Api\TwitterAuthController;
 use Illuminate\Http\Request;
@@ -42,6 +43,10 @@ Route::post('auth/twitter/complete', [TwitterAuthController::class, 'complete'])
 // LINE Sign In (iOS)
 Route::post('auth/line/start', [LineAuthController::class, 'start']);
 Route::post('auth/line/complete', [LineAuthController::class, 'complete']);
+
+// Facebook Sign In (iOS)
+Route::post('auth/facebook/start', [FacebookAuthController::class, 'start']);
+Route::post('auth/facebook/complete', [FacebookAuthController::class, 'complete']);
 
 Route::group(['middleware' => ['api']], function () {
     Route::get('followers/{follow_id}', [FollowerController::class, 'getFollowers'])->where('follow_id', '[0-9]+');
