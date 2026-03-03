@@ -40,7 +40,7 @@ class TwitterController extends Controller
 
         try {
             $twitterUser = Socialite::driver('twitter')->user();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return redirect('auth/twitter');
         }
 
