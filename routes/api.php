@@ -12,6 +12,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\StreamController;
+use App\Http\Controllers\Api\TwitterAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Apple Sign In (iOS)
 Route::post('auth/apple-signin', [AuthController::class, 'appleSignin']);
 
+// Twitter Sign In (iOS)
+Route::post('auth/twitter/start', [TwitterAuthController::class, 'start']);
+Route::post('auth/twitter/complete', [TwitterAuthController::class, 'complete']);
+
 Route::group(['middleware' => ['api']], function () {
     Route::get('followers/{follow_id}', [FollowerController::class, 'getFollowers'])->where('follow_id', '[0-9]+');
     Route::get('get-games', [GameController::class, 'getGames']);
@@ -47,6 +52,8 @@ Route::group(['middleware' => ['api']], function () {
 
     // 認証が必要なページ
     Route::group(['middleware' => ['auth:api']], function () {
+        Route::get('auth/me', [AuthController::class, 'me']);
+
         Route::post('block/flag', [BlockController::class, 'flag']);
         Route::post('block/flag-user', [BlockController::class, 'flagUser']);
         Route::get('block/get-block-users', [BlockController::class, 'getBlockUsers']);
