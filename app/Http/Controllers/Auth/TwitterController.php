@@ -6,14 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Socialite;
 
 class TwitterController extends Controller
 {
+    private const CODE_TTL_SECONDS = 60;
 
     // ログイン
-    public function redirectToProvider() {
+    public function redirectToProvider(Request $request) {
+        // iOS からのリクエストの場合、state をセッションに保存
+        if ($request->query('platform') === 'ios') {
+            $request->session()->put('twitter_auth_platform', 'ios');
+            $request->session()->put('twitter_auth_state', $request->query('state'));
+        }
+
         return Socialite::driver('twitter')->redirect();
     }
 
@@ -22,6 +30,11 @@ class TwitterController extends Controller
 
         $denied = $request->input('denied');
         if ($denied) {
+            // iOS の場合はエラー付きでアプリにリダイレクト
+            if ($request->session()->pull('twitter_auth_platform') === 'ios') {
+                $request->session()->forget('twitter_auth_state');
+                return redirect('blive://auth/twitter?error=denied');
+            }
             return redirect('login');
         }
 
@@ -51,6 +64,23 @@ class TwitterController extends Controller
                 'point' => 0,
             ]);
         }
+
+        // iOS からのリクエストの場合、一時コードを発行してアプリにリダイレクト
+        $platform = $request->session()->pull('twitter_auth_platform');
+        $state = $request->session()->pull('twitter_auth_state');
+
+        if ($platform === 'ios' && $state) {
+            $code = Str::random(40);
+
+            Cache::put("twitter_oauth_code:{$code}", [
+                'user_id' => $user->id,
+                'state' => $state,
+            ], self::CODE_TTL_SECONDS);
+
+            return redirect("blive://auth/twitter?code={$code}&state={$state}");
+        }
+
+        // Web（既存処理）
         Auth::login($user, true);
         $loginRedirect = $request->session()->get('loginRedirect', '/');
         $loginRedirect .= '?api_token=' . $user->api_token;

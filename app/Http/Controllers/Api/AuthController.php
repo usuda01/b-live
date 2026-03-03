@@ -52,6 +52,14 @@ class AuthController extends Controller
         ]);
     }
 
+    public function me(Request $request): JsonResponse
+    {
+        return response()->json([
+            'user' => $request->user(),
+            'token' => $request->user()->api_token,
+        ]);
+    }
+
     private function verifyAppleToken(string $identityToken): object
     {
         // Apple の JWKS を取得
