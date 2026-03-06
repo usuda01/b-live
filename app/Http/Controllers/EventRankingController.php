@@ -394,7 +394,9 @@ class EventRankingController extends Controller
             } else {
                 $userIds[] = $eventRanking->user_id;
                 $room = Room::where('id', $eventRanking->room_id)->first();
-                $rooms[] = $room;
+                if ($room) {
+                    $rooms[] = $room;
+                }
             }
         }
 
