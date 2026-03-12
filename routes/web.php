@@ -190,7 +190,7 @@ Route::get('page/company', [PageController::class, 'company']);
 Route::get('page/liver', [PageController::class, 'liver']);
 Route::get('page/listener', [PageController::class, 'listener']);
 Route::get('page/notice', [PageController::class, 'notice']);
-Route::get('page/notice/{id}', [PageController::class, 'noticeDetail']);
+Route::get('page/notice/{id}', [PageController::class, 'noticeDetail'])->whereNumber('id');
 Route::get('page/howto', [PageController::class, 'howto']);
 Route::get('page/level', [PageController::class, 'level']);
 Route::get('page/ranking', [PageController::class, 'ranking']);
@@ -204,4 +204,3 @@ Route::get('room-info/{room_id}', [RoomController::class, 'getInfo']);
 
 // for 動画用コメントビューワー
 Route::get('room-message-viewer/{room_id}', [RoomController::class, 'messageViewer'])->name('room_message_viewer');
-
