@@ -35,9 +35,27 @@ class AuthController extends Controller
         $user = User::where('apple_id', $appleId)->first();
 
         if (!$user) {
-            return response()->json([
-                'message' => 'アカウントが見つかりません。先にWebサイトで登録してください。',
-            ], 404);
+            $email = $request->input('email');
+
+            if (!$email) {
+                return response()->json([
+                    'message' => 'アカウントが見つかりません。先にWebサイトで登録してください。',
+                ], 404);
+            }
+
+            $user = User::create([
+                'name' => $request->input('name') ?: mb_strimwidth($email, 0, 24, '', 'UTF-8'),
+                'email' => $email,
+                'password' => '1',
+                'api_token' => Str::random(80),
+                'status' => 2,
+                'apple_id' => $appleId,
+            ]);
+            $user->user_data()->create([
+                'stripe_id' => '',
+                'stripe_status' => 0,
+                'point' => 0,
+            ]);
         }
 
         // api_token が未設定の場合は生成
