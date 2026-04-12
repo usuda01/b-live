@@ -53,6 +53,12 @@ class PageController extends Controller
         return view('page.howto');
     }
 
+    // iOSアプリの使い方
+    public function howtoIos()
+    {
+        return view('page.howto-ios');
+    }
+
     // プライバシーポリシー
     public function privacy()
     {
