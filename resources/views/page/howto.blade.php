@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title', '配信方法' . ' - ')
+@section('title', '配信方法(PC)' . ' - ')
 @section('content')
     <div class="page-content">
         @include('parts.liver_menu')
         <div class="main-content">
-            <h2>配信方法</h2>
+            <h2>配信方法(PC)</h2>
             <div class="box howto">
                 <h3>PCを使った配信方法</h3>
 

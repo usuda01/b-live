@@ -192,6 +192,7 @@ Route::get('page/listener', [PageController::class, 'listener']);
 Route::get('page/notice', [PageController::class, 'notice']);
 Route::get('page/notice/{id}', [PageController::class, 'noticeDetail'])->whereNumber('id');
 Route::get('page/howto', [PageController::class, 'howto']);
+Route::get('page/howto-ios', [PageController::class, 'howtoIos']);
 Route::get('page/level', [PageController::class, 'level']);
 Route::get('page/ranking', [PageController::class, 'ranking']);
 Route::get('page/terms', [PageController::class, 'terms']);
