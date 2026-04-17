@@ -5,11 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Follower;
 use App\Models\Notification;
 use App\Models\User;
+use App\Services\FcmService;
 use Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Ncmb\NCMB;
-use Ncmb\Push;
 
 class FollowerController extends Controller
 {
@@ -126,23 +125,17 @@ class FollowerController extends Controller
             'title' => "<a href=\"/user/{$follower->followerUser->id}\">{$follower->followerUser->name}さんにフォローされました。</a>",
         ]);
 
-        /*
-         * フォローされたユーザーに
-         * Push通知
-         */
+        // フォローされたユーザーにPush通知（FCM）
         if ($follower->followUser->device_token) {
-            // ncmbmania/php-ncmbがguzzlehttp/guzzleの7系に対応していないためインストールできない
-/*
-            NCMB::initialize(config('services.ncmb.applicationkey'), config('services.ncmb.clientkey'));
-            Push::Send(array(
-                'immediateDeliveryFlag' => true,
-                'target' => ['ios'],
-                'title' => $follower->followerUser->name . 'さんにフォローされました',
-                'badgeIncrementFlag' => false,
-                'sound' => 'default',
-                'searchCondition' => ['deviceToken' => $follower->followUser->device_token]
-            ));
-*/
+            app(FcmService::class)->send(
+                $follower->followUser->device_token,
+                "{$follower->followerUser->name}さんにフォローされました",
+                null,
+                [
+                    'type' => 'follow',
+                    'follower_id' => $follower->followerUser->id,
+                ]
+            );
         }
 
         // LINE通知
