@@ -15,7 +15,8 @@ class FcmService
     // Googleのアクセストークンは3600秒で失効するため10分のバッファを取る
     private const TOKEN_TTL_SECONDS = 3000;
 
-    private Client $client;
+    /** @var Client */
+    private $client;
 
     public function __construct()
     {
