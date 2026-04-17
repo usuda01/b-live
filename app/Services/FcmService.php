@@ -12,6 +12,15 @@ class FcmService
     private const TOKEN_URL = 'https://oauth2.googleapis.com/token';
     private const SCOPE = 'https://www.googleapis.com/auth/firebase.messaging';
     private const CACHE_KEY = 'fcm_access_token';
+    // Googleのアクセストークンは3600秒で失効するため10分のバッファを取る
+    private const TOKEN_TTL_SECONDS = 3000;
+
+    private Client $client;
+
+    public function __construct()
+    {
+        $this->client = new Client();
+    }
 
     public function send(string $deviceToken, string $title, ?string $body = null, array $data = []): bool
     {
@@ -51,8 +60,7 @@ class FcmService
         }
 
         try {
-            $client = new Client();
-            $response = $client->post("https://fcm.googleapis.com/v1/projects/{$projectId}/messages:send", [
+            $response = $this->client->post("https://fcm.googleapis.com/v1/projects/{$projectId}/messages:send", [
                 'headers' => [
                     'Authorization' => "Bearer {$accessToken}",
                     'Content-Type' => 'application/json; UTF-8',
@@ -79,20 +87,27 @@ class FcmService
 
     private function getAccessToken(): ?string
     {
-        return Cache::remember(self::CACHE_KEY, 3000, function () {
-            return $this->fetchAccessToken();
-        });
+        $cached = Cache::get(self::CACHE_KEY);
+        if (!empty($cached)) {
+            return $cached;
+        }
+        $token = $this->fetchAccessToken();
+        if (!empty($token)) {
+            Cache::put(self::CACHE_KEY, $token, self::TOKEN_TTL_SECONDS);
+        }
+        return $token;
     }
 
     private function fetchAccessToken(): ?string
     {
         $credentialsPath = config('services.firebase.credentials');
-        if (empty($credentialsPath) || !file_exists($credentialsPath)) {
-            Log::error('[FCM] Service account credentials not found: ' . $credentialsPath);
+        $raw = @file_get_contents($credentialsPath ?? '');
+        if ($raw === false) {
+            Log::error('[FCM] Service account credentials not readable: ' . $credentialsPath);
             return null;
         }
 
-        $credentials = json_decode(file_get_contents($credentialsPath), true);
+        $credentials = json_decode($raw, true);
         if (empty($credentials['client_email']) || empty($credentials['private_key'])) {
             Log::error('[FCM] Invalid service account credentials');
             return null;
@@ -110,8 +125,7 @@ class FcmService
         $assertion = JWT::encode($payload, $credentials['private_key'], 'RS256');
 
         try {
-            $client = new Client();
-            $response = $client->post(self::TOKEN_URL, [
+            $response = $this->client->post(self::TOKEN_URL, [
                 'form_params' => [
                     'grant_type' => 'urn:ietf:params:oauth:grant-type:jwt-bearer',
                     'assertion' => $assertion,
