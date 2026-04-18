@@ -50,7 +50,12 @@ class MessageReceived implements ShouldBroadcastNow
                 'room_id' => $this->message->room_id,
                 'content' => $this->message->content,
                 'created_at' => $this->message->created_at,
-                'user_name' => $this->message->user->name
+                'user_name' => $this->message->user->name,
+                'user' => [
+                    'id' => $this->message->user->id,
+                    'name' => $this->message->user->name,
+                    'image' => $this->message->user->image,
+                ],
             ]
         ];
     }

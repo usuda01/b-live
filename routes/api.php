@@ -11,6 +11,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\RoomController as ApiRoomController;
 use App\Http\Controllers\Api\StreamController;
 use App\Http\Controllers\Api\FacebookAuthController;
 use App\Http\Controllers\Api\LineAuthController;
@@ -53,6 +54,8 @@ Route::group(['middleware' => ['api']], function () {
     Route::get('get-games', [GameController::class, 'getGames']);
     Route::get('message', [MessageController::class, 'show']);
     Route::post('message', [MessageController::class, 'store']);
+    Route::get('rooms', [ApiRoomController::class, 'index']);
+    Route::get('rooms/{id}', [ApiRoomController::class, 'show'])->where('id', '[0-9]+');
     Route::get('movie/get-goods/{movie_id}', [MovieController::class, 'getMovieGoods']);
     Route::post('movie/play/', [MovieController::class, 'play']);
     Route::get('movie-message', [MovieMessageController::class, 'show']);
