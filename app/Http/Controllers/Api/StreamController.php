@@ -162,22 +162,22 @@ class StreamController extends Controller
     private function sendNotifications(Room $room): void
     {
         foreach ($room->user->followers as $follower) {
+            if ($follower->followerUser->user_data->notice_live_start != 1) {
+                continue;
+            }
+
             // LINE通知
             if ($follower->followerUser->user_data->is_line_connected == 1) {
-                if ($follower->followerUser->user_data->line_notice == 1) {
-                    $lineMessage = "{$follower->followerUser->name}さん\n"
-                        . "【{$room->user->name}】さんの配信が始まりました！\n"
-                        . $room->name . "\n"
-                        . config('app.url').'/room/'.$room->id;
-                    Helper::pushLineMessage($follower->followerUser->line_id, $lineMessage);
-                }
+                $lineMessage = "{$follower->followerUser->name}さん\n"
+                    . "【{$room->user->name}】さんの配信が始まりました！\n"
+                    . $room->name . "\n"
+                    . config('app.url').'/room/'.$room->id;
+                Helper::pushLineMessage($follower->followerUser->line_id, $lineMessage);
             }
 
             // メール通知
-            if ($follower->followerUser->user_data->is_notice1 == 1) {
-                if ($follower->followerUser->email) {
-                    ProcessSendMailLiveStarted::dispatch($follower, $room);
-                }
+            if ($follower->followerUser->email) {
+                ProcessSendMailLiveStarted::dispatch($follower, $room);
             }
         }
     }

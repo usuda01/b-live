@@ -23,8 +23,13 @@
                     <ul>
                         <li>
                             <label class="label">フォローユーザーの配信開始</label>
-                            <label><input type="radio" name="is_notice1" value="1" {{ old('is_notice1', $user->user_data->is_notice1) == 1 ? 'checked' : '' }}> 通知する</label>
-                            <label><input type="radio" name="is_notice1" value="0" {{ old('is_notice1', $user->user_data->is_notice1) == 0 ? 'checked' : '' }}> 通知しない</label>
+                            <label><input type="radio" name="notice_live_start" value="1" {{ old('notice_live_start', $user->user_data->notice_live_start) == 1 ? 'checked' : '' }}> 通知する</label>
+                            <label><input type="radio" name="notice_live_start" value="0" {{ old('notice_live_start', $user->user_data->notice_live_start) == 0 ? 'checked' : '' }}> 通知しない</label>
+                        </li>
+                        <li>
+                            <label class="label">フォローされたとき</label>
+                            <label><input type="radio" name="notice_follow" value="1" {{ old('notice_follow', $user->user_data->notice_follow) == 1 ? 'checked' : '' }}> 通知する</label>
+                            <label><input type="radio" name="notice_follow" value="0" {{ old('notice_follow', $user->user_data->notice_follow) == 0 ? 'checked' : '' }}> 通知しない</label>
                         </li>
                     <ul>
                     <button type="submit" class="submit">保存</button>
