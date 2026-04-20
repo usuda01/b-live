@@ -85,6 +85,8 @@ Route::group(['middleware' => ['api']], function () {
 
         // for Xcode
         Route::post('user/register-device-token', [UserController::class, 'registerDeviceToken']);
+        Route::get('user/notification-settings', [UserController::class, 'getNotificationSettings']);
+        Route::put('user/notification-settings', [UserController::class, 'updateNotificationSettings']);
 
         // 配信設定
         Route::get('stream/config', [StreamController::class, 'config']);

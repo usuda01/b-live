@@ -121,4 +121,29 @@ class UserController extends Controller
         $user->save();
         return;
     }
+
+    public function getNotificationSettings() {
+        $user = Auth::user();
+        return response()->json([
+            'notice_live_start' => (int) $user->user_data->notice_live_start,
+            'notice_follow' => (int) $user->user_data->notice_follow,
+        ]);
+    }
+
+    public function updateNotificationSettings(Request $request) {
+        $request->validate([
+            'notice_live_start' => 'required|boolean',
+            'notice_follow' => 'required|boolean',
+        ]);
+
+        $user = Auth::user();
+        $user->user_data->notice_live_start = (int) $request->input('notice_live_start');
+        $user->user_data->notice_follow = (int) $request->input('notice_follow');
+        $user->user_data->save();
+
+        return response()->json([
+            'notice_live_start' => (int) $user->user_data->notice_live_start,
+            'notice_follow' => (int) $user->user_data->notice_follow,
+        ]);
+    }
 }
