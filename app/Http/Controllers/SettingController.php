@@ -12,6 +12,7 @@ use App\Models\Room;
 use App\Models\User;
 use App\Models\UserData;
 use App\Models\Wowza;
+use App\Services\FcmService;
 use FFMpeg;
 use Helper;
 use Illuminate\Http\Request;
@@ -613,20 +614,17 @@ class SettingController extends Controller
                         continue;
                     }
 
+                    // Push通知（FCM）
                     if ($follower->followerUser->device_token) {
-                        // ncmbmania/php-ncmbがguzzlehttp/guzzleの7系に対応していないためインストールできない
-/*
-                        NCMB::initialize(config('services.ncmb.applicationkey'), config('services.ncmb.clientkey'));
-                        Push::Send(array(
-                            'immediateDeliveryFlag' => true,
-                            'target' => ['ios'],
-                            'title' => $room->user->name . 'さんの配信が始まりました!',
-                            'message' => $room->name,
-                            'badgeIncrementFlag' => false,
-                            'sound' => 'default',
-                            'searchCondition' => ['deviceToken' => $follower->followerUser->device_token]
-                        ));
-*/
+                        app(FcmService::class)->send(
+                            $follower->followerUser->device_token,
+                            "{$room->user->name}さんの配信が始まりました",
+                            $room->name,
+                            [
+                                'type' => 'live_start',
+                                'room_id' => $room->id,
+                            ]
+                        );
                     }
 
                     // LINE通知

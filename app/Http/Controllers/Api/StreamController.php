@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\ProcessSendMailLiveStarted;
 use App\Models\Room;
 use App\Models\Wowza;
+use App\Services\FcmService;
 use Helper;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -164,6 +165,19 @@ class StreamController extends Controller
         foreach ($room->user->followers as $follower) {
             if ($follower->followerUser->user_data->notice_live_start != 1) {
                 continue;
+            }
+
+            // Push通知（FCM）
+            if ($follower->followerUser->device_token) {
+                app(FcmService::class)->send(
+                    $follower->followerUser->device_token,
+                    "{$room->user->name}さんの配信が始まりました",
+                    $room->name,
+                    [
+                        'type' => 'live_start',
+                        'room_id' => $room->id,
+                    ]
+                );
             }
 
             // LINE通知
