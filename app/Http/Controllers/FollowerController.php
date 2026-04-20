@@ -125,23 +125,22 @@ class FollowerController extends Controller
             'title' => "<a href=\"/user/{$follower->followerUser->id}\">{$follower->followerUser->name}さんにフォローされました。</a>",
         ]);
 
-        // フォローされたユーザーにPush通知（FCM）
-        if ($follower->followUser->device_token) {
-            app(FcmService::class)->send(
-                $follower->followUser->device_token,
-                "{$follower->followerUser->name}さんにフォローされました",
-                null,
-                [
-                    'type' => 'follow',
-                    'follower_id' => $follower->followerUser->id,
-                ]
-            );
-        }
+        if ($follower->followUser->user_data->notice_follow == 1) {
+            // フォローされたユーザーにPush通知（FCM）
+            if ($follower->followUser->device_token) {
+                app(FcmService::class)->send(
+                    $follower->followUser->device_token,
+                    "{$follower->followerUser->name}さんにフォローされました",
+                    null,
+                    [
+                        'type' => 'follow',
+                        'follower_id' => $follower->followerUser->id,
+                    ]
+                );
+            }
 
-        // LINE通知
-        if ($follower->followUser->user_data->is_line_connected == 1) {
-            // 通知設定
-            if ($follower->followUser->user_data->line_notice == 1) {
+            // LINE通知
+            if ($follower->followUser->user_data->is_line_connected == 1) {
                 $lineMessage = "{$follower->followUser->name}さん\n"
                     . "【{$follower->followerUser->name}】さんにフォローされました\n"
                     . config('app.url').'/user/'.$follower->followerUser->id;

@@ -344,7 +344,8 @@ class SettingController extends Controller
     public function noticePost(Request $request) {
         $user = Auth::user();
 
-        $user->user_data->is_notice1 = $request->input('is_notice1');
+        $user->user_data->notice_live_start = $request->input('notice_live_start');
+        $user->user_data->notice_follow = $request->input('notice_follow');
         $user->user_data->save();
 
         $request->session()->flash('flash_message', '更新しました');
@@ -395,9 +396,6 @@ class SettingController extends Controller
             $user->user_data->is_line_connected = null;
         }
         $user->user_data->join_ranking = $request->input('join_ranking');
-        if ($request->input('line_notice') !== null) {
-            $user->user_data->line_notice = $request->input('line_notice');
-        }
         $user->user_data->save();
         $request->session()->flash('flash_message', '更新しました');
 
@@ -611,6 +609,10 @@ class SettingController extends Controller
              */
             if ($streamAlert == '1') {
                 foreach ($room->user->followers as $follower) {
+                    if ($follower->followerUser->user_data->notice_live_start != 1) {
+                        continue;
+                    }
+
                     if ($follower->followerUser->device_token) {
                         // ncmbmania/php-ncmbがguzzlehttp/guzzleの7系に対応していないためインストールできない
 /*
@@ -629,28 +631,16 @@ class SettingController extends Controller
 
                     // LINE通知
                     if ($follower->followerUser->user_data->is_line_connected == 1) {
-                        // 通知設定
-                        if ($follower->followerUser->user_data->line_notice == 1) {
-                            $lineMessage = "{$follower->followerUser->name}さん\n"
-                                . "【{$room->user->name}】さんの配信が始まりました！\n"
-                                . $room->name . "\n"
-                                . config('app.url').'/room/'.$room->id;
-                            Helper::pushLineMessage($follower->followerUser->line_id, $lineMessage);
-                        }
+                        $lineMessage = "{$follower->followerUser->name}さん\n"
+                            . "【{$room->user->name}】さんの配信が始まりました！\n"
+                            . $room->name . "\n"
+                            . config('app.url').'/room/'.$room->id;
+                        Helper::pushLineMessage($follower->followerUser->line_id, $lineMessage);
                     }
 
                     // メール通知
-                    if ($follower->followerUser->user_data->is_notice1 == 1) {
-                        $data = [
-                            'followerName' => $follower->followerUser->name,
-                            'imageUrl' => $room->getImagePath(),
-                            'roomName' => $room->name,
-                            'roomId' => $room->id,
-                            'userName' => $room->user->name,
-                        ];
-                        if ($follower->followerUser->email) {
-                            ProcessSendMailLiveStarted::dispatch($follower, $room);
-                        }
+                    if ($follower->followerUser->email) {
+                        ProcessSendMailLiveStarted::dispatch($follower, $room);
                     }
                 }
             }
