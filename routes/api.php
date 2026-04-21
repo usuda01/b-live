@@ -58,6 +58,7 @@ Route::group(['middleware' => ['api']], function () {
     Route::get('rooms', [ApiRoomController::class, 'index']);
     Route::get('rooms/{id}', [ApiRoomController::class, 'show'])->where('id', '[0-9]+');
     Route::get('users/new', [ApiUserController::class, 'getNewUsers']);
+    Route::get('users/{id}', [ApiUserController::class, 'show'])->where('id', '[0-9]+');
     Route::get('movie/get-goods/{movie_id}', [MovieController::class, 'getMovieGoods']);
     Route::post('movie/play/', [MovieController::class, 'play']);
     Route::get('movie-message', [MovieMessageController::class, 'show']);
