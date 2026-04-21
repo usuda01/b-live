@@ -13,6 +13,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\RoomController as ApiRoomController;
 use App\Http\Controllers\Api\StreamController;
+use App\Http\Controllers\Api\UserController as ApiUserController;
 use App\Http\Controllers\Api\FacebookAuthController;
 use App\Http\Controllers\Api\LineAuthController;
 use App\Http\Controllers\Api\TwitterAuthController;
@@ -56,6 +57,7 @@ Route::group(['middleware' => ['api']], function () {
     Route::post('message', [MessageController::class, 'store']);
     Route::get('rooms', [ApiRoomController::class, 'index']);
     Route::get('rooms/{id}', [ApiRoomController::class, 'show'])->where('id', '[0-9]+');
+    Route::get('users/new', [ApiUserController::class, 'getNewUsers']);
     Route::get('movie/get-goods/{movie_id}', [MovieController::class, 'getMovieGoods']);
     Route::post('movie/play/', [MovieController::class, 'play']);
     Route::get('movie-message', [MovieMessageController::class, 'show']);
