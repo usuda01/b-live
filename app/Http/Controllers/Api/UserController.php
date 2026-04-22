@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Follower;
+use App\Models\Room;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 
@@ -24,6 +25,36 @@ class UserController extends Controller
 
         return response()->json([
             'users' => $data,
+        ]);
+    }
+
+    public function getFollowerRanking(): JsonResponse
+    {
+        $recentRooms = Room::select('rooms.user_id as user_id')
+            ->where('created_at', '>=', date('Y-m-d H:i:s', strtotime('-7 day')))
+            ->groupBy('user_id')
+            ->get();
+
+        $entries = [];
+        foreach ($recentRooms as $recentRoom) {
+            $user = $recentRoom->user;
+            if (!$user) {
+                continue;
+            }
+            $entries[] = [
+                'id' => $user->id,
+                'name' => $user->name,
+                'image_url' => url($user->getImagePath()),
+                'follower_count' => $user->followers()->count(),
+            ];
+        }
+
+        usort($entries, function ($a, $b) {
+            return $b['follower_count'] - $a['follower_count'];
+        });
+
+        return response()->json([
+            'users' => array_slice($entries, 0, 10),
         ]);
     }
 
