@@ -10,6 +10,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Api\AppVersionController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\RoomController as ApiRoomController;
 use App\Http\Controllers\Api\StreamController;
@@ -51,6 +52,7 @@ Route::post('auth/facebook/start', [FacebookAuthController::class, 'start']);
 Route::post('auth/facebook/complete', [FacebookAuthController::class, 'complete']);
 
 Route::group(['middleware' => ['api']], function () {
+    Route::get('app-version', [AppVersionController::class, 'show']);
     Route::get('followers/{follow_id}', [FollowerController::class, 'getFollowers'])->where('follow_id', '[0-9]+');
     Route::get('get-games', [GameController::class, 'getGames']);
     Route::get('message', [MessageController::class, 'show']);
