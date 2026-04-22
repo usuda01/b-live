@@ -3,12 +3,57 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Log;
 use App\Models\Room;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
+    public function countViews(Request $request): JsonResponse
+    {
+        $roomId = $request->input('room_id');
+        $ipAddress = $request->ip();
+
+        if (!$roomId) {
+            return response()->json(['views' => 0]);
+        }
+
+        if (!$ipAddress) {
+            $views = Log::where('room_id', $roomId)->count();
+            return response()->json(['views' => $views]);
+        }
+
+        $log = Log::where('room_id', $roomId)
+            ->where('ip_address', $ipAddress)
+            ->where('created_at', '>', date('Y-m-d H:i:s', strtotime('-30 second')))
+            ->first();
+        if (!$log) {
+            Log::create([
+                'room_id' => $roomId,
+                'ip_address' => $ipAddress,
+            ]);
+        }
+
+        Log::where('created_at', '<=', date('Y-m-d H:i:s', strtotime('-60 second')))->delete();
+
+        $views = Log::where('room_id', $roomId)
+            ->where('created_at', '>', date('Y-m-d H:i:s', strtotime('-30 second')))
+            ->count();
+
+        $room = Room::find($roomId);
+        if ($room && $room->status == 1 && $room->max_view < $views) {
+            $room->max_view = $views;
+            $room->save();
+        }
+
+        return response()->json([
+            'views' => $views,
+            'status' => $room ? (int) $room->status : null,
+        ]);
+    }
+
+
     public function index(Request $request): JsonResponse
     {
         $rooms = Room::with(['user', 'wowza'])
