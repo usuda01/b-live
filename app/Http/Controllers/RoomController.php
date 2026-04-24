@@ -189,7 +189,6 @@ class RoomController extends Controller
             abort(404);
         }
         if ($room->status == '1') {
-            //$videoUrl = config('services.rtmp_url') . '/' . $room->stream_key;
             $videoUrl = $room->wowza->hls_url;
         } else {
             $videoUrl = 'https://b-live-bucket.s3.us-east-2.amazonaws.com/' . $room->stream_key . '.mp4';
