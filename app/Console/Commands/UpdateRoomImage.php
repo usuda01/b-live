@@ -1,6 +1,9 @@
 <?php
 /*
  * サムネイルが無い動画に画像を設定する
+ *
+ * SRS_API_URL が設定されていれば SRS モード、未設定なら Wowza モード。
+ * Wowza 分岐は移行完了後に削除する。
  */
 
 namespace App\Console\Commands;
@@ -43,12 +46,20 @@ class UpdateRoomImage extends Command
      */
     public function handle()
     {
-        // サムネイル画像が無い配信中 Room を対象
         $rooms = Room::where('status', 1)->whereNull('image')->get();
         if ($rooms->isEmpty()) {
             return;
         }
 
+        if (config('services.wowza.api_url')) {
+            $this->handleSrs($rooms);
+        } else {
+            $this->handleWowza($rooms);
+        }
+    }
+
+    private function handleSrs($rooms)
+    {
         // SRS API で配信中ストリーム一覧を取得
         try {
             $response = Http::timeout(10)
@@ -68,7 +79,7 @@ class UpdateRoomImage extends Command
 
         foreach ($rooms as $room) {
             if (!in_array($room->wowza->stream_key, $activeStreams, true)) {
-                continue;  // 配信中でないのでスキップ
+                continue;
             }
 
             $path = storage_path('app/public/rooms/').$room->wowza->stream_key.'-'.$room->id.'.png';
@@ -86,6 +97,33 @@ class UpdateRoomImage extends Command
             if (File::exists($path)) {
                 $room->image = $room->wowza->stream_key.'-'.$room->id.'.png';
                 $room->save();
+            }
+        }
+    }
+
+    private function handleWowza($rooms)
+    {
+        foreach ($rooms as $room) {
+            $response = Http::withBasicAuth(config('services.wowza.username'), config('services.wowza.password'))
+                ->withHeaders([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'charset' => 'utf-8',
+                ])
+                ->get('http://'.config('services.wowza.host').':8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/blive/instances/_definst_/incomingstreams/'.$room->wowza->stream_key.'/monitoring/current');
+
+            if ($response->successful()) {
+                $body = json_decode($response->body());
+                if ($body->bytesIn > 0) {
+                    $path = storage_path('app/public/rooms/').$room->wowza->stream_key.'-'.$room->id.'.png';
+                    shell_exec('ffmpeg -y -i rtmp://'.config('services.wowza.host').':1935/blive/'.$room->wowza->stream_key.' -f image2 -vframes 1 '.$path);
+                    if (File::exists($path)) {
+                        $room->image = $room->wowza->stream_key.'-'.$room->id.'.png';
+                        $room->save();
+                    }
+                }
+            } else {
+                $this->info(date('Y-m-d H:i:s').' [command:update-room-image] '.$response->body());
             }
         }
     }
