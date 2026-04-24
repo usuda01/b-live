@@ -124,8 +124,6 @@ return [
         'access_token' => env('LINE_ACCESS_TOKEN'),
     ],
 
-    'rtmp_url' => env('RTMP_URL'),
-
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
@@ -188,12 +186,14 @@ return [
     ],
 
     'wowza' => [
-        'api_key' => env('WOWZA_API_KEY'),
-        'access_key' => env('WOWZA_ACCESS_KEY'),
         'host' => env('WOWZA_HOST'),
         'username' => env('WOWZA_USERNAME'),
         'password' => env('WOWZA_PASSWORD'),
         'ssl_host_name' => env('WOWZA_SSL_HOST_NAME'),
+        'protocol' => env('STREAM_PROTOCOL', 'rtmps'),
+        'port' => env('STREAM_PORT'),
+        'app' => env('STREAM_APP', 'blive'),
+        'api_url' => env('SRS_API_URL'),
     ],
 
 ];

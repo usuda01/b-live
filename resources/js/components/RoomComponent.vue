@@ -798,10 +798,17 @@
                 } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
                     // iPhone Safari
                     // ビットレートごとのURLリストを固定値で設定する
+                    // SRS 形式:   /live/{key}_all.m3u8                 → /live/{key}_source.m3u8
+                    // Wowza 形式: /blive/ngrp:{key}_all/playlist.m3u8  → /blive/{key}_source/playlist.m3u8
+                    const key = this.room.wowza.stream_key;
+                    const isSrs = hlsUrl.includes(`${key}_all.m3u8`);
+                    const makeUrl = (variant) => isSrs
+                        ? hlsUrl.replace(`${key}_all.m3u8`, `${key}_${variant}.m3u8`)
+                        : hlsUrl.replace(`ngrp:${key}_all`, `${key}_${variant}`);
                     this.availableLevels = [
-                        { id: 0, label: 'ソース', url: hlsUrl.replace('ngrp:' + this.room.wowza.stream_key + '_all', this.room.wowza.stream_key + '_source') },
-                        { id: 1, label: '360p', url: hlsUrl.replace('ngrp:' + this.room.wowza.stream_key + '_all', this.room.wowza.stream_key + '_360p') },
-                        { id: 2, label: '160p', url: hlsUrl.replace('ngrp:' + this.room.wowza.stream_key + '_all', this.room.wowza.stream_key + '_160p') },
+                        { id: 0, label: 'ソース', url: makeUrl('source') },
+                        { id: 1, label: '360p', url: makeUrl('360p') },
+                        { id: 2, label: '160p', url: makeUrl('160p') },
                     ];
                     // video.addEventListener("loadedmetadata", () => {
                     // video.addEventListener("canplaythrough", () => {
