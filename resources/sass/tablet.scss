@@ -3381,6 +3381,65 @@
                 padding: 30px 20px 30px 20px;
                 background: #fff;
                 border-radius: 4px;
+                .server-change-banner {
+                    border: 2px solid #c0392b;
+                    border-radius: 4px;
+                    margin-bottom: 24px;
+                    overflow: hidden;
+                    .banner-header {
+                        background: #c0392b;
+                        color: #fff;
+                        padding: 10px 14px;
+                        font-size: 1.4rem;
+                        font-weight: bold;
+                        .badge {
+                            background: #fff;
+                            color: #c0392b;
+                            font-size: 1.1rem;
+                            font-weight: bold;
+                            padding: 2px 6px;
+                            border-radius: 3px;
+                            margin-right: 8px;
+                        }
+                    }
+                    .banner-body {
+                        background: #fdf3f2;
+                        padding: 14px 16px;
+                        p {
+                            margin-bottom: 10px;
+                            font-size: 1.3rem;
+                        }
+                        .url-table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            margin-bottom: 10px;
+                            th, td {
+                                padding: 6px 10px;
+                                border: 1px solid #e0c0be;
+                                font-size: 1.3rem;
+                                word-break: break-all;
+                            }
+                            th {
+                                background: #f5dedd;
+                                font-weight: bold;
+                                white-space: nowrap;
+                            }
+                            .old-url {
+                                text-decoration: line-through;
+                                color: #999;
+                            }
+                            .new-url {
+                                color: #c0392b;
+                                font-weight: bold;
+                            }
+                        }
+                        .note {
+                            font-size: 1.2rem;
+                            color: #666;
+                            margin-bottom: 0;
+                        }
+                    }
+                }
                 .flash_message {
                     margin-bottom: 42px;
                     color: #ff0000;

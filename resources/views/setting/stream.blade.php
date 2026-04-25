@@ -6,6 +6,26 @@
         <div class="main-content">
             <h2>ライブ配信</h2>
             <div class="stream-form">
+                <div class="server-change-banner">
+                    <div class="banner-header">
+                        <span class="badge">重要</span>
+                        2026/4/25 配信サーバーURLを変更しました
+                    </div>
+                    <div class="banner-body">
+                        <p>OBSなどの配信ソフトのサーバーURLを下記に変更してください。ストリームキーは変更ありません。</p>
+                        <table class="url-table">
+                            <tr>
+                                <th>旧URL</th>
+                                <td class="old-url">rtmps://5f1ee0e19125e.streamlock.net/blive</td>
+                            </tr>
+                            <tr>
+                                <th>新URL</th>
+                                <td class="new-url">rtmps://stream.carol-i.com:1936/live</td>
+                            </tr>
+                        </table>
+                        <p class="note">※ ストリームキーの変更はありません</p>
+                    </div>
+                </div>
                 @if (session('flash_message'))
                     <div class="flash_message">
                         {{ session('flash_message') }}
