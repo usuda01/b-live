@@ -55,6 +55,50 @@
                 @endif
             </div>
 
+            @if ($upcomingSchedules->count() > 0)
+                <div class="schedule-content">
+                    <h2 class="main-title">
+                        <i class="far fa-calendar-alt"></i> もうすぐ配信
+                        <a class="more" href="/schedule">すべての予定 →</a>
+                    </h2>
+                    <div class="schedule-cards">
+                        @foreach ($upcomingSchedules as $sch)
+                            @php
+                                $isReminded = in_array($sch->id, $reminderIds, true);
+                                $weekdayLabels = ['日', '月', '火', '水', '木', '金', '土'];
+                                $weekdayJa = $weekdayLabels[$sch->scheduled_start_at->dayOfWeek];
+                                $diffMin = (int) round(now()->diffInSeconds($sch->scheduled_start_at, false) / 60);
+                                if ($diffMin <= 60) {
+                                    $relative = 'あと ' . max(1, $diffMin) . '分';
+                                } elseif ($diffMin <= 24 * 60) {
+                                    $relative = 'あと ' . max(1, intdiv($diffMin, 60)) . '時間';
+                                } elseif ($sch->scheduled_start_at->isTomorrow()) {
+                                    $relative = '明日(' . $weekdayJa . ')';
+                                } else {
+                                    $relative = $sch->scheduled_start_at->format('n/j') . '(' . $weekdayJa . ')';
+                                }
+                            @endphp
+                            <a class="schedule-card @if ($isReminded) reminded @endif" href="/schedule/{{ $sch->id }}">
+                                <div class="thumb">
+                                    <img src="{{ $sch->getThumbnailPath() }}" alt="">
+                                    <div class="time-overlay">
+                                        <span class="relative">{{ $relative }}</span>
+                                        <span class="absolute">{{ $sch->scheduled_start_at->format('H:i') }}</span>
+                                    </div>
+                                    @if ($isReminded)
+                                        <span class="bell-on"><i class="fas fa-bell"></i></span>
+                                    @endif
+                                </div>
+                                <div class="info">
+                                    <div class="title">{{ $sch->title }}</div>
+                                    <div class="user-name">{{ $sch->user->name }}</div>
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
             <div class="popular-content">
                 <h2 class="main-title">人気のショート動画</h2>
                 @if ($popularMovies->count() > 0)

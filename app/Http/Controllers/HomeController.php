@@ -6,7 +6,10 @@ use App\Models\Group;
 use App\Models\Movie;
 use App\Models\Payment;
 use App\Models\Room;
+use App\Models\StreamSchedule;
+use App\Models\StreamScheduleReminder;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -178,6 +181,21 @@ class HomeController extends Controller
 
         $archiveRooms = Room::where('status', 2)->orderBy('finished_at', 'desc')->limit(4)->get();
 
+        // もうすぐ配信（未来の公開予定、最大8件）
+        $upcomingSchedules = StreamSchedule::with(['user', 'game'])
+            ->where('status', StreamSchedule::STATUS_PUBLISHED)
+            ->where('scheduled_start_at', '>', now())
+            ->orderBy('scheduled_start_at')
+            ->limit(8)
+            ->get();
+        $reminderIds = [];
+        if (Auth::check()) {
+            $reminderIds = StreamScheduleReminder::where('user_id', Auth::id())
+                ->whereIn('schedule_id', $upcomingSchedules->pluck('id'))
+                ->pluck('schedule_id')
+                ->toArray();
+        }
+
         $groups = Group::where('is_publish', '1')->inRandomOrder()->get();
         foreach($groups as $group) {
             $user = User::where('id', $group->user_id)->first();
@@ -199,6 +217,8 @@ class HomeController extends Controller
             'paymentUsers' => $paymentUsers,
             'popularMovies' => $popularMovies,
             'rooms' => $rooms,
+            'upcomingSchedules' => $upcomingSchedules,
+            'reminderIds' => $reminderIds,
         ]);
     }
 
