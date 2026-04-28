@@ -9,6 +9,8 @@ use App\Models\Group;
 use App\Models\Movie;
 use App\Models\PointRequest;
 use App\Models\Room;
+use App\Models\StreamSchedule;
+use App\Models\StreamScheduleReminder;
 use App\Models\User;
 use App\Models\UserData;
 use App\Models\Wowza;
@@ -518,23 +520,40 @@ class SettingController extends Controller
         if ($liveRooms->count() >= config('services.max_liver') && $roomId == null) {
             session()->flash('flash_message', '現在配信者数が' . config('services.max_liver') . '人以上います。もう少し待ってから配信してね！');
         }
+
+        // 配信開始可能な直近の予定（公開状態、開始時刻の前後1時間以内）
+        $startableSchedules = collect();
+        if (!$roomId) {
+            $startableSchedules = StreamSchedule::with('game')
+                ->forUser($user->id)
+                ->published()
+                ->whereBetween('scheduled_start_at', [now()->subHour(), now()->addHour()])
+                ->orderBy('scheduled_start_at')
+                ->get();
+        }
+
+        // 今日のすべての予定（情報表示用）
+        $todaySchedules = StreamSchedule::with('game')
+            ->forUser($user->id)
+            ->published()
+            ->whereDate('scheduled_start_at', today())
+            ->orderBy('scheduled_start_at')
+            ->get();
+
         return view('setting.stream', [
             'room' => $room,
             'liveRooms' => $liveRooms,
-            'wowza' => $wowza
+            'wowza' => $wowza,
+            'startableSchedules' => $startableSchedules,
+            'todaySchedules' => $todaySchedules,
         ]);
     }
 
     public function streamPost(Request $request) {
         /*
-         * 新規作成、更新、終了の場合がある
+         * 新規作成、更新、終了、予定からの開始の場合がある
          */
         $user = Auth::user();
-
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|max:64',
-            'description' => 'max:1000',
-        ]);
 
         $mode = $request->input('mode');
         $roomId = $request->input('room_id');
@@ -544,6 +563,34 @@ class SettingController extends Controller
         $streamAlert = $request->input('stream_alert');
         $status = $request->input('status');
         $wowzaId = $request->input('wowza_id');
+        $scheduleId = $request->input('schedule_id');
+
+        // 予定からの配信開始時は予定の値で name/description/game_id を上書きする
+        $activeSchedule = null;
+        if ($mode === 'create_from_schedule') {
+            $activeSchedule = StreamSchedule::where('id', $scheduleId)
+                ->where('user_id', $user->id)
+                ->first();
+            if (!$activeSchedule) {
+                abort(404);
+            }
+            if (!$activeSchedule->isStartable()) {
+                $request->session()->flash('flash_message', 'この予定は今すぐ開始できません（開始時刻の前後1時間内のみ）');
+                return redirect('setting/stream');
+            }
+            $gameId = $activeSchedule->game_id;
+            $name = $activeSchedule->title;
+            $description = $activeSchedule->description;
+            $wowzaId = Wowza::where('user_id', $user->id)->value('id');
+        }
+
+        $validator = Validator::make([
+            'name' => $name,
+            'description' => $description,
+        ], [
+            'name' => 'required|max:64',
+            'description' => 'max:1000',
+        ]);
 
         if ($validator->fails()) {
             return redirect('setting/stream')
@@ -559,7 +606,7 @@ class SettingController extends Controller
             $room = Room::where('id', $roomId)->first();
             $room->status = $status;
             $request->session()->flash('flash_message', '更新しました');
-        } else if ($mode == 'create') {
+        } else if ($mode == 'create' || $mode == 'create_from_schedule') {
             $userId = $user->id;
 
             // 重複チェック
@@ -595,6 +642,15 @@ class SettingController extends Controller
                 //exit();
             }
         }
+        // 予定からの開始時、サムネ未指定なら予定のサムネをコピー
+        if ($mode === 'create_from_schedule' && !$room->image && $activeSchedule && $activeSchedule->thumbnail) {
+            $sourcePath = storage_path('app/public/schedules/' . $activeSchedule->thumbnail);
+            if (file_exists($sourcePath)) {
+                $newName = uniqid() . '_' . $activeSchedule->thumbnail;
+                copy($sourcePath, storage_path('app/public/rooms/' . $newName));
+                $room->image = $newName;
+            }
+        }
         $room->game_id = $gameId;
         $room->name = $name;
         $room->description = $description;
@@ -603,7 +659,25 @@ class SettingController extends Controller
         }
         $room->push();
 
-        if ($mode == 'create') {
+        // 予定と Room を紐付け
+        if ($mode === 'create_from_schedule' && $activeSchedule) {
+            $activeSchedule->room_id = $room->id;
+            $activeSchedule->status = StreamSchedule::STATUS_LIVE;
+            $activeSchedule->save();
+        }
+
+        // 配信終了時、紐付いた予定があれば終了状態に
+        if ($mode == 'end') {
+            $linkedSchedule = StreamSchedule::where('room_id', $room->id)
+                ->where('status', StreamSchedule::STATUS_LIVE)
+                ->first();
+            if ($linkedSchedule) {
+                $linkedSchedule->status = StreamSchedule::STATUS_FINISHED;
+                $linkedSchedule->save();
+            }
+        }
+
+        if ($mode == 'create' || $mode === 'create_from_schedule') {
             /*
              * このユーザーをフォローしているユーザーに
              * Push通知
@@ -639,6 +713,39 @@ class SettingController extends Controller
                     // メール通知
                     if ($follower->followerUser->email) {
                         ProcessSendMailLiveStarted::dispatch($follower, $room);
+                    }
+                }
+            }
+
+            // 予定からの開始時、リマインド登録者にも開始通知
+            if ($activeSchedule && $streamAlert == '1') {
+                $reminderSubscribers = StreamScheduleReminder::with('user.user_data')
+                    ->where('schedule_id', $activeSchedule->id)
+                    ->get()
+                    ->pluck('user')
+                    ->filter();
+                foreach ($reminderSubscribers as $subscriber) {
+                    if ($subscriber->id === $room->user_id) {
+                        continue;
+                    }
+                    if ($subscriber->device_token) {
+                        app(FcmService::class)->send(
+                            $subscriber->device_token,
+                            "予告していた{$room->user->name}さんの配信が始まりました",
+                            $room->name,
+                            [
+                                'type' => 'schedule_started',
+                                'schedule_id' => $activeSchedule->id,
+                                'room_id' => $room->id,
+                            ]
+                        );
+                    }
+                    if ($subscriber->user_data && $subscriber->user_data->is_line_connected == 1 && $subscriber->line_id) {
+                        $lineMessage = "{$subscriber->name}さん\n"
+                            . "リマインドONにしていた【{$room->user->name}】さんの配信が始まりました！\n"
+                            . $room->name . "\n"
+                            . config('app.url').'/room/'.$room->id;
+                        Helper::pushLineMessage($subscriber->line_id, $lineMessage);
                     }
                 }
             }

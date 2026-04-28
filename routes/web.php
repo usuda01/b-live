@@ -18,6 +18,7 @@ use App\Http\Controllers\RoomRankingController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\StreamScheduleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -113,6 +114,10 @@ Route::get('api/search-user', [SearchController::class, 'searchUsers']);
 Route::get('user/{user_id}', [UserController::class, 'detail']);
 Route::get('api/user', [UserController::class, 'getRooms']);
 
+// 配信予定（視聴者向け）
+Route::get('schedule', [StreamScheduleController::class, 'timetable']);
+Route::get('schedule/{id}', [StreamScheduleController::class, 'show'])->whereNumber('id');
+
 // イベントページ
 Route::get('event', [EventRankingController::class, 'index']);
 Route::get('event2', [EventRankingController::class, 'event2']);
@@ -139,6 +144,10 @@ Route::middleware('auth')->group(function () {
     // 自分をフォローしているユーザー一覧
     Route::get('followers/followers', [FollowerController::class, 'followers']);
     Route::get('api/followers/followers', [FollowerController::class, 'getMyFollowers']);
+
+    // 配信予定リマインドAPI
+    Route::post('api/schedule/{id}/reminder', [StreamScheduleController::class, 'reminderStore'])->whereNumber('id');
+    Route::delete('api/schedule/{id}/reminder', [StreamScheduleController::class, 'reminderDestroy'])->whereNumber('id');
 
     // 設定
     Route::prefix('setting')->group(function () {
@@ -176,6 +185,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/movie-list', [SettingController::class, 'movieList']);
         Route::get('/movie/{movie_id?}', [SettingController::class, 'movie']);
         Route::post('/movie', [SettingController::class, 'moviePost']);
+
+        // 配信予定
+        Route::get('/schedules', [StreamScheduleController::class, 'index']);
+        Route::post('/schedules', [StreamScheduleController::class, 'post']);
     });
 });
 
@@ -205,3 +218,11 @@ Route::get('room-info/{room_id}', [RoomController::class, 'getInfo']);
 
 // for 動画用コメントビューワー
 Route::get('room-message-viewer/{room_id}', [RoomController::class, 'messageViewer'])->name('room_message_viewer');
+
+// 開発用: user_id を指定してログイン（local 環境限定）
+if (app()->environment('local')) {
+    Route::get('dev-login/{user_id}', function ($userId) {
+        \Illuminate\Support\Facades\Auth::loginUsingId((int) $userId);
+        return redirect('/');
+    })->whereNumber('user_id');
+}

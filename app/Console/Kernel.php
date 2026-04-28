@@ -59,6 +59,14 @@ class Kernel extends ConsoleKernel
         $schedule->command('command:update-movie-views')
             ->everyMinute();
 
+        $schedule->command('command:send-schedule-reminders')
+            ->everyMinute()
+            ->appendOutputTo(storage_path('logs/cron.log'));
+
+        $schedule->command('command:close-past-schedules')
+            ->hourly()
+            ->appendOutputTo(storage_path('logs/cron.log'));
+
         $schedule->command('command:delete-user-view-times')
             ->monthlyOn(1, '00:00');
 

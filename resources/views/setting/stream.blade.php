@@ -38,6 +38,57 @@
                     @endforeach
                     </ul>
                 @endif
+
+                @if (!$room->id && $startableSchedules->isNotEmpty())
+                    <div class="schedule-quickstart">
+                        <h3 class="schedule-quickstart-title">
+                            <i class="far fa-calendar-check"></i> 配信開始可能な予定
+                        </h3>
+                        <p class="schedule-quickstart-desc">予定から1クリックで配信を開始できます（タイトル・サムネ・カテゴリは予定から引き継ぎ）</p>
+                        @foreach ($startableSchedules as $schedule)
+                            <form method="post" action="/setting/stream" class="schedule-quickstart-card">
+                                @csrf
+                                <input type="hidden" name="mode" value="create_from_schedule">
+                                <input type="hidden" name="schedule_id" value="{{ $schedule->id }}">
+                                <div class="thumb">
+                                    <img src="{{ $schedule->getThumbnailPath() }}">
+                                </div>
+                                <div class="info">
+                                    <div class="time">
+                                        <i class="far fa-clock"></i>
+                                        {{ $schedule->scheduled_start_at->format('H:i') }}
+                                        @if ($schedule->scheduled_end_at)
+                                            〜 {{ $schedule->getEndTimeLabel() }}
+                                        @endif
+                                    </div>
+                                    <div class="title">{{ $schedule->title }}</div>
+                                    @if ($schedule->game)
+                                        <div class="game">{{ $schedule->game->name }}</div>
+                                    @endif
+                                    <div class="reminders">
+                                        <i class="fas fa-bell"></i> {{ $schedule->reminders()->count() }}人がリマインド中
+                                    </div>
+                                </div>
+                                <div class="actions">
+                                    <label class="alert-toggle">
+                                        <input type="checkbox" name="stream_alert" value="1" checked>
+                                        フォロワー・リマインド登録者に通知
+                                    </label>
+                                    <button type="submit" class="btn-live">
+                                        <i class="fas fa-broadcast-tower"></i> この予定で配信開始
+                                    </button>
+                                </div>
+                            </form>
+                        @endforeach
+                        <p class="schedule-quickstart-or">— または下記のフォームから予定なしで配信開始 —</p>
+                    </div>
+                @elseif (!$room->id && $todaySchedules->isNotEmpty())
+                    <div class="schedule-info-banner">
+                        <i class="far fa-calendar"></i>
+                        今日の予定が <strong>{{ $todaySchedules->count() }}件</strong> あります（開始時刻の前後1時間以内になると、ここから1クリックで配信開始できます）
+                        <a href="/setting/schedules">予定を確認</a>
+                    </div>
+                @endif
                 @if ($liveRooms->count() < Config::get('services.max_liver') || $room->id)
                     <form enctype="multipart/form-data" method="post" accept-charset="utf-8" class="" action="/setting/stream" id="stream-form">
                         @csrf
