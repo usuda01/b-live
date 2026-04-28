@@ -23,8 +23,8 @@
     <meta name="twitter:description" content="動画をアップしていいね数１位を目指そう！" />
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
     <link href="{{ mix('css/fonts.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/app.css') }}?param=37" rel="stylesheet">
-    <link href="{{ mix('css/all.css') }}?param=37" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}?param=86" rel="stylesheet">
+    <link href="{{ mix('css/all.css') }}?param=86" rel="stylesheet">
     <title>B-LIVE｜イベント第４弾！1万円獲得イベント</title>
 </head>
 <body>
