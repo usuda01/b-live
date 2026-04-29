@@ -24,6 +24,7 @@ class StreamScheduleController extends Controller
         $user = $request->user();
 
         $schedules = StreamSchedule::with('game')
+            ->withCount('reminders')
             ->forUser($user->id)
             ->orderBy('scheduled_start_at', 'asc')
             ->get();
@@ -70,8 +71,11 @@ class StreamScheduleController extends Controller
         $this->fillSchedule($schedule, $request);
         $schedule->save();
 
+        $schedule = $schedule->fresh('game');
+        $schedule->loadCount('reminders');
+
         return response()->json([
-            'schedule' => $this->ownerScheduleData($schedule->fresh('game')),
+            'schedule' => $this->ownerScheduleData($schedule),
         ]);
     }
 
@@ -114,8 +118,11 @@ class StreamScheduleController extends Controller
                 ->update(['notified_at' => null]);
         }
 
+        $schedule = $schedule->fresh('game');
+        $schedule->loadCount('reminders');
+
         return response()->json([
-            'schedule' => $this->ownerScheduleData($schedule->fresh('game')),
+            'schedule' => $this->ownerScheduleData($schedule),
         ]);
     }
 
@@ -172,8 +179,11 @@ class StreamScheduleController extends Controller
             : null;
         $copy->save();
 
+        $copy = $copy->fresh('game');
+        $copy->loadCount('reminders');
+
         return response()->json([
-            'schedule' => $this->ownerScheduleData($copy->fresh('game')),
+            'schedule' => $this->ownerScheduleData($copy),
         ]);
     }
 
@@ -198,6 +208,7 @@ class StreamScheduleController extends Controller
         $weekEnd = $weekStart->copy()->addDays(7);
 
         $schedules = StreamSchedule::with(['user', 'game'])
+            ->withCount('reminders')
             ->whereIn('status', [
                 StreamSchedule::STATUS_PUBLISHED,
                 StreamSchedule::STATUS_LIVE,
@@ -229,6 +240,7 @@ class StreamScheduleController extends Controller
     public function show(Request $request, $id): JsonResponse
     {
         $schedule = StreamSchedule::with(['user', 'game', 'room'])
+            ->withCount('reminders')
             ->where('id', $id)
             ->whereIn('status', [
                 StreamSchedule::STATUS_PUBLISHED,
@@ -349,6 +361,7 @@ class StreamScheduleController extends Controller
             'status' => (int) $s->status,
             'room_id' => $s->room_id,
             'game' => $s->game ? ['id' => $s->game->id, 'name' => $s->game->name] : null,
+            'reminders_count' => (int) ($s->reminders_count ?? $s->reminders()->count()),
         ];
     }
 
@@ -368,6 +381,7 @@ class StreamScheduleController extends Controller
             ] : null,
             'game' => $s->game ? ['id' => $s->game->id, 'name' => $s->game->name] : null,
             'is_reminded' => $isReminded,
+            'reminders_count' => (int) ($s->reminders_count ?? $s->reminders()->count()),
         ];
     }
 }
