@@ -44,7 +44,7 @@
                         <h3 class="schedule-quickstart-title">
                             <i class="far fa-calendar-check"></i> 配信開始可能な予定
                         </h3>
-                        <p class="schedule-quickstart-desc">予定から1クリックで配信を開始できます（タイトル・サムネ・カテゴリは予定から引き継ぎ）</p>
+                        <p class="schedule-quickstart-desc">予定から1クリックで配信を開始できます（タイトル・サムネ・ゲームタイトルは予定から引き継ぎ）</p>
                         @foreach ($startableSchedules as $schedule)
                             <form method="post" action="/setting/stream" class="schedule-quickstart-card">
                                 @csrf
