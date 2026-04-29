@@ -10,6 +10,8 @@ class GameController extends Controller
     {
         $games = Game::orderBy('name')
             ->get();
-        return $games;
+        return response()->json([
+            'games' => $games,
+        ]);
     }
 }
