@@ -42,7 +42,7 @@
                 const url = '/api/get-games';
                 axios.get(url)
                     .then((response) => {
-                        this.games = response.data;
+                        this.games = response.data.games;
                         this.setGame();
                     });
             },
