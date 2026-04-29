@@ -70,7 +70,7 @@ class StreamScheduleController extends Controller
             'title.required' => '配信タイトルを入力してください',
             'title.max' => '配信タイトルは64文字以内で入力してください',
             'description.max' => '配信概要は1000文字以内で入力してください',
-            'game_id.exists' => '選択されたカテゴリが存在しません',
+            'game_id.exists' => '選択されたゲームタイトルが存在しません',
             'scheduled_start_at.required' => '配信開始日時を入力してください',
             'scheduled_start_at.date' => '配信開始日時の形式が正しくありません',
             'scheduled_start_at.after' => '配信開始日時は現在時刻より後を指定してください',
