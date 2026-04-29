@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\AppVersionController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\RoomController as ApiRoomController;
 use App\Http\Controllers\Api\StreamController;
+use App\Http\Controllers\Api\StreamScheduleController;
 use App\Http\Controllers\Api\UserController as ApiUserController;
 use App\Http\Controllers\Api\FacebookAuthController;
 use App\Http\Controllers\Api\LineAuthController;
@@ -70,6 +71,10 @@ Route::group(['middleware' => ['api']], function () {
     Route::post('movie-message-delete', [MovieMessageController::class, 'delete']);
     Route::get('room-supporters', [UserController::class, 'getRoomSupporters']);
 
+    // 配信予定（公開）
+    Route::get('schedules', [StreamScheduleController::class, 'timetable']);
+    Route::get('schedules/{id}', [StreamScheduleController::class, 'show'])->where('id', '[0-9]+');
+
     // 認証が必要なページ
     Route::group(['middleware' => ['auth:api']], function () {
         Route::get('auth/me', [AuthController::class, 'me']);
@@ -99,6 +104,17 @@ Route::group(['middleware' => ['api']], function () {
         Route::get('stream/config', [StreamController::class, 'config']);
         Route::post('stream/start', [StreamController::class, 'start']);
         Route::post('stream/end', [StreamController::class, 'end']);
+
+        // 配信予定（リマインド）
+        Route::post('schedules/{id}/reminder', [StreamScheduleController::class, 'reminderStore'])->where('id', '[0-9]+');
+        Route::delete('schedules/{id}/reminder', [StreamScheduleController::class, 'reminderDestroy'])->where('id', '[0-9]+');
+
+        // 配信予定（配信者向けCRUD）
+        Route::get('stream/schedules', [StreamScheduleController::class, 'index']);
+        Route::post('stream/schedules', [StreamScheduleController::class, 'store']);
+        Route::put('stream/schedules/{id}', [StreamScheduleController::class, 'update'])->where('id', '[0-9]+');
+        Route::delete('stream/schedules/{id}', [StreamScheduleController::class, 'destroy'])->where('id', '[0-9]+');
+        Route::post('stream/schedules/{id}/duplicate', [StreamScheduleController::class, 'duplicate'])->where('id', '[0-9]+');
     });
 });
 
