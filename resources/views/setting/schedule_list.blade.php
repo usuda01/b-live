@@ -158,7 +158,7 @@
                             <input type="time" name="scheduled_end_time" id="form-end-time">
                         </div>
                         <div>
-                            <label>カテゴリ（任意）</label>
+                            <label>ゲームタイトル（任意）</label>
                             <select name="game_id" id="form-game-id">
                                 <option value="">未選択</option>
                                 @foreach ($games as $game)
