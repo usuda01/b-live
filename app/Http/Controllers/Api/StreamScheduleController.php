@@ -29,7 +29,9 @@ class StreamScheduleController extends Controller
             ->get();
 
         return response()->json([
-            'schedules' => $schedules->map(fn ($s) => $this->ownerScheduleData($s))->values(),
+            'schedules' => $schedules->map(function ($s) {
+                return $this->ownerScheduleData($s);
+            })->values(),
             'max_per_user' => StreamSchedule::MAX_PER_USER,
             'max_future_months' => StreamSchedule::MAX_FUTURE_MONTHS,
         ]);
@@ -218,7 +220,9 @@ class StreamScheduleController extends Controller
         return response()->json([
             'week_start' => $weekStart->toDateString(),
             'week_end' => $weekEnd->toDateString(),
-            'schedules' => $schedules->map(fn ($s) => $this->publicScheduleData($s, in_array($s->id, $reminderIds, true)))->values(),
+            'schedules' => $schedules->map(function ($s) use ($reminderIds) {
+                return $this->publicScheduleData($s, in_array($s->id, $reminderIds, true));
+            })->values(),
         ]);
     }
 
