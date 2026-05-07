@@ -121,6 +121,10 @@ class MessageController extends Controller
             $user = User::where('id', Auth::guard('api')->id())->first();
             $user->user_data->point -= $payment->point;
             $user->push();
+
+            // レスポンスにもギフト情報を含める（クライアントが自前のメッセージをギフト表示するため）
+            $message->gift_amount = (int)$payment->point;
+            $message->payment_product_id = (string)$payment->product_id;
         }
 
         // イベントを発火
