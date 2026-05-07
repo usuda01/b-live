@@ -328,8 +328,11 @@ class StreamScheduleController extends Controller
         $schedule->title = $request->input('title');
         $schedule->description = $request->input('description');
         $schedule->game_id = $request->input('game_id') ?: null;
-        $schedule->scheduled_start_at = $request->input('scheduled_start_at');
-        $schedule->scheduled_end_at = $request->input('scheduled_end_at') ?: null;
+        $schedule->scheduled_start_at = (new \Carbon\Carbon($request->input('scheduled_start_at')))
+            ->setTimezone(config('app.timezone'));
+        $schedule->scheduled_end_at = $request->input('scheduled_end_at')
+            ? (new \Carbon\Carbon($request->input('scheduled_end_at')))->setTimezone(config('app.timezone'))
+            : null;
         $schedule->status = (int) $request->input('status');
 
         if ($request->input('image')) {
