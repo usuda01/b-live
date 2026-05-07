@@ -43,6 +43,8 @@ class MessageReceived implements ShouldBroadcastNow
      */
     public function broadcastWith()
     {
+        $payment = $this->message->payment;
+
         return [
             'message' => [
                 'id' => $this->message->id,
@@ -56,6 +58,8 @@ class MessageReceived implements ShouldBroadcastNow
                     'name' => $this->message->user->name,
                     'image' => $this->message->user->image,
                 ],
+                'gift_amount' => $payment ? (int)$payment->point : null,
+                'payment_product_id' => $payment ? (string)$payment->product_id : null,
             ]
         ];
     }
