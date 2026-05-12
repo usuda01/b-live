@@ -61,9 +61,11 @@ class UpdateRoomStatus extends Command
     private function handleSrs($rooms)
     {
         // SRS API を 1 回だけ叩いて全ストリーム一覧を取得
+        // count を明示しないと SRS のデフォルト 10 件しか返らず、同時配信が増えると
+        // 一部のストリームが応答から落ちて誤って finish される
         try {
             $response = Http::timeout(10)
-                ->get(config('services.wowza.api_url').'/streams/');
+                ->get(config('services.wowza.api_url').'/streams/', ['count' => 1000]);
         } catch (\Throwable $e) {
             $this->info(date('Y-m-d H:i:s').' [command:update-room-status] API error: '.$e->getMessage());
             return;
