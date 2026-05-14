@@ -120,6 +120,7 @@ class StreamController extends Controller
             if ($imageData) {
                 $fileName = Str::random(32) . '.' . $extension;
                 Storage::disk('public')->put('rooms/' . $fileName, $imageData);
+                Helper::resizeImage(storage_path('app/public/rooms/' . $fileName), 1280);
                 $room->image = $fileName;
             }
         }
@@ -161,6 +162,61 @@ class StreamController extends Controller
 
         return response()->json([
             'message' => '配信を開始しました',
+            'room' => [
+                'id' => $room->id,
+                'name' => $room->name,
+                'status' => $room->status,
+            ],
+        ]);
+    }
+
+    public function update(Request $request): JsonResponse
+    {
+        $user = $request->user();
+
+        $request->validate([
+            'room_id' => 'required|integer',
+            'name' => 'nullable|max:64',
+            'image' => 'nullable|string',
+        ]);
+
+        $room = Room::where('id', $request->input('room_id'))
+            ->where('user_id', $user->id)
+            ->where('status', 1)
+            ->first();
+
+        if (!$room) {
+            return response()->json([
+                'message' => '配信中のルームが見つかりません',
+            ], 404);
+        }
+
+        if ($request->filled('name')) {
+            $room->name = $request->input('name');
+        }
+
+        // サムネイル画像の保存（Base64）
+        if ($request->input('image')) {
+            $imageData = $request->input('image');
+            if (preg_match('/^data:image\/(\w+);base64,/', $imageData, $matches)) {
+                $extension = $matches[1];
+                $imageData = substr($imageData, strpos($imageData, ',') + 1);
+            } else {
+                $extension = 'jpg';
+            }
+            $imageData = base64_decode($imageData);
+            if ($imageData) {
+                $fileName = Str::random(32) . '.' . $extension;
+                Storage::disk('public')->put('rooms/' . $fileName, $imageData);
+                Helper::resizeImage(storage_path('app/public/rooms/' . $fileName), 1280);
+                $room->image = $fileName;
+            }
+        }
+
+        $room->save();
+
+        return response()->json([
+            'message' => '配信情報を更新しました',
             'room' => [
                 'id' => $room->id,
                 'name' => $room->name,
