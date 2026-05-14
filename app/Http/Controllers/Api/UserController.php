@@ -6,7 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Follower;
 use App\Models\Room;
 use App\Models\User;
+use Helper;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -55,6 +60,51 @@ class UserController extends Controller
 
         return response()->json([
             'users' => array_slice($entries, 0, 10),
+        ]);
+    }
+
+    public function updateProfile(Request $request): JsonResponse
+    {
+        $user = $request->user();
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:24',
+            'profile' => 'nullable|max:500',
+            'image' => 'nullable|string', // Base64エンコードされた画像
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'バリデーションエラー',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        // アバター画像の保存（Base64）
+        if ($request->input('image')) {
+            $imageData = $request->input('image');
+            if (preg_match('/^data:image\/(\w+);base64,/', $imageData, $matches)) {
+                $extension = $matches[1];
+                $imageData = substr($imageData, strpos($imageData, ',') + 1);
+            } else {
+                $extension = 'jpg';
+            }
+            $imageData = base64_decode($imageData);
+            if ($imageData) {
+                $fileName = Str::random(32) . '.' . $extension;
+                Storage::disk('public')->put('users/' . $fileName, $imageData);
+                Helper::resizeImage(storage_path('app/public/users/' . $fileName), 1280);
+                $user->image = $fileName;
+            }
+        }
+
+        $user->name = $request->input('name');
+        $user->profile = $request->input('profile');
+        $user->save();
+
+        return response()->json([
+            'user' => $user,
+            'image_url' => url($user->getImagePath()),
         ]);
     }
 
