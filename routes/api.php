@@ -99,6 +99,7 @@ Route::group(['middleware' => ['api']], function () {
         Route::post('user/register-device-token', [UserController::class, 'registerDeviceToken']);
         Route::get('user/notification-settings', [UserController::class, 'getNotificationSettings']);
         Route::put('user/notification-settings', [UserController::class, 'updateNotificationSettings']);
+        Route::post('user/profile', [ApiUserController::class, 'updateProfile']);
 
         // 配信設定
         Route::get('stream/config', [StreamController::class, 'config']);
