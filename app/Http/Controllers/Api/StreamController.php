@@ -120,6 +120,7 @@ class StreamController extends Controller
             if ($imageData) {
                 $fileName = Str::random(32) . '.' . $extension;
                 Storage::disk('public')->put('rooms/' . $fileName, $imageData);
+                Helper::resizeImage(storage_path('app/public/rooms/' . $fileName), 1280);
                 $room->image = $fileName;
             }
         }
@@ -207,6 +208,7 @@ class StreamController extends Controller
             if ($imageData) {
                 $fileName = Str::random(32) . '.' . $extension;
                 Storage::disk('public')->put('rooms/' . $fileName, $imageData);
+                Helper::resizeImage(storage_path('app/public/rooms/' . $fileName), 1280);
                 $room->image = $fileName;
             }
         }
