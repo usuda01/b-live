@@ -103,6 +103,7 @@ Route::group(['middleware' => ['api']], function () {
         // 配信設定
         Route::get('stream/config', [StreamController::class, 'config']);
         Route::post('stream/start', [StreamController::class, 'start']);
+        Route::post('stream/update', [StreamController::class, 'update']);
         Route::post('stream/end', [StreamController::class, 'end']);
 
         // 配信予定（リマインド）
