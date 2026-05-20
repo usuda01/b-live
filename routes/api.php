@@ -12,6 +12,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Api\AppVersionController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\MediaController;
 use App\Http\Controllers\Api\RoomController as ApiRoomController;
 use App\Http\Controllers\Api\StreamController;
 use App\Http\Controllers\Api\StreamScheduleController;
@@ -117,6 +118,9 @@ Route::group(['middleware' => ['api']], function () {
         Route::put('stream/schedules/{id}', [StreamScheduleController::class, 'update'])->where('id', '[0-9]+');
         Route::delete('stream/schedules/{id}', [StreamScheduleController::class, 'destroy'])->where('id', '[0-9]+');
         Route::post('stream/schedules/{id}/duplicate', [StreamScheduleController::class, 'duplicate'])->where('id', '[0-9]+');
+
+        // 端末からのメディアアップロード
+        Route::post('media/upload', [MediaController::class, 'upload']);
     });
 });
 
