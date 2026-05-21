@@ -265,8 +265,9 @@ class MediaController extends Controller
     private function generateHeicThumbnail(string $sourcePath, string $thumbPath): bool
     {
         $script = base_path('scripts/heic_to_thumb.py');
+        $pythonBin = config('services.heic_python_bin', 'python3');
         $process = new Process([
-            'python3', $script, $sourcePath, $thumbPath, (string) self::THUMBNAIL_SIZE,
+            $pythonBin, $script, $sourcePath, $thumbPath, (string) self::THUMBNAIL_SIZE,
         ]);
         $process->setTimeout(60);
 
