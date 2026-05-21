@@ -20,6 +20,8 @@ return [
 
     'system_user_id' => env('SYSTEM_USER_ID'),
 
+    'media_manager_user_ids' => array_values(array_filter(array_map('intval', explode(',', env('MEDIA_MANAGER_USER_IDS', ''))))),
+
     'gift_interval_time' => env('GIFT_INTERVAL_TIME'),
 
     'point_conversion_rate' => env('POINT_CONVERSION_RATE'),

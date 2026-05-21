@@ -121,6 +121,13 @@ Route::group(['middleware' => ['api']], function () {
 
         // 端末からのメディアアップロード
         Route::post('media/upload', [MediaController::class, 'upload']);
+
+        // メディア管理（写真管理画面で利用、管理者のみ）
+        Route::get('media', [MediaController::class, 'index']);
+        Route::get('media/{userId}/{filename}', [MediaController::class, 'show'])
+            ->where(['userId' => '[0-9]+', 'filename' => '[A-Za-z0-9._-]+']);
+        Route::delete('media/{userId}/{filename}', [MediaController::class, 'destroy'])
+            ->where(['userId' => '[0-9]+', 'filename' => '[A-Za-z0-9._-]+']);
     });
 });
 
