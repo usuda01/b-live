@@ -22,6 +22,8 @@ return [
 
     'media_manager_user_ids' => array_values(array_filter(array_map('intval', explode(',', env('MEDIA_MANAGER_USER_IDS', ''))))),
 
+    'heic_python_bin' => env('HEIC_PYTHON_BIN', 'python3'),
+
     'gift_interval_time' => env('GIFT_INTERVAL_TIME'),
 
     'point_conversion_rate' => env('POINT_CONVERSION_RATE'),
