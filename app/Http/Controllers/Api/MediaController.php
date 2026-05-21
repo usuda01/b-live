@@ -5,11 +5,120 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class MediaController extends Controller
 {
     private const MAX_BYTES = 1610612736; // 1.5 GiB
     private const ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'heic', 'mov', 'mp4', 'm4v'];
+
+    public function index(Request $request): JsonResponse
+    {
+        $this->ensureManager($request);
+
+        $rootDir = storage_path('app/media');
+        if (!is_dir($rootDir)) {
+            return response()->json(['items' => []]);
+        }
+
+        $items = [];
+        foreach (scandir($rootDir) as $userDir) {
+            if ($userDir === '.' || $userDir === '..') {
+                continue;
+            }
+            $userPath = $rootDir . '/' . $userDir;
+            if (!is_dir($userPath) || !ctype_digit($userDir)) {
+                continue;
+            }
+            foreach (scandir($userPath) as $filename) {
+                if ($filename === '.' || $filename === '..') {
+                    continue;
+                }
+                $filePath = $userPath . '/' . $filename;
+                if (!is_file($filePath)) {
+                    continue;
+                }
+                $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+                if (!in_array($ext, self::ALLOWED_EXTENSIONS, true)) {
+                    continue;
+                }
+                $items[] = [
+                    'user_id'       => (int) $userDir,
+                    'filename'      => $filename,
+                    'key'           => $userDir . '/' . $filename,
+                    'size'          => filesize($filePath),
+                    'last_modified' => date('c', filemtime($filePath)),
+                ];
+            }
+        }
+
+        usort($items, function ($a, $b) {
+            return strcmp($b['last_modified'], $a['last_modified']);
+        });
+
+        return response()->json(['items' => $items]);
+    }
+
+    public function show(Request $request, $userId, $filename): Response
+    {
+        $this->ensureManager($request);
+
+        $filePath = $this->resolveFilePath($userId, $filename);
+        if ($filePath === null) {
+            abort(404);
+        }
+
+        return response()->file($filePath);
+    }
+
+    public function destroy(Request $request, $userId, $filename): JsonResponse
+    {
+        $this->ensureManager($request);
+
+        $filePath = $this->resolveFilePath($userId, $filename);
+        if ($filePath === null) {
+            return response()->json(['status' => 'not_found'], 404);
+        }
+
+        if (!@unlink($filePath)) {
+            return response()->json(['message' => 'delete failed'], 500);
+        }
+
+        return response()->json(['status' => 'deleted']);
+    }
+
+    private function ensureManager(Request $request): void
+    {
+        $user = $request->user();
+        $allowedIds = config('services.media_manager_user_ids', []);
+        if (!$user || !in_array((int) $user->id, $allowedIds, true)) {
+            abort(403);
+        }
+    }
+
+    private function resolveFilePath($userId, $filename)
+    {
+        if (!ctype_digit((string) $userId)) {
+            return null;
+        }
+        $safeName = basename((string) $filename);
+        if ($safeName === '' || $safeName === '.' || $safeName === '..') {
+            return null;
+        }
+        if (strpos($safeName, '/') !== false || strpos($safeName, '\\') !== false) {
+            return null;
+        }
+        $ext = strtolower(pathinfo($safeName, PATHINFO_EXTENSION));
+        if (!in_array($ext, self::ALLOWED_EXTENSIONS, true)) {
+            return null;
+        }
+        $absolutePath = storage_path('app/media/' . $userId . '/' . $safeName);
+        if (!is_file($absolutePath)) {
+            return null;
+        }
+        return $absolutePath;
+    }
 
     public function upload(Request $request): JsonResponse
     {
