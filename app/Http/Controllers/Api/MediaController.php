@@ -21,7 +21,7 @@ class MediaController extends Controller
         $this->ensureManager($request);
 
         $items = MediaFile::orderBy('created_at', 'desc')
-            ->get(['user_id', 'filename', 'size', 'is_video', 'has_thumbnail', 'created_at'])
+            ->get(['user_id', 'filename', 'size', 'is_video', 'has_thumbnail', 'taken_at', 'latitude', 'longitude', 'created_at'])
             ->map(function ($row) {
                 return [
                     'user_id'       => (int) $row->user_id,
@@ -30,6 +30,9 @@ class MediaController extends Controller
                     'size'          => (int) $row->size,
                     'is_video'      => (bool) $row->is_video,
                     'has_thumbnail' => (bool) $row->has_thumbnail,
+                    'taken_at'      => optional($row->taken_at)->toIso8601String(),
+                    'latitude'      => $row->latitude !== null ? (float) $row->latitude : null,
+                    'longitude'     => $row->longitude !== null ? (float) $row->longitude : null,
                     'last_modified' => optional($row->created_at)->toIso8601String(),
                 ];
             });
@@ -200,30 +203,71 @@ class MediaController extends Controller
     {
         $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
         $isVideo = in_array($ext, self::VIDEO_EXTENSIONS, true);
-        $thumbOk = $this->generateThumbnail((int) $userId, $filename, $absolutePath);
+        $result = $this->processMedia($userId, $filename, $absolutePath);
 
         MediaFile::updateOrCreate(
             ['user_id' => $userId, 'filename' => $filename],
             [
                 'size'          => filesize($absolutePath) ?: 0,
                 'is_video'      => $isVideo,
-                'has_thumbnail' => $thumbOk,
+                'has_thumbnail' => $result['thumbnail_ok'],
+                'taken_at'      => $result['taken_at'],
+                'latitude'      => $result['latitude'],
+                'longitude'     => $result['longitude'],
             ]
         );
     }
 
-    public function generateThumbnail(int $userId, string $filename, string $sourcePath): bool
+    /**
+     * メディアファイルからサムネイル生成と EXIF メタデータ抽出を実施する。
+     * @return array{thumbnail_ok: bool, taken_at: ?string, latitude: ?float, longitude: ?float}
+     */
+    public function processMedia(int $userId, string $filename, string $sourcePath): array
     {
         $thumbPath = $this->thumbnailPath($userId, $filename);
         $thumbDir = dirname($thumbPath);
         if (!is_dir($thumbDir) && !@mkdir($thumbDir, 0755, true) && !is_dir($thumbDir)) {
-            return false;
+            return ['thumbnail_ok' => false, 'taken_at' => null, 'latitude' => null, 'longitude' => null];
         }
 
         if ($this->isHeicContent($sourcePath)) {
-            return $this->generateHeicThumbnail($sourcePath, $thumbPath);
+            return $this->processHeic($sourcePath, $thumbPath);
         }
 
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+        $isVideo = in_array($ext, self::VIDEO_EXTENSIONS, true);
+
+        $thumbOk = $this->runFfmpegThumbnail($sourcePath, $thumbPath);
+        $meta = $isVideo
+            ? $this->extractVideoMetadata($sourcePath)
+            : $this->extractJpegMetadata($sourcePath);
+
+        return array_merge(['thumbnail_ok' => $thumbOk], $meta);
+    }
+
+    /**
+     * メタデータのみ抽出する（既存ファイルの backfill 用）。サムネイルファイルは作らない。
+     * @return array{taken_at: ?string, latitude: ?float, longitude: ?float}
+     */
+    public function extractMetadata(string $sourcePath, bool $isVideo): array
+    {
+        if ($this->isHeicContent($sourcePath)) {
+            // HEIC は Python スクリプトで取るのが確実。サムネ出力は一時ファイルへ。
+            $tmpThumb = tempnam(sys_get_temp_dir(), 'heicmeta_') . '.jpg';
+            $result = $this->processHeic($sourcePath, $tmpThumb);
+            if (is_file($tmpThumb)) {
+                @unlink($tmpThumb);
+            }
+            unset($result['thumbnail_ok']);
+            return $result;
+        }
+        return $isVideo
+            ? $this->extractVideoMetadata($sourcePath)
+            : $this->extractJpegMetadata($sourcePath);
+    }
+
+    private function runFfmpegThumbnail(string $sourcePath, string $thumbPath): bool
+    {
         $size = self::THUMBNAIL_SIZE;
         $process = new Process([
             'ffmpeg', '-y',
@@ -262,7 +306,7 @@ class MediaController extends Controller
         return in_array($brand, ['heic', 'heix', 'heim', 'mif1'], true);
     }
 
-    private function generateHeicThumbnail(string $sourcePath, string $thumbPath): bool
+    private function processHeic(string $sourcePath, string $thumbPath): array
     {
         $script = base_path('scripts/heic_to_thumb.py');
         $pythonBin = config('services.heic_python_bin', 'python3');
@@ -274,10 +318,122 @@ class MediaController extends Controller
         try {
             $process->run();
         } catch (\Throwable $e) {
-            return false;
+            return ['thumbnail_ok' => false, 'taken_at' => null, 'latitude' => null, 'longitude' => null];
         }
 
-        return $process->isSuccessful() && is_file($thumbPath);
+        $thumbOk = $process->isSuccessful() && is_file($thumbPath);
+        $meta = ['taken_at' => null, 'latitude' => null, 'longitude' => null];
+
+        if ($thumbOk) {
+            $json = json_decode(trim($process->getOutput()), true);
+            if (is_array($json)) {
+                $meta['taken_at'] = $this->normalizeExifDateTime($json['taken_at'] ?? null);
+                $meta['latitude'] = isset($json['latitude']) && is_numeric($json['latitude']) ? (float) $json['latitude'] : null;
+                $meta['longitude'] = isset($json['longitude']) && is_numeric($json['longitude']) ? (float) $json['longitude'] : null;
+            }
+        }
+
+        return array_merge(['thumbnail_ok' => $thumbOk], $meta);
+    }
+
+    private function extractJpegMetadata(string $sourcePath): array
+    {
+        $result = ['taken_at' => null, 'latitude' => null, 'longitude' => null];
+        if (!function_exists('exif_read_data')) {
+            return $result;
+        }
+        $exif = @exif_read_data($sourcePath);
+        if (!is_array($exif)) {
+            return $result;
+        }
+        $datetime = $exif['DateTimeOriginal'] ?? $exif['DateTime'] ?? null;
+        $result['taken_at'] = $this->normalizeExifDateTime($datetime);
+        $result['latitude'] = $this->parseExifGps($exif['GPSLatitude'] ?? null, $exif['GPSLatitudeRef'] ?? null);
+        $result['longitude'] = $this->parseExifGps($exif['GPSLongitude'] ?? null, $exif['GPSLongitudeRef'] ?? null);
+        return $result;
+    }
+
+    private function extractVideoMetadata(string $sourcePath): array
+    {
+        $result = ['taken_at' => null, 'latitude' => null, 'longitude' => null];
+        $process = new Process([
+            'ffprobe', '-v', 'quiet',
+            '-show_entries', 'format_tags=creation_time,com.apple.quicktime.location.ISO6709',
+            '-of', 'default=noprint_wrappers=1',
+            $sourcePath,
+        ]);
+        $process->setTimeout(30);
+        try {
+            $process->run();
+        } catch (\Throwable $e) {
+            return $result;
+        }
+        if (!$process->isSuccessful()) {
+            return $result;
+        }
+        foreach (explode("\n", $process->getOutput()) as $line) {
+            $line = trim($line);
+            if (strpos($line, 'TAG:creation_time=') === 0) {
+                $raw = substr($line, strlen('TAG:creation_time='));
+                try {
+                    $dt = new \DateTime($raw);
+                    $result['taken_at'] = $dt->format('Y-m-d H:i:s');
+                } catch (\Throwable $e) {
+                    // ignore
+                }
+            } elseif (strpos($line, 'TAG:com.apple.quicktime.location.ISO6709=') === 0) {
+                $iso = substr($line, strlen('TAG:com.apple.quicktime.location.ISO6709='));
+                if (preg_match('/^([+-]\d+(?:\.\d+)?)([+-]\d+(?:\.\d+)?)/', $iso, $m)) {
+                    $result['latitude'] = (float) $m[1];
+                    $result['longitude'] = (float) $m[2];
+                }
+            }
+        }
+        return $result;
+    }
+
+    private function normalizeExifDateTime($datetime): ?string
+    {
+        if (!is_string($datetime) || $datetime === '') {
+            return null;
+        }
+        $dt = \DateTime::createFromFormat('Y:m:d H:i:s', $datetime);
+        if (!$dt) {
+            return null;
+        }
+        return $dt->format('Y-m-d H:i:s');
+    }
+
+    private function parseExifGps($values, $ref): ?float
+    {
+        if (!is_array($values) || count($values) < 3 || !is_string($ref)) {
+            return null;
+        }
+        $parts = [];
+        foreach ($values as $v) {
+            if (is_string($v) && strpos($v, '/') !== false) {
+                $segments = explode('/', $v);
+                if (count($segments) !== 2) {
+                    return null;
+                }
+                $num = (float) $segments[0];
+                $den = (float) $segments[1];
+                if ($den == 0.0) {
+                    return null;
+                }
+                $parts[] = $num / $den;
+            } else {
+                $parts[] = (float) $v;
+            }
+        }
+        if (count($parts) < 3) {
+            return null;
+        }
+        $decimal = $parts[0] + $parts[1] / 60 + $parts[2] / 3600;
+        if ($ref === 'S' || $ref === 'W') {
+            $decimal = -$decimal;
+        }
+        return $decimal;
     }
 
     public function thumbnailPath(int $userId, string $filename): string

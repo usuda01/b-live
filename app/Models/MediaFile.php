@@ -12,5 +12,8 @@ class MediaFile extends Model
         'is_video'      => 'boolean',
         'has_thumbnail' => 'boolean',
         'size'          => 'integer',
+        'taken_at'      => 'datetime',
+        'latitude'      => 'float',
+        'longitude'     => 'float',
     ];
 }
