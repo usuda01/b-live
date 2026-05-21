@@ -3,59 +3,36 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\MediaFile;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Process\Process;
 
 class MediaController extends Controller
 {
     private const MAX_BYTES = 1610612736; // 1.5 GiB
     private const ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'heic', 'mov', 'mp4', 'm4v'];
+    private const VIDEO_EXTENSIONS = ['mov', 'mp4', 'm4v'];
+    private const THUMBNAIL_SIZE = 200;
 
     public function index(Request $request): JsonResponse
     {
         $this->ensureManager($request);
 
-        $rootDir = storage_path('app/media');
-        if (!is_dir($rootDir)) {
-            return response()->json(['items' => []]);
-        }
-
-        $items = [];
-        foreach (scandir($rootDir) as $userDir) {
-            if ($userDir === '.' || $userDir === '..') {
-                continue;
-            }
-            $userPath = $rootDir . '/' . $userDir;
-            if (!is_dir($userPath) || !ctype_digit($userDir)) {
-                continue;
-            }
-            foreach (scandir($userPath) as $filename) {
-                if ($filename === '.' || $filename === '..') {
-                    continue;
-                }
-                $filePath = $userPath . '/' . $filename;
-                if (!is_file($filePath)) {
-                    continue;
-                }
-                $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-                if (!in_array($ext, self::ALLOWED_EXTENSIONS, true)) {
-                    continue;
-                }
-                $items[] = [
-                    'user_id'       => (int) $userDir,
-                    'filename'      => $filename,
-                    'key'           => $userDir . '/' . $filename,
-                    'size'          => filesize($filePath),
-                    'last_modified' => date('c', filemtime($filePath)),
+        $items = MediaFile::orderBy('created_at', 'desc')
+            ->get(['user_id', 'filename', 'size', 'is_video', 'has_thumbnail', 'created_at'])
+            ->map(function ($row) {
+                return [
+                    'user_id'       => (int) $row->user_id,
+                    'filename'      => $row->filename,
+                    'key'           => $row->user_id . '/' . $row->filename,
+                    'size'          => (int) $row->size,
+                    'is_video'      => (bool) $row->is_video,
+                    'has_thumbnail' => (bool) $row->has_thumbnail,
+                    'last_modified' => optional($row->created_at)->toIso8601String(),
                 ];
-            }
-        }
-
-        usort($items, function ($a, $b) {
-            return strcmp($b['last_modified'], $a['last_modified']);
-        });
+            });
 
         return response()->json(['items' => $items]);
     }
@@ -72,12 +49,36 @@ class MediaController extends Controller
         return response()->file($filePath);
     }
 
+    public function showThumbnail(Request $request, $userId, $filename): Response
+    {
+        $this->ensureManager($request);
+
+        if (!ctype_digit((string) $userId)) {
+            abort(404);
+        }
+        $safeName = basename((string) $filename);
+        if ($safeName === '' || $safeName === '.' || $safeName === '..') {
+            abort(404);
+        }
+        if (strpos($safeName, '/') !== false || strpos($safeName, '\\') !== false) {
+            abort(404);
+        }
+
+        $thumbPath = $this->thumbnailPath((int) $userId, $safeName);
+        if (!is_file($thumbPath)) {
+            abort(404);
+        }
+
+        return response()->file($thumbPath);
+    }
+
     public function destroy(Request $request, $userId, $filename): JsonResponse
     {
         $this->ensureManager($request);
 
         $filePath = $this->resolveFilePath($userId, $filename);
         if ($filePath === null) {
+            MediaFile::where('user_id', $userId)->where('filename', $filename)->delete();
             return response()->json(['status' => 'not_found'], 404);
         }
 
@@ -85,39 +86,14 @@ class MediaController extends Controller
             return response()->json(['message' => 'delete failed'], 500);
         }
 
+        $thumbPath = $this->thumbnailPath((int) $userId, $filename);
+        if (is_file($thumbPath)) {
+            @unlink($thumbPath);
+        }
+
+        MediaFile::where('user_id', $userId)->where('filename', $filename)->delete();
+
         return response()->json(['status' => 'deleted']);
-    }
-
-    private function ensureManager(Request $request): void
-    {
-        $user = $request->user();
-        $allowedIds = config('services.media_manager_user_ids', []);
-        if (!$user || !in_array((int) $user->id, $allowedIds, true)) {
-            abort(403);
-        }
-    }
-
-    private function resolveFilePath($userId, $filename)
-    {
-        if (!ctype_digit((string) $userId)) {
-            return null;
-        }
-        $safeName = basename((string) $filename);
-        if ($safeName === '' || $safeName === '.' || $safeName === '..') {
-            return null;
-        }
-        if (strpos($safeName, '/') !== false || strpos($safeName, '\\') !== false) {
-            return null;
-        }
-        $ext = strtolower(pathinfo($safeName, PATHINFO_EXTENSION));
-        if (!in_array($ext, self::ALLOWED_EXTENSIONS, true)) {
-            return null;
-        }
-        $absolutePath = storage_path('app/media/' . $userId . '/' . $safeName);
-        if (!is_file($absolutePath)) {
-            return null;
-        }
-        return $absolutePath;
     }
 
     public function upload(Request $request): JsonResponse
@@ -154,6 +130,7 @@ class MediaController extends Controller
         $absolutePath = $absoluteDir . '/' . $filename;
 
         if (is_file($absolutePath)) {
+            $this->upsertMediaFileRow((int) $user->id, $filename, $absolutePath);
             return response()->json([
                 'status' => 'already_exists',
                 'path'   => $relativePath,
@@ -210,10 +187,94 @@ class MediaController extends Controller
             return response()->json(['message' => 'finalize error'], 500);
         }
 
+        $this->upsertMediaFileRow((int) $user->id, $filename, $absolutePath);
+
         return response()->json([
             'status' => 'stored',
             'path'   => $relativePath,
             'bytes'  => $totalBytes,
         ]);
+    }
+
+    private function upsertMediaFileRow(int $userId, string $filename, string $absolutePath): void
+    {
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+        $isVideo = in_array($ext, self::VIDEO_EXTENSIONS, true);
+        $thumbOk = $this->generateThumbnail((int) $userId, $filename, $absolutePath);
+
+        MediaFile::updateOrCreate(
+            ['user_id' => $userId, 'filename' => $filename],
+            [
+                'size'          => filesize($absolutePath) ?: 0,
+                'is_video'      => $isVideo,
+                'has_thumbnail' => $thumbOk,
+            ]
+        );
+    }
+
+    public function generateThumbnail(int $userId, string $filename, string $sourcePath): bool
+    {
+        $thumbPath = $this->thumbnailPath($userId, $filename);
+        $thumbDir = dirname($thumbPath);
+        if (!is_dir($thumbDir) && !@mkdir($thumbDir, 0755, true) && !is_dir($thumbDir)) {
+            return false;
+        }
+
+        $size = self::THUMBNAIL_SIZE;
+        $process = new Process([
+            'ffmpeg', '-y',
+            '-ss', '0',
+            '-i', $sourcePath,
+            '-vf', "scale={$size}:{$size}:force_original_aspect_ratio=decrease",
+            '-frames:v', '1',
+            $thumbPath,
+        ]);
+        $process->setTimeout(60);
+
+        try {
+            $process->run();
+        } catch (\Throwable $e) {
+            return false;
+        }
+
+        return $process->isSuccessful() && is_file($thumbPath);
+    }
+
+    public function thumbnailPath(int $userId, string $filename): string
+    {
+        $base = pathinfo($filename, PATHINFO_FILENAME);
+        return storage_path('app/media-thumbs/' . $userId . '/' . $base . '.jpg');
+    }
+
+    private function ensureManager(Request $request): void
+    {
+        $user = $request->user();
+        $allowedIds = config('services.media_manager_user_ids', []);
+        if (!$user || !in_array((int) $user->id, $allowedIds, true)) {
+            abort(403);
+        }
+    }
+
+    private function resolveFilePath($userId, $filename)
+    {
+        if (!ctype_digit((string) $userId)) {
+            return null;
+        }
+        $safeName = basename((string) $filename);
+        if ($safeName === '' || $safeName === '.' || $safeName === '..') {
+            return null;
+        }
+        if (strpos($safeName, '/') !== false || strpos($safeName, '\\') !== false) {
+            return null;
+        }
+        $ext = strtolower(pathinfo($safeName, PATHINFO_EXTENSION));
+        if (!in_array($ext, self::ALLOWED_EXTENSIONS, true)) {
+            return null;
+        }
+        $absolutePath = storage_path('app/media/' . $userId . '/' . $safeName);
+        if (!is_file($absolutePath)) {
+            return null;
+        }
+        return $absolutePath;
     }
 }
