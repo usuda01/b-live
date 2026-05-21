@@ -220,6 +220,10 @@ class MediaController extends Controller
             return false;
         }
 
+        if ($this->isHeicContent($sourcePath)) {
+            return $this->generateHeicThumbnail($sourcePath, $thumbPath);
+        }
+
         $size = self::THUMBNAIL_SIZE;
         $process = new Process([
             'ffmpeg', '-y',
@@ -228,6 +232,41 @@ class MediaController extends Controller
             '-vf', "scale={$size}:{$size}:force_original_aspect_ratio=decrease",
             '-frames:v', '1',
             $thumbPath,
+        ]);
+        $process->setTimeout(60);
+
+        try {
+            $process->run();
+        } catch (\Throwable $e) {
+            return false;
+        }
+
+        return $process->isSuccessful() && is_file($thumbPath);
+    }
+
+    private function isHeicContent(string $path): bool
+    {
+        $f = @fopen($path, 'rb');
+        if ($f === false) {
+            return false;
+        }
+        $header = fread($f, 12);
+        fclose($f);
+        if ($header === false || strlen($header) < 12) {
+            return false;
+        }
+        if (substr($header, 4, 4) !== 'ftyp') {
+            return false;
+        }
+        $brand = substr($header, 8, 4);
+        return in_array($brand, ['heic', 'heix', 'heim', 'mif1'], true);
+    }
+
+    private function generateHeicThumbnail(string $sourcePath, string $thumbPath): bool
+    {
+        $script = base_path('scripts/heic_to_thumb.py');
+        $process = new Process([
+            'python3', $script, $sourcePath, $thumbPath, (string) self::THUMBNAIL_SIZE,
         ]);
         $process->setTimeout(60);
 
