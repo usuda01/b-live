@@ -16,4 +16,9 @@ class MediaFile extends Model
         'latitude'      => 'float',
         'longitude'     => 'float',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -20,11 +20,17 @@ class MediaController extends Controller
     {
         $this->ensureManager($request);
 
-        $items = MediaFile::orderBy('created_at', 'desc')
+        $items = MediaFile::with('user:id,name,image')
+            ->orderBy('created_at', 'desc')
             ->get(['user_id', 'filename', 'size', 'is_video', 'has_thumbnail', 'taken_at', 'latitude', 'longitude', 'created_at'])
             ->map(function ($row) {
                 return [
                     'user_id'       => (int) $row->user_id,
+                    'user'          => $row->user ? [
+                        'id'        => (int) $row->user->id,
+                        'name'      => $row->user->name,
+                        'image_url' => url($row->user->getImagePath()),
+                    ] : null,
                     'filename'      => $row->filename,
                     'key'           => $row->user_id . '/' . $row->filename,
                     'size'          => (int) $row->size,
