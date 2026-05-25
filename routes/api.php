@@ -119,7 +119,7 @@ Route::group(['middleware' => ['api']], function () {
         Route::delete('stream/schedules/{id}', [StreamScheduleController::class, 'destroy'])->where('id', '[0-9]+');
         Route::post('stream/schedules/{id}/duplicate', [StreamScheduleController::class, 'duplicate'])->where('id', '[0-9]+');
 
-        Route::middleware('throttle:media')->group(function () {
+        Route::middleware('throttle:media')->withoutMiddleware('throttle:api')->group(function () {
             // 端末からのメディアアップロード
             Route::post('media/upload', [MediaController::class, 'upload']);
 
