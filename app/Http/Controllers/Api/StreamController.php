@@ -41,6 +41,20 @@ class StreamController extends Controller
         ]);
     }
 
+    public function state(Request $request): JsonResponse
+    {
+        $user = $request->user();
+
+        $room = Room::where('user_id', $user->id)
+            ->where('status', 1)
+            ->first();
+
+        return response()->json([
+            'is_live' => $room !== null,
+            'room_id' => $room ? $room->id : null,
+        ]);
+    }
+
     public function start(Request $request): JsonResponse
     {
         $user = $request->user();
