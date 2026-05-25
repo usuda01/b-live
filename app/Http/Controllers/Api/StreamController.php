@@ -52,6 +52,7 @@ class StreamController extends Controller
         return response()->json([
             'is_live' => $room !== null,
             'room_id' => $room ? $room->id : null,
+            'published_at' => $room && $room->published_at ? $room->published_at->toIso8601String() : null,
         ]);
     }
 
