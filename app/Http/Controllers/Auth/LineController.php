@@ -97,7 +97,7 @@ class LineController extends Controller
 
         // Web（既存処理）
         if ($user->isBanned()) {
-            return redirect('login')->with('error', 'このアカウントは利用が停止されています。');
+            return redirect('login')->with('flash_message', 'このアカウントは利用が停止されています。');
         }
 
         Auth::login($user, true);

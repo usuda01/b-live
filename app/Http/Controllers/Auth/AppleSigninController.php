@@ -56,7 +56,7 @@ class AppleSigninController extends Controller
             ]);
         }
         if ($user->isBanned()) {
-            return redirect('login')->with('error', 'このアカウントは利用が停止されています。');
+            return redirect('login')->with('flash_message', 'このアカウントは利用が停止されています。');
         }
 
         Auth::login($user, true);
