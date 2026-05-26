@@ -58,6 +58,13 @@ class AuthController extends Controller
             ]);
         }
 
+        if ($user->isBanned()) {
+            return response()->json([
+                'error_code' => 'ACCOUNT_BANNED',
+                'message' => 'このアカウントは利用が停止されています。',
+            ], 403);
+        }
+
         // api_token が未設定の場合は生成
         if (!$user->api_token) {
             $user->api_token = Str::random(80);

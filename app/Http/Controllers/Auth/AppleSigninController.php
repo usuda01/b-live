@@ -55,6 +55,10 @@ class AppleSigninController extends Controller
                 'point' => 0,
             ]);
         }
+        if ($user->isBanned()) {
+            return redirect('login')->with('error', 'このアカウントは利用が停止されています。');
+        }
+
         Auth::login($user, true);
         $loginRedirect = $request->session()->get('loginRedirect', '/');
         $loginRedirect .= '?api_token=' . $user->api_token;

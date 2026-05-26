@@ -10,6 +10,10 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    // account_status の値
+    const ACCOUNT_STATUS_ACTIVE = 1;
+    const ACCOUNT_STATUS_BANNED = 2;
+
     protected $table = 'users';
 
     // 指定したカラムは、create()、fill()、update()で値が代入されない
@@ -79,5 +83,15 @@ class User extends Authenticatable
             $path = '/storage/users/' . $this->image;
         }
         return $path;
+    }
+
+    public function isActive(): bool
+    {
+        return (int)$this->account_status === self::ACCOUNT_STATUS_ACTIVE;
+    }
+
+    public function isBanned(): bool
+    {
+        return (int)$this->account_status === self::ACCOUNT_STATUS_BANNED;
     }
 }
