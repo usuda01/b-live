@@ -1,6 +1,7 @@
 <template>
     <div class="login-index">
         <div class="content">
+            <div v-if="flashMessage" class="flash_message">{{ flashMessage }}</div>
             <h2 class="logo"><a href="/"><img src="/images/logo.png"></a></h2>
             <div class="sns-login">
                 <h3 class="login-title">SNSでログイン</h3>
@@ -59,6 +60,12 @@
 
 <script>
     export default {
+        props: {
+            flashMessage: {
+                type: String,
+                default: null,
+            },
+        },
         data () {
             return {
                 isXcode: false

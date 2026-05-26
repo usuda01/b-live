@@ -20,7 +20,6 @@ use App\Http\Controllers\Api\UserController as ApiUserController;
 use App\Http\Controllers\Api\FacebookAuthController;
 use App\Http\Controllers\Api\LineAuthController;
 use App\Http\Controllers\Api\TwitterAuthController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,10 +32,6 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 // Apple Sign In (iOS)
 Route::post('auth/apple-signin', [AuthController::class, 'appleSignin']);
@@ -77,7 +72,7 @@ Route::group(['middleware' => ['api']], function () {
     Route::get('schedules/{id}', [StreamScheduleController::class, 'show'])->where('id', '[0-9]+');
 
     // 認証が必要なページ
-    Route::group(['middleware' => ['auth:api']], function () {
+    Route::group(['middleware' => ['auth:api', 'account.status']], function () {
         Route::get('auth/me', [AuthController::class, 'me']);
 
         Route::post('block/flag', [BlockController::class, 'flag']);

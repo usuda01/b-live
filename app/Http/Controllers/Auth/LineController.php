@@ -96,6 +96,10 @@ class LineController extends Controller
         }
 
         // Web（既存処理）
+        if ($user->isBanned()) {
+            return redirect('login')->with('error', 'このアカウントは利用が停止されています。');
+        }
+
         Auth::login($user, true);
         $loginRedirect = $request->session()->get('loginRedirect', '/');
         $loginRedirect .= '?api_token=' . $user->api_token;

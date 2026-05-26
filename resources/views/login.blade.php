@@ -23,7 +23,7 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div id="app">
-        <login-component></login-component>
+        <login-component :flash-message="@js(session('flash_message'))"></login-component>
     </div><!--// #app -->
 
     <!-- api 認証のための記述 -->
