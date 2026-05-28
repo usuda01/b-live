@@ -34,7 +34,7 @@
                         <button class="btn-control" v-on:click.stop="toggleRotate"><i class="fas fa-sync-alt"></i></button>
                         <button class="btn-control" v-on:click.stop="togglePiP"><img src="/images/icon-pip.svg"></button>
                         <button class="btn-control" v-on:click.stop="toggleFullScreen"><i class="fas fa-expand"></i></button>
-                        <button class="btn-control btn-gear" v-on:click.stop="toggleVideoMenu"><i class="fas fa-cog"></i></button>
+                        <button v-if="availableLevels.length > 0" class="btn-control btn-gear" v-on:click.stop="toggleVideoMenu"><i class="fas fa-cog"></i></button>
 
                         <!-- ビットレート選択メニュー -->
                         <div v-if="showVideoMenu" class="video-menu">
@@ -354,6 +354,10 @@
                 messages: [],
                 supporters: [],
                 selectedLevelUrl: '',
+                // SRS の transcode が停止して `*_source.m3u8` 等が 404 になった際に、
+                // 原本 `*.m3u8` 直接再生にフォールバックしたら true。
+                // この間は画質メニューを隠す。
+                isOriginalFallback: false,
                 selectedUser: {
                     id: '',
                     name: '',
@@ -794,6 +798,15 @@
                             label: `${level.height}p (${Math.round(level.bitrate / 1000)} kbps)`
                         }));
                     });
+                    this.hls.on(Hls.Events.ERROR, (event, data) => {
+                        // 非 fatal の variant 404 でも即 HEAD 確認を試みる。
+                        // fatal を待つと hls.js の levelLoadingMaxRetry 完了まで約 30 秒かかる。
+                        // HEAD で source=404 かつ 原本=200 でなければフォールバックしない（誤発動防止）。
+                        if (data.details === Hls.ErrorDetails.LEVEL_LOAD_ERROR
+                            || data.details === Hls.ErrorDetails.MANIFEST_LOAD_ERROR) {
+                            this.probeAndFallbackToOriginal();
+                        }
+                    });
                     video.play();
                 } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
                     // iPhone Safari
@@ -816,7 +829,53 @@
                     video.addEventListener('canplay', () => {
                         video.play();
                     });
+                    video.addEventListener('error', () => {
+                        const err = video.error;
+                        if (err && (err.code === MediaError.MEDIA_ERR_NETWORK || err.code === MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED)) {
+                            this.probeAndFallbackToOriginal();
+                        }
+                    });
                 }
+            },
+            // SRS の transcode が停止して `*_source.m3u8` が永続 404 になった場合に限り、
+            // 原本 `*.m3u8`（suffix 無し）の直接再生にフォールバックする。
+            // 一時的な NW 揺れで誤発動しないよう source=404 かつ 原本=200 を同時確認する。
+            async probeAndFallbackToOriginal() {
+                if (this.isOriginalFallback) return;
+
+                const hlsUrl = this.room.wowza.hls_url;
+                const key = this.room.wowza.stream_key;
+                // Wowza 形式は対象外（今回のデッドロックは SRS 固有）
+                if (!hlsUrl.includes(`${key}_all.m3u8`)) return;
+
+                const sourceUrl = hlsUrl.replace(`${key}_all.m3u8`, `${key}_source.m3u8`);
+                const originalUrl = hlsUrl.replace(`${key}_all.m3u8`, `${key}.m3u8`);
+
+                let sourceStatus, originalStatus;
+                try {
+                    const [sourceRes, originalRes] = await Promise.all([
+                        fetch(sourceUrl, { method: 'HEAD', cache: 'no-store' }),
+                        fetch(originalUrl, { method: 'HEAD', cache: 'no-store' }),
+                    ]);
+                    sourceStatus = sourceRes.status;
+                    originalStatus = originalRes.status;
+                } catch (e) {
+                    return;
+                }
+
+                if (sourceStatus !== 404 || originalStatus !== 200) return;
+
+                this.isOriginalFallback = true;
+                this.availableLevels = [];
+                this.selectedLevelUrl = '';
+
+                const video = document.getElementById('main-video');
+                if (this.hls && Hls.isSupported()) {
+                    this.hls.destroy();
+                    this.hls = null;
+                }
+                video.src = originalUrl;
+                video.play();
             },
             changeVolume() {
                 const video = document.getElementById('main-video');
