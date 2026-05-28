@@ -1358,6 +1358,7 @@
                     opacity: 0.2;
                     transition: opacity 0.4s;
                     gap: 0 10px;
+                    padding-right: 10px;
                     .btn-control {
                         background: transparent;
                         color: #fff;
@@ -1365,9 +1366,6 @@
                         text-shadow: 2px 1px 2px #000;
                         border: none;
                         cursor: pointer;
-                        &.btn-gear {
-                            margin-right: 10px;
-                        }
                         i {
                             font-size: 20px;
                         }
@@ -2060,6 +2058,7 @@
                     .controls {
                         bottom: 20px;
                         justify-content: flex-start;
+                        padding-right: 0;
                         .btn-control {
                             margin-left: 10px;
                         }
