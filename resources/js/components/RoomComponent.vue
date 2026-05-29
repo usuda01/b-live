@@ -137,15 +137,16 @@
                     </div>
                     <transition-group tag="div" class="chat-list" name="list" id="chat-list">
                         <div v-for="message in messages" :key="message.id">
-                        <div v-if="message.payment_product_id === '1'" v-bind:class="'user-message payment purchase1 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span class="message">{{ message.content }}</span></div>
-                        <div v-else-if="message.payment_product_id === '2'" v-bind:class="'user-message payment purchase2 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span class="message">{{ message.content }}</span></div>
-                        <div v-else-if="message.payment_product_id === '3'" v-bind:class="'user-message payment purchase3 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span class="message">{{ message.content }}</span></div>
-                        <div v-else-if="message.payment_product_id === '4'" v-bind:class="'user-message payment purchase4 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span class="message">{{ message.content }}</span></div>
-                        <div v-else-if="message.payment_product_id === '5'" v-bind:class="'user-message payment purchase5 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span class="message">{{ message.content }}</span></div>
-                        <div v-else-if="message.payment_product_id === '6'" v-bind:class="'user-message payment purchase6 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span class="message">{{ message.content }}</span></div>
-                        <div v-else-if="message.payment_product_id === '7'" v-bind:class="'user-message payment purchase7 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span class="message">{{ message.content }}</span></div>
-                        <div v-else-if="message.user.id === adminUserId" v-bind:class="'user-message admin user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="message">{{ message.content }}</span></div>
-                        <div v-else v-bind:class="'user-message user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name"><span class="user-level">Lv{{ message.user.user_data.listener_level }}</span>{{ message.user.name }}</a><span class="message">{{ message.content }}</span></div>
+                        <div v-if="message.image" v-bind:class="'user-message message-image-wrap user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><img class="message-image" :src="message.image.image_path" alt="画像メッセージ" loading="lazy" decoding="async" v-on:click="openImageModal(message.image.image_path)" v-on:error="onImageError"></div>
+                        <div v-else-if="message.payment_product_id === '1'" v-bind:class="'user-message payment purchase1 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span v-if="message.content" class="message">{{ message.content }}</span></div>
+                        <div v-else-if="message.payment_product_id === '2'" v-bind:class="'user-message payment purchase2 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span v-if="message.content" class="message">{{ message.content }}</span></div>
+                        <div v-else-if="message.payment_product_id === '3'" v-bind:class="'user-message payment purchase3 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span v-if="message.content" class="message">{{ message.content }}</span></div>
+                        <div v-else-if="message.payment_product_id === '4'" v-bind:class="'user-message payment purchase4 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span v-if="message.content" class="message">{{ message.content }}</span></div>
+                        <div v-else-if="message.payment_product_id === '5'" v-bind:class="'user-message payment purchase5 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span v-if="message.content" class="message">{{ message.content }}</span></div>
+                        <div v-else-if="message.payment_product_id === '6'" v-bind:class="'user-message payment purchase6 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span v-if="message.content" class="message">{{ message.content }}</span></div>
+                        <div v-else-if="message.payment_product_id === '7'" v-bind:class="'user-message payment purchase7 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span v-if="message.content" class="message">{{ message.content }}</span></div>
+                        <div v-else-if="message.user.id === adminUserId" v-bind:class="'user-message admin user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span v-if="message.content" class="message">{{ message.content }}</span></div>
+                        <div v-else v-bind:class="'user-message user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name"><span class="user-level">Lv{{ message.user.user_data.listener_level }}</span>{{ message.user.name }}</a><span v-if="message.content" class="message">{{ message.content }}</span></div>
                       </div>
                     </transition-group>
                     <form class="send-chat" @submit.prevent="send">
@@ -156,6 +157,9 @@
                             <div v-if="isLoggedIn" class="user-name">{{ this.user.name }}</div>
                             <div v-else class="user-name">ゲスト</div>
                         </div>
+                        <div v-if="isLoggedIn" class="image-action">
+                            <a v-on:click.prevent="openImageFileDialog" href="#" class="btn-image"><i class="fas fa-image"></i><span class="label">画像を送信</span></a>
+                        </div>
                         <div class="send-footer" v-bind:class="{'no-gift': canSendGift === false}">
                             <div class="send-box">
                                 <input type="text" placeholder="メッセージを入力" class="send-message" v-model="messageData.content">
@@ -164,6 +168,7 @@
                             <a v-if="isLoggedIn" href="#" class="btn-gift js-modal-open" data-target="modal05"><img src="/images/btn-gift.png"></a>
                             <a v-else href="#" class="btn-gift js-modal-open" data-target="modal01"><img src="/images/btn-gift.png"></a>
                         </div>
+                        <input ref="imageInput" type="file" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" style="display:none" v-on:change="onImageSelected">
                     </form>
                 </div>
             </div>
@@ -296,6 +301,26 @@
         </div>
         <!-- //カード入力 -->
 
+        <!-- 画像送信プレビューモーダル -->
+        <div v-if="showingImagePreview" class="image-preview-overlay">
+            <div class="image-preview-content">
+                <img v-bind:src="previewImageUrl" alt="プレビュー" class="image-preview-img">
+                <div v-if="imageError" class="image-preview-error">{{ imageError }}</div>
+                <div class="image-preview-buttons">
+                    <button type="button" v-on:click="cancelImagePreview" v-bind:disabled="isSendingImage" class="btn-default cancel">キャンセル</button>
+                    <button type="button" v-on:click="sendImage" v-bind:disabled="isSendingImage || !!imageError" class="btn-default send">{{ isSendingImage ? '送信中...' : '送信する' }}</button>
+                </div>
+            </div>
+        </div>
+        <!-- //画像送信プレビューモーダル -->
+
+        <!-- 画像拡大ライトボックス -->
+        <div v-if="showingImageLightbox" class="image-modal-overlay" v-on:click.self="closeImageModal">
+            <button type="button" class="image-modal-close" v-on:click="closeImageModal">&times;</button>
+            <img v-bind:src="lightboxImageUrl" alt="画像メッセージ">
+        </div>
+        <!-- //画像拡大ライトボックス -->
+
     </div>
 </template>
 
@@ -381,6 +406,15 @@
                 volumeLevel: 1, // 初期音量（最大）
                 videoTime: '',
                 viewCount: 0,
+                // 画像メッセージ送信用
+                selectedImageFile: null,
+                previewImageUrl: '',
+                showingImagePreview: false,
+                isSendingImage: false,
+                imageError: '',
+                // 画像拡大ライトボックス
+                showingImageLightbox: false,
+                lightboxImageUrl: '',
             }
         },
         mounted () {
@@ -548,7 +582,12 @@
                         if (response.data.length > 0) {
                             if (this.isApp == false) {
                                 if (this.isSpeak === true) {
-                                    this.speakMessage(response.data[0].content);
+                                    const latest = response.data[0];
+                                    // 画像メッセージは content が null になるため固定文言で代替
+                                    const text = latest.image ? '画像メッセージです' : latest.content;
+                                    if (text) {
+                                        this.speakMessage(text);
+                                    }
                                 }
                             }
                         }
@@ -597,6 +636,105 @@
                             this.canSend = true;
                         });
                 }
+            },
+            // 画像メッセージ送信
+            openImageFileDialog() {
+                if (this.isLoggedIn === false) {
+                    return;
+                }
+                this.imageError = '';
+                this.$refs.imageInput.click();
+            },
+            onImageSelected(event) {
+                const file = event.target.files && event.target.files[0];
+                // 同じファイルを連続選択しても change イベントを発火させるためリセット
+                event.target.value = '';
+                if (!file) {
+                    return;
+                }
+                // クライアント側で MIME / 拡張子 / サイズを即時チェック（サーバー検証は最終防衛）
+                const allowedMime = ['image/jpeg', 'image/png', 'image/webp'];
+                const ext = (file.name.split('.').pop() || '').toLowerCase();
+                const allowedExt = ['jpg', 'jpeg', 'png', 'webp'];
+                if (!allowedMime.includes(file.type) || !allowedExt.includes(ext)) {
+                    this.imageError = 'JPEG / PNG / WebP の画像のみ送信できます';
+                    this.selectedImageFile = null;
+                    this.previewImageUrl = '';
+                    this.showingImagePreview = true;
+                    return;
+                }
+                if (file.size > 5 * 1024 * 1024) {
+                    this.imageError = 'ファイルサイズは 5MB 以下にしてください';
+                    this.selectedImageFile = null;
+                    this.previewImageUrl = '';
+                    this.showingImagePreview = true;
+                    return;
+                }
+                if (this.previewImageUrl) {
+                    URL.revokeObjectURL(this.previewImageUrl);
+                }
+                this.selectedImageFile = file;
+                this.previewImageUrl = URL.createObjectURL(file);
+                this.imageError = '';
+                this.showingImagePreview = true;
+            },
+            cancelImagePreview() {
+                if (this.isSendingImage) {
+                    return;
+                }
+                if (this.previewImageUrl) {
+                    URL.revokeObjectURL(this.previewImageUrl);
+                }
+                this.selectedImageFile = null;
+                this.previewImageUrl = '';
+                this.imageError = '';
+                this.showingImagePreview = false;
+            },
+            sendImage() {
+                if (!this.selectedImageFile || this.isSendingImage) {
+                    return;
+                }
+                this.isSendingImage = true;
+                this.imageError = '';
+                const url = '/api/message';
+                const formData = new FormData();
+                formData.append('data[room_id]', this.room.id);
+                formData.append('data[image]', this.selectedImageFile);
+                // Content-Type ヘッダは手動指定しない（axios が自動で boundary 付きにする）
+                axios.post(url, formData)
+                    .then(() => {
+                        if (this.previewImageUrl) {
+                            URL.revokeObjectURL(this.previewImageUrl);
+                        }
+                        this.selectedImageFile = null;
+                        this.previewImageUrl = '';
+                        this.showingImagePreview = false;
+                        this.isSendingImage = false;
+                    })
+                    .catch((error) => {
+                        const status = error.response && error.response.status;
+                        if (status === 403) {
+                            this.imageError = 'ログインが必要です';
+                        } else if (status === 422) {
+                            this.imageError = 'この画像は送信できません';
+                        } else {
+                            this.imageError = '送信に失敗しました。時間をおいて再度お試しください';
+                        }
+                        this.isSendingImage = false;
+                    });
+            },
+            openImageModal(url) {
+                this.lightboxImageUrl = url;
+                this.showingImageLightbox = true;
+            },
+            closeImageModal() {
+                this.showingImageLightbox = false;
+                this.lightboxImageUrl = '';
+            },
+            onImageError(event) {
+                // 画像読み込み失敗時はプレースホルダ画像に差し替え
+                event.target.alt = '画像を表示できません';
+                event.target.style.display = 'none';
             },
             closeUserInfo() {
                 this.showingUserInfo = false;

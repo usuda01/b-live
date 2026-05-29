@@ -44,10 +44,16 @@ class DeleteRooms extends Command
             foreach ($room->logs()->get() as $log) {
                 $log->delete();
             }
+            // メッセージごとに個別 delete() でフックを発火させる
+            // - payments.message_id は RESTRICT FK なので先に payment を消す
+            // - $message->delete() で Message::deleting → MessageImage::deleted が連鎖し、
+            //   message_images のストレージ実体も削除される
+            // - 旧実装の $room->messages()->delete()（mass delete）はフック非発火で
+            //   孤児ファイル化するため使わない
             foreach ($room->messages()->get() as $message) {
                 $message->payment()->delete();
+                $message->delete();
             }
-            $room->messages()->delete();
             $room->roomRankings()->delete();
             $room->delete();
         }
