@@ -156,7 +156,10 @@ class MessageController extends Controller
             $message = DB::transaction(function () use ($request, $imageMeta, $userId, $isAuthenticated) {
                 $message = new Message();
                 $message->user_id = $userId;
-                $message->room_id = $request->input('data.room_id');
+                // multipart/form-data では値がすべて文字列扱いになるため、明示的に int キャスト。
+                // これを怠るとレスポンス JSON で room_id が "16" のような文字列になり、
+                // iOS の Int デコードが失敗する（テキスト送信は JSON ボディなので問題なし）。
+                $message->room_id = (int)$request->input('data.room_id');
                 $message->content = $request->input('data.content'); // 画像メッセージなら null
                 $message->save();
 
