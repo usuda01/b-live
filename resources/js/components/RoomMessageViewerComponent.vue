@@ -21,15 +21,16 @@
                     </div>
                     <transition-group tag="div" class="chat-list" name="list" id="chat-list">
                         <div v-for="message in messages" :key="message.id">
-                        <div v-if="message.payment_product_id === '1'" v-bind:class="'user-message payment purchase1 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span class="message">{{ message.content }}</span></div>
-                        <div v-else-if="message.payment_product_id === '2'" v-bind:class="'user-message payment purchase2 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span class="message">{{ message.content }}</span></div>
-                        <div v-else-if="message.payment_product_id === '3'" v-bind:class="'user-message payment purchase3 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span class="message">{{ message.content }}</span></div>
-                        <div v-else-if="message.payment_product_id === '4'" v-bind:class="'user-message payment purchase4 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span class="message">{{ message.content }}</span></div>
-                        <div v-else-if="message.payment_product_id === '5'" v-bind:class="'user-message payment purchase5 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span class="message">{{ message.content }}</span></div>
-                        <div v-else-if="message.payment_product_id === '6'" v-bind:class="'user-message payment purchase6 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span class="message">{{ message.content }}</span></div>
-                        <div v-else-if="message.payment_product_id === '7'" v-bind:class="'user-message payment purchase7 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span class="message">{{ message.content }}</span></div>
-                        <div v-else-if="message.user.id === adminUserId" v-bind:class="'user-message admin user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="message">{{ message.content }}</span></div>
-                        <div v-else v-bind:class="'user-message user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="message">{{ message.content }}</span></div>
+                        <div v-if="message.image" v-bind:class="'user-message message-image-wrap user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><img class="message-image" :src="message.image.image_path" alt="画像メッセージ" loading="lazy" decoding="async" v-on:click="openImageModal(message.image.image_path)" v-on:error="onImageError"></div>
+                        <div v-else-if="message.payment_product_id === '1'" v-bind:class="'user-message payment purchase1 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span v-if="message.content" class="message">{{ message.content }}</span></div>
+                        <div v-else-if="message.payment_product_id === '2'" v-bind:class="'user-message payment purchase2 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span v-if="message.content" class="message">{{ message.content }}</span></div>
+                        <div v-else-if="message.payment_product_id === '3'" v-bind:class="'user-message payment purchase3 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span v-if="message.content" class="message">{{ message.content }}</span></div>
+                        <div v-else-if="message.payment_product_id === '4'" v-bind:class="'user-message payment purchase4 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span v-if="message.content" class="message">{{ message.content }}</span></div>
+                        <div v-else-if="message.payment_product_id === '5'" v-bind:class="'user-message payment purchase5 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span v-if="message.content" class="message">{{ message.content }}</span></div>
+                        <div v-else-if="message.payment_product_id === '6'" v-bind:class="'user-message payment purchase6 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span v-if="message.content" class="message">{{ message.content }}</span></div>
+                        <div v-else-if="message.payment_product_id === '7'" v-bind:class="'user-message payment purchase7 user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span class="amount">&yen;{{ message.payment.price }}</span><span v-if="message.content" class="message">{{ message.content }}</span></div>
+                        <div v-else-if="message.user.id === adminUserId" v-bind:class="'user-message admin user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span v-if="message.content" class="message">{{ message.content }}</span></div>
+                        <div v-else v-bind:class="'user-message user-rank rank' + message.user.user_data.rank"><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-profile" v-bind:style="{ backgroundImage: 'url(' + message.user.image_path + ')' }"></a><a v-on:click.prevent="showUserInfo(message.user)" href="#" class="user-name">{{ message.user.name }}</a><span v-if="message.content" class="message">{{ message.content }}</span></div>
                       </div>
                     </transition-group>
                 </div>
@@ -60,6 +61,13 @@
         </div><!--modal-->
         <!--// ユーザー通報モーダル -->
 
+        <!-- 画像拡大ライトボックス -->
+        <div v-if="showingImageLightbox" class="image-modal-overlay" v-on:click.self="closeImageModal">
+            <button type="button" class="image-modal-close" v-on:click="closeImageModal">&times;</button>
+            <img v-bind:src="lightboxImageUrl" alt="画像メッセージ">
+        </div>
+        <!-- //画像拡大ライトボックス -->
+
     </div>
 </template>
 
@@ -89,6 +97,9 @@
                 },
                 showingUserInfo: false,
                 showingUserFlagModal: false,
+                // 画像拡大ライトボックス
+                showingImageLightbox: false,
+                lightboxImageUrl: '',
             }
         },
         mounted () {
@@ -209,12 +220,24 @@
                 }
                 const url = '/api/block/flag-user';
                 const params = {
-                    user_id: this.selectedUser.id 
+                    user_id: this.selectedUser.id
                 };
                 axios.post(url, params)
                     .then((response) => {
                         this.isFlagUser = true;
                     });
+            },
+            openImageModal(url) {
+                this.lightboxImageUrl = url;
+                this.showingImageLightbox = true;
+            },
+            closeImageModal() {
+                this.showingImageLightbox = false;
+                this.lightboxImageUrl = '';
+            },
+            onImageError(event) {
+                event.target.alt = '画像を表示できません';
+                event.target.style.display = 'none';
             },
         }
     }

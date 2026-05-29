@@ -118,6 +118,8 @@ class Helper
                 $result = imagejpeg($dest, $save_path, $quality); break;
             case IMAGETYPE_PNG:
                 $result = imagepng($dest, $save_path, floor($quality * 0.09)); break;
+            case IMAGETYPE_WEBP:
+                $result = imagewebp($dest, $save_path, $quality); break;
         }
 
         // メモリを開放する

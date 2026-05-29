@@ -44,6 +44,8 @@ class MessageReceived implements ShouldBroadcastNow
     public function broadcastWith()
     {
         $payment = $this->message->payment;
+        $this->message->load('image');
+        $image = $this->message->image;
 
         return [
             'message' => [
@@ -60,6 +62,11 @@ class MessageReceived implements ShouldBroadcastNow
                 ],
                 'gift_amount' => $payment ? (int)$payment->point : null,
                 'payment_product_id' => $payment ? (string)$payment->product_id : null,
+                'image' => $image ? [
+                    'id'         => $image->id,
+                    // image_path は MessageImage::getImagePathAttribute() を経由（一覧APIと同じ値）
+                    'image_path' => $image->image_path,
+                ] : null,
             ]
         ];
     }
