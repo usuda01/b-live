@@ -83,11 +83,6 @@ $(function() {
         });
     });
 
-    // LINE通知の広告非表示
-    $('#line-connect #line-connect-btn-close').click(function() {
-        $('#line-connect').hide();
-    });
-
     // ログインモーダル
     $('.js-modal-open').each(function() {
         $(this).on('click', function(e) {
@@ -107,8 +102,12 @@ $(function() {
     var isIPad = agent.indexOf('ipad') > -1 || agent.indexOf('macintosh') > -1 && 'ontouchend' in document;
     var isIPhone = agent.indexOf('iphone') > -1;
     if (isIPad == true || isIPhone == true) {
-        // LINE連携をしてもらいたいのでアプリへの誘導は削除
-//        $('#app-install').show();
+        // iOS（Safari含む全ブラウザ）に自前のアプリインストールバナーを表示
+        $('#app-install').addClass('is-show');
     }
+    // バナーの閉じるボタン（次のページ・再読込で再表示）
+    $('#app-install').on('click', '.ai-close', function () {
+        $('#app-install').removeClass('is-show');
+    });
 });
 

@@ -148,25 +148,14 @@
         </div>
     </header>
 
-    @if (!Auth::check() || (Auth::check() && Auth::user()->user_data->is_line_connected == null))
-        <div id="line-connect" class="line-connect {{ class_basename(Route::current()->controller) }}-{{ request()->route()->getActionMethod() }}">
-            <i id="line-connect-btn-close" class="fas fa-times-circle btn-close"></i>
-            <div class="headline">
-                <div class="line-logo"><img src="/images/icon-line.png"></div>
-                <div class="line-text">LINEで配信通知を受け取ろう！</div>
-            </div>
-            <a class="btn-connect" href="/setting/line">LINE連携はこちらから</a>
-        </div>
-    @endif
-
     <div id="app-install" class="app-install">
-        <div class="headline">
-            <div class="app-logo"><img src="/images/btn-app.png"></div>
-            <!--<div class="app-text">アプリで快適に視聴！</div>-->
-            <!--<div class="app-text">アプリなら遅延ほぼ無し！</div>-->
-            <div class="app-text">アプリで配信通知を受け取ろう！</div>
-        </div>
-        <a class="btn-install" href="https://itunes.apple.com/jp/app/b-live-%E3%83%A9%E3%82%A4%E3%83%96%E9%85%8D%E4%BF%A1/id1507393495">今すぐインストール</a>
+        <button type="button" class="ai-close" aria-label="閉じる"></button>
+        <span class="ai-icon"><img src="/images/app-icon.png" alt="B-LIVE"></span>
+        <span class="ai-info">
+            <span class="ai-title">B-LIVE</span>
+            <span class="ai-desc">ライブ配信アプリ ・ App Store</span>
+        </span>
+        <a class="ai-action" href="https://apps.apple.com/jp/app/id6760190440">入手</a>
     </div>
 
     <div id="app" class="site-content {{ class_basename(Route::current()->controller) }}-{{ request()->route()->getActionMethod() }} @if (request()->header('User-Agent') == 'webview') webview @endif">
