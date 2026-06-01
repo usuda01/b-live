@@ -23,8 +23,8 @@
     <meta name="twitter:description" content="コメント数を競おう！" />
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
     <link href="{{ mix('css/fonts.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/app.css') }}?param=87" rel="stylesheet">
-    <link href="{{ mix('css/all.css') }}?param=87" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}?param=88" rel="stylesheet">
+    <link href="{{ mix('css/all.css') }}?param=88" rel="stylesheet">
     <title>イベント第１１弾！コメント数を競おう！｜B-LIVE</title>
     {{-- socket io --}}
     <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
@@ -133,9 +133,9 @@
             'apiToken' => \Auth::user()->api_token ?? null
         ]) !!};
     </script>
-    <script src="{{ mix('js/app.js') }}?param=87"></script>
-    <script src="{{ mix('js/all.js') }}?param=87"></script>
-    <script src="{{ mix('js/common.js') }}?param=87"></script>
+    <script src="{{ mix('js/app.js') }}?param=88"></script>
+    <script src="{{ mix('js/all.js') }}?param=88"></script>
+    <script src="{{ mix('js/common.js') }}?param=88"></script>
 </body>
 </html>
 
