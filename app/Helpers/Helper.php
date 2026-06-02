@@ -186,4 +186,41 @@ class Helper
         curl_close($ch);
     }
 
+    /**
+     * 新人配信者（登録から $days 日以内）の配信開始を運営に通知する。
+     * アプリ経由・WEB経由のどちらの配信開始処理からも呼ぶこと。
+     * フォロワーがいない新人でも運営が気づけるよう、stream_alert 設定に関わらず送信する。
+     *
+     * @param \App\Models\Room $room 開始した配信
+     * @param int $adminUserId 通知先の運営ユーザーID
+     * @param int $days 登録からこの日数以内を新人とみなす
+     */
+    public static function notifyNewLiverStartToAdmin($room, $adminUserId = 1, $days = 14) {
+        // 登録から $days 日以内を新人とみなす
+        $createdAt = $room->user->created_at;
+        if (!$createdAt || $createdAt->lt(now()->subDays($days))) {
+            return;
+        }
+
+        // 運営本人が配信者の場合は通知不要
+        if ($room->user_id === $adminUserId) {
+            return;
+        }
+
+        $admin = \App\Models\User::find($adminUserId);
+        if (!$admin || !$admin->device_token) {
+            return;
+        }
+
+        app(\App\Services\FcmService::class)->send(
+            $admin->device_token,
+            '新人配信者がライブを開始しました',
+            "{$room->user->name}さん: {$room->name}",
+            [
+                'type' => 'new_liver_start',
+                'room_id' => $room->id,
+            ]
+        );
+    }
+
 }

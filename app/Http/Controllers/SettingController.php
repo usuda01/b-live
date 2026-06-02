@@ -682,6 +682,9 @@ class SettingController extends Controller
         }
 
         if ($mode == 'create' || $mode === 'create_from_schedule') {
+            // 新人配信者（登録14日以内）の配信開始を運営に通知（stream_alert 設定に依らず常に送る）
+            Helper::notifyNewLiverStartToAdmin($room);
+
             /*
              * このユーザーをフォローしているユーザーに
              * Push通知

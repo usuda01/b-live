@@ -175,6 +175,9 @@ class StreamController extends Controller
             }
         }
 
+        // 新人配信者（登録14日以内）の配信開始を運営に通知（stream_alert 設定に依らず常に送る）
+        Helper::notifyNewLiverStartToAdmin($room);
+
         return response()->json([
             'message' => '配信を開始しました',
             'room' => [
