@@ -41,7 +41,7 @@
                     @endif
                 </div>
                 @if ($schedule->description)
-                    <div class="schedule-desc">{!! nl2br(e($schedule->description)) !!}</div>
+                    <div class="schedule-desc">{!! preg_replace('/\r\n|\r|\n/', '<br>', e($schedule->description)) !!}</div>
                 @endif
 
                 <div class="reminder-action">
