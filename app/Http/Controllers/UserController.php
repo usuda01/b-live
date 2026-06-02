@@ -125,25 +125,41 @@ class UserController extends Controller
     public function getNotificationSettings() {
         $user = Auth::user();
         return response()->json([
-            'notice_live_start' => (int) $user->user_data->notice_live_start,
-            'notice_follow' => (int) $user->user_data->notice_follow,
+            'notice_live_start_mail' => (int) $user->user_data->notice_live_start_mail,
+            'notice_live_start_push' => (int) $user->user_data->notice_live_start_push,
+            'notice_live_start_line' => (int) $user->user_data->notice_live_start_line,
+            'notice_follow_mail' => (int) $user->user_data->notice_follow_mail,
+            'notice_follow_push' => (int) $user->user_data->notice_follow_push,
+            'notice_follow_line' => (int) $user->user_data->notice_follow_line,
         ]);
     }
 
     public function updateNotificationSettings(Request $request) {
         $request->validate([
-            'notice_live_start' => 'required|boolean',
-            'notice_follow' => 'required|boolean',
+            'notice_live_start_mail' => 'required|boolean',
+            'notice_live_start_push' => 'required|boolean',
+            'notice_live_start_line' => 'required|boolean',
+            'notice_follow_mail' => 'required|boolean',
+            'notice_follow_push' => 'required|boolean',
+            'notice_follow_line' => 'required|boolean',
         ]);
 
         $user = Auth::user();
-        $user->user_data->notice_live_start = (int) $request->input('notice_live_start');
-        $user->user_data->notice_follow = (int) $request->input('notice_follow');
+        $user->user_data->notice_live_start_mail = (int) $request->input('notice_live_start_mail');
+        $user->user_data->notice_live_start_push = (int) $request->input('notice_live_start_push');
+        $user->user_data->notice_live_start_line = (int) $request->input('notice_live_start_line');
+        $user->user_data->notice_follow_mail = (int) $request->input('notice_follow_mail');
+        $user->user_data->notice_follow_push = (int) $request->input('notice_follow_push');
+        $user->user_data->notice_follow_line = (int) $request->input('notice_follow_line');
         $user->user_data->save();
 
         return response()->json([
-            'notice_live_start' => (int) $user->user_data->notice_live_start,
-            'notice_follow' => (int) $user->user_data->notice_follow,
+            'notice_live_start_mail' => (int) $user->user_data->notice_live_start_mail,
+            'notice_live_start_push' => (int) $user->user_data->notice_live_start_push,
+            'notice_live_start_line' => (int) $user->user_data->notice_live_start_line,
+            'notice_follow_mail' => (int) $user->user_data->notice_follow_mail,
+            'notice_follow_push' => (int) $user->user_data->notice_follow_push,
+            'notice_follow_line' => (int) $user->user_data->notice_follow_line,
         ]);
     }
 }

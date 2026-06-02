@@ -284,12 +284,10 @@ class StreamController extends Controller
     private function sendNotifications(Room $room): void
     {
         foreach ($room->user->followers as $follower) {
-            if ($follower->followerUser->user_data->notice_live_start != 1) {
-                continue;
-            }
+            $followerData = $follower->followerUser->user_data;
 
             // Push通知（FCM）
-            if ($follower->followerUser->device_token) {
+            if ($followerData->notice_live_start_push == 1 && $follower->followerUser->device_token) {
                 app(FcmService::class)->send(
                     $follower->followerUser->device_token,
                     "{$room->user->name}さんの配信が始まりました",
@@ -302,7 +300,7 @@ class StreamController extends Controller
             }
 
             // LINE通知
-            if ($follower->followerUser->user_data->is_line_connected == 1) {
+            if ($followerData->notice_live_start_line == 1 && $followerData->is_line_connected == 1) {
                 $lineMessage = "{$follower->followerUser->name}さん\n"
                     . "【{$room->user->name}】さんの配信が始まりました！\n"
                     . $room->name . "\n"
@@ -311,7 +309,7 @@ class StreamController extends Controller
             }
 
             // メール通知
-            if ($follower->followerUser->email) {
+            if ($followerData->notice_live_start_mail == 1 && $follower->followerUser->email) {
                 ProcessSendMailLiveStarted::dispatch($follower, $room);
             }
         }

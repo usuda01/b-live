@@ -3296,6 +3296,18 @@
                         display: block;
                         margin-bottom: 18px;
                     }
+                    .channel {
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 12px;
+                        .channel-label {
+                            width: 120px;
+                            font-size: 1.4rem;
+                        }
+                        label {
+                            margin-right: 16px;
+                        }
+                    }
                 }
                 .submit {
                     font-size: 1.4rem;
