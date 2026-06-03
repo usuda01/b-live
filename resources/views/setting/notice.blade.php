@@ -23,13 +23,23 @@
                     <ul>
                         <li>
                             <label class="label">フォローユーザーの配信開始</label>
-                            <label><input type="radio" name="notice_live_start" value="1" {{ old('notice_live_start', $user->user_data->notice_live_start) == 1 ? 'checked' : '' }}> 通知する</label>
-                            <label><input type="radio" name="notice_live_start" value="0" {{ old('notice_live_start', $user->user_data->notice_live_start) == 0 ? 'checked' : '' }}> 通知しない</label>
+                            @foreach (['notice_live_start_mail' => 'メール', 'notice_live_start_push' => 'プッシュ通知', 'notice_live_start_line' => 'LINE'] as $name => $channelLabel)
+                                <div class="channel">
+                                    <span class="channel-label">{{ $channelLabel }}</span>
+                                    <label><input type="radio" name="{{ $name }}" value="1" {{ old($name, $user->user_data->$name) == 1 ? 'checked' : '' }}> 通知する</label>
+                                    <label><input type="radio" name="{{ $name }}" value="0" {{ old($name, $user->user_data->$name) == 0 ? 'checked' : '' }}> 通知しない</label>
+                                </div>
+                            @endforeach
                         </li>
                         <li>
                             <label class="label">フォローされたとき</label>
-                            <label><input type="radio" name="notice_follow" value="1" {{ old('notice_follow', $user->user_data->notice_follow) == 1 ? 'checked' : '' }}> 通知する</label>
-                            <label><input type="radio" name="notice_follow" value="0" {{ old('notice_follow', $user->user_data->notice_follow) == 0 ? 'checked' : '' }}> 通知しない</label>
+                            @foreach (['notice_follow_mail' => 'メール', 'notice_follow_push' => 'プッシュ通知', 'notice_follow_line' => 'LINE'] as $name => $channelLabel)
+                                <div class="channel">
+                                    <span class="channel-label">{{ $channelLabel }}</span>
+                                    <label><input type="radio" name="{{ $name }}" value="1" {{ old($name, $user->user_data->$name) == 1 ? 'checked' : '' }}> 通知する</label>
+                                    <label><input type="radio" name="{{ $name }}" value="0" {{ old($name, $user->user_data->$name) == 0 ? 'checked' : '' }}> 通知しない</label>
+                                </div>
+                            @endforeach
                         </li>
                     <ul>
                     <button type="submit" class="submit">保存</button>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessSendMailFollowReceived;
 use App\Models\Follower;
 use App\Models\Notification;
 use App\Models\User;
@@ -125,27 +126,32 @@ class FollowerController extends Controller
             'title' => "<a href=\"/user/{$follower->followerUser->id}\">{$follower->followerUser->name}さんにフォローされました。</a>",
         ]);
 
-        if ($follower->followUser->user_data->notice_follow == 1) {
-            // フォローされたユーザーにPush通知（FCM）
-            if ($follower->followUser->device_token) {
-                app(FcmService::class)->send(
-                    $follower->followUser->device_token,
-                    "{$follower->followerUser->name}さんにフォローされました",
-                    null,
-                    [
-                        'type' => 'follow',
-                        'follower_id' => $follower->followerUser->id,
-                    ]
-                );
-            }
+        $followData = $follower->followUser->user_data;
 
-            // LINE通知
-            if ($follower->followUser->user_data->is_line_connected == 1) {
-                $lineMessage = "{$follower->followUser->name}さん\n"
-                    . "【{$follower->followerUser->name}】さんにフォローされました\n"
-                    . config('app.url').'/user/'.$follower->followerUser->id;
-                Helper::pushLineMessage($follower->followUser->line_id, $lineMessage);
-            }
+        // フォローされたユーザーにPush通知（FCM）
+        if ($followData->notice_follow_push == 1 && $follower->followUser->device_token) {
+            app(FcmService::class)->send(
+                $follower->followUser->device_token,
+                "{$follower->followerUser->name}さんにフォローされました",
+                null,
+                [
+                    'type' => 'follow',
+                    'follower_id' => $follower->followerUser->id,
+                ]
+            );
+        }
+
+        // LINE通知
+        if ($followData->notice_follow_line == 1 && $followData->is_line_connected == 1) {
+            $lineMessage = "{$follower->followUser->name}さん\n"
+                . "【{$follower->followerUser->name}】さんにフォローされました\n"
+                . config('app.url').'/user/'.$follower->followerUser->id;
+            Helper::pushLineMessage($follower->followUser->line_id, $lineMessage);
+        }
+
+        // メール通知
+        if ($followData->notice_follow_mail == 1 && $follower->followUser->email) {
+            ProcessSendMailFollowReceived::dispatch($follower);
         }
 
         return $follower;
