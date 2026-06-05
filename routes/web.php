@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AppleSigninController;
 use App\Http\Controllers\Auth\FacebookController;
 use App\Http\Controllers\Auth\LineController;
 use App\Http\Controllers\Auth\TwitterController;
+use App\Http\Controllers\AppController;
 use App\Http\Controllers\ColumnController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventRankingController;
@@ -133,6 +134,7 @@ Route::get('event11', [EventRankingController::class, 'event11']);
 Route::get('event12', [EventRankingController::class, 'event12']);
 Route::get('event13', [EventRankingController::class, 'event13']);
 Route::get('event14', [EventRankingController::class, 'event14']);
+Route::get('event15', [EventRankingController::class, 'event15']);
 
 // 認証
 Route::middleware('auth')->group(function () {
@@ -211,6 +213,9 @@ Route::get('page/ranking', [PageController::class, 'ranking']);
 Route::get('page/terms', [PageController::class, 'terms']);
 Route::get('page/privacy', [PageController::class, 'privacy']);
 Route::get('page/lp01', [PageController::class, 'lp01']);
+
+// アプリ内に埋め込むバナー
+Route::get('app/banner', [AppController::class, 'banner']);
 
 // for Xcode
 Route::get('room-message/{room_id}', [RoomController::class, 'message']);
