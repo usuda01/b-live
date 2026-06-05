@@ -9,6 +9,10 @@
                 <div class="section">
                     <h3>お知らせ一覧</h3>
                     <div class="row">
+                         <div class="date">2026.06.05</div>
+                         <div class="description"><a href="/page/notice/49">アマゾンギフト券総額１万円獲得イベント開催！</a></div>
+                    </div>
+                    <div class="row">
                          <div class="date">2024.11.16</div>
                          <div class="description"><a href="/page/notice/48">【新機能のお知らせ】「ほんのきもち。」コイン自動付与システムの導入について</a></div>
                     </div>

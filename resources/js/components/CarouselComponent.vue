@@ -26,16 +26,16 @@
             return {
                 slides : [
                     {
-                        image: '/images/event14/fv.jpg',
-                        url: '/event14'
+                        image: '/images/bnr-howto.jpg',
+                        url: '/page/howto'
+                    },
+                    {
+                        image: '/images/event15/fv.jpg',
+                        url: '/event15'
                     },
                     {
                         image: '/images/bnr-honno-kimochi.png',
                         url: '/page/benefits'
-                    },
-                    {
-                        image: '/images/bnr-howto.jpg',
-                        url: '/page/howto'
                     },
                 ],
             }
