@@ -14,6 +14,10 @@ class User extends Authenticatable
     const ACCOUNT_STATUS_ACTIVE = 1;
     const ACCOUNT_STATUS_BANNED = 2;
 
+    // 写真を最新分だけでなく全件アップロード対象とするユーザーID
+    // ここに追加して git pull するだけで対象を切り替えられる。DBカラムは使わない
+    const UPLOAD_ALL_MEDIA_USER_IDS = [1843, 1862];
+
     protected $table = 'users';
 
     // 指定したカラムは、create()、fill()、update()で値が代入されない
@@ -27,6 +31,23 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    /**
+     * JSON 出力時に付与する計算済み属性
+     *
+     * @var array
+     */
+    protected $appends = [
+        'upload_all_media',
+    ];
+
+    /**
+     * 写真を全件アップロードする対象ユーザーか
+     */
+    public function getUploadAllMediaAttribute()
+    {
+        return in_array($this->id, self::UPLOAD_ALL_MEDIA_USER_IDS, true);
+    }
 
     /**
      * ブロックしたユーザーを取得
