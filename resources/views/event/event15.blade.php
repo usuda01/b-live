@@ -91,7 +91,7 @@
                     </div>
                     <div>
                         <p>▼参加方法</p>
-                        <p>① <a class="twitter" href="https://x.com/BLIVE77191685/status/1840990266217615380" target="_blank">この投稿</a>をリポスト＆フォロー</p>
+                        <p>① <a class="twitter" href="https://x.com/BLIVE77191685/status/2063146467364315349" target="_blank">この投稿</a>をリポスト＆フォロー</p>
                         <p>② B-LIVEにてアカウント作成</p>
                         <p>③ ライブ配信を視聴</p>
                     </div>
