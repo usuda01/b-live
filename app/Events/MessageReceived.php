@@ -43,9 +43,10 @@ class MessageReceived implements ShouldBroadcastNow
      */
     public function broadcastWith()
     {
+        $this->message->load('user:id,image,name,profile', 'image', 'payment');
         $payment = $this->message->payment;
-        $this->message->load('image');
         $image = $this->message->image;
+        $user = $this->message->user;
 
         return [
             'message' => [
@@ -54,12 +55,24 @@ class MessageReceived implements ShouldBroadcastNow
                 'room_id' => $this->message->room_id,
                 'content' => $this->message->content,
                 'created_at' => $this->message->created_at,
-                'user_name' => $this->message->user->name,
+                'user_name' => $user->name,
                 'user' => [
-                    'id' => $this->message->user->id,
-                    'name' => $this->message->user->name,
-                    'image' => $this->message->user->image,
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'image' => $user->image,
+                    'profile' => $user->profile,
+                    'image_path' => $user->getImagePath(),
                 ],
+                'payment' => $payment ? [
+                    'id' => $payment->id,
+                    'user_id' => $payment->user_id,
+                    'message_id' => $payment->message_id,
+                    'product_id' => (string)$payment->product_id,
+                    'price' => $payment->price === null ? null : (int)$payment->price,
+                    'point' => $payment->point === null ? null : (int)$payment->point,
+                    'created_at' => $payment->created_at,
+                    'updated_at' => $payment->updated_at,
+                ] : null,
                 'gift_amount' => $payment ? (int)$payment->point : null,
                 'payment_product_id' => $payment ? (string)$payment->product_id : null,
                 'image' => $image ? [

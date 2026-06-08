@@ -40,21 +40,12 @@ class MessageController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
         foreach ($messages as $message) {
-            // これを呼んでおかないとVue側でリレーションしてくれない
-            $message->user->user_data;
-
-            $message->user->image_path = $message->user->getImagePath();
             // ブロックしていた場合はメッセージを表示しない
             if (in_array($message->user->id, $blockIds)) {
                 $message->content = 'このメッセージは表示されません。';
                 $message->setRelation('image', null);
             }
-            // 課金メッセージかどうかを判定
-            if ($message->payment) {
-                $message->payment_product_id = $message->payment->product_id;
-            } else {
-                $message->payment_product_id = null;
-            }
+            $this->decorateMessageResponse($message);
         }
         if (empty($messages)) {
             abort(404);
@@ -249,7 +240,37 @@ class MessageController extends Controller
         // 4. commit 後に push 発火
         MessageReceived::dispatch($message);
 
-        return response($message->load('image'), 201);
+        $message->load('user:id,image,name,profile', 'image', 'payment');
+        $this->decorateMessageResponse($message);
+
+        return response($message, 201);
+    }
+
+    /**
+     * WEB/iOS の各経路で扱う Message payload を揃える。
+     */
+    private function decorateMessageResponse(Message $message): Message
+    {
+        if ($message->relationLoaded('user') && $message->user) {
+            // これを呼んでおかないとVue側でリレーションしてくれない
+            $message->user->user_data;
+            $message->user->image_path = $message->user->getImagePath();
+            $message->user_name = $message->user->name;
+        }
+
+        $payment = $message->relationLoaded('payment')
+            ? $message->payment
+            : $message->payment()->first();
+
+        if ($payment) {
+            $message->payment_product_id = (string)$payment->product_id;
+            $message->gift_amount = (int)$payment->point;
+        } else {
+            $message->payment_product_id = null;
+            $message->gift_amount = null;
+        }
+
+        return $message;
     }
 
 }
