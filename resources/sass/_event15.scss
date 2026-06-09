@@ -167,3 +167,173 @@
         }
     }
 }
+
+/* トップページ 開催中イベントバナー */
+@keyframes homeEventBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .3; }
+}
+
+.home-index .main-area .home-event-section {
+    margin: 26px 10px 0 10px;
+    .head {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 10px 0;
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .badge {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+            color: #fff;
+            background: #ff3b5c;
+            border-radius: 999px;
+            padding: 3px 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            line-height: 1.5;
+            .dot {
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: #fff;
+                animation: homeEventBlink 1.2s infinite;
+            }
+        }
+    }
+    .home-event-banner {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        border-radius: 14px;
+        overflow: hidden;
+        padding: 20px 22px;
+        color: #fff;
+        box-shadow: 0 8px 22px rgba(40, 20, 70, .25);
+        background:
+            radial-gradient(circle at 90% 15%, rgba(243, 195, 74, .35), transparent 55%),
+            linear-gradient(125deg, #6a2b8a 0%, #3a2b78 55%, #1e3a6b 100%);
+        .left {
+            width: 100%;
+        }
+        .kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #f3c34a;
+            margin-bottom: 8px;
+        }
+        .lead {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+            color: #e8def5;
+        }
+        .big {
+            font-size: 2.6rem;
+            font-weight: 800;
+            margin: 0 0 12px 0;
+            letter-spacing: .01em;
+            .amount {
+                color: #f3c34a;
+            }
+        }
+        .chips {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            .chip {
+                font-size: 1.2rem;
+                font-weight: 700;
+                background: rgba(255, 255, 255, .14);
+                border: 1px solid rgba(255, 255, 255, .25);
+                border-radius: 999px;
+                padding: 4px 12px;
+                &.r1 {
+                    background: #f3c34a;
+                    color: #5a3a00;
+                    border-color: #f3c34a;
+                }
+            }
+        }
+        .period {
+            margin: 12px 0 0 0;
+            font-size: 1.2rem;
+            color: #cfc4e0;
+        }
+        .right {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            .count {
+                font-size: 1.3rem;
+                color: #e8def5;
+            }
+            .cta {
+                margin-left: auto;
+                display: inline-block;
+                background: #ff5a3c;
+                color: #fff;
+                font-weight: 700;
+                padding: 11px 24px;
+                border-radius: 999px;
+                font-size: 1.5rem;
+                white-space: nowrap;
+                box-shadow: 0 6px 18px rgba(255, 90, 60, .5);
+            }
+        }
+    }
+
+    @media only screen and (min-width: 960px) {
+        width: 900px;
+        max-width: 100%;
+        margin: 30px auto 0 auto;
+        .head {
+            gap: 10px;
+            margin: 0 0 12px 0;
+        }
+        .home-event-banner {
+            flex-direction: row;
+            align-items: center;
+            gap: 24px;
+            padding: 24px 30px;
+            min-height: 172px;
+            .left {
+                flex: 1;
+                min-width: 0;
+                width: auto;
+            }
+            .kicker {
+                font-size: 1.2rem;
+            }
+            .big {
+                font-size: 3rem;
+            }
+            .chips {
+                gap: 8px;
+            }
+            .right {
+                flex-shrink: 0;
+                width: auto;
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+                text-align: center;
+                .cta {
+                    margin-left: 0;
+                    padding: 12px 26px;
+                }
+            }
+        }
+    }
+}
