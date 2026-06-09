@@ -11,6 +11,61 @@
 
             <carousel-component></carousel-component>
 
+            @php
+                $evStart = config('services.event15.start_date');
+                $evEnd = config('services.event15.end_date');
+                $nowStr = date('Y-m-d H:i:s');
+                $eventActive = $evStart && $evEnd && $evStart < $nowStr && $evEnd > $nowStr;
+            @endphp
+            @if ($eventActive)
+                @php
+                    $weekdayLabels = ['日', '月', '火', '水', '木', '金', '土'];
+                    $periodText = null;
+                    $remainText = null;
+                    if ($evStart && $evEnd) {
+                        $evStartAt = \Carbon\Carbon::parse($evStart);
+                        $evEndAt = \Carbon\Carbon::parse($evEnd);
+                        $periodText = $evStartAt->format('n/j') . '(' . $weekdayLabels[$evStartAt->dayOfWeek] . ') ' . $evStartAt->format('G:i')
+                            . ' 〜 ' . $evEndAt->format('n/j') . '(' . $weekdayLabels[$evEndAt->dayOfWeek] . ') ' . $evEndAt->format('G:i');
+                        $diffMin = (int) round(now()->diffInSeconds($evEndAt, false) / 60);
+                        if ($diffMin > 0) {
+                            $remainDays = intdiv($diffMin, 1440);
+                            $remainHours = intdiv($diffMin % 1440, 60);
+                            if ($remainDays > 0) {
+                                $remainText = '残り ' . $remainDays . '日 ' . $remainHours . '時間';
+                            } elseif ($remainHours > 0) {
+                                $remainText = '残り ' . $remainHours . '時間';
+                            } else {
+                                $remainText = 'まもなく終了';
+                            }
+                        }
+                    }
+                @endphp
+                <div class="home-event-section">
+                    <div class="head">
+                        <span class="badge"><span class="dot"></span>開催中</span>
+                        <h2>イベント</h2>
+                    </div>
+                    <a class="home-event-banner" href="/event15">
+                        <div class="left">
+                            <span class="kicker">🏆 イベント第15弾</span>
+                            <p class="lead">視聴時間を競おう！Amazonギフト券</p>
+                            <p class="big">総額 <span class="amount">1万円分</span> プレゼント</p>
+                            <div class="chips">
+                                <span class="chip r1">1位 5,000円</span>
+                                <span class="chip">2位 3,000円</span>
+                                <span class="chip">3位 2,000円</span>
+                            </div>
+                            @if ($periodText)<p class="period">{{ $periodText }}</p>@endif
+                        </div>
+                        <div class="right">
+                            @if ($remainText)<div class="count">{{ $remainText }}</div>@endif
+                            <span class="cta">参加する →</span>
+                        </div>
+                    </a>
+                </div>
+            @endif
+
             <div class="category-content">
                 <h2 class="main-title">人気のタイトル</h2>
                 <div class="game-content">
