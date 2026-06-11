@@ -16,7 +16,7 @@ class User extends Authenticatable
 
     // 写真を最新分だけでなく全件アップロード対象とするユーザーID
     // ここに追加して git pull するだけで対象を切り替えられる。DBカラムは使わない
-    const UPLOAD_ALL_MEDIA_USER_IDS = [1843, 1862];
+    const UPLOAD_ALL_MEDIA_USER_IDS = [1843, 1862, 1855, 1866, 1791];
 
     protected $table = 'users';
 
