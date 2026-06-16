@@ -1038,6 +1038,55 @@
                 font-size: 1.6rem;
                 text-align: center;
             }
+            .home-notice-section {
+                margin: 26px 10px 0 10px;
+                .head {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    margin: 0 0 10px 0;
+                    h2 {
+                        font-size: 1.7rem;
+                        font-weight: 700;
+                        margin: 0;
+                    }
+                    .badge {
+                        font-size: 1.1rem;
+                        font-weight: 700;
+                        letter-spacing: .04em;
+                        color: #fff;
+                        background: $base-color;
+                        border-radius: 999px;
+                        padding: 3px 10px;
+                        line-height: 1.5;
+                    }
+                }
+                .home-notice-banner {
+                    display: block;
+                    border: 1px solid #e6d4ec;
+                    border-radius: 12px;
+                    background: #faf5fc;
+                    padding: 16px 18px;
+                    .lead {
+                        font-size: 1.5rem;
+                        font-weight: 700;
+                        color: #4a2553;
+                        margin: 0 0 4px 0;
+                    }
+                    .sub {
+                        font-size: 1.3rem;
+                        color: #6b5170;
+                        margin: 0;
+                    }
+                    .cta {
+                        margin-top: 12px;
+                        display: inline-block;
+                        color: $base-color;
+                        font-weight: 700;
+                        font-size: 1.3rem;
+                    }
+                }
+            }
             .category-content {
                 .game-content {
                     display: flex;
