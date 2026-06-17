@@ -36,9 +36,9 @@
     @php
         // お知らせ：表示ON/OFFと内容をこのファイルで編集する（編集後に本番へ git pull でデプロイ）。
         $showNotice = true;                  // false にすると非表示
-        $noticeTitle = 'お知らせのタイトルをここに書く';
-        $noticeText = 'お知らせの本文をここに書く。空にするとタイトルだけ表示する。';
-        $noticeUrl = url('/page/notice');    // タップで開くページ。リンク不要なら null にする
+        $noticeTitle = '2026年7月1日より利用規約を改定します';
+        $noticeText = '録画した映像をライブ配信として配信する行為を、禁止事項に追加します';
+        $noticeUrl = url('/page/notice/50');  // タップで開くページ。リンク不要なら null にする
     @endphp
     @if ($showNotice)
         @php $noticeTag = $noticeUrl ? 'a' : 'div'; @endphp
