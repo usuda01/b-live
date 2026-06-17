@@ -216,6 +216,8 @@ Route::get('page/lp01', [PageController::class, 'lp01']);
 
 // アプリ内に埋め込むバナー
 Route::get('app/banner', [AppController::class, 'banner']);
+// アプリ内に埋め込むお知らせ
+Route::get('app/notice', [AppController::class, 'notice']);
 
 // for Xcode
 Route::get('room-message/{room_id}', [RoomController::class, 'message']);

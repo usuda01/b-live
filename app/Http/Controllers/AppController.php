@@ -12,4 +12,10 @@ class AppController extends Controller
     {
         return view('app.banner');
     }
+
+    // アプリ内に埋め込むお知らせ
+    public function notice()
+    {
+        return view('app.notice');
+    }
 }
