@@ -941,6 +941,57 @@
                 font-size: 2.0rem;
                 text-align: center;
             }
+            .home-notice-section {
+                width: 900px;
+                max-width: 100%;
+                margin: 30px auto 0 auto;
+                .head {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    margin: 0 0 12px 0;
+                    h2 {
+                        font-size: 1.8rem;
+                        font-weight: 700;
+                        margin: 0;
+                    }
+                    .badge {
+                        font-size: 1.1rem;
+                        font-weight: 700;
+                        letter-spacing: .04em;
+                        color: #fff;
+                        background: $base-color;
+                        border-radius: 999px;
+                        padding: 3px 12px;
+                        line-height: 1.5;
+                    }
+                }
+                .home-notice-banner {
+                    display: block;
+                    border: 1px solid #e6d4ec;
+                    border-radius: 14px;
+                    background: #faf5fc;
+                    padding: 20px 26px;
+                    .lead {
+                        font-size: 1.7rem;
+                        font-weight: 700;
+                        color: #4a2553;
+                        margin: 0 0 6px 0;
+                    }
+                    .sub {
+                        font-size: 1.4rem;
+                        color: #6b5170;
+                        margin: 0;
+                    }
+                    .cta {
+                        margin-top: 14px;
+                        display: inline-block;
+                        color: $base-color;
+                        font-weight: 700;
+                        font-size: 1.4rem;
+                    }
+                }
+            }
             .category-content {
                 .game-content {
                     display: flex;

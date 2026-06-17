@@ -66,6 +66,18 @@
                 </div>
             @endif
 
+            <div class="home-notice-section">
+                <div class="head">
+                    <span class="badge">お知らせ</span>
+                    <h2>利用規約改定</h2>
+                </div>
+                <a class="home-notice-banner" href="/page/notice/50">
+                    <p class="lead">2026年7月1日より利用規約を改定します</p>
+                    <p class="sub">録画した映像をライブ配信として配信する行為を、禁止事項に追加します</p>
+                    <span class="cta">詳細を見る →</span>
+                </a>
+            </div>
+
             <div class="category-content">
                 <h2 class="main-title">人気のタイトル</h2>
                 <div class="game-content">
