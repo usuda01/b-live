@@ -7,7 +7,7 @@
             <h2>運営者</h2>
             <div class="box company">
                 <ul class="list">
-                    <li><div class="key">運営者</div><div class="value">薄田広志<br>個人で運営してます。</div></li>
+                    <li><div class="key">運営者</div><div class="value">株式会社CAROL</div></li>
                     <li><div class="key">Twitter</div><div class="value"><a href="https://twitter.com/">@birthdadan</a></div></li>
                     <li><div class="key">住所</div><div class="value">〒171-0044<br>東京都豊島区千早２−１４−８</div></li>
                     <li><div class="key">TEL</div><div class="value"><a href="tel:050-5373-5388">050-5373-5388</a></div></li>
