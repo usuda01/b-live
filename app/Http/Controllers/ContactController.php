@@ -22,7 +22,7 @@ class ContactController extends Controller
         $this->validate($request, $rules);
 
         $to = [
-            ['email' => 'hiroshi0104@gmail.com', 'name' => 'Your Name']
+            ['email' => 'support-i@carol-i.com', 'name' => 'B-LIVE サポート']
         ];
 
         $data = $request->only('name', 'email', 'message');
