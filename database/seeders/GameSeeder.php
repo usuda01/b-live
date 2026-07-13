@@ -46,6 +46,7 @@ class GameSeeder extends Seeder
             ['id' => 29, 'name' => 'パルワールド', 'sns_tags' => 'パルワールド,Palworld', 'sales_agency' => 'Pocketpair'],
             ['id' => 30, 'name' => 'Rust', 'sns_tags' => 'Rust,rust', 'sales_agency' => 'Facepunch Studios'],
             ['id' => 31, 'name' => 'ゼルダの伝説 ティアーズ オブ ザ キングダム', 'sns_tags' => 'ゼルダの伝説,ティアキン,TearsOfTheKingdom,Zelda', 'sales_agency' => '任天堂'],
+            ['id' => 32, 'name' => 'ELDEN RING NIGHTREIGN', 'sns_tags' => 'ELDENRING,NIGHTREIGN,ナイトレイン', 'sales_agency' => 'FromSoftware'],
         ]);
     }
 }
