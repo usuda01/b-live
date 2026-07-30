@@ -50,6 +50,14 @@ class Room extends Model
     }
 
     /**
+     * Roomに紐付くStreamScheduleを取得
+     */
+    public function streamSchedules()
+    {
+        return $this->hasMany(StreamSchedule::class);
+    }
+
+    /**
      * このルームを所有するユーザーを取得
      */
     public function user()

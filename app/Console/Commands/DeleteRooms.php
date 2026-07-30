@@ -54,6 +54,11 @@ class DeleteRooms extends Command
                 $message->payment()->delete();
                 $message->delete();
             }
+            // stream_schedules.room_id は RESTRICT FK なので、配信開始済みの予約も room と一緒に削除する
+            foreach ($room->streamSchedules()->get() as $schedule) {
+                $schedule->reminders()->delete();
+                $schedule->delete();
+            }
             $room->roomRankings()->delete();
             $room->delete();
         }
