@@ -108,6 +108,73 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * 自分がフォローしている人一覧
+     */
+    public function getMyFollows(Request $request): JsonResponse
+    {
+        $userId = $request->user()->id;
+        $follows = Follower::where('follower_id', $userId)
+            ->orderBy('id', 'desc')
+            ->paginate(20);
+
+        $data = [];
+        foreach ($follows as $follow) {
+            $user = $follow->followUser;
+            if (!$user) {
+                continue;
+            }
+            $data[] = [
+                'id' => $user->id,
+                'name' => $user->name,
+                'image_url' => url($user->getImagePath()),
+                'is_following' => true,
+            ];
+        }
+
+        return response()->json([
+            'users' => $data,
+            'current_page' => $follows->currentPage(),
+            'last_page' => $follows->lastPage(),
+            'total' => $follows->total(),
+        ]);
+    }
+
+    /**
+     * 自分をフォローしている人一覧
+     */
+    public function getMyFollowers(Request $request): JsonResponse
+    {
+        $userId = $request->user()->id;
+        $followers = Follower::where('follow_id', $userId)
+            ->orderBy('id', 'desc')
+            ->paginate(20);
+
+        // 自分がフォローしているユーザーID（フォロー返し判定用）
+        $followIds = Follower::where('follower_id', $userId)->pluck('follow_id')->all();
+
+        $data = [];
+        foreach ($followers as $follower) {
+            $user = $follower->followerUser;
+            if (!$user) {
+                continue;
+            }
+            $data[] = [
+                'id' => $user->id,
+                'name' => $user->name,
+                'image_url' => url($user->getImagePath()),
+                'is_following' => in_array($user->id, $followIds),
+            ];
+        }
+
+        return response()->json([
+            'users' => $data,
+            'current_page' => $followers->currentPage(),
+            'last_page' => $followers->lastPage(),
+            'total' => $followers->total(),
+        ]);
+    }
+
     public function show($userId): JsonResponse
     {
         $user = User::with('user_data')->find($userId);
