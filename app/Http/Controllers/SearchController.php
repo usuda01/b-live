@@ -11,7 +11,7 @@ class SearchController extends Controller
 
     public function index(Request $request) {
         $q = $request->input('q');
-        if (!$q) {
+        if (!$q || !is_string($q)) {
             return redirect('/');
         }
 
@@ -22,6 +22,9 @@ class SearchController extends Controller
 
     public function searchRooms(Request $request) {
         $q = $request->input('q');
+        if (!is_string($q)) {
+            $q = '';
+        }
 
         $rooms = Room::with(['user'])
             ->leftJoin('users as joinUsers', 'joinUsers.id', '=', 'rooms.user_id')
@@ -48,6 +51,9 @@ class SearchController extends Controller
 
     public function searchMovies(Request $request) {
         $q = $request->input('q');
+        if (!is_string($q)) {
+            $q = '';
+        }
         $sort = $request->input('sort');
         $userId = $request->input('user_id');
 
@@ -92,6 +98,9 @@ class SearchController extends Controller
 
     public function searchUsers(Request $request) {
         $q = $request->input('q');
+        if (!is_string($q)) {
+            $q = '';
+        }
 
         $users = User::where('status', 2)
             ->where('name', 'like', '%' . $q . '%')
